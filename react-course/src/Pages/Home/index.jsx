@@ -8,11 +8,10 @@ function Home() {
   const [items,setItems] = useState(null)
 
 useEffect(()=>{
-fetch('https://api.escuelajs.co/api/v1/products')
+fetch('https://api-product-5iv7.onrender.com/products')
 .then(response=> response.json())
 .then(data => setItems(data))
 },[])
-
    return(
     <Layout>
       Home
@@ -22,9 +21,7 @@ fetch('https://api.escuelajs.co/api/v1/products')
           <Card key={item.id} data={item}> </Card>
           )) 
       }
-      </div>
-     
-
+      </div>     
     </Layout>
    )
 }
