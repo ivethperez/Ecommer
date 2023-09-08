@@ -4,9 +4,12 @@ import Car from '../../Components/Card'
 import { data } from 'autoprefixer'
 import Card from '../../Components/Card'
 import ProductDetail from '../../Components/ProductDetail'
+import ProductModal from '../../Components/ProductModal'
+import { useShopiContext } from '../../Context'
 function Home() {
 
   const [items,setItems] = useState(null)
+  const {openModal} = useShopiContext();
 
 useEffect(()=>{
 fetch('https://api-product-5iv7.onrender.com/products')
@@ -22,8 +25,14 @@ fetch('https://api-product-5iv7.onrender.com/products')
           <Card key={item.id} data={item}> </Card>
           )) 
       }
-      </div>     
-      <ProductDetail></ProductDetail>
+      </div>  
+
+      {openModal && (
+        <ProductModal>
+          <ProductDetail></ProductDetail>
+        </ProductModal>
+      )}   
+     
     </Layout>
    )
 }

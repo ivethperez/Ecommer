@@ -2,9 +2,13 @@
 import { useShopiContext } from '../../Context'
 
 const Card = ({data}) =>{
-    const  {increment} = useShopiContext();
+    const  {increment,setOpenModal,setProductShow} = useShopiContext();
+    const showproduct = (productDetail) =>{
+        setOpenModal(state=> !state);
+        setProductShow(productDetail);
+    }
     return(
-        <div className="bg-white cursor-pointer w-56 h-60 rounded-lg">
+        <div className="bg-white cursor-pointer w-56 h-60 rounded-lg" onClick={()=> showproduct(data)}>
             <figure className="relative mb-2 w-full h-4/5">
                 <span className="absolute bottom-0 left-0 bg-white/60 rounded-lg text-xs m-2 px-3 py-0.5">
                     {data.category.name}
