@@ -3,6 +3,7 @@ import Layout from '../../Components/Layout'
 import Car from '../../Components/Card'
 import { data } from 'autoprefixer'
 import Card from '../../Components/Card'
+import ProductDetail from '../../Components/ProductDetail'
 function Home() {
 
   const [items,setItems] = useState(null)
@@ -22,6 +23,7 @@ fetch('https://api-product-5iv7.onrender.com/products')
           )) 
       }
       </div>     
+      <ProductDetail></ProductDetail>
     </Layout>
    )
 }
