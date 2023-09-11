@@ -27,11 +27,12 @@ fetch('https://api-product-5iv7.onrender.com/products')
       }
       </div>  
 
-      {openModal && (
+       {openModal && (
         <ProductModal>
-          <ProductDetail></ProductDetail>
+         <ProductDetail></ProductDetail>
         </ProductModal>
-      )}   
+      )}    
+       
      
     </Layout>
    )

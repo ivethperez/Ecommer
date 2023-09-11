@@ -5,10 +5,10 @@ const ShoppingCartContext = createContext()
 export const ShoppingCartProvider = ({children}) =>{
     //Shopping Cart
     const [count, setCount] = useState(0)
-    const increment = () =>{
+    const increment = (event) =>{
+        event.stopPropagation();
         setCount(count +1);
     }
-
     //ProductDetail
     const [openModal,setOpenModal] = useState(false)
     const [productShow,setProductShow] = useState({})
@@ -21,7 +21,8 @@ export const ShoppingCartProvider = ({children}) =>{
           openModal,
           setOpenModal,
           productShow,
-          setProductShow
+          setProductShow,
+         
         }}>
             {children}
         </ShoppingCartContext.Provider>
