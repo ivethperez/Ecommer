@@ -6,10 +6,11 @@ import Card from '../../Components/Card'
 import ProductDetail from '../../Components/ProductDetail'
 import ProductModal from '../../Components/ProductModal'
 import { useShopiContext } from '../../Context'
+import CheckoutSideMenu from '../../Components/CheckoutSideMenu'
 function Home() {
 
   const [items,setItems] = useState(null)
-  const {openModal} = useShopiContext();
+  const {openModal,openModalOrder} = useShopiContext();
 
 useEffect(()=>{
 fetch('https://api-product-5iv7.onrender.com/products')
@@ -30,6 +31,11 @@ fetch('https://api-product-5iv7.onrender.com/products')
        {openModal && (
         <ProductModal>
          <ProductDetail></ProductDetail>
+        </ProductModal>
+      )}    
+      {openModalOrder && (
+        <ProductModal>
+         <CheckoutSideMenu></CheckoutSideMenu>
         </ProductModal>
       )}    
        

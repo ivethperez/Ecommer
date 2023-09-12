@@ -11,8 +11,15 @@ export const ShoppingCartProvider = ({children}) =>{
     }
     //ProductDetail
     const [openModal,setOpenModal] = useState(false)
-    const [productShow,setProductShow] = useState({})
+    const [productShow,setProductShow] = useState({}) //Array
 
+    //shopping cart- add products to cart
+    const [cartProducts,setCartProducts] = useState([]) //Array de objetos
+
+    //checkoutSideMenu
+    const [openModalOrder,setOpenModalOrder] = useState(false)
+   
+    console.log(openModal,openModalOrder)
     return(
         <ShoppingCartContext.Provider value={{
           count,
@@ -22,7 +29,10 @@ export const ShoppingCartProvider = ({children}) =>{
           setOpenModal,
           productShow,
           setProductShow,
-         
+          cartProducts,
+          setCartProducts,
+          openModalOrder,
+          setOpenModalOrder
         }}>
             {children}
         </ShoppingCartContext.Provider>
