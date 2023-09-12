@@ -33,12 +33,13 @@ fetch('https://api-product-5iv7.onrender.com/products')
          <ProductDetail></ProductDetail>
         </ProductModal>
       )}    
-      {openModalOrder && (
+
+      {/* {openModalOrder && (
         <ProductModal>
          <CheckoutSideMenu></CheckoutSideMenu>
         </ProductModal>
-      )}    
-       
+      )}     */}
+       <CheckoutSideMenu></CheckoutSideMenu>
      
     </Layout>
    )

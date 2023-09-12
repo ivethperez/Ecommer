@@ -9,13 +9,13 @@ const Card = ({data}) =>{
         setOpenModal(state=> !state);
         setProductShow(productDetail);
     }
-    const addProductsToCart =(productData,e)=>{
-        increment(e);
+    const addProductsToCart =(productData,e)=>{       
         setOpenModalOrder(state=> !state);
-        setCartProducts([...cartProducts,productData]);
+        //setCartProducts([...cartProducts,productData]);
+        increment(e,productData);
     }
     return(
-        <div className="bg-white cursor-pointer w-56 h-60 rounded-lg" onClick={()=> showproduct(data)}>
+        <div className="bg-white cursor-pointer w-full h-60 rounded-lg max-w-md mx-auto shadow-md overflow-hidden md:max-w-2xl" onClick={()=> showproduct(data)}>
             <figure className="relative mb-2 w-full h-4/5">
                 <span className="absolute bottom-0 left-0 bg-white/60 rounded-lg text-xs m-2 px-3 py-0.5">
                     {data.category.name}
@@ -35,6 +35,9 @@ const Card = ({data}) =>{
                 <span className="text-lg font-medium">${data.price}</span>
             </p>
         </div>
+
+
+
     )
 }
 export default Card
