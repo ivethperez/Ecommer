@@ -1,5 +1,5 @@
 import React from 'react'
-import { XMarkIcon } from '@heroicons/react/24/solid'
+import { TrashIcon } from '@heroicons/react/24/solid'
 
 const OrderCard = props => {
     const { title, imageUrl, price,quantity } = props
@@ -15,7 +15,7 @@ const OrderCard = props => {
             <div className='flex items-center gap-2'>
                 <p className='text-lg items-center gap-2'>${price * quantity}</p>
                 <button className='text-lg font-medium' >
-                    <XMarkIcon className='h-6 w-6 text-black'></XMarkIcon>
+                    <TrashIcon className='h-6 w-6 text-black'></TrashIcon>
                 </button>
             </div>
         </div>
