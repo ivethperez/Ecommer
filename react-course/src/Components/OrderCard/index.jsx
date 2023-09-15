@@ -2,7 +2,7 @@ import React from 'react'
 import { TrashIcon } from '@heroicons/react/24/solid'
 
 const OrderCard = props => {
-    const { title, imageUrl, price,quantity } = props
+    const { id,title, imageUrl, price,quantity,handleDelete } = props
     return (
         <div className="flex justify-between items-center mb-2">
             <div className='flex items-center gap-2'>           
@@ -12,12 +12,20 @@ const OrderCard = props => {
                 </figure>
                 <p className='text-sm font-light'>{title}</p>
             </div>
+
             <div className='flex items-center gap-2'>
                 <p className='text-lg items-center gap-2'>${price * quantity}</p>
-                <button className='text-lg font-medium' >
-                    <TrashIcon className='h-6 w-6 text-black'></TrashIcon>
-                </button>
+   
+                {
+                    handleDelete &&                 
+                    <TrashIcon
+                    onClick={()=>handleDelete(id)}
+                    className="h-4 w-4 text-black cursor-pointer "/>
+                }
+
             </div>
+
+            
         </div>
     )
 }
