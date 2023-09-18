@@ -7,9 +7,11 @@ import {totalPrice} from '../../utils'
 
 const CheckoutSideMenu = () => {
   const { setOpenModalOrder, openModalOrder, cartProducts,setCartProducts
-  ,setOrder,order } = useShopiContext();
+  ,setOrder,order,setCount,count } = useShopiContext();
   const onCancel = () => { setOpenModalOrder(false) };
   const handleDelete =(id) =>{
+    const product = cartProducts.filter(product => product.id == id)
+    setCount(count -product[0].quantity)
     setCartProducts(cartProducts.filter(product => product.id != id))
   }
   const handleCkeckout =() =>{

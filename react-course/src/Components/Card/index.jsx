@@ -11,7 +11,6 @@ const Card = ({data}) =>{
     }
     const addProductsToCart =(productData,e)=>{       
         setOpenModalOrder(true);
-        //setCartProducts([...cartProducts,productData]);
         increment(e,productData);
     }
     return(
@@ -44,11 +43,6 @@ const Card = ({data}) =>{
           )}
 
             </figure>
-
-         
-
-
-
             <p className="flex justify-between">
                 <span className="text-sm font-light">{data.title}</span>
                 <span className="text-lg font-medium">${data.price}</span>
