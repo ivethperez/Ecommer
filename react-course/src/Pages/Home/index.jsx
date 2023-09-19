@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+
 import Layout from '../../Components/Layout'
 import Car from '../../Components/Card'
 import { data } from 'autoprefixer'
@@ -8,21 +8,18 @@ import ProductModal from '../../Components/ProductModal'
 import { useShopiContext } from '../../Context'
 import CheckoutSideMenu from '../../Components/CheckoutSideMenu'
 function Home() {
+  const {openModal,items,search} = useShopiContext();
 
-  const [items,setItems] = useState(null)
-  const {openModal,openModalOrder} = useShopiContext();
-
-useEffect(()=>{
-fetch('https://api-product-5iv7.onrender.com/products')
-.then(response=> response.json())
-.then(data => setItems(data))
-},[])
    return(
     <Layout>
-      Home
+     <div className='flex w-80 items-center justify-center relative mb-4'>
+        <h1 className='font-medium text-lg'>Productos exclusivos</h1>
+      </div>
+      <input type='text' placeholder='Buscar producto' className='w-80 rounded-lg border border-green-200 shadow p-4 mb-4 focus:outline-none'
+      onChange={search}></input>
       <div className='grid gap-4  grid-cols-2 sm:grid-cols-4 w-full max-w-screen-lg px-2'>
       {
-        items?.map(item =>(
+          items?.map(item =>(
           <Card key={item.id} data={item}> </Card>
           )) 
       }
@@ -33,12 +30,6 @@ fetch('https://api-product-5iv7.onrender.com/products')
          <ProductDetail></ProductDetail>
         </ProductModal>
       )}    
-
-      {/* {openModalOrder && (
-        <ProductModal>
-         <CheckoutSideMenu></CheckoutSideMenu>
-        </ProductModal>
-      )}     */}
        <CheckoutSideMenu></CheckoutSideMenu>
      
     </Layout>

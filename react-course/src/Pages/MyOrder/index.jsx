@@ -4,11 +4,14 @@ import OrderCard from '../../Components/OrderCard'
 import { Link } from 'react-router-dom'
 import { ChevronLeftIcon } from '@heroicons/react/24/solid'
 function MyOrder() {
-  
-   const { order } = useShopiContext();
-   console.log(order?.slice(-1)[0])
-   return(
-    <Layout>
+
+  const { order } = useShopiContext();
+  const currentPath = window.location.pathname.split('/')
+  let index = currentPath[currentPath.length - 1]
+  if (index === 'last') index = order?.length - 1
+
+   return (
+    < Layout >
     <div className='flex w-80 items-center justify-center relative mb-3'>
         <Link to='/my-orders' className='absolute left-0'>
         <ChevronLeftIcon className='h-6 w-6 text-black cursor-pointer'>
@@ -20,7 +23,7 @@ function MyOrder() {
 
    <div className='flex flex-col w-80'>
         {
-          order?.slice(-1)[0].products.map(product => (
+          order?.[index]?.products.map(product => (
             <OrderCard
               key={product.id}
               title={product.title}
@@ -32,7 +35,7 @@ function MyOrder() {
           ))
         }
       </div>
-  </Layout>
+  </Layout >
  
       
    )

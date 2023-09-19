@@ -1,5 +1,4 @@
-import { createContext, useContext, useState } from 'react'
-
+import { createContext, useContext, useState,useEffect } from 'react'
 const ShoppingCartContext = createContext()
 
 export const ShoppingCartProvider = ({ children }) => {
@@ -43,6 +42,22 @@ export const ShoppingCartProvider = ({ children }) => {
         setCount(count -1);
     }
 
+    //Get products
+    const [items,setItems] = useState(null)
+    const [searchByTitle,setSearchByTitle] = useState(null)  
+
+    const search = (event) => {
+        setSearchByTitle(event.target.value)
+      }
+
+      console.log(searchByTitle)
+
+  useEffect(()=>{
+  fetch('https://api-product-5iv7.onrender.com/products')
+  .then(response=> response.json())
+  .then(data => setItems(data))
+  },[])
+  
     return (
         <ShoppingCartContext.Provider value={{
             count,
@@ -59,7 +74,10 @@ export const ShoppingCartProvider = ({ children }) => {
             order,
             setOrder,
             increentToCheckout,
-            decrementToCheckout
+            decrementToCheckout,
+            items,
+            setItems,
+            search
         }}>
             {children}
         </ShoppingCartContext.Provider>
