@@ -11,7 +11,9 @@ import Navbar from '../../Components/Navbar'
 import './App.css'
 import Layout from '../../Components/Layout'
 const AppRoutes = () =>{
-  let routes = useRoutes([ { path:'/', element:<Home/> },
+  let routes = useRoutes([ 
+    { path:'/', element:<Home/> },
+    { path:'/:botanas', element:<Home /> },
     { path:'/my-acount',element:<MyAcount/> },
     { path:'/my-order', element:<MyOrder/> },
     { path:'/my-orders', element:<MyOrders/> },

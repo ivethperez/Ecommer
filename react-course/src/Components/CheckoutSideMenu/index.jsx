@@ -3,11 +3,11 @@ import { useShopiContext } from '../../Context'
 import { XMarkIcon } from '@heroicons/react/24/solid'
 import { Link } from 'react-router-dom'
 import OrderCard from '../../Components/OrderCard'
-import {totalPrice} from '../../utils'
+import {totalPrice,totalProducts} from '../../utils'
 
 const CheckoutSideMenu = () => {
   const { setOpenModalOrder, openModalOrder, cartProducts,setCartProducts
-  ,setOrder,order,setCount,count } = useShopiContext();
+  ,setOrder,order,setCount,count,setSearchByTitle } = useShopiContext();
   const onCancel = () => { setOpenModalOrder(false) };
   const handleDelete =(id) =>{
     const product = cartProducts.filter(product => product.id == id)
@@ -18,15 +18,16 @@ const CheckoutSideMenu = () => {
     const orderToAdd={
       date:'',
       products: cartProducts,
-      totalProducts: cartProducts.length,
+      totalProducts: totalProducts(cartProducts),
       totalPrice: totalPrice(cartProducts)
     }
 
     setOrder([...order,orderToAdd])
     setCartProducts([])
+    setCount(0)
+    onCancel()
+    setSearchByTitle(null)
   }
-
-  console.log(cartProducts)
   return (
     <aside
       className={`${openModalOrder ? 'flex' : 'hidden'} checkout-side-menu flex-col fixed right-0 border border-black rounded-lg bg-white`}>
@@ -65,30 +66,6 @@ const CheckoutSideMenu = () => {
        
       </div>
     </aside>
-    //         <div className='flex flex-col fixed bg-white rounded-lg w-[400px] h-[calc(100vh-140px)] overflow-hidden shadow-lg hover:shadow-xl 
-    // hover:scale-105 duration-500 transform transition'>
-
-    //             <div className='flex justify-between items-center p-6'>
-    //                 <h2 className='fount-medium text-xl'>Mis Órdenes</h2>
-    //                 <button
-    //                     onClick={onCancel}>
-    //                     <XMarkIcon className='h-6 w-6'></XMarkIcon>
-    //                 </button>
-    //             </div>
-
-    //             <div className='px-6 overflow-y-scroll'>
-    //                 {cartProducts.map(product => (
-    //                     <OrderCard
-    //                         key={product.id}
-    //                         title={product.title}
-    //                         imageURL={product.images[0]}
-    //                         price={product.price}
-    //                     >
-    //                     </OrderCard>
-    //                 ))}
-    //             </div>
-    //         </div>
-
   )
 }
 export default CheckoutSideMenu

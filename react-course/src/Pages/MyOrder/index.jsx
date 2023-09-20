@@ -11,14 +11,16 @@ function MyOrder() {
   if (index === 'last') index = order?.length - 1
 
    return (
-    < Layout >
+<div>
     <div className='flex w-80 items-center justify-center relative mb-3'>
         <Link to='/my-orders' className='absolute left-0'>
         <ChevronLeftIcon className='h-6 w-6 text-black cursor-pointer'>
         </ChevronLeftIcon>
         </Link>
        
-        <h1>Mi orden</h1>
+        <div className='flex w-80 items-center justify-center relative mb-4'>
+        <h1 className='font-medium text-lg'>Mi orden</h1>
+      </div>
       </div>
 
    <div className='flex flex-col w-80'>
@@ -35,8 +37,8 @@ function MyOrder() {
           ))
         }
       </div>
-  </Layout >
- 
+
+ </div>
       
    )
 }

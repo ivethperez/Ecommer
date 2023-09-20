@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 import { useShopiContext } from '../../Context'
 
 const Navbar = () => {
-    const  {count} = useShopiContext();
+    const  {count,setSearchByCategory} = useShopiContext();
     return (
         <nav className="flex justify-between items-center fixed z-10 w-full py-5 px-8 text-sm font-light top-0">
             <ul className="flex items-center gap-3">
@@ -14,8 +14,8 @@ const Navbar = () => {
           </NavLink>
         </li>
                 <li>
-
                     <NavLink to='/'
+                    onClick={() => setSearchByCategory()}
                         style={({ isActive }) => {
                             return {
                                 fontWeight: isActive ? "bold" : ""
@@ -26,46 +26,50 @@ const Navbar = () => {
                 </li>
                 <li>
 
-                    <NavLink to='/clothes'
+                    <NavLink to='/botanas'
+                    onClick={() => setSearchByCategory('botanas')}
                         style={({ isActive }) => {
                             return {
                                 fontWeight: isActive ? "bold" : ""
                             };
                         }}>
-                        Clothes
+                        Botanas
                     </NavLink>
                 </li>
                 <li>
 
-                    <NavLink to='/electronic'
+                    <NavLink to='/gomitas'
+                    onClick={() => setSearchByCategory('gomitas')}
                         style={({ isActive }) => {
                             return {
                                 fontWeight: isActive ? "bold" : ""
                             };
                         }}>
-                        Electronic
+                        Gomitas
                     </NavLink>
                 </li>
                 <li>
 
-                    <NavLink to='/toys'
+                    <NavLink to='/chocolates'
+                    onClick={() => setSearchByCategory('chocolates')}
                         style={({ isActive }) => {
                             return {
                                 fontWeight: isActive ? "bold" : ""
                             };
                         }}>
-                        Toys
+                        Cocolates
                     </NavLink>
                 </li>
                 <li>
 
                     <NavLink to='/others'
+                    onClick={() => setSearchByCategory('others')}
                         style={({ isActive }) => {
                             return {
                                 fontWeight: isActive ? "bold" : ""
                             };
                         }}>
-                        Others
+                        Otros
                     </NavLink>
                 </li>
             </ul>

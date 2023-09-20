@@ -1,5 +1,4 @@
 import React from 'react'
-import { useShopiContext } from '../../Context'
 import { ChevronRightIcon, ShoppingCartIcon,CalendarIcon } from '@heroicons/react/24/solid'
 import {dateTime} from '../../utils'
 
