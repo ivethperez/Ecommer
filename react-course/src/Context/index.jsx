@@ -46,11 +46,10 @@ export const ShoppingCartProvider = ({ children }) => {
     const [items,setItems] = useState(null)
     const [searchByTitle,setSearchByTitle] = useState(null)  
 
+    const [filteredItems,setFilteredItems] = useState(null)
     const search = (event) => {
         setSearchByTitle(event.target.value)
       }
-
-      console.log(searchByTitle)
 
   useEffect(()=>{
   fetch('https://api-product-5iv7.onrender.com/products')
@@ -58,6 +57,17 @@ export const ShoppingCartProvider = ({ children }) => {
   .then(data => setItems(data))
   },[])
   
+
+  const filteredItemsByTitle =(items,searchByTitle) =>{
+    return items?.filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()))
+ }
+
+  useEffect(()=>{
+    if(searchByTitle) setFilteredItems(filteredItemsByTitle(items,searchByTitle))
+    },[items,searchByTitle])
+
+
+
     return (
         <ShoppingCartContext.Provider value={{
             count,
@@ -77,7 +87,9 @@ export const ShoppingCartProvider = ({ children }) => {
             decrementToCheckout,
             items,
             setItems,
-            search
+            search,
+            searchByTitle,
+            filteredItems
         }}>
             {children}
         </ShoppingCartContext.Provider>
