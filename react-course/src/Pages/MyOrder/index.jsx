@@ -1,4 +1,3 @@
-import Layout from '../../Components/Layout'
 import { useShopiContext } from '../../Context'
 import OrderCard from '../../Components/OrderCard'
 import { Link } from 'react-router-dom'

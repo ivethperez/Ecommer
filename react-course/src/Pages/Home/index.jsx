@@ -4,7 +4,7 @@ import ProductModal from '../../Components/ProductModal'
 import { useShopiContext } from '../../Context'
 import CheckoutSideMenu from '../../Components/CheckoutSideMenu'
 function Home() {
-  const { openModal, search, searchByTitle, filteredItems } = useShopiContext();
+  const { openModal, search, filteredItems } = useShopiContext();
   const renderView = () => {
       if (filteredItems?.length > 0) {
         return (
