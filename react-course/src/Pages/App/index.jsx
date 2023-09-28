@@ -1,7 +1,6 @@
 
 import { useRoutes,BrowserRouter } from 'react-router-dom'
 import {ShoppingCartProvider} from '../../Context'
-import { Provider as AuthProvider } from 'next-auth/client'
 import Home from '../Home'
 import MyAcount from '../MyAccount'
 import MyOrder from '../MyOrder'
