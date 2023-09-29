@@ -5,30 +5,26 @@ import { useShopiContext } from '../../Context'
 import storage from '../../utils/storage'
 
 const Navbar = () => {
-    const { count, setSearchByCategory, setSignOut, signOut } = useShopiContext();
+    const { count, setSearchByCategory, setSignOut, signOut,account } = useShopiContext();
     const isUserSignOut = signOut || storage.getItem('sign-out')
 
-    const renderView = () => {
-        if (isUserSignOut) {
-            return (
-                <li>
+    const parsedAccount = storage.getItem('account')
+    const noAccountInLocalStorage = parsedAccount ? Object.keys(parsedAccount).length === 0 : true
+    const noAccountInLocalState = account ? Object.keys(account).length === 0 : true
+    const hasUserAnAccount = !noAccountInLocalStorage || !noAccountInLocalState
 
-                    <NavLink to='/sign-in'
-                        style={({ isActive }) => {
-                            return {
-                                fontWeight: isActive ? "bold" : ""
-                            };
-                        }} onClick={() => handleSignOut()}>
-                        iniciar sesión
-                    </NavLink>
-                </li>
-            )
-        }
-        else {
+    const handleSignOut = () => {
+        storage.setItem('sign-out', true)
+        setSignOut(true)
+        return <Navigate replace to={'/'}></Navigate>
+      }
+
+    const renderView = () => {
+        if (hasUserAnAccount && !isUserSignOut) {
             return (
                 <>
                     <li className="text-black/60">
-                        ivethp62@gmail.com
+                        {parsedAccount?.email}
                     </li>
                     <li>
                         <NavLink to='/my-order'
@@ -78,16 +74,26 @@ const Navbar = () => {
                     </li>
 
                 </>
+               
             )
         }
-    }
-    const handleSignOut = () => {
-        const stringifiedSignOut = JSON.stringify(true)
-        localStorage.setItem('sign-out', stringifiedSignOut)
-        setSignOut(true)
-    }
+        else {
+            return (
+                <li>
+                <NavLink to='/sign-in'
+                    style={({ isActive }) => {
+                        return {
+                            fontWeight: isActive ? "bold" : ""
+                        };
+                    }} onClick={() => handleSignOut()}>
+                    iniciar sesión
+                </NavLink>
+            </li>
+            )
+        }
+    }    
     return (
-        <nav className="flex justify-between items-center fixed z-10 w-full py-5 px-8 text-sm font-light top-0">
+        <nav className="flex justify-between items-center fixed z-10 w-full py-5 px-8 text-sm font-light top-0 bg-white">
             <ul className="flex items-center gap-3">
                 <li className='font-semibold text-lg'>
                     <NavLink to='/'>
