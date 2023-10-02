@@ -4,11 +4,12 @@ import { Link } from 'react-router-dom'
 import { ChevronLeftIcon } from '@heroicons/react/24/solid'
 function MyOrder() {
 
-  const { order } = useShopiContext();
+  const { order,cartProducts } = useShopiContext();
   const currentPath = window.location.pathname.split('/')
   let index = currentPath[currentPath.length - 1]
   if (index === 'last') index = order?.length - 1
 
+  console.log(cartProducts)
    return (
 <div>
     <div className='flex w-80 items-center justify-center relative mb-3'>
@@ -37,6 +38,13 @@ function MyOrder() {
         }
       </div>
 
+      <div className='px-6 mb-6'>
+        <p className='flex justify-between items-center mb-2'>
+          <span className='font-light'>Total:</span>
+          <span className='font-medium text-2xl'>${order?.[index]?.totalPrice}</span>
+        </p>
+       
+      </div>
  </div>
       
    )

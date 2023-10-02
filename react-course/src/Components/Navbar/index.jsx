@@ -3,6 +3,7 @@ import { ShoppingBagIcon } from '@heroicons/react/24/solid';
 import { NavLink } from 'react-router-dom'
 import { useShopiContext } from '../../Context'
 import storage from '../../utils/storage'
+import ShoppingCart from '../ShoppingCart'
 
 const Navbar = () => {
     const { count, setSearchByCategory, setSignOut, signOut,account } = useShopiContext();
@@ -16,7 +17,7 @@ const Navbar = () => {
     const handleSignOut = () => {
         storage.setItem('sign-out', true)
         setSignOut(true)
-        return <Navigate replace to={'/'}></Navigate>
+       // return <Navigate replace to={'/'}></Navigate>
       }
 
     const renderView = () => {
@@ -65,14 +66,9 @@ const Navbar = () => {
                                     fontWeight: isActive ? "bold" : ""
                                 };
                             }} onClick={() => handleSignOut()}>
-                            iniciar sesión
+                            Cerrar sesión
                         </NavLink>
-                    </li>
-                    <li className='flex items-center'>
-                        <ShoppingBagIcon className='h-6 w-6'></ShoppingBagIcon>
-                        <div>{count}</div>
-                    </li>
-
+                    </li>                  
                 </>
                
             )
@@ -86,7 +82,7 @@ const Navbar = () => {
                             fontWeight: isActive ? "bold" : ""
                         };
                     }} onClick={() => handleSignOut()}>
-                    iniciar sesión
+                    Iniciar sesión
                 </NavLink>
             </li>
             )
@@ -96,7 +92,7 @@ const Navbar = () => {
         <nav className="flex justify-between items-center fixed z-10 w-full py-5 px-8 text-sm font-light top-0 bg-white">
             <ul className="flex items-center gap-3">
                 <li className='font-semibold text-lg'>
-                    <NavLink to='/'>
+                    <NavLink to={`${isUserSignOut ? '/sign-in' : '/'}`}>
                         Shopi
                     </NavLink>
                 </li>
@@ -167,6 +163,9 @@ const Navbar = () => {
                     <ShoppingBagIcon className='h-6 w-6'></ShoppingBagIcon>
                     <div>{count}</div>
                 </li> */}
+                  <li className='flex items-center'>
+          <ShoppingCart />
+        </li>
             </ul>
         </nav>
     )
