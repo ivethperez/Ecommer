@@ -1,4 +1,4 @@
-// File: C:\Users\Ibis\dev\Proyectos\ecommer\react-course\APINEXTJS\app\layout.tsx
+// File: C:\Users\Desarrollador\develop\Ecommer\react-course\APINEXTJS\app\layout.tsx
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

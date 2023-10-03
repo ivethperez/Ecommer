@@ -1,12 +1,11 @@
-
-import { ShoppingBagIcon } from '@heroicons/react/24/solid';
 import { NavLink } from 'react-router-dom'
 import { useShopiContext } from '../../Context'
 import storage from '../../utils/storage'
 import ShoppingCart from '../ShoppingCart'
+import { useState } from 'react'
 
 const Navbar = () => {
-    const { count, setSearchByCategory, setSignOut, signOut,account } = useShopiContext();
+    const { setSearchByCategory, setSignOut, signOut,account } = useShopiContext();
     const isUserSignOut = signOut || storage.getItem('sign-out')
 
     const parsedAccount = storage.getItem('account')
@@ -20,6 +19,11 @@ const Navbar = () => {
        // return <Navigate replace to={'/'}></Navigate>
       }
 
+      const [isOpen, setIsOpen] = useState(false);
+
+      const toggleMenu = () => {
+        setIsOpen(!isOpen);
+      };
     const renderView = () => {
         if (hasUserAnAccount && !isUserSignOut) {
             return (
@@ -89,8 +93,27 @@ const Navbar = () => {
         }
     }    
     return (
-        <nav className="flex justify-between items-center fixed z-10 w-full py-5 px-8 text-sm font-light top-0 bg-white">
-            <ul className="flex items-center gap-3">
+        <nav className="justify-between items-center fixed z-10 w-full py-5 px-8 text-sm font-light top-0 bg-white">
+  <div className="container mx-auto flex justify-between items-center">
+                  <div className="lg:hidden">
+          <button
+            onClick={toggleMenu}
+            className="text-white focus:outline-none focus:text-white"
+          > 
+            {isOpen ? (
+              <i className="fas fa-times fa-lg"></i>
+            ) : (
+              <i className="fas fa-bars fa-lg"></i>
+            )}
+          </button>
+        </div>
+        <div
+          className={`${
+            isOpen ? 'block' : 'hidden'
+          } lg:flex lg:items-center lg:w-auto`}
+        >
+
+            <ul className="flex items-center gap-3 lg:flex lg:space-x-4">
                 <li className='font-semibold text-lg'>
                     <NavLink to={`${isUserSignOut ? '/sign-in' : '/'}`}>
                         Shopi
@@ -157,6 +180,9 @@ const Navbar = () => {
                 </li>
             </ul>
 
+</div>
+
+</div>
             <ul className="flex items-center gap-3">
                 {renderView()}
                 {/* <li className='flex items-center'>
