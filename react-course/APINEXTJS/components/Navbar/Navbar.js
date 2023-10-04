@@ -6,8 +6,8 @@ const Navbar = () =>{
         <div>
            <nav>
       <menu>
-        <Link prefetch={false} href="/">Home</Link>
-        <Link prefetch={false} href="/about">About</Link>
+        <Link href="/">Home</Link>
+        <Link href="/about">About</Link>
       </menu>
     </nav>
         </div>

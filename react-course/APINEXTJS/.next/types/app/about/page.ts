@@ -1,4 +1,4 @@
-// File: C:\Users\Desarrollador\develop\Ecommer\react-course\APINEXTJS\app\about\page.js
+// File: C:\Users\Ibis\dev\Proyectos\ecommer\react-course\APINEXTJS\app\about\page.js
 import * as entry from '../../../../app/about/page.js'
 import type { ResolvingMetadata } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
