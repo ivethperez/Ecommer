@@ -12,7 +12,7 @@ class Database {
     return asArray
   }
 
-  async getById(id: number): Promise<TProduct | null> {
+  async getById(id: string): Promise<TProduct | null> {
     if (!Object.prototype.hasOwnProperty.call(allData, id)) {
       return null
     }

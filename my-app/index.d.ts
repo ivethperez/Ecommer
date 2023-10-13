@@ -7,7 +7,7 @@ type Json =
   | { [property: string]: Json }
   | Json[]
 
-type TProductId = number
+type TProductId = string
 
 type TProductAttributes = {
  
@@ -17,7 +17,7 @@ type TProduct = {
   id: TProductId
   title: string  
   price: number
-  category: {id: number,name:string,image:string}
+  category: {id: string,name:string,image:string}
   description: string
   images: [{}]
 //   attributes: TProductAttributes

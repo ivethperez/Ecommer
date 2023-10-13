@@ -1,6 +1,6 @@
 const data: Record<TProductId, TProduct> = {
-    1:  {
-        id: 1,
+    "1":  {
+        id: "1",
         title: "Cacahuate japones",        
         description: "",
         images: [
@@ -8,7 +8,7 @@ const data: Record<TProductId, TProduct> = {
         ],
         price: 1299,
         category: {
-          id: 34,
+          id: "34",
           name: "cacahuate",
           image: "https://images.pexels.com/photos/209345/pexels-photo-209345.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
       }
