@@ -10,4 +10,3 @@ return ReactDOM.createPortal(
 )
 }
 export default ProductModal
-

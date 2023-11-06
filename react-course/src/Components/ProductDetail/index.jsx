@@ -17,9 +17,9 @@ hover:scale-105 duration-500 transform transition'>
                     <XMarkIcon className='h-6 w-6'></XMarkIcon>
                 </button>
                 </div>
-            <figure className='relative mb-2 w-full h-3/5'>
+            <figure className='flex m-8 mb-2 h-1/3'>
                 <img
-                    className='w-full h-full object-cover rounded-lg'
+                    className='w-full  h-full object-cover rounded-lg'
                     src={productShow.images[0]}
                     alt={productShow.title}
                 />
