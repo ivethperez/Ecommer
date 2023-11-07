@@ -92,6 +92,7 @@ export const ShoppingCartProvider = ({ children }) => {
      }
 
      const filterBy = (searchType, items, searchByTitle, searchByCategory) => {
+      console.log('cat'+searchByTitle)
         if (searchType === 'BY_TITLE') {
           return filteredItemsByTitle(items, searchByTitle)
         }
