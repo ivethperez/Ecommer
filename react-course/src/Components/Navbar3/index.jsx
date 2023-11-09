@@ -75,13 +75,11 @@ const Navbarr = () => {
 
 
     return (
-        <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
+        <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary" sticky="top">
             <Container>
-                <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-
                         <NavLink to={`${isUserSignOut ? '/sign-in' : '/'}`} style={({ isActive }) => {
                             return {
                                 fontWeight: isActive ? "bold" : ""
@@ -96,7 +94,7 @@ const Navbarr = () => {
                                 };
                             }}
                         >
-                            All
+                            Todo
                         </NavLink>
                         <NavLink to='/botanas' className=' decoration-transparent text-black mt-2  pl-3'
                             onClick={() => setSearchByCategory('botanas')}
