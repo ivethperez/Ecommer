@@ -1,5 +1,5 @@
 import {type NextRequest, NextResponse } from "next/server";
-export const GET = async (request: NextRequest) =>{
+export const GET = async () =>{
     try{
 
         const response = await fetch('https://api-product-5iv7.onrender.com/products')
