@@ -93,6 +93,7 @@ export const ShoppingCartProvider = ({ children }) => {
      }
 
      const filterBy = (searchType, items, searchByTitle, searchByCategory) => {
+      console.log('cat'+searchByTitle)
         if (searchType === 'BY_TITLE') {
           return filteredItemsByTitle(items, searchByTitle)
         }
@@ -125,6 +126,13 @@ export const ShoppingCartProvider = ({ children }) => {
 
       //Create account
       const [view, setView] = useState('user-info')
+
+      //ShoppingCart
+      // Product Detail · Open/Close
+  const [isProductDetailOpen, setIsProductDetailOpen] = useState(false)
+  const openProductDetail = () => setIsProductDetailOpen(true)
+  const closeProductDetail = () => setIsProductDetailOpen(false)
+
     return (
         <ShoppingCartContext.Provider value={{
             count,
@@ -154,7 +162,10 @@ export const ShoppingCartProvider = ({ children }) => {
             signOut,
             setSignOut,
             view,
-            setView
+            setView,
+            openProductDetail,
+            closeProductDetail,
+            isProductDetailOpen
         }}>
             {children}
         </ShoppingCartContext.Provider>

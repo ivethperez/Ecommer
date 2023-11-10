@@ -1,11 +1,11 @@
-
-import { ShoppingBagIcon } from '@heroicons/react/24/solid';
 import { NavLink } from 'react-router-dom'
 import { useShopiContext } from '../../Context'
 import storage from '../../utils/storage'
+import ShoppingCart from '../ShoppingCart'
+import { useState } from 'react'
 
 const Navbar = () => {
-    const { count, setSearchByCategory, setSignOut, signOut,account } = useShopiContext();
+    const { setSearchByCategory, setSignOut, signOut,account } = useShopiContext();
     const isUserSignOut = signOut || storage.getItem('sign-out')
 
     const parsedAccount = storage.getItem('account')
@@ -16,9 +16,14 @@ const Navbar = () => {
     const handleSignOut = () => {
         storage.setItem('sign-out', true)
         setSignOut(true)
-        return <Navigate replace to={'/'}></Navigate>
+       // return <Navigate replace to={'/'}></Navigate>
       }
 
+      const [isOpen, setIsOpen] = useState(false);
+
+      const toggleMenu = () => {
+        setIsOpen(!isOpen);
+      };
     const renderView = () => {
         if (hasUserAnAccount && !isUserSignOut) {
             return (
@@ -65,14 +70,9 @@ const Navbar = () => {
                                     fontWeight: isActive ? "bold" : ""
                                 };
                             }} onClick={() => handleSignOut()}>
-                            iniciar sesión
+                            Cerrar sesión
                         </NavLink>
-                    </li>
-                    <li className='flex items-center'>
-                        <ShoppingBagIcon className='h-6 w-6'></ShoppingBagIcon>
-                        <div>{count}</div>
-                    </li>
-
+                    </li>                  
                 </>
                
             )
@@ -86,17 +86,25 @@ const Navbar = () => {
                             fontWeight: isActive ? "bold" : ""
                         };
                     }} onClick={() => handleSignOut()}>
-                    iniciar sesión
+                    Iniciar sesión
                 </NavLink>
             </li>
             )
         }
     }    
     return (
-        <nav className="flex justify-between items-center fixed z-10 w-full py-5 px-8 text-sm font-light top-0 bg-white">
-            <ul className="flex items-center gap-3">
+        <nav className="justify-between items-center fixed z-10 w-full py-5 px-8 text-sm font-light top-0 bg-white">
+  <div className="container mx-auto flex justify-between items-center">
+               
+        <div
+          className={`${
+            isOpen ? 'block' : 'hidden'
+          } lg:flex lg:items-center lg:w-auto`}
+        >
+
+            <ul className="flex items-center gap-3 lg:flex lg:space-x-4">
                 <li className='font-semibold text-lg'>
-                    <NavLink to='/'>
+                    <NavLink to={`${isUserSignOut ? '/sign-in' : '/'}`}>
                         Shopi
                     </NavLink>
                 </li>
@@ -161,12 +169,18 @@ const Navbar = () => {
                 </li>
             </ul>
 
+</div>
+
+</div>
             <ul className="flex items-center gap-3">
                 {renderView()}
                 {/* <li className='flex items-center'>
                     <ShoppingBagIcon className='h-6 w-6'></ShoppingBagIcon>
                     <div>{count}</div>
                 </li> */}
+                  <li className='flex items-center'>
+          <ShoppingCart />
+        </li>
             </ul>
         </nav>
     )

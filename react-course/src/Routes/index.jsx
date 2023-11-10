@@ -10,6 +10,7 @@ import Signin from '../Pages/Signin'
 
 export const AppRoutes = () =>{
     const { signOut } = useShopiContext();
+    console.log(signOut)
     return(
         useRoutes([ 
             { path:'/', element:<Home/> },
