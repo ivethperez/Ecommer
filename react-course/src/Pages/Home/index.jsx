@@ -31,7 +31,7 @@ function Home() {
       } 
   }
   return (
-    <div className="container-fluid bg-body-tertiary">
+    <div className="container-fluid ">
       <Carousel>
       <Carousel.Item>
       <img className="w-full h-36 object-cover rounded-lg" src='https://images.pexels.com/photos/209345/pexels-photo-209345.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' alt='img'></img>
