@@ -23,8 +23,9 @@ const ShoppingCartContext = createContext()
 
 export const ShoppingCartProvider = ({ children }) => {
 
+  
     useEffect(()=>{
-        fetch('https://api-product-5iv7.onrender.com/products')
+        fetch('http://localhost:3000/api/products/')
         .then(response=> response.json())
         .then(data => setItems(data))
         },[])
