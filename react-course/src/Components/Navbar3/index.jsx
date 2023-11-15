@@ -94,6 +94,17 @@ const Navbarr = () => {
                                 };
                             }}
                         >
+                            Home
+                        </NavLink>
+
+
+                        {/* <NavLink to='/todo' className=' decoration-transparent text-black mt-2  pl-3'
+                            onClick={() => setSearchByCategory()} style={({ isActive }) => {
+                                return {
+                                    fontWeight: isActive ? "bold" : ""
+                                };
+                            }}
+                        >
                             Todo
                         </NavLink>
                         <NavLink to='/botanas' className=' decoration-transparent text-black mt-2  pl-3'
@@ -135,7 +146,7 @@ const Navbarr = () => {
                             }}
                         >
                             Otros
-                        </NavLink>
+                        </NavLink> */}
 
                     </Nav>
                     <Nav>

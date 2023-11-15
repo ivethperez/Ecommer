@@ -111,10 +111,36 @@ export const ShoppingCartProvider = ({ children }) => {
       }
 
     useEffect(() => {
+      console.log(searchByTitle,searchByCategory);
         if (searchByTitle && searchByCategory) setFilteredItems(filterBy('BY_TITLE_AND_CATEGORY', items, searchByTitle, searchByCategory))
         if (searchByTitle && !searchByCategory) setFilteredItems(filterBy('BY_TITLE', items, searchByTitle, searchByCategory))
         if (!searchByTitle && searchByCategory) setFilteredItems(filterBy('BY_CATEGORY', items, searchByTitle, searchByCategory))
-        if (!searchByTitle && !searchByCategory) setFilteredItems(filterBy(null, items, searchByTitle, searchByCategory))       
+        if (!searchByTitle && !searchByCategory) setFilteredItems(filterBy(null, items, searchByTitle, searchByCategory))    
+        if(searchByCategory == 'chocolates'){
+          setisActiveChocolate(true);
+          setisActiveBotanas(false)
+          setisActiveGomitas(false)
+          setisActiveTodo(false)
+        }
+        else if(searchByCategory == 'gomitas')  {
+          setisActiveGomitas(true)
+          setisActiveChocolate(false)
+          setisActiveBotanas(false)
+          setisActiveTodo(false)
+        }         
+        else if(searchByCategory =='botanas'){
+          setisActiveBotanas(true)
+          setisActiveGomitas(false)
+          setisActiveChocolate(false)
+          setisActiveTodo(false)
+        }
+        else{
+          setisActiveGomitas(false)
+          setisActiveChocolate(false)
+          setisActiveBotanas(false)
+          setisActiveTodo(true)
+        }
+        
       }, [items, searchByTitle, searchByCategory])
 
 
@@ -131,6 +157,11 @@ export const ShoppingCartProvider = ({ children }) => {
   const [isProductDetailOpen, setIsProductDetailOpen] = useState(false)
   const openProductDetail = () => setIsProductDetailOpen(true)
   const closeProductDetail = () => setIsProductDetailOpen(false)
+
+  const [isActiveChocolate, setisActiveChocolate] = useState(false)
+  const [isActiveGomitas, setisActiveGomitas] = useState(false)
+  const [isActiveBotanas, setisActiveBotanas] = useState(false)
+  const [isActiveTodo, setisActiveTodo] = useState(false)
 
     return (
         <ShoppingCartContext.Provider value={{
@@ -164,7 +195,11 @@ export const ShoppingCartProvider = ({ children }) => {
             setView,
             openProductDetail,
             closeProductDetail,
-            isProductDetailOpen
+            isProductDetailOpen,
+            isActiveChocolate,
+            isActiveGomitas,
+            isActiveBotanas,
+            isActiveTodo
         }}>
             {children}
         </ShoppingCartContext.Provider>
