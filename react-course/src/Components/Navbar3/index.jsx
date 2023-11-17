@@ -149,7 +149,7 @@ const Navbarr = () => {
                         </NavLink> */}
 
                     </Nav>
-                    <Nav className=' flex flex-col gap-1 items-center'>
+                    <Nav className=' flex flex-col gap-1'>
                         <NavLink to='/ecommer' className=' decoration-transparent text-black mt-2  pl-3'
                             onClick={() => setSearchByCategory()} style={({ isActive }) => {
                                 return {
