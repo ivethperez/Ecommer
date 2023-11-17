@@ -87,8 +87,8 @@ const Card = ({data}) =>{
         </Card> */
 
 
-        <div className="group relative h-[17.5rem] transform overflow-hidden rounded-3xl">
-        <div  onClick={()=> showproduct(data)}>
+        <div >
+        <div className="group relative h-[17.5rem] transform overflow-hidden rounded-3xl" onClick={()=> showproduct(data)}>
             <div className="absolute bottom-6 left-0 right-4 top-0 rounded-3xl border-2 transition duration-300 group-hover:scale-95 xl:right-6 border-blue-300"></div>
             <div className={`absolute inset-0 bg-indigo-50 ${clipPathStyle}`}  >
             <span className="absolute bottom-0 left-0 bg-white/60 rounded-3xl text-xs m-2 px-3 py-0.5">

@@ -65,7 +65,7 @@ const Navbarr = () => {
         }
         else {
             return (
-                <NavLink to='/sign-in'
+                <NavLink to='/sign-in' className=' decoration-transparent text-black mt-2 pl-3'
                     onClick={() => handleSignOut()}>
                     Login
                 </NavLink>
@@ -149,8 +149,7 @@ const Navbarr = () => {
                         </NavLink> */}
 
                     </Nav>
-                    <Nav>
-                        <NavLink  className=' decoration-transparent text-black mt-2  pl-3'> </NavLink>
+                    <Nav className=' flex flex-col gap-1 items-center'>
                         <NavLink to='/ecommer' className=' decoration-transparent text-black mt-2  pl-3'
                             onClick={() => setSearchByCategory()} style={({ isActive }) => {
                                 return {
