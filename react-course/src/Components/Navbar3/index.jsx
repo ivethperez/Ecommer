@@ -67,7 +67,7 @@ const Navbarr = () => {
             return (
                 <NavLink to='/sign-in'
                     onClick={() => handleSignOut()}>
-                    Iniciar sesión
+                    Login
                 </NavLink>
             )
         }
