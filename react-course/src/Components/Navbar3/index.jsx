@@ -30,7 +30,7 @@ const Navbarr = () => {
         if (hasUserAnAccount && !isUserSignOut) {
             return (
 
-                <NavDropdown title="Dropdown" id="collapsible-nav-dropdown">
+                <NavDropdown title={parsedAccount?.email} id="collapsible-nav-dropdown">
                     <NavDropdown.Item >
                         <Link className=' decoration-transparent text-black' to='/my-order'
                         >
@@ -150,7 +150,16 @@ const Navbarr = () => {
 
                     </Nav>
                     <Nav>
-                        <NavLink  className=' decoration-transparent text-black mt-2  pl-3'> {parsedAccount?.email}</NavLink>
+                        <NavLink  className=' decoration-transparent text-black mt-2  pl-3'> </NavLink>
+                        <NavLink to='/ecommer' className=' decoration-transparent text-black mt-2  pl-3'
+                            onClick={() => setSearchByCategory()} style={({ isActive }) => {
+                                return {
+                                    fontWeight: isActive ? "bold" : ""
+                                };
+                            }}
+                        >
+                            Ecommer
+                        </NavLink>
                         {renderView()}
                         <ShoppingCart />
                     </Nav>

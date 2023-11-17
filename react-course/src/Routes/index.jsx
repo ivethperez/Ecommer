@@ -15,7 +15,7 @@ export const AppRoutes = () =>{
     return(
         useRoutes([ 
             { path:'/', element:<HomePage/> },
-            { path:'/todo', element:<Home/> },
+            { path:'/ecommer', element:<Home/> },
             { path:'/:botanas', element:<Home /> },
             { path:'/my-acount',element: signOut? <Signin />: <MyAcount/> },
             { path:'/my-order', element: signOut? <Signin />:<MyOrder/> },
