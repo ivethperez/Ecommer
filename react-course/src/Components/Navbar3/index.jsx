@@ -87,8 +87,8 @@ const Navbarr = () => {
                         }} className=' decoration-transparent text-black mt-2  pl-3'>
                             Shopi
                         </NavLink>
-                        <NavLink to='/' className=' decoration-transparent text-black mt-2  pl-3'
-                            onClick={() => setSearchByCategory()} style={({ isActive }) => {
+                        <NavLink to='/' className=' decoration-transparent text-black mt-2 pl-3'
+                             style={({ isActive }) => {
                                 return {
                                     fontWeight: isActive ? "bold" : ""
                                 };
