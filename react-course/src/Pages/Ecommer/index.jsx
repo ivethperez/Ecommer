@@ -151,11 +151,12 @@ const filtro =(val) =>{
       </div>
       <div className="lg:col-span-3">
     
-   <div className="grid grid-cols-1 gap-x-8 gap-y-10 ui-not-focus-visible:outline-none sm:grid-cols-2 sm:gap-y-16 md:grid-cols-3" id="headlessui-tabs-panel-:R7alaqlla:" role="tabpanel" tabindex="0"  data-headlessui-state="selected" aria-labelledby="headlessui-tabs-tab-:R6sqlaqlla:">
+   <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" >
+   <ul role="list" class="mx-auto grid max-w-2xl grid-cols-1 gap-6 sm:gap-8  lg:max-w-none lg:grid-cols-3">
     {
    renderView()
     }
-   
+   </ul>
         </div>
         
         </div></div></div>

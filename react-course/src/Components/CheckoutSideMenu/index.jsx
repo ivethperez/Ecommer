@@ -7,14 +7,14 @@ import {totalPrice,totalProducts} from '../../utils'
 
 const CheckoutSideMenu = () => {
   const { setOpenModalOrder, openModalOrder, cartProducts,setCartProducts
-  ,setOrder,order,setCount,count,setSearchByTitle } = useShopiContext();
+  ,setOrder,order,setCount,count,setSearchByTitle,mensajePedido,phoneNumber } = useShopiContext();
   const onCancel = () => { setOpenModalOrder(false) };
   const handleDelete =(id) =>{
     const product = cartProducts.filter(product => product.id == id)
     setCount(count -product[0].quantity)
     setCartProducts(cartProducts.filter(product => product.id != id))
   }
-  const handleCkeckout =() =>{
+  const handleCkeckout = async () =>{
     const orderToAdd={
       date:'',
       products: cartProducts,
@@ -27,6 +27,7 @@ const CheckoutSideMenu = () => {
     setCount(0)
     onCancel()
     setSearchByTitle(null)
+
   }
   return (
     <aside

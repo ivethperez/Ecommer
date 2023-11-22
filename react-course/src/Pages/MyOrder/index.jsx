@@ -9,6 +9,10 @@ function MyOrder() {
   let index = currentPath[currentPath.length - 1]
   if (index === 'last') index = order?.length - 1
 
+  const enviarPedido = ()=>{
+    window.open('https://wa.me/?phone=' + phoneNumber + '&text=' + encodeURIComponent(mensajePedido), '_blank');
+  } 
+
    return (
 <div>
     <div className='flex w-80 items-center justify-center relative mb-3'>
