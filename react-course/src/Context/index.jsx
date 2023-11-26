@@ -167,6 +167,10 @@ export const ShoppingCartProvider = ({ children }) => {
   const [phoneNumber, setPhoneNumber] = useState('2228189400');
   const [mensajePedido, setmensajePedido] = useState('Prueba mensaje');
 
+  const [isKilo, setIsKilo] = useState(true)
+  const [isMedioKilo, setIsMedioKilo] = useState(false)
+  const [isCuartoKilo, setIsCuartoKilo] = useState(false)
+
     return (
         <ShoppingCartContext.Provider value={{
             count,
@@ -205,7 +209,14 @@ export const ShoppingCartProvider = ({ children }) => {
             isActiveBotanas,
             isActiveTodo,
             phoneNumber,
-            mensajePedido
+            mensajePedido,
+            setIsKilo,
+            setIsMedioKilo,
+            setIsCuartoKilo,
+            isKilo,
+            isMedioKilo,
+            isCuartoKilo
+
         }}>
             {children}
         </ShoppingCartContext.Provider>

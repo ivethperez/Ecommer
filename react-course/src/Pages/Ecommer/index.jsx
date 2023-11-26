@@ -98,7 +98,7 @@ const filtro =(val) =>{
       </div>
       <div className="lg:col-span-3">
       <div className='mt-4 font-display text-2xl tracking-tight text-blue-900'>
-        <input type='text' placeholder='Buscar producto' className='rounded-lg border border-green-200 shadow p-3 mb-3 focus:outline-none' 
+        <input type='text' placeholder='Buscar producto' className='block w-full appearance-none rounded-lg border border-gray-200 bg-white py-[calc(theme(spacing.2)-1px)] px-[calc(theme(spacing.3)-1px)] text-gray-900 placeholder:text-gray-400 focus:border-cyan-500 focus:outline-none focus:ring-cyan-500 sm:text-sm' 
           onChange={search}></input>
       </div>
         </div>
@@ -149,7 +149,7 @@ const filtro =(val) =>{
       </div>
       </div>
       </div>
-      <div className="lg:col-span-3">
+      <div className="lg:col-span-3 sm:col-span-2">
   
    <ul role="list" className="grid grid-cols-1 ui-not-focus-visible:outline-none sm:grid-cols-2 md:grid-cols-3">
     {
