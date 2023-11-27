@@ -37,6 +37,7 @@ export const ShoppingCartProvider = ({ children }) => {
         if (productExists) {
             const productCart = cartProducts.find(el => el.id === product.id); // busca el producto
             productCart.quantity += 1; // aumenta la cantidad en 1
+            productCart.price=0
         } else {
             product.quantity = 1; // si el producto no está, le agrega la propiedad quantity con valor uno, y luego setea el carrito agregando ese producto
             setCartProducts([...cartProducts, product]);

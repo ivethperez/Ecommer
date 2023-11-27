@@ -7,7 +7,9 @@ import {totalPrice,totalProducts} from '../../utils'
 
 const CheckoutSideMenu = () => {
   const { setOpenModalOrder, openModalOrder, cartProducts,setCartProducts
-  ,setOrder,order,setCount,count,setSearchByTitle,mensajePedido,phoneNumber } = useShopiContext();
+  ,setOrder,order,setCount,count,setSearchByTitle,mensajePedido,phoneNumber,isMedioKilo,
+  isCuartoKilo,isKilo } = useShopiContext();
+
   const onCancel = () => { setOpenModalOrder(false) };
   const handleDelete =(id) =>{
     const product = cartProducts.filter(product => product.id == id)
@@ -19,7 +21,7 @@ const CheckoutSideMenu = () => {
       date:'',
       products: cartProducts,
       totalProducts: totalProducts(cartProducts),
-      totalPrice: totalPrice(cartProducts)
+      totalPrice: totalPrice(cartProducts,isMedioKilo,isCuartoKilo,isKilo)
     }
 
     setOrder([...order,orderToAdd])
@@ -46,10 +48,10 @@ const CheckoutSideMenu = () => {
               key={product.id}
               title={product.title}
               imageUrl={product.images}
-              price={product.price}
-              quantity={product.quantity}
+              price ={}
               handleDelete={handleDelete}
               id={product.id}
+            
             />
           ))
         }
@@ -57,7 +59,7 @@ const CheckoutSideMenu = () => {
       <div className='px-6 mb-6'>
         <p className='flex justify-between items-center mb-2'>
           <span className='font-light'>Total:</span>
-          <span className='font-medium text-2xl'>${totalPrice(cartProducts)}</span>
+          <span className='font-medium text-2xl'>${totalPrice(cartProducts,isMedioKilo,isCuartoKilo,isKilo)}</span>
         </p>
         <Link to='/my-orders/last'>
         <button className='w-full bg-black py-3 text-white rounded-lg' onClick={() => handleCkeckout()}>
