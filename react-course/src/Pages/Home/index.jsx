@@ -8,6 +8,8 @@ function HomePage (){
 
 
 
+
+
 <div class="sm:px-8 mt-9"><div class="mx-auto w-full max-w-7xl lg:px-8">
   <div class="relative px-4 sm:px-8 lg:px-12">
     <div class="mx-auto max-w-2xl lg:max-w-5xl">
@@ -39,10 +41,8 @@ function HomePage (){
 
 
 
-
-<div className="sticky top-0 z-50"><div className="sm:hidden" data-headlessui-state="">
+              <div className="sticky top-0 z-50"><div className="sm:hidden" data-headlessui-state="">
   <div className="relative flex items-center px-4 py-3 bg-white/95 shadow-sm [@supports(backdrop-filter:blur(0))]:bg-white/80 [@supports(backdrop-filter:blur(0))]:backdrop-blur">
-    <span aria-hidden="true" className="font-mono text-sm text-blue-600">01</span>
     <span className="ml-4 text-base font-medium text-slate-900"><span className="hidden lg:inline">Table of contents</span><span className="lg:hidden">Contents</span></span>
     <button className="-mr-1 ml-auto flex h-8 w-8 items-center justify-center" aria-label="Toggle navigation menu" type="button" aria-expanded="false" data-headlessui-state="" id="headlessui-popover-button-:R9aemla:"><span className="absolute inset-0"></span>
     <svg aria-hidden="true" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" className="h-6 w-6 stroke-slate-700">
@@ -52,18 +52,17 @@ function HomePage (){
         </div><div className="hidden sm:flex sm:h-32 sm:justify-center sm:border-b sm:border-slate-200 sm:bg-white/95 sm:[@supports(backdrop-filter:blur(0))]:bg-white/80 sm:[@supports(backdrop-filter:blur(0))]:backdrop-blur">
         <ol role="list" className="mb-[-2px] grid auto-cols-[minmax(0,15rem)] grid-flow-col text-base font-medium text-slate-900 [counter-reset:section]">
         <li className="flex [counter-increment:section]">
-            <a href="#paquetes" className="flex w-full flex-col items-center justify-center border-b-2 before:mb-2 before:font-mono before:text-sm before:content-[counter(section,decimal-leading-zero)] border-transparent before:text-slate-500 hover:bg-blue-50/40 hover:before:text-slate-900">
+            <a href="#paquetes" className=" decoration-transparent text-black flex w-full flex-col items-center justify-center border-b-2 before:mb-2 before:font-mono before:text-sm  border-transparent before:text-slate-500 hover:bg-blue-50/40 hover:before:text-slate-900">
                 <span className="hidden lg:inline">Paquetes</span></a>
                 </li><li className="flex [counter-increment:section]">
-                    <a href="#contacto" className="flex w-full flex-col items-center justify-center border-b-2 before:mb-2 before:font-mono before:text-sm before:content-[counter(section,decimal-leading-zero)] border-transparent before:text-slate-500 hover:bg-blue-50/40 hover:before:text-slate-900">
+                    <a href="#contacto" className="flex w-full flex-col items-center justify-center border-b-2 before:mb-2 before:font-mono before:text-sm border-transparent before:text-slate-500 hover:bg-blue-50/40 hover:before:text-slate-900 decoration-transparent text-black">
                       Contactanos</a></li>
                     
                     </ol>
             
             
             
-            </div></div>
-          
+            </div></div>   
 
 
  

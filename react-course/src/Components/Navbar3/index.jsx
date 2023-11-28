@@ -26,7 +26,7 @@ const Navbarr = () => {
     }
 
     const renderView = () => {
-        console.log(hasUserAnAccount, isUserSignOut)
+       // console.log(hasUserAnAccount, isUserSignOut)
         if (hasUserAnAccount && !isUserSignOut) {
             return (
 

@@ -4,6 +4,8 @@ import { useShopiContext } from '../../Context'
 import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
 const Card = ({ data }) => {
+
+  console.log(data)
   const { increment, setOpenModal, setProductShow, cartProducts
     , setOpenModalOrder,setIsKilo,setIsMedioKilo,
     setIsCuartoKilo, isMedioKilo,
@@ -14,25 +16,30 @@ const Card = ({ data }) => {
   }
   const addProductsToCart = (productData, e) => {
     setOpenModalOrder(true);
+   // console.log(''+isKilo,isMedioKilo,isCuartoKilo)
     increment(e, productData);
   }
   const [pricePorUnidad, setPricePorUnidad] = useState('')
 
 const showPrice = (unidad) =>{
   if(unidad == 'kilo'){
-    setIsKilo(state => !state)
+    setIsKilo(true)
+    setIsMedioKilo(false)
+    setIsCuartoKilo(false)
     setPricePorUnidad(data.priceKilo)
   }
   if(unidad == 'medioKilo'){
-    setIsMedioKilo(state => !state)
+    setIsMedioKilo(true)
+    setIsCuartoKilo(false)
+    setIsKilo(false)
     setPricePorUnidad(data.priceMedio)
   }
   if(unidad == 'cuarto'){
-    setIsCuartoKilo(state => !state)
+    setIsMedioKilo(false)
+    setIsCuartoKilo(true)
+    setIsKilo(false)
     setPricePorUnidad(data.priceCuarto)
   }
-
-    
 }
   return (
     // <div className="bg-white cursor-pointer w-full h-60 rounded-lg max-w-md mx-auto shadow-md overflow-hidden md:max-w-2xl" onClick={()=> showproduct(data)}>
