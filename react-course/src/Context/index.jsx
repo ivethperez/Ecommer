@@ -29,7 +29,7 @@ export const ShoppingCartProvider = ({ children }) => {
       .then(data => setItems(data))
   }, [])
 
-  
+
   //Shopping Cart
   const [count, setCount] = useState(0)
   const increment = (event, product) => {
@@ -37,27 +37,22 @@ export const ShoppingCartProvider = ({ children }) => {
     const productExists = cartProducts.some(el => el.id === product.id); // dará true si el producto ya se encuentra en el carrito
     if (productExists) {
       const productCart = cartProducts.find(el => el.id === product.id); // busca el producto
-      
       productCart.quantity += 1; // aumenta la cantidad en 1
-      productCart.price = price(productCart)
     } else {
       product.quantity = 1; // si el producto no está, le agrega la propiedad quantity con valor uno, y luego setea el carrito agregando ese producto
       setCartProducts([...cartProducts, product]);
-      product.price = price(product)
     }
     setCount(count + 1);
   }
-  const price = (productCart) => {
-
-    console.log(isKilo,isMedioKilo,isCuartoKilo)
-    if (isKilo)
-      return productCart.priceKilo
-    else if (isMedioKilo)
-      return productCart.priceMedio
-    else if (isCuartoKilo)
-      return productCart.priceCuarto
+  const price = (product) => {
+    if (product.isKilo)
+      product.price = product.priceKilo
+    else if (product.isMedio)
+      product.price = product.priceMedio
+    else if (product.isCuarto)
+      product.price = product.priceCuarto
     else
-      return productCart.priceKilo
+      product.price = product.priceKilo
   }
   //ProductDetail
   const [openModal, setOpenModal] = useState(false)
@@ -112,15 +107,12 @@ export const ShoppingCartProvider = ({ children }) => {
     if (searchType === 'BY_TITLE') {
       return filteredItemsByTitle(items, searchByTitle)
     }
-
     if (searchType === 'BY_CATEGORY') {
       return filteredItemsByCategory(items, searchByCategory)
     }
-
     if (searchType === 'BY_TITLE_AND_CATEGORY') {
       return filteredItemsByCategory(items, searchByCategory).filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()))
     }
-
     if (!searchType) {
       return items
     }
@@ -156,7 +148,9 @@ export const ShoppingCartProvider = ({ children }) => {
       setisActiveBotanas(false)
       setisActiveTodo(true)
     }
-
+    
+    setCartProduct([filteredItems])
+   console.log('cartProduct', cartProduct,filteredItems)
   }, [items, searchByTitle, searchByCategory])
 
 
@@ -183,9 +177,14 @@ export const ShoppingCartProvider = ({ children }) => {
   const [phoneNumber, setPhoneNumber] = useState('2228189400');
   const [mensajePedido, setmensajePedido] = useState('Prueba mensaje');
 
-  const [isKilo, setIsKilo] = useState(false)
+  const [isKilo, setIsKilo] = useState(true)
   const [isMedioKilo, setIsMedioKilo] = useState(false)
   const [isCuartoKilo, setIsCuartoKilo] = useState(false)
+
+
+    const [cartProduct, setCartProduct] = useState([]) //Array de objetos cart individual
+
+
 
   return (
     <ShoppingCartContext.Provider value={{
@@ -231,7 +230,10 @@ export const ShoppingCartProvider = ({ children }) => {
       setIsCuartoKilo,
       isKilo,
       isMedioKilo,
-      isCuartoKilo
+      isCuartoKilo,
+      cartProduct,
+      setCartProduct,
+      price
 
     }}>
       {children}

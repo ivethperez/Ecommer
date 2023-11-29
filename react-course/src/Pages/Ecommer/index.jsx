@@ -31,14 +31,14 @@ const filtro =(val) =>{
           filteredItems?.map(item => (
             <Card key={item.id} data={item}> </Card>
           ))
-
-
         )
+         
       } else {
         return (
           <div>No hay resultados</div>
         )
       } 
+     
   }
   return (
     <div className="container-fluid ">

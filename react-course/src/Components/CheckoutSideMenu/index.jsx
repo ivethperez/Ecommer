@@ -60,7 +60,7 @@ const CheckoutSideMenu = () => {
       <div className='px-6 mb-6'>
         <p className='flex justify-between items-center mb-2'>
           <span className='font-light'>Total:</span>
-          <span className='font-medium text-2xl'>${totalPrice(cartProducts,isMedioKilo,isCuartoKilo,isKilo)}</span>
+          <span className='font-medium text-2xl'>${totalPrice(cartProducts)}</span>
         </p>
         <Link to='/my-orders/last'>
         <button className='w-full bg-black py-3 text-white rounded-lg' onClick={() => handleCkeckout()}>

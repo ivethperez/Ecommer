@@ -1,15 +1,15 @@
 import { PlusIcon, CheckIcon, ShoppingBagIcon, MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/solid';
 import { useShopiContext } from '../../Context'
-
-import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
-const Card = ({ data }) => {
+import AddCart from '../AddCart'
+import Button from 'react-bootstrap/Button';
+import Ecommer from '../../Pages/Ecommer';
 
-  console.log(data)
+const Card = ({ data }) => {
   const { increment, setOpenModal, setProductShow, cartProducts
     , setOpenModalOrder,setIsKilo,setIsMedioKilo,
     setIsCuartoKilo, isMedioKilo,
-    isCuartoKilo,isKilo } = useShopiContext();
+    isCuartoKilo,isKilo,cartProduct,filteredItems,price } = useShopiContext();
   const showproduct = (productDetail) => {
     setOpenModal(state => !state);
     setProductShow(productDetail);
@@ -20,29 +20,57 @@ const Card = ({ data }) => {
     increment(e, productData);
   }
   const [pricePorUnidad, setPricePorUnidad] = useState('')
-  const [idCart, setIdCart] = useState('')
-
-const showPrice = (cart,unidad) =>{
+  const [showProductDetail, setShowProductDetail] = useState(false);
+// const showPrice = (data,unidad) =>{
+//   if(unidad == 'kilo'){
+//     setIsKilo(true)
+//     setIsMedioKilo(false)
+//     setIsCuartoKilo(false)
+//     setPricePorUnidad(data.priceKilo)
+//   }
+//   if(unidad == 'medioKilo'){
+//     setIsMedioKilo(true)
+//     setIsCuartoKilo(false)
+//     setIsKilo(false)
+//     setPricePorUnidad(data.priceMedio)
+//   }
+//   if(unidad == 'cuarto'){
+//     setIsMedioKilo(false)
+//     setIsCuartoKilo(true)
+//     setIsKilo(false)
+//     setPricePorUnidad(data.priceCuarto)
+//   }
+//   renderView(data)
+// }
+const showPrice = (prod,unidad) =>{
   if(unidad == 'kilo'){
-    setIsKilo(true)
-    setIsMedioKilo(false)
-    setIsCuartoKilo(false)
-    setPricePorUnidad(data.priceKilo)
+    prod.isKilo=true
+    prod.isMedio=false
+    prod.isCuarto = false
   }
   if(unidad == 'medioKilo'){
-    setIsMedioKilo(true)
-    setIsCuartoKilo(false)
-    setIsKilo(false)
-    setPricePorUnidad(data.priceMedio)
+    prod.isMedio=true
+    prod.isCuarto=false
+    prod.isKilo=false
   }
   if(unidad == 'cuarto'){
-    setIsMedioKilo(false)
-    setIsCuartoKilo(true)
-    setIsKilo(false)
-    setPricePorUnidad(data.priceCuarto)
+    prod.isMedio=false
+    prod.isCuarto=true
+    prod.isKilo=false
   }
-  setIdCart(cart.id);
-  console.log(idCart)
+  
+  price(prod)
+  console.log(filteredItems)
+}
+const renderView =(dat) => {
+ 
+  if(dat.id != 0){
+    console.log(dat.id)
+    return(
+      <AddCart data={dat}></AddCart>
+    )
+    
+  }
 }
   return (
     <li>
@@ -113,7 +141,8 @@ const showPrice = (cart,unidad) =>{
                  </div>
                 <div className="overflow-hidden rounded-full bg-slate-50">
 
-                { data.id == idCart ? (
+                { filteredItems.filter((product) => product.id === data.id)
+                .length > 0 && (data.isKilo || data.isMedio || data.isCuarto) ? (
                   <Button variant="success" size="lg" onClick={(e) => {
                     addProductsToCart(data, e)
                   }}>
