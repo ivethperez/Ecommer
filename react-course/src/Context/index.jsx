@@ -34,15 +34,25 @@ export const ShoppingCartProvider = ({ children }) => {
   const [count, setCount] = useState(0)
   const increment = (event, product) => {
     event.stopPropagation();
-    const productExists = cartProducts.some(el => el.id === product.id); // dará true si el producto ya se encuentra en el carrito
-    if (productExists) {
-      const productCart = cartProducts.find(el => el.id === product.id); // busca el producto
-      productCart.quantity += 1; // aumenta la cantidad en 1
-    } else {
-      product.quantity = 1; // si el producto no está, le agrega la propiedad quantity con valor uno, y luego setea el carrito agregando ese producto
-      setCartProducts([...cartProducts, product]);
+    console.log('', product)
+    if (product.price == null){
+      setShowAlert(true)
+      setTypeAlert('precaucion')
+    }     
+    else {
+      const productExists = cartProducts.some(el => el.id === product.id && el.price === product.price); // dará true si el producto ya se encuentra en el carrito
+      console.log('ca', cartProducts)
+      if (productExists) {
+        const productCart = cartProducts.find(el => el.id === product.id && el.price === product.price); // busca el producto
+        productCart.quantity += 1; // aumenta la cantidad en 1
+      } else {
+        product.quantity = 1; // si el producto no está, le agrega la propiedad quantity con valor uno, y luego setea el carrito agregando ese producto
+        setCartProducts([...cartProducts, product]);
+      }
+      setCount(count + 1);
+      setOpenModalOrder(true);
     }
-    setCount(count + 1);
+
   }
   const price = (product) => {
     if (product.isKilo)
@@ -53,6 +63,7 @@ export const ShoppingCartProvider = ({ children }) => {
       product.price = product.priceCuarto
     else
       product.price = product.priceKilo
+    setShowAlert(false)
   }
   //ProductDetail
   const [openModal, setOpenModal] = useState(false)
@@ -148,9 +159,6 @@ export const ShoppingCartProvider = ({ children }) => {
       setisActiveBotanas(false)
       setisActiveTodo(true)
     }
-    
-    setCartProduct([filteredItems])
-   console.log('cartProduct', cartProduct,filteredItems)
   }, [items, searchByTitle, searchByCategory])
 
 
@@ -182,9 +190,10 @@ export const ShoppingCartProvider = ({ children }) => {
   const [isCuartoKilo, setIsCuartoKilo] = useState(false)
 
 
-    const [cartProduct, setCartProduct] = useState([]) //Array de objetos cart individual
+  const [cartProduct, setCartProduct] = useState([]) //Array de objetos cart individual
 
-
+  const [showAlert, setShowAlert] = useState(false);
+  const [typeAlert, setTypeAlert] = useState('');
 
   return (
     <ShoppingCartContext.Provider value={{
@@ -233,8 +242,11 @@ export const ShoppingCartProvider = ({ children }) => {
       isCuartoKilo,
       cartProduct,
       setCartProduct,
-      price
-
+      price,
+      showAlert,
+      setShowAlert,
+      setTypeAlert,
+      typeAlert
     }}>
       {children}
     </ShoppingCartContext.Provider>

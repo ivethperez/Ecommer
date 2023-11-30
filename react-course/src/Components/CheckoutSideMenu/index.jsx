@@ -3,28 +3,27 @@ import { useShopiContext } from '../../Context'
 import { XMarkIcon } from '@heroicons/react/24/solid'
 import { Link } from 'react-router-dom'
 import OrderCard from '../../Components/OrderCard'
-import {totalPrice,totalProducts} from '../../utils'
+import { totalPrice, totalProducts } from '../../utils'
 
 const CheckoutSideMenu = () => {
-  const { setOpenModalOrder, openModalOrder, cartProducts,setCartProducts
-  ,setOrder,order,setCount,count,setSearchByTitle,mensajePedido,phoneNumber,isMedioKilo,
-  isCuartoKilo,isKilo } = useShopiContext();
+  const { setOpenModalOrder, openModalOrder, cartProducts, setCartProducts
+    , setOrder, order, setCount, count, setSearchByTitle } = useShopiContext();
 
   const onCancel = () => { setOpenModalOrder(false) };
-  const handleDelete =(id) =>{
+  const handleDelete = (id) => {
     const product = cartProducts.filter(product => product.id == id)
-    setCount(count -product[0].quantity)
+    setCount(count - product[0].quantity)
     setCartProducts(cartProducts.filter(product => product.id != id))
   }
-  const handleCkeckout = async () =>{
-    const orderToAdd={
-      date:'',
+  const handleCkeckout = async () => {
+    const orderToAdd = {
+      date: '',
       products: cartProducts,
       totalProducts: totalProducts(cartProducts),
-      totalPrice: totalPrice(cartProducts,isMedioKilo,isCuartoKilo,isKilo)
+      totalPrice: totalPrice(cartProducts)
     }
 
-    setOrder([...order,orderToAdd])
+    setOrder([...order, orderToAdd])
     setCartProducts([])
     setCount(0)
     onCancel()
@@ -41,6 +40,7 @@ const CheckoutSideMenu = () => {
           <XMarkIcon className='h-6 w-6'></XMarkIcon>
         </button>
       </div>
+
       <div className='px-6 overflow-y-auto flex-1'>
         {
           cartProducts.map(product => (
@@ -48,11 +48,11 @@ const CheckoutSideMenu = () => {
               key={product.id}
               title={product.title}
               imageUrl={product.images}
-              price ={product.price}
-              quantity ={product.quantity}
+              price={product.price}
+              quantity={product.quantity}
               handleDelete={handleDelete}
               id={product.id}
-            
+
             />
           ))
         }
@@ -63,11 +63,11 @@ const CheckoutSideMenu = () => {
           <span className='font-medium text-2xl'>${totalPrice(cartProducts)}</span>
         </p>
         <Link to='/my-orders/last'>
-        <button className='w-full bg-black py-3 text-white rounded-lg' onClick={() => handleCkeckout()}>
-          Ordenar
-        </button>
+          <button className='w-full bg-black py-3 text-white rounded-lg' onClick={() => handleCkeckout()}>
+            Ordenar
+          </button>
         </Link>
-       
+
       </div>
     </aside>
   )

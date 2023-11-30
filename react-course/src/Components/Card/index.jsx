@@ -1,47 +1,18 @@
 import { PlusIcon, CheckIcon, ShoppingBagIcon, MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/solid';
 import { useShopiContext } from '../../Context'
-import { useState } from 'react';
-import AddCart from '../AddCart'
 import Button from 'react-bootstrap/Button';
-import Ecommer from '../../Pages/Ecommer';
 
 const Card = ({ data }) => {
-  const { increment, setOpenModal, setProductShow, cartProducts
-    , setOpenModalOrder,setIsKilo,setIsMedioKilo,
-    setIsCuartoKilo, isMedioKilo,
-    isCuartoKilo,isKilo,cartProduct,filteredItems,price } = useShopiContext();
+  const { increment, setOpenModal, setProductShow, cartProducts,price } = useShopiContext();
   const showproduct = (productDetail) => {
     setOpenModal(state => !state);
     setProductShow(productDetail);
   }
   const addProductsToCart = (productData, e) => {
-    setOpenModalOrder(true);
-   // console.log(''+isKilo,isMedioKilo,isCuartoKilo)
+   
     increment(e, productData);
   }
-  const [pricePorUnidad, setPricePorUnidad] = useState('')
-  const [showProductDetail, setShowProductDetail] = useState(false);
-// const showPrice = (data,unidad) =>{
-//   if(unidad == 'kilo'){
-//     setIsKilo(true)
-//     setIsMedioKilo(false)
-//     setIsCuartoKilo(false)
-//     setPricePorUnidad(data.priceKilo)
-//   }
-//   if(unidad == 'medioKilo'){
-//     setIsMedioKilo(true)
-//     setIsCuartoKilo(false)
-//     setIsKilo(false)
-//     setPricePorUnidad(data.priceMedio)
-//   }
-//   if(unidad == 'cuarto'){
-//     setIsMedioKilo(false)
-//     setIsCuartoKilo(true)
-//     setIsKilo(false)
-//     setPricePorUnidad(data.priceCuarto)
-//   }
-//   renderView(data)
-// }
+
 const showPrice = (prod,unidad) =>{
   if(unidad == 'kilo'){
     prod.isKilo=true
@@ -58,19 +29,7 @@ const showPrice = (prod,unidad) =>{
     prod.isCuarto=true
     prod.isKilo=false
   }
-  
   price(prod)
-  console.log(filteredItems)
-}
-const renderView =(dat) => {
- 
-  if(dat.id != 0){
-    console.log(dat.id)
-    return(
-      <AddCart data={dat}></AddCart>
-    )
-    
-  }
 }
   return (
     <li>
@@ -141,23 +100,14 @@ const renderView =(dat) => {
                  </div>
                 <div className="overflow-hidden rounded-full bg-slate-50">
 
-                { filteredItems.filter((product) => product.id === data.id)
-                .length > 0 && (data.isKilo || data.isMedio || data.isCuarto) ? (
-                  <Button variant="success" size="lg" onClick={(e) => {
+                <Button variant="success" size="lg" onClick={(e) => {
                     addProductsToCart(data, e)
                   }}>
                     <ShoppingBagIcon className='h-6 w-6'></ShoppingBagIcon></Button>
-
-                ):(
-                  <Button variant="success" disabled={true} size="lg" onClick={(e) => {
-                    addProductsToCart(data, e)
-                  }}>
-                    <ShoppingBagIcon className='h-6 w-6'></ShoppingBagIcon></Button>
-                )}
-                  
                 </div>
               </div>
             </figcaption>
+            
           </figure>
         </li></ul></li>
 

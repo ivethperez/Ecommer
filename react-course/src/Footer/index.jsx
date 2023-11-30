@@ -52,15 +52,14 @@ const Footerr = () => {
           </div> */}
         </div>
         <div className="flex flex-col items-center border-t border-gray-200 pb-12 pt-8 md:flex-row-reverse md:justify-between md:pt-6">
-          <form className="flex w-full justify-center md:w-auto"><div className="w-60 min-w-0 shrink">
-
-          </div>
+          <form className="flex w-full justify-center md:w-auto">
+            <div className="w-60 min-w-0 shrink">
+            </div>
             <button className="inline-flex justify-center rounded-lg py-2 px-3 text-sm font-semibold relative outline-2 outline-offset-2 transition-colors  overflow-hidden bg-cyan-500 text-white before:absolute before:inset-0 active:before:bg-transparent hover:before:bg-white/10 active:bg-cyan-600 active:text-white/80 before:transition-colors ml-4 flex-none" type="submit">
               <span className="hidden lg:inline">Visita nuestro ecommer</span><span className="lg:hidden"></span></button>
-          </form><p className="mt-6 text-sm text-gray-500 md:mt-0">© Copyright 2023. All rights reserved.</p></div></div></footer>
-
-
-
+          </form><p className="mt-6 text-sm text-gray-500 md:mt-0">© Copyright 2023. All rights reserved.</p></div>
+      </div>
+    </footer>
   )
 }
 
