@@ -29,7 +29,6 @@ const CheckoutSideMenu = () => {
     onCancel()
     setSearchByTitle(null)
   }
-  console.log('todo', cartProducts)
   return (
     <aside
       className={`${openModalOrder ? 'flex' : 'hidden'} checkout-side-menu flex-col fixed right-0 border border-black rounded-lg bg-white`}>

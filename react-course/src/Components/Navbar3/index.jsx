@@ -11,7 +11,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
 const Navbarr = () => {
-    const { setSearchByCategory, setSignOut, signOut, account } = useShopiContext();
+    const { setSearchByCategory, setSignOut, signOut, account,setShowEcomm,showEcomm } = useShopiContext();
     const isUserSignOut = signOut || storage.getItem('sign-out')
 
     const parsedAccount = storage.getItem('account')
@@ -65,10 +65,11 @@ const Navbarr = () => {
         }
         else {
             return (
-                <NavLink to='/sign-in' className=' decoration-transparent text-black mt-2 pl-3'
-                    onClick={() => handleSignOut()}>
-                    Login
-                </NavLink>
+                // <NavLink to='/sign-in' className=' decoration-transparent text-black mt-2 pl-3'
+                //     onClick={() => handleSignOut()}>
+                //     Login
+                // </NavLink>
+                <div></div>
             )
         }
     }
@@ -80,14 +81,14 @@ const Navbarr = () => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                        <NavLink to={`${isUserSignOut ? '/sign-in' : '/'}`} style={({ isActive }) => {
+                        <NavLink to={`${isUserSignOut ? '/sign-in' : '/'}`} onClick={()=>{setShowEcomm(false)}} style={({ isActive }) => {
                             return {
                                 fontWeight: isActive ? "bold" : ""
                             };
                         }} className=' decoration-transparent text-black mt-2  pl-3'>
                             Shopi
                         </NavLink>
-                        <NavLink to='/' className=' decoration-transparent text-black mt-2 pl-3'
+                        <NavLink to='/' onClick={()=>{setShowEcomm(false)}} className=' decoration-transparent text-black mt-2 pl-3'
                              style={({ isActive }) => {
                                 return {
                                     fontWeight: isActive ? "bold" : ""
@@ -150,16 +151,24 @@ const Navbarr = () => {
 
                     </Nav>
                     <Nav className=' flex flex-col gap-1'>
-                        <NavLink to='/ecommer' className=' decoration-transparent text-black mt-2  pl-3'
-                            onClick={() => setSearchByCategory()} style={({ isActive }) => {
-                                return {
-                                    fontWeight: isActive ? "bold" : ""
-                                };
-                            }}
-                        >
-                            Ecommer
-                        </NavLink>
-                        {renderView()}
+                        {
+                              !showEcomm ? (  
+                              <NavLink to='/ecommer' className=' decoration-transparent text-black mt-2  pl-3'
+                              onClick={() => setSearchByCategory()} style={({ isActive }) => {
+                                  return {
+                                      fontWeight: isActive ? "bold" : ""
+                                  };
+                              }}
+                          >
+                            <button className="text-white border-0 border-green-300 hover:color-btn-confirmar color-btn-confirmar  font-medium rounded-full text-sm px-5 py-1.5 text-center me-2 mb-2 ">Visita nuestro ecommer</button>                        
+                          </NavLink>
+  ):(
+
+    <div></div>
+  )
+                           
+                        }
+                        {  renderView() }
                         <ShoppingCart />
                     </Nav>
                 </Navbar.Collapse>

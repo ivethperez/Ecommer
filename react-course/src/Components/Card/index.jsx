@@ -4,34 +4,40 @@ import Button from 'react-bootstrap/Button';
 import '../../Styles/styles.css'
 
 const Card = ({ data }) => {
-  const { increment, setOpenModal, setProductShow, cartProducts,price } = useShopiContext();
+  const { increment, setOpenModal, setProductShow, cartProducts,setIsKilo,setIsMedioKilo,setIsCuartoKilo } = useShopiContext();
   const showproduct = (productDetail) => {
     setOpenModal(state => !state);
     setProductShow(productDetail);
   }
   const addProductsToCart = (productData, e) => {  
-    increment(e, productData);
-    
+    increment(e, productData); 
   }
 
-const showPrice = (prod,unidad) =>{
+const showPrice = async (prod,unidad) =>{
   if(unidad == 'kilo'){
     prod.isKilo=true
     prod.isMedio=false
     prod.isCuarto = false
+    prod.price = prod.priceKilo
   }
   if(unidad == 'medioKilo'){
     prod.isMedio=true
     prod.isCuarto=false
     prod.isKilo=false
+    prod.isKilo=false
+    prod.price = prod.priceMedio
   }
   if(unidad == 'cuarto'){
     prod.isMedio=false
     prod.isCuarto=true
     prod.isKilo=false
+    prod.price = prod.priceCuarto
   }
-  price(prod)
+  setIsKilo(prod.isKilo)
+  setIsMedioKilo(prod.isMedio)
+  setIsCuartoKilo(prod.isCuarto)
 }
+console.log('carts', cartProducts)
   return (
     <li>
       <ul role="list" className="flex flex-col w-full">
@@ -67,28 +73,28 @@ const showPrice = (prod,unidad) =>{
                     <div className="flex flex-wrap gap-2">
                       <label className="cursor-pointer" onClick={() => showPrice(data,'kilo')}>
                         <input type="radio" className="peer sr-only" name="pricing" />
-                        <div className=" w-16 rounded-md bg-white border text-gray-600 ring-2 ring-transparent transition-all hover:shadow-lg peer-checked:text-sky-600 peer-checked:ring-blue-400 peer-checked:ring-offset-2">                      
-                            <div className=" flex flex-col gap-1 pt-2 items-center justify-between">
+                        <div className={`${data.isKilo ? 'text-sky-600 ring-blue-400 ring-offset-2 w-16 rounded-md ring-2 bg-white border ring-transparent transition-all hover:shadow-lg': 'w-16 rounded-md bg-white border text-gray-600 transition-all hover:shadow-lg'}  `}>                      
+                            <div className=" flex flex-col pt-2 items-center justify-between divide-y">
                               <p className="text-sm font-semibold uppercase text-gray-500">1 kg</p>
-                              <p>${data.priceKilo}</p>
+                              <p className='pt-2'>${data.priceKilo}</p>
                             </div>
                         </div>
                       </label>
                       <label className="cursor-pointer" onClick={() => showPrice(data,'medioKilo')}>
                         <input type="radio" className="peer sr-only" name="pricing" />
-                        <div className="w-16 rounded-md bg-white text-gray-600  border ring-2 ring-transparent transition-all hover:shadow-lg peer-checked:text-sky-600 peer-checked:ring-blue-400 peer-checked:ring-offset-2">
-                            <div className=" flex flex-col gap-0 pt-2 items-center justify-between">
+                        <div className={`${data.isMedio ? 'text-sky-600 ring-blue-400 ring-offset-2': ''} w-16 rounded-md bg-white text-gray-600  border ring-2 ring-transparent transition-all hover:shadow-lg `}>
+                            <div className=" flex flex-col pt-2 items-center justify-between divide-y">
                               <p className="text-sm font-semibold uppercase text-gray-500">1/2 kg</p>
-                              <p>${data.priceMedio}</p>
+                              <p className='pt-2'>${data.priceMedio}</p>
                             </div>
                         </div>
                       </label>
                       <label className="cursor-pointer" onClick={() => showPrice(data,'cuarto')}>
                         <input type="radio" className="peer sr-only" name="pricing" />
-                        <div className="w-16 rounded-md bg-white text-gray-600 ring-2 border ring-transparent transition-all hover:shadow-lg peer-checked:text-sky-600 peer-checked:ring-blue-400 peer-checked:ring-offset-2">                  
-                            <div className="flex flex-col gap-1 pt-2 items-center justify-between">
+                        <div className={`${data.isCuarto ? 'text-sky-600 ring-blue-400 ring-offset-2': ''} w-16 rounded-md bg-white text-gray-600 ring-2 border ring-transparent transition-all hover:shadow-lg `}>                  
+                            <div className="flex flex-col pt-2 items-center justify-between divide-y">
                               <p className="text-sm font-semibold uppercase text-gray-500">1/4 kg</p>
-                              <p>${data.priceCuarto}</p>
+                              <p className='pt-2'>${data.priceCuarto}</p>
                             </div>
                         </div>
                       </label>

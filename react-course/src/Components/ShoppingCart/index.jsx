@@ -2,10 +2,11 @@ import { useShopiContext } from '../../Context'
 import { ShoppingBagIcon } from '@heroicons/react/24/solid'
 
 const ShoppingCart = () => {
-  const {setOpenModalOrder,count} = useShopiContext()
+  const {setOpenModalOrder,count,showEcomm} = useShopiContext()
 
   const openCheckoutSideMenu = () => {
-    setOpenModalOrder(true);
+    if(showEcomm)
+        setOpenModalOrder(true);
   }
 
   return (

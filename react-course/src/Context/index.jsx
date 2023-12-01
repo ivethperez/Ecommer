@@ -34,40 +34,28 @@ export const ShoppingCartProvider = ({ children }) => {
   const [count, setCount] = useState(0)
   const increment = (event, product) => {
     event.stopPropagation();
-    console.log('', product)
-    if (product.price == null){
-      setShowAlert(true)
-      setTypeAlert('precaucion')
-    }     
-    else {
+    if (product.price == null)
+      product.price = product.priceKilo;
+      //setShowAlert(true)
+      //setTypeAlert('precaucion')
+    //}     
+   // else {
+    
       const productExists = cartProducts.some(el => el.id === product.id && el.price === product.price); // dará true si el producto ya se encuentra en el carrito
       
       if (productExists) {
         const productCart = cartProducts.find(el => el.id === product.id && el.price === product.price); // busca el producto
         productCart.quantity += 1; // aumenta la cantidad en 1
       } else {
-        console.log('no existe')
         product.quantity = 1; // si el producto no está, le agrega la propiedad quantity con valor uno, y luego setea el carrito agregando ese producto
         setCartProducts([...cartProducts, product]);
         
       }
       setCount(count + 1);
-      setOpenModalOrder(true);
-      console.log('ca', cartProducts)
-    }
+      setOpenModalOrder(true);      
+    //}
+  }
 
-  }
-  const price = (product) => {
-    if (product.isKilo)
-      product.price = product.priceKilo
-    else if (product.isMedio)
-      product.price = product.priceMedio
-    else if (product.isCuarto)
-      product.price = product.priceCuarto
-    else
-      product.price = product.priceKilo
-    setShowAlert(false)
-  }
   //ProductDetail
   const [openModal, setOpenModal] = useState(false)
   const [productShow, setProductShow] = useState({}) //Array
@@ -162,6 +150,7 @@ export const ShoppingCartProvider = ({ children }) => {
       setisActiveBotanas(false)
       setisActiveTodo(true)
     }
+    setShowEcomm(true)
   }, [items, searchByTitle, searchByCategory])
 
 
@@ -198,6 +187,7 @@ export const ShoppingCartProvider = ({ children }) => {
   const [showAlert, setShowAlert] = useState(false);
   const [typeAlert, setTypeAlert] = useState('');
 
+  const [showEcomm, setShowEcomm] = useState(false);
   return (
     <ShoppingCartContext.Provider value={{
       count,
@@ -245,11 +235,12 @@ export const ShoppingCartProvider = ({ children }) => {
       isCuartoKilo,
       cartProduct,
       setCartProduct,
-      price,
       showAlert,
       setShowAlert,
       setTypeAlert,
-      typeAlert
+      typeAlert,
+      setShowEcomm,
+      showEcomm
     }}>
       {children}
     </ShoppingCartContext.Provider>
