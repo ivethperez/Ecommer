@@ -1,6 +1,7 @@
 import React from "react"
 import { Container, Row, Col, Nav } from 'react-bootstrap';
 import 'bootstrap-icons/font/bootstrap-icons.css'
+import '../Styles/styles.css'
 const Footerr = () => {
   return (
 
@@ -9,7 +10,7 @@ const Footerr = () => {
         <div className="flex flex-col items-start justify-between gap-y-12 pb-6 pt-16 lg:flex-row lg:items-center lg:py-16">
           <div>
             <div className="flex items-center text-gray-900">
-              <svg viewBox="0 0 40 40" aria-hidden="true" className="h-10 w-10 flex-none fill-cyan-500">
+              <svg viewBox="0 0 40 40" aria-hidden="true" className="h-10 w-10 flex-none color-amarillo">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M20 40C8.954 40 0 31.046 0 20S8.954 0 20 0s20 8.954 20 20-8.954 20-20 20ZM4 20c0 7.264 5.163 13.321 12.02 14.704C17.642 35.03 19 33.657 19 32V8c0-1.657-1.357-3.031-2.98-2.704C9.162 6.68 4 12.736 4 20Z">
                 </path>
               </svg>
@@ -55,7 +56,7 @@ const Footerr = () => {
           <form className="flex w-full justify-center md:w-auto">
             <div className="w-60 min-w-0 shrink">
             </div>
-            <button className="inline-flex justify-center rounded-lg py-2 px-3 text-sm font-semibold relative outline-2 outline-offset-2 transition-colors  overflow-hidden bg-cyan-500 text-white before:absolute before:inset-0 active:before:bg-transparent hover:before:bg-white/10 active:bg-cyan-600 active:text-white/80 before:transition-colors ml-4 flex-none" type="submit">
+            <button className="inline-flex justify-center rounded-lg py-2 px-3 text-sm font-semibold relative outline-2 outline-offset-2 transition-colors  overflow-hidden color-btn-confirmar text-white before:absolute before:inset-0 active:before:bg-transparent hover:before:bg-white/10  active:text-white/80 before:transition-colors ml-4 flex-none" >
               <span className="hidden lg:inline">Visita nuestro ecommer</span><span className="lg:hidden"></span></button>
           </form><p className="mt-6 text-sm text-gray-500 md:mt-0">© Copyright 2023. All rights reserved.</p></div>
       </div>

@@ -1,6 +1,7 @@
 import { PlusIcon, CheckIcon, ShoppingBagIcon, MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/solid';
 import { useShopiContext } from '../../Context'
 import Button from 'react-bootstrap/Button';
+import '../../Styles/styles.css'
 
 const Card = ({ data }) => {
   const { increment, setOpenModal, setProductShow, cartProducts,price } = useShopiContext();
@@ -8,9 +9,9 @@ const Card = ({ data }) => {
     setOpenModal(state => !state);
     setProductShow(productDetail);
   }
-  const addProductsToCart = (productData, e) => {
-   
+  const addProductsToCart = (productData, e) => {  
     increment(e, productData);
+    
   }
 
 const showPrice = (prod,unidad) =>{
@@ -46,7 +47,7 @@ const showPrice = (prod,unidad) =>{
                 .length > 0 ? (
 
                 <button
-                  className="absolute top-0 right-0 flex justify-center items-center text-xs bg-green-700 w-6 h-6 rounded-full m-2"
+                  className="absolute top-0 right-0 flex justify-center items-center text-xs color-btn-confirmar w-6 h-6 rounded-full m-2"
                   onClick={(e) => {
                     addProductsToCart(data, e)
                   }}>
@@ -100,10 +101,10 @@ const showPrice = (prod,unidad) =>{
                  </div>
                 <div className="overflow-hidden rounded-full bg-slate-50">
 
-                <Button variant="success" size="lg" onClick={(e) => {
+                <button className='top-0 right-0 flex justify-center items-center  color-btn-confirmar mb-2 color-btn-confirmar text-white rounded-lg'  onClick={(e) => {
                     addProductsToCart(data, e)
                   }}>
-                    <ShoppingBagIcon className='h-6 w-6'></ShoppingBagIcon></Button>
+                    <ShoppingBagIcon className='h-6 w-6'></ShoppingBagIcon></button>
                 </div>
               </div>
             </figcaption>

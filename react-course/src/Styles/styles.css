@@ -1,3 +1,26 @@
 .color-btn-confirmar{
-
+    --tw-bg-opacity: 1;
+    background-color: rgb(147 197 114 / var(--tw-bg-opacity));
+}
+.color-verde-text{
+    --tw-bg-opacity: 1;
+    color: rgb(147 197 114 / var(--tw-bg-opacity)); 
+}
+.color-rosa-text{
+    --tw-bg-opacity: 1;
+    color: rgb(222 49 99 / var(--tw-bg-opacity));
+}
+.color-rosa{
+    --tw-bg-opacity: 1;
+    background-color: rgb(222 49 99 / var(--tw-bg-opacity));
+}
+.stroke-rosa {
+    stroke: #DE3163;
+}
+.color-amarillo{
+    fill: #FFDB58;
+}
+.color-amarillo-text{
+    --tw-bg-opacity: 1;
+    color: rgb(255 219 88 / var(--tw-bg-opacity)); 
 }

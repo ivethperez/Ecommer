@@ -28,13 +28,17 @@ function MyOrder() {
     )
   }
   const enviarPedido = ()=>{     
-
-    window.open('https://wa.me/?phone=' + phoneNumber + '&text=' + encodeURIComponent(), '_blank');
+    console.log('order',order?.[index]?.products)
+    let products = ''
+    order?.[index]?.products.forEach(element => {
+      products = products + element.title + ' ' + element.price + '|'
+    });
+    window.open('https://wa.me/?phone=' + phoneNumber + '&text=' + encodeURIComponent(products), '_blank');
     setTypeAlert('confirmacion')
     setShowAlert(true)
   } 
-  console.log(order)
-  console.log(order?.[index]?.products)
+ // console.log(order)
+
    return (
 <div>
 <nav class="flex" aria-label="Breadcrumb">
@@ -48,11 +52,11 @@ function MyOrder() {
     </Link>
     </li>
     <li>
-      <div class="flex items-center decoration-transparent">
+      <div class="flex items-center ">
         <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
         </svg>
-        <Link to='/my-orders' class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">Mis ordenes
+        <Link to='/my-orders' class="decoration-transparent ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">Mis ordenes
       </Link>
       </div>
     </li>
