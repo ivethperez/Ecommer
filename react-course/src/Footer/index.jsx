@@ -70,7 +70,7 @@ const Footerr = () => {
             >
 
               <button onClick={()=>{}} className="inline-flex justify-center rounded-lg py-2 px-3 text-sm font-semibold relative outline-2 outline-offset-2 transition-colors  overflow-hidden color-btn-confirmar text-white before:absolute before:inset-0 active:before:bg-transparent hover:before:bg-white/10  active:text-white/80 before:transition-colors ml-4 flex-none" >
-                <span className="hidden lg:inline">Visita nuestro ecommer</span><span className="lg:hidden"></span>
+                <span className="hidden lg:inline">Visita nuestra tienda</span><span className="lg:hidden"></span>
                 </button>
 
                 </NavLink>

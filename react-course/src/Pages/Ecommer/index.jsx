@@ -44,10 +44,9 @@ function Ecommer() {
   }
   return (
     <div className="container-fluid ">
-      <Carousel>
+     <Carousel>
         <Carousel.Item>
           <img className="w-full h-36 object-cover rounded-lg" src='https://images.pexels.com/photos/209345/pexels-photo-209345.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' alt='img'></img>
-
           <Carousel.Caption>
             <h3>First slide label</h3>
             <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
@@ -69,7 +68,9 @@ function Ecommer() {
             </p>
           </Carousel.Caption>
         </Carousel.Item>
-      </Carousel>
+      </Carousel> 
+
+
       {/* <Container className=' mt-5 items-center justify-center'>
     <Row >
         <Col  md={{ span: 6, offset: 6 }} sm={{ span: 12, offset: 12 }} >
@@ -83,14 +84,10 @@ function Ecommer() {
         </Row>
     </Container> */}
 
-
-
-
-
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
 
-        <div className="mt-4 grid grid-cols-1 items-start gap-x-8 gap-y-8 sm:mt-16 sm:gap-y-16 lg:mt-24 lg:grid-cols-4">
+        <div className="grid grid-cols-1 items-start lg:grid-cols-4">
           <div className="relative -mx-4 flex overflow-x-auto pb-4 sm:mx-0 sm:block sm:overflow-visible sm:pb-0">
             {/* <h2 id="speakers-title" className="font-display text-4xl font-medium tracking-tighter color-rosa-text sm:text-5xl">Speakers</h2> 
       <p className="mt-4 font-display text-2xl tracking-tight text-blue-900">
@@ -100,7 +97,7 @@ function Ecommer() {
           </div>
           <div className="lg:col-span-3">
             <div className='mt-4 font-display text-2xl tracking-tight text-blue-900'>
-              <input type='text' placeholder='Buscar producto' className='block w-full appearance-none rounded-lg border border-gray-200 bg-white py-[calc(theme(spacing.2)-1px)] px-[calc(theme(spacing.3)-1px)] text-gray-900 placeholder:text-gray-400 focus:border-cyan-500 focus:outline-none focus:ring-cyan-500 sm:text-sm'
+              <input type='text' placeholder='Buscar producto' className='block w-80 appearance-none rounded-lg border border-gray-200 bg-white py-[calc(theme(spacing.2)-1px)] px-[calc(theme(spacing.3)-1px)] text-gray-900 placeholder:text-gray-400 focus:border-cyan-500 focus:outline-none focus:ring-cyan-500 sm:text-sm'
                 onChange={search}></input>
             </div>
           </div>
@@ -111,61 +108,69 @@ function Ecommer() {
  <div></div>
         }
        
-        <div className="mt-4 grid grid-cols-1 items-start gap-x-8 gap-y-8 sm:mt-16 sm:gap-y-16 lg:mt-24 lg:grid-cols-4">
+        <div className="mt-4 grid grid-cols-1 items-start gap-x-8 gap-y-8 sm:mt-2 sm:gap-y-16 lg:mt-24 ">
           <div className="relative -mx-4 flex overflow-x-auto pb-4 sm:mx-0 sm:block sm:overflow-visible sm:pb-0">
             <div className="absolute bottom-0 left-0.5 top-2 hidden w-px bg-slate-200 lg:block"></div>
-            <div className="grid auto-cols-auto grid-flow-col justify-start gap-x-8 gap-y-10 whitespace-nowrap px-4 sm:mx-auto sm:max-w-2xl sm:grid-cols-3 sm:px-0 sm:text-center lg:grid-flow-row lg:grid-cols-1 lg:text-left" role="tablist" aria-orientation="vertical"><div className="relative lg:pl-8">
-              <svg aria-hidden="true" viewBox="0 0 6 6" className={`absolute left-[-0.5px] top-[0.5625rem] hidden h-1.5 w-1.5 overflow-visible lg:block fill-transparent ${!isActiveTodo ? 'fill-slate-500 stroke-slate-500' : 'fill-blue-600 stroke-rosa'} `}>
-                <path d="M3 0L6 3L3 6L0 3Z" stroke-width="2" stroke-linejoin="round"></path>
-              </svg><div className="relative">
-                <div className={`font-mono text-sm ${!isActiveTodo ? 'text-slate-500' : 'color-rosa-text'}`}>
+            <div className="grid auto-cols-auto grid-flow-col justify-start gap-x-10 gap-y-10 whitespace-nowrap px-8 sm:mx-auto sm:max-w-2xl sm:grid-cols-3 sm:px-0 sm:text-center  lg:text-left" role="tablist" aria-orientation="vertical">
+              <div className="relative lg:pl-8">             
+              <div className="relative">           
+                <time datetime="2022-04-04" className="block text-2xl font-semibold tracking-tight">Todo</time>
+                <div className={`mt-1.5 font-mono text-sm ${!isActiveTodo ? 'text-slate-500' : 'color-rosa-text'}`}>
                   <button onClick={() => filtro()} className="ui-not-focus-visible:outline-none" id="headlessui-tabs-tab-:R6cqlaqlla:" role="tab" type="button" aria-selected="false" tabindex="-1" data-headlessui-state="" aria-controls="headlessui-tabs-panel-:R3alaqlla:"><span className="absolute inset-0"></span>Todo tipo de dulce</button>
                 </div>
-                <time datetime="2022-04-04" className="mt-1.5 block text-2xl font-semibold tracking-tight">Todo</time>
               </div>
+              <svg aria-hidden="true" viewBox="0 0 6 6" className={`absolute left-[-0.5px] top-[0.5625rem] hidden h-1.5 w-1.5 overflow-visible lg:block fill-transparent ${!isActiveTodo ? 'fill-slate-500 stroke-slate-500' : 'fill-blue-600 stroke-rosa'} `}>
+                <path d="M3 0L6 3L3 6L0 3Z" stroke-width="2" stroke-linejoin="round"></path>
+              </svg>
             </div>
               <div className="relative lg:pl-8">
                 <svg aria-hidden="true" viewBox="0 0 6 6" className={`absolute left-[-0.5px] top-[0.5625rem] hidden h-1.5 w-1.5 overflow-visible lg:block fill-transparent ${!isActiveBotanas ? 'fill-slate-500 stroke-slate-500' : 'fill-blue-600 stroke-rosa'} `}><path d="M3 0L6 3L3 6L0 3Z" stroke-width="2" stroke-linejoin="round">
                 </path>
                 </svg>
-                <div className="relative">
-                  <div className={`font-mono text-sm ${!isActiveBotanas ? 'text-slate-500' : 'color-rosa-text'} `}>
+                <div className="relative">                 
+                  <time datetime="2022-04-05" className="block text-2xl font-semibold tracking-tight ">Botanas</time>
+                  <div className={`mt-1.5 font-mono text-sm ${!isActiveBotanas ? 'text-slate-500' : 'color-rosa-text'} `}>
                     <button onClick={() => filtro('botanas')} className="ui-not-focus-visible:outline-none" id="headlessui-tabs-tab-:R6kqlaqlla:" role="tab" type="button" aria-selected="false" tabindex="-1" data-headlessui-state="" aria-controls="headlessui-tabs-panel-:R5alaqlla:">
                       <span className="absolute inset-0"></span>Salado</button>
                   </div>
-                  <time datetime="2022-04-05" className="mt-1.5 block text-2xl font-semibold tracking-tight ">Botanas</time>
                 </div>
               </div>
               <div className="relative lg:pl-8">
                 <svg aria-hidden="true" viewBox="0 0 6 6" className={`absolute left-[-0.5px] top-[0.5625rem] hidden h-1.5 w-1.5 overflow-visible lg:block fill-transparent ${!isActiveGomitas ? 'fill-slate-500 stroke-slate-500' : 'fill-blue-600 stroke-rosa'} `}><path d="M3 0L6 3L3 6L0 3Z" stroke-width="2" stroke-linejoin="round">
                 </path>
-                </svg><div className="relative">
-                  <div className={`font-mono text-sm ${!isActiveGomitas ? 'text-slate-500' : 'color-rosa-text'} `}>
+                </svg><div className="relative">                  
+                  <time datetime="2022-04-06" className="block text-2xl font-semibold tracking-tight ">Gomitas</time>
+                  <div className={`mt-1.5 font-mono text-sm ${!isActiveGomitas ? 'text-slate-500' : 'color-rosa-text'} `}>
                     <button onClick={() => filtro('gomitas')} className="ui-not-focus-visible:outline-none" id="headlessui-tabs-tab-:R6sqlaqlla:" role="tab" type="button" aria-selected="false" tabindex="0" data-headlessui-state="selected" aria-controls="headlessui-tabs-panel-:R7alaqlla:">
                       <span className="absolute inset-0"></span>Dulce</button></div>
-                  <time datetime="2022-04-06" className="mt-1.5 block text-2xl font-semibold tracking-tight ">Gomitas</time>
                 </div>
               </div>
               <div className="relative lg:pl-8">
                 <svg aria-hidden="true" viewBox="0 0 6 6" className={`absolute left-[-0.5px] top-[0.5625rem] hidden h-1.5 w-1.5 overflow-visible lg:block fill-transparent ${!isActiveChocolate ? 'fill-slate-500 stroke-slate-500' : 'fill-blue-600 stroke-rosa'} `}><path d="M3 0L6 3L3 6L0 3Z" stroke-width="2" stroke-linejoin="round"></path></svg><div className="relative">
-                  <div className={`font-mono text-sm ${!isActiveChocolate ? 'text-slate-500' : 'color-rosa-text'} `}>
+                <time datetime="2022-04-06" className=" block text-2xl font-semibold tracking-tight ">Chocolates</time>
+                  <div className={`mt-1.5 font-mono text-sm ${!isActiveChocolate ? 'text-slate-500' : 'color-rosa-text'} `}>
                     <button onClick={() => filtro('chocolates')} className="ui-not-focus-visible:outline-none" id="headlessui-tabs-tab-:R6sqlaqlla:" role="tab" type="button" aria-selected={isActiveChocolate} tabindex="0" data-headlessui-state="" aria-controls="headlessui-tabs-panel-:R7alaqlla:">
                       <span className="absolute inset-0"></span>Dulce y Salado</button></div>
-                  <time datetime="2022-04-06" className="mt-1.5 block text-2xl font-semibold tracking-tight ">Chocolates</time>
+             
                 </div>
               </div>
+     
             </div>
           </div>
-          <div className="lg:col-span-3 sm:col-span-2">
 
-            <ul role="list" className="grid grid-cols-1 ui-not-focus-visible:outline-none sm:grid-cols-2 md:grid-cols-3">
+       
+          
+          </div>
+          
+          <div className="lg:col-span-4 sm:col-span-2 mt-4">
+            <ul role="list" className="grid grid-cols-1 ui-not-focus-visible:outline-none sm:grid-cols-2 md:grid-cols-4">
               {
                 renderView()
               }
             </ul>
-
-
-          </div></div></div>
+          </div>
+          
+          </div>
 
 
 

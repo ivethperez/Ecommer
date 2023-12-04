@@ -36,11 +36,6 @@ export const ShoppingCartProvider = ({ children }) => {
     event.stopPropagation();
     if (product.price == null)
       product.price = product.priceKilo;
-      //setShowAlert(true)
-      //setTypeAlert('precaucion')
-    //}     
-   // else {
-    
       const productExists = cartProducts.some(el => el.id === product.id && el.price === product.price); // dará true si el producto ya se encuentra en el carrito
       
       if (productExists) {
@@ -53,7 +48,6 @@ export const ShoppingCartProvider = ({ children }) => {
       }
       setCount(count + 1);
       setOpenModalOrder(true);      
-    //}
   }
 
   //ProductDetail
@@ -150,7 +144,6 @@ export const ShoppingCartProvider = ({ children }) => {
       setisActiveBotanas(false)
       setisActiveTodo(true)
     }
-    setShowEcomm(true)
   }, [items, searchByTitle, searchByCategory])
 
 
@@ -188,6 +181,7 @@ export const ShoppingCartProvider = ({ children }) => {
   const [typeAlert, setTypeAlert] = useState('');
 
   const [showEcomm, setShowEcomm] = useState(false);
+
   return (
     <ShoppingCartContext.Provider value={{
       count,

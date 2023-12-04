@@ -29,18 +29,38 @@ const CheckoutSideMenu = () => {
     onCancel()
     setSearchByTitle(null)
   }
+  console.log(order)
   return (
     <aside
       className={`${openModalOrder ? 'flex' : 'hidden'} checkout-side-menu flex-col fixed right-0 border border-black rounded-lg bg-white`}>
       <div className='flex justify-between items-center p-6'>
-        <h2 className='font-medium text-xl'>Mis odenes</h2>
+        <h2 className='font-medium text-xl'>Mis ordenes</h2>
         <button
           onClick={onCancel}>
           <XMarkIcon className='h-6 w-6'></XMarkIcon>
         </button>
       </div>
 
-      <div className='px-6 overflow-y-auto flex-1'>
+      <div>
+        {
+          order.length > 0 ? (
+            <div className='relative flex gap-0.5 items-center'>
+
+              <Link to='/my-orders' className="px-6 overflow-y-auto flex-1 decoration-transparent inline-flex ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">
+                {order.length} Ordenes pendientes
+              </Link>
+              <div className='absolute bottom-3.5 left-3.5 flex justify-center items-center
+          rounded-full bg-black w-4 h-4 text-xs text-white'>
+                {order.length}
+              </div>
+            </div>
+          ) :
+            <div></div>
+        }
+
+      </div>
+
+      <div className='px-6 overflow-y-auto flex-1 mt-3'>
         {
           cartProducts.map(product => (
             <OrderCard
@@ -51,7 +71,9 @@ const CheckoutSideMenu = () => {
               quantity={product.quantity}
               handleDelete={handleDelete}
               id={product.id}
-
+              priceKilo={product.priceKilo}
+              priceMedio={product.priceMedio}
+              priceCuarto={product.priceCuarto}
             />
           ))
         }

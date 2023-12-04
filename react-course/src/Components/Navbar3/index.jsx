@@ -11,7 +11,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
 const Navbarr = () => {
-    const { setSearchByCategory, setSignOut, signOut, account,setShowEcomm,showEcomm } = useShopiContext();
+    const { setSearchByCategory, setSignOut, signOut, account,setShowEcomm,showEcomm,order } = useShopiContext();
     const isUserSignOut = signOut || storage.getItem('sign-out')
 
     const parsedAccount = storage.getItem('account')
@@ -24,7 +24,10 @@ const Navbarr = () => {
         setSignOut(true)
         // return <Navigate replace to={'/'}></Navigate>
     }
-
+    const ocultar= () =>{
+        setSearchByCategory()
+        setShowEcomm(true)
+    }
     const renderView = () => {
        // console.log(hasUserAnAccount, isUserSignOut)
         if (hasUserAnAccount && !isUserSignOut) {
@@ -64,12 +67,29 @@ const Navbarr = () => {
             )
         }
         else {
+            
             return (
+
                 // <NavLink to='/sign-in' className=' decoration-transparent text-black mt-2 pl-3'
                 //     onClick={() => handleSignOut()}>
                 //     Login
                 // </NavLink>
-                <div></div>
+                <div>{
+                    
+                order.length>0 && showEcomm?
+                <NavDropdown.Item >
+                        <Link to='/my-orders' className='decoration-transparent text-black' >
+                            Mis órdenes
+                        </Link>
+                    </NavDropdown.Item>
+                    :
+                    (
+                        <div></div>
+                    )
+                    
+                    }
+                    
+                </div>
             )
         }
     }
@@ -79,15 +99,16 @@ const Navbarr = () => {
         <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary" sticky="top">
             <Container>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="me-auto">
-                        <NavLink to={`${isUserSignOut ? '/sign-in' : '/'}`} onClick={()=>{setShowEcomm(false)}} style={({ isActive }) => {
+                <NavLink to={`${isUserSignOut ? '/sign-in' : '/'}`} onClick={()=>{setShowEcomm(false)}} style={({ isActive }) => {
                             return {
                                 fontWeight: isActive ? "bold" : ""
                             };
-                        }} className=' decoration-transparent text-black mt-2  pl-3'>
+                        }} className=' decoration-transparent text-black mt-2  pl-3 '>
                             Shopi
                         </NavLink>
+                <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav className="me-auto">
+                       
                         <NavLink to='/' onClick={()=>{setShowEcomm(false)}} className=' decoration-transparent text-black mt-2 pl-3'
                              style={({ isActive }) => {
                                 return {
@@ -150,17 +171,20 @@ const Navbarr = () => {
                         </NavLink> */}
 
                     </Nav>
-                    <Nav className=' flex flex-col gap-1'>
+                  
+                </Navbar.Collapse>
+
+                <Nav className='flex gap-1'>
                         {
                               !showEcomm ? (  
                               <NavLink to='/ecommer' className=' decoration-transparent text-black mt-2  pl-3'
-                              onClick={() => setSearchByCategory()} style={({ isActive }) => {
+                              onClick={() => ocultar()} style={({ isActive }) => {
                                   return {
                                       fontWeight: isActive ? "bold" : ""
                                   };
                               }}
                           >
-                            <button className="text-white border-0 border-green-300 hover:color-btn-confirmar color-btn-confirmar  font-medium rounded-full text-sm px-5 py-1.5 text-center me-2 mb-2 ">Visita nuestro ecommer</button>                        
+                            <button className="text-white border-0 border-green-300 hover:color-btn-confirmar color-btn-confirmar  font-medium rounded-full text-sm px-5 py-1.5 text-center me-2 mb-2 ">Visita nuestra tienda</button>                        
                           </NavLink>
   ):(
 
@@ -171,7 +195,6 @@ const Navbarr = () => {
                         {  renderView() }
                         <ShoppingCart />
                     </Nav>
-                </Navbar.Collapse>
             </Container>
         </Navbar>
     );

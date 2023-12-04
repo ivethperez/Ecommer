@@ -4,18 +4,19 @@ import {dateTime} from '../../utils'
 
 const OrdersCard = props => {
     const { totalPrice, totalProducts } = props
+    window.scrollTo(0, 0);
     return (
-        <div className="shadow border border-green-200 flex justify-between items-center mb-2 w-80 p-4 rounded-lg ">
+        <div className="shadow border border-green-200 justify-between items-center mb-2 w-80 p-4 rounded-lg decoration-transparent inline-flex text-black">
             
             <div className='flex justify-between w-full'>
                 <div className='flex flex-col'>
                 <div className='flex items-center justify-between gap-1'>
                     <CalendarIcon className='h-6 w-4'></CalendarIcon>
-                <span className='font-light'>{dateTime()}</span>
+                <span className='font-light '>{dateTime()}</span>
                 </div>
-                <div className='flex items-center justify-between gap-2'>
+                <div className='flex items-center justify-between gap-1 decoration-transparent'>
                     <ShoppingCartIcon className='h-6 w-4'></ShoppingCartIcon>
-                    <span  className='font-light'>{totalProducts} productos</span></div> 
+                    <span  className='font-light '>{totalProducts} productos</span></div> 
                 </div>
               
               <p className='flex items-center  gap-2'>

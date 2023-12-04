@@ -7,10 +7,7 @@ import storage from '../../utils/storage'
 import ShoppingCart from '../ShoppingCart'
 
 const navigation = [
-    { name: 'All', to: '/', current: true,category: '' },
-    { name: 'Botanas', to: '/botanas', current: false ,category: 'botanas'},
-    { name: 'Gomitas', to: '/gomitas', current: false ,category: 'gomitas'},
-    { name: 'Chocolates', to: '/chocolates', current: false,category: 'chocolates' },
+    { name: 'Home', to: '/', current: true,category: '' }
 ]
 
 function classNames(...classes) {
@@ -18,7 +15,7 @@ function classNames(...classes) {
 }
 
 export default function Example() {
-    const { setSearchByCategory, setSignOut, signOut, account } = useShopiContext();
+    const { setSearchByCategory, setSignOut, signOut, account,order,setShowEcomm,showEcomm } = useShopiContext();
     const isUserSignOut = signOut || storage.getItem('sign-out')
 
     const parsedAccount = storage.getItem('account')
@@ -37,7 +34,10 @@ export default function Example() {
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
-
+    const ocultar= () =>{
+        setSearchByCategory()
+        setShowEcomm(true)
+    }
 
     const renderView = () => {
 
@@ -139,14 +139,31 @@ export default function Example() {
         }
         else {
             return (
-                <NavLink to='/sign-in'
-                    style={({ isActive }) => {
-                        return {
-                            fontWeight: isActive ? "bold" : ""
-                        };
-                    }} onClick={() => handleSignOut()}>
-                    Iniciar sesión
-                </NavLink>
+                // <NavLink to='/sign-in'
+                //     style={({ isActive }) => {
+                //         return {
+                //             fontWeight: isActive ? "bold" : ""
+                //         };
+                //     }} onClick={() => handleSignOut()}>
+                //     Iniciar sesión
+                // </NavLink>
+
+                <div>{
+                    
+                    order.length>0 ?
+                    <NavDropdown.Item >
+                            <Link to='/my-orders' className=' decoration-transparent text-black' >
+                                Mis órdenes
+                            </Link>
+                        </NavDropdown.Item>
+                        :
+                        (
+                            <div></div>
+                        )
+                        
+                        }
+                        
+                    </div>
             )
         }
     }
@@ -156,8 +173,9 @@ export default function Example() {
         <Disclosure as="nav" className=" bg-white">
             {({ open }) => (
                 <>
+                
                     <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 ">
-                        <div className="relative flex h-16 items-center justify-between">
+                        <div className="relative flex h-16 items-center justify-between ">
                             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                                 {/* Mobile menu button*/}
                                 <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-black hover:bg-gray-700 hover:text-black focus:outline-none focus:ring-2 focus:ring-inset focus:ring-black">
@@ -184,7 +202,7 @@ export default function Example() {
                                             <NavLink
                                             key={item.name}
                                                 to={item.to}
-                                                onClick={() => setSearchByCategory(item.category)}
+                                                onClick={() => setShowEcomm(false)}
                                                 className={classNames(
                                                     item.current ? 'bg-gray-900 text-white' : ' text-black hover:bg-gray-700 hover:text-white',
                                                     'rounded-md px-3 py-2 text-sm font-medium'
@@ -203,6 +221,24 @@ export default function Example() {
                                 </div>
                             </div>
                             {renderView()}
+
+                            {
+                              !showEcomm ? (  
+                              <NavLink to='/ecommer' className=' decoration-transparent text-black mt-2  pl-3'
+                              onClick={() => ocultar()} style={({ isActive }) => {
+                                  return {
+                                      fontWeight: isActive ? "bold" : ""
+                                  };
+                              }}
+                          >
+                            <button className="text-white border-0 border-green-300 hover:color-btn-confirmar color-btn-confirmar  font-medium rounded-full text-sm px-5 py-1.5 text-center me-2 mb-2 ">Visita nuestra tienda</button>                        
+                          </NavLink>
+  ):(
+
+    <div></div>
+  )
+                           
+                        }
                             <ShoppingCart />
                         </div>
                     </div>
@@ -213,7 +249,7 @@ export default function Example() {
                                 <NavLink
                                     key={item.name}
                                     to={item.to}
-                                    onClick={() => setSearchByCategory(item.category)}
+                                    onClick={() =>setShowEcomm(false)}
                                     className={classNames(
                                         item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                                         'block rounded-md px-3 py-2 text-base font-medium'

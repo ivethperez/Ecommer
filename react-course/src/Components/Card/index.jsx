@@ -36,8 +36,9 @@ const showPrice = async (prod,unidad) =>{
   setIsKilo(prod.isKilo)
   setIsMedioKilo(prod.isMedio)
   setIsCuartoKilo(prod.isCuarto)
+
 }
-console.log('carts', cartProducts)
+
   return (
     <li>
       <ul role="list" className="flex flex-col w-full">

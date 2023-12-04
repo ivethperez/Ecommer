@@ -7,7 +7,7 @@ function MyOrders() {
   return (
     <div>
       <div className='flex w-80 items-center justify-center relative mb-4'>
-        <h1 className='font-medium text-lg'>Mis ordenes</h1>
+        <h1 className='font-medium text-lg'>Ordenes creadas</h1>
       </div>
       {
         order.map((order, index) => (
