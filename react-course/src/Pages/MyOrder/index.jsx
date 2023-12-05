@@ -1,6 +1,7 @@
 import { useShopiContext } from '../../Context'
 import OrderCard from '../../Components/OrderCard'
 import { Link } from 'react-router-dom'
+import '../../Styles/styles.css'
 
 function MyOrder() {
 
@@ -99,8 +100,11 @@ function MyOrder() {
             </p>
           </div>
           <Link to="/ecommer">
-            <button onClick={() => { enviarPedido() }} className="inline-flex justify-center rounded-lg py-2 px-3 text-sm font-semibold relative outline-2 outline-offset-2 transition-colors  overflow-hidden bg-cyan-500 text-white before:absolute before:inset-0 active:before:bg-transparent hover:before:bg-white/10 active:bg-cyan-600 active:text-white/80 before:transition-colors ml-4 flex-none" type="submit">
-              <span className="hidden lg:inline">Confirmar pedido</span><span className="lg:hidden"></span></button>
+          <button onClick={() => { enviarPedido() }} className="inline-flex justify-center rounded-lg py-2 px-3 text-sm font-semibold relative outline-2 outline-offset-2 transition-colors  overflow-hidden color-btn-confirmar text-white before:absolute before:inset-0 active:before:bg-transparent before:transition-colors ml-4 flex-none" >
+                <span className="hidden lg:inline">Confirmar pedido</span><span className="lg:hidden"></span>
+                </button>
+
+             
           </Link>
         </form></div>
 

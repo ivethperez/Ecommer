@@ -5,7 +5,11 @@ import { Container, Row, Col, Nav } from 'react-bootstrap';
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import '../Styles/styles.css'
 const Footerr = () => {
-  const { showEcomm ,setSearchByCategory} = useShopiContext();
+  const { showEcomm ,setSearchByCategory,setShowEcomm} = useShopiContext();
+  const ocultar= () =>{
+    setSearchByCategory()
+    setShowEcomm(true)
+}
   return (
 
     <footer className="border-t border-gray-200">
@@ -62,14 +66,9 @@ const Footerr = () => {
             {
               !showEcomm ? (
                 <NavLink to='/ecommer' className=' decoration-transparent text-black mt-2  pl-3'
-                onClick={() => setSearchByCategory()} style={({ isActive }) => {
-                    return {
-                        fontWeight: isActive ? "bold" : ""
-                    };
-                }}
+                onClick={() => ocultar()} 
             >
-
-              <button onClick={()=>{}} className="inline-flex justify-center rounded-lg py-2 px-3 text-sm font-semibold relative outline-2 outline-offset-2 transition-colors  overflow-hidden color-btn-confirmar text-white before:absolute before:inset-0 active:before:bg-transparent hover:before:bg-white/10  active:text-white/80 before:transition-colors ml-4 flex-none" >
+              <button className="inline-flex justify-center rounded-lg py-2 px-3 text-sm font-semibold relative outline-2 outline-offset-2 transition-colors  overflow-hidden color-btn-confirmar text-white before:absolute before:inset-0 active:before:bg-transparent hover:before:bg-white/10  active:text-white/80 before:transition-colors ml-4 flex-none" >
                 <span className="hidden lg:inline">Visita nuestra tienda</span><span className="lg:hidden"></span>
                 </button>
 

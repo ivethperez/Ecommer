@@ -4,6 +4,7 @@ import { XMarkIcon } from '@heroicons/react/24/solid'
 import { Link } from 'react-router-dom'
 import OrderCard from '../../Components/OrderCard'
 import { totalPrice, totalProducts } from '../../utils'
+import '../../Styles/styles.css'
 
 const CheckoutSideMenu = () => {
   const { setOpenModalOrder, openModalOrder, cartProducts, setCartProducts
@@ -47,10 +48,10 @@ const CheckoutSideMenu = () => {
             <div className='relative flex gap-0.5 items-center'>
 
               <Link to='/my-orders' className="px-6 overflow-y-auto flex-1 decoration-transparent inline-flex ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">
-                {order.length} Ordenes pendientes
+                Órdenes pendientes
               </Link>
               <div className='absolute bottom-3.5 left-3.5 flex justify-center items-center
-          rounded-full bg-black w-4 h-4 text-xs text-white'>
+          rounded-full color-rosa w-4 h-4 text-xs text-white'>
                 {order.length}
               </div>
             </div>
@@ -84,7 +85,7 @@ const CheckoutSideMenu = () => {
           <span className='font-medium text-2xl'>${totalPrice(cartProducts)}</span>
         </p>
         <Link to='/my-orders/last'>
-          <button className='w-full bg-black py-3 text-white rounded-lg' onClick={() => handleCkeckout()}>
+          <button className='w-full color-btn-confirmar py-3 text-white rounded-lg' onClick={() => handleCkeckout()}>
             Ordenar
           </button>
         </Link>

@@ -6,7 +6,8 @@ const OrdersCard = props => {
     const { totalPrice, totalProducts } = props
     window.scrollTo(0, 0);
     return (
-        <div className="shadow border border-green-200 justify-between items-center mb-2 w-80 p-4 rounded-lg decoration-transparent inline-flex text-black">
+        <div className='w-80'>
+        <div className="shadow border border-green-200 justify-between items-center mb-2 w-full p-4 rounded-lg decoration-transparent inline-flex text-black">
             
             <div className='flex justify-between w-full'>
                 <div className='flex flex-col'>
@@ -26,6 +27,7 @@ const OrdersCard = props => {
              
                 </div>
            
+        </div>
         </div>
     )
 }

@@ -1,10 +1,11 @@
 import { Fragment, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import { NavLink } from 'react-router-dom'
+import { NavLink,Link } from 'react-router-dom'
 import { useShopiContext } from '../../Context'
 import storage from '../../utils/storage'
 import ShoppingCart from '../ShoppingCart'
+import '../../Styles/styles.css'
 
 const navigation = [
     { name: 'Home', to: '/', current: true,category: '' }
@@ -50,7 +51,7 @@ export default function Example() {
                     </div>
                     <Menu as="div" className="relative ml-3">
                         <div>
-                            <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                            <Menu.Button className="relative flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-white">
                                 <span className="absolute -inset-1.5" />
                                 <span className="sr-only">Open user menu</span>
                                 <img
@@ -69,7 +70,7 @@ export default function Example() {
                             leaveFrom="transform opacity-100 scale-100"
                             leaveTo="transform opacity-0 scale-95"
                         >
-                            <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                            <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-white ring-opacity-5 focus:outline-none">
                                 <Menu.Item>
                                     {({ active }) => (
                                         <NavLink
@@ -150,12 +151,17 @@ export default function Example() {
 
                 <div>{
                     
-                    order.length>0 ?
-                    <NavDropdown.Item >
-                            <Link to='/my-orders' className=' decoration-transparent text-black' >
+                    order.length>0  && showEcomm ?(
+                        <div className='relative flex gap-0.5 items-center'>
+                            <Link to='/my-orders' className='px-6 overflow-y-auto flex-1 pl-4 mb-2 mt-1 pr-2 decoration-transparent text-black' >
                                 Mis órdenes
                             </Link>
-                        </NavDropdown.Item>
+                            <div className='absolute bottom-3.5 left-4.5 flex justify-center items-center
+          rounded-full color-rosa w-4 h-4 text-xs text-white'>
+                {order.length}
+              </div>
+                            </div>
+                    )
                         :
                         (
                             <div></div>
@@ -174,11 +180,11 @@ export default function Example() {
             {({ open }) => (
                 <>
                 
-                    <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 ">
+                    <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 container">
                         <div className="relative flex h-16 items-center justify-between ">
                             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                                 {/* Mobile menu button*/}
-                                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-black hover:bg-gray-700 hover:text-black focus:outline-none focus:ring-2 focus:ring-inset focus:ring-black">
+                                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-black hover:bg-white hover:text-black focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                                     <span className="absolute -inset-0.5" />
                                     <span className="sr-only">Open main menu</span>
                                     {open ? (
@@ -204,7 +210,7 @@ export default function Example() {
                                                 to={item.to}
                                                 onClick={() => setShowEcomm(false)}
                                                 className={classNames(
-                                                    item.current ? 'bg-gray-900 text-white' : ' text-black hover:bg-gray-700 hover:text-white',
+                                                    item.current ? ' bg-white text-black decoration-transparent' : ' text-black hover:bg-white hover:text-black',
                                                     'rounded-md px-3 py-2 text-sm font-medium'
                                                 )}
                                                 aria-current={item.current ? 'page' : undefined}
@@ -231,7 +237,10 @@ export default function Example() {
                                   };
                               }}
                           >
-                            <button className="text-white border-0 border-green-300 hover:color-btn-confirmar color-btn-confirmar  font-medium rounded-full text-sm px-5 py-1.5 text-center me-2 mb-2 ">Visita nuestra tienda</button>                        
+                          <button className="inline-flex justify-center rounded-lg py-2 px-3 text-sm font-semibold relative outline-2 outline-offset-2 transition-colors  overflow-hidden color-btn-confirmar text-white before:absolute before:inset-0 active:before:bg-transparent before:transition-colors ml-4 flex-none" >
+                <span className="hidden lg:inline">Visita nuestra tienda</span><span className="lg:hidden"></span>
+                </button>
+                           
                           </NavLink>
   ):(
 
@@ -251,7 +260,7 @@ export default function Example() {
                                     to={item.to}
                                     onClick={() =>setShowEcomm(false)}
                                     className={classNames(
-                                        item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                        item.current ? ' bg-white text-black decoration-transparent' : ' text-black hover:bg-white hover:text-black',
                                         'block rounded-md px-3 py-2 text-base font-medium'
                                     )}
                                     aria-current={item.current ? 'page' : undefined}

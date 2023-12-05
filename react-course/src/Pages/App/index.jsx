@@ -4,7 +4,7 @@ import {ShoppingCartProvider} from '../../Context'
 import {AppRoutes} from '../../Routes'
 
 import './App.css'
-import Navbar3 from '../../Components/Navbar3'
+import Navbar1 from '../../Components/Navbar1'
 import Layout from '../../Components/Layout'
 import Footerr from '../../Footer'
 
@@ -13,7 +13,7 @@ const App =() => {
    return(
 <ShoppingCartProvider>
 <BrowserRouter>
-    <Navbar3></Navbar3>
+    <Navbar1></Navbar1>
     <main>
     <Layout>
       <AppRoutes></AppRoutes>
