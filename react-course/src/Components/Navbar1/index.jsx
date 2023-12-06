@@ -8,7 +8,7 @@ import ShoppingCart from '../ShoppingCart'
 import '../../Styles/styles.css'
 
 const navigation = [
-    { name: 'Home', to: '/', current: true,category: '' }
+    { name: 'Inicio', to: '/', current: true,category: '' }
 ]
 
 function classNames(...classes) {
