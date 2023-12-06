@@ -170,12 +170,8 @@ function Ecommer() {
               }
             </ul>
           </div>
-          
+  
           </div>
-
-
-
-
 
       {/* <div className=' flex mt-5 w-full items-center justify-center'>
         <input type='text' placeholder='Buscar producto' className='w-80 rounded-lg border border-green-200 shadow p-4 mb-4 focus:outline-none' 

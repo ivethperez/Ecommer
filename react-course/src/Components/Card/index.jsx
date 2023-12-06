@@ -52,7 +52,6 @@ const showPrice = async (prod,unidad) =>{
 
               {cartProducts.filter((product) => product.id === data.id)
                 .length > 0 ? (
-
                 <button
                   className="absolute top-0 right-0 flex justify-center items-center text-xs color-btn-confirmar w-6 h-6 rounded-full m-2"
                   onClick={(e) => {

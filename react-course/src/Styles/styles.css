@@ -18,6 +18,10 @@
     stroke: #DE3163;
 }
 .color-amarillo{
+    --tw-bg-opacity: 1;
+    background-color: rgb(255 219 88 / var(--tw-bg-opacity)); 
+}
+.color-amarillo-fill{
     fill: #FFDB58;
 }
 .color-amarillo-text{

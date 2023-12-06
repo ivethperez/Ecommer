@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import OrderCard from '../../Components/OrderCard'
 import { totalPrice, totalProducts } from '../../utils'
 import '../../Styles/styles.css'
+import OrdersCard from '../OrdersCard'
 
 const CheckoutSideMenu = () => {
   const { setOpenModalOrder, openModalOrder, cartProducts, setCartProducts
@@ -84,8 +85,9 @@ const CheckoutSideMenu = () => {
           <span className='font-light'>Total:</span>
           <span className='font-medium text-2xl'>${totalPrice(cartProducts)}</span>
         </p>
+    
         <Link to='/my-orders/last'>
-          <button className='w-full color-btn-confirmar py-3 text-white rounded-lg' onClick={() => handleCkeckout()}>
+          <button disabled={cartProducts.length >0 ? false: true} className='w-full color-btn-confirmar py-3 text-white rounded-lg' onClick={() => handleCkeckout()}>
             Ordenar
           </button>
         </Link>
