@@ -1,4 +1,5 @@
-import { createContext, useContext, useState, useEffect } from 'react'
+import { createContext, useContext, useState, useEffect,useRef } from 'react'
+import emailjs from '@emailjs/browser';
 const ShoppingCartContext = createContext()
 
 //LocalStorage sign out
@@ -167,8 +168,7 @@ export const ShoppingCartProvider = ({ children }) => {
   const [isActiveTodo, setisActiveTodo] = useState(false)
 
 
-  const [phoneNumber, setPhoneNumber] = useState('2228189400');
-  const [mensajePedido, setmensajePedido] = useState('Prueba mensaje');
+  const [phoneNumber, setPhoneNumber] = useState('');
 
   const [isKilo, setIsKilo] = useState(true)
   const [isMedioKilo, setIsMedioKilo] = useState(false)
@@ -181,6 +181,19 @@ export const ShoppingCartProvider = ({ children }) => {
   const [typeAlert, setTypeAlert] = useState('');
 
   const [showEcomm, setShowEcomm] = useState(false);
+
+
+  //Envio de correo 
+  const form = useRef();
+  const sendEmail = async(e) =>{
+    e.preventDefault()
+    emailjs.sendForm('', '', form.current, '')
+    .then((result) => {
+        console.log(result.text);
+    }, (error) => {
+        console.log(error.text);
+    });
+  }
 
   return (
     <ShoppingCartContext.Provider value={{
@@ -220,7 +233,6 @@ export const ShoppingCartProvider = ({ children }) => {
       isActiveBotanas,
       isActiveTodo,
       phoneNumber,
-      mensajePedido,
       setIsKilo,
       setIsMedioKilo,
       setIsCuartoKilo,
@@ -234,7 +246,9 @@ export const ShoppingCartProvider = ({ children }) => {
       setTypeAlert,
       typeAlert,
       setShowEcomm,
-      showEcomm
+      showEcomm,
+      form,
+      sendEmail
     }}>
       {children}
     </ShoppingCartContext.Provider>
