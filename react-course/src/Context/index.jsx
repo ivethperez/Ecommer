@@ -185,14 +185,19 @@ export const ShoppingCartProvider = ({ children }) => {
 
   //Envio de correo 
   const form = useRef();
+  const [respEmail,setRespEmail] = useState(false)
+  const [errorEmail,setErrorEmail] = useState(false)
   const sendEmail = async(e) =>{
     e.preventDefault()
     emailjs.sendForm('', '', form.current, '')
     .then((result) => {
-        console.log(result.text);
+      console.log(result.text);
+      setRespEmail(true);
     }, (error) => {
         console.log(error.text);
+        setErrorEmail(true);
     });
+
   }
 
   return (
@@ -248,7 +253,9 @@ export const ShoppingCartProvider = ({ children }) => {
       setShowEcomm,
       showEcomm,
       form,
-      sendEmail
+      sendEmail,
+      respEmail,
+      errorEmail
     }}>
       {children}
     </ShoppingCartContext.Provider>
