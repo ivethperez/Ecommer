@@ -12,7 +12,7 @@ function HomePage() {
 
   const [captcha, setCaptcha] = useState(false)
 
-  const { form, sendEmail,respEmail,errorEmail } = useShopiContext();
+  const { form, sendEmail,respEmail,errorEmail,phoneNumber } = useShopiContext();
 
   const handleSubmit =(e) =>{
     sendEmail(e);
@@ -23,15 +23,19 @@ function HomePage() {
     setMensaje('')
   } 
 
+  const contratar=(paquete)=>{
+    window.open('https://wa.me/?phone=' + phoneNumber + '&text=' + encodeURIComponent('Hola estoy ineresad@ en comtratar sus servicios, :' + paquete), '_blank');
+  }
+
   return (
     <div className='w-full '>
 
-      <div class="sm:px-8 mt-9"><div class="mx-auto w-full max-w-7xl lg:px-8">
-        <div class="relative px-4 sm:px-8 lg:px-12">
-          <div class="mx-auto max-w-2xl lg:max-w-5xl">
-            <div class="max-w-full">
-              <h1 class="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">Snack´s Leier</h1>
-              <p class="mt-6 text-base text-zinc-600 dark:text-zinc-400">
+      <div className="sm:px-8 mt-9"><div className="mx-auto w-full max-w-7xl lg:px-8">
+        <div className="relative px-4 sm:px-8 lg:px-12">
+          <div className="mx-auto max-w-2xl lg:max-w-5xl">
+            <div className="max-w-full">
+              <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">Snack´s Leier</h1>
+              <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
                 En Snack´s Leier, nos especializamos en hacer que tus eventos sean irresistiblemente deliciosos. Imagina una experiencia única donde la diversión y el sabor se unen en cada bocado. Somos tu socio perfecto en la creación de momentos inolvidables, proporcionando paquetes de botanas de alta calidad para todo tipo de eventos.</p>
 
             </div>
@@ -40,24 +44,24 @@ function HomePage() {
       </div>
       </div>
 
-      <div class="mt-16 sm:mt-20 ">
-        <div class="-my-4 flex justify-center gap-5 overflow-hidden py-4 sm:gap-8">
-          <div class="relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl rotate-2">
-            <img alt="" loading="lazy" width="3744" height="5616" decoding="async" data-nimg="1" class="absolute inset-0 h-full w-full object-cover"
+      <div className="mt-16 sm:mt-20 ">
+        <div className="-my-4 flex justify-center gap-5 overflow-hidden py-4 sm:gap-8">
+          <div className="relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl rotate-2">
+            <img alt="" loading="lazy" width="3744" height="5616" decoding="async" data-nimg="1" className="absolute inset-0 h-full w-full object-cover"
               sizes="(min-width: 640px) 18rem, 11rem"
               src="https://media.istockphoto.com/id/1372396798/es/foto/colorido-golosinas.jpg?s=1024x1024&w=is&k=20&c=65qjK3a25y9aP7UT3-5Ab8puj4ZilvtdsdkVM_DLCtI=" />
           </div>
-          <div class="relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl -rotate-2">
-            <img alt="" loading="lazy" width="3936" height="2624" decoding="async" data-nimg="1" class="absolute inset-0 h-full w-full object-cover" src="https://media.istockphoto.com/id/1362087297/es/foto/bocadillos-con-salchichas-queso-manteca-de-cerdo-y-varias-salsas-en-una-boda-ucraniana.jpg?s=2048x2048&w=is&k=20&c=KlfPtZmzH67uAbWfktl7-hcy_rB4i8N1rgYToJgDQc4=" /></div><div class="relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl rotate-2">
-            <img alt="" loading="lazy" width="5760" height="3840" decoding="async" data-nimg="1" class="absolute inset-0 h-full w-full object-cover" src="https://media.istockphoto.com/id/672552464/es/foto/barra-de-caramelo-de-boda-con-nueces-frutas-y-pasteler%C3%ADa.jpg?s=2048x2048&w=is&k=20&c=kOUGIdZzT7oHN__7RAGacraPeFAByZnH-4hnQBPSPjg=" /></div><div class="relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl rotate-2">
-            <img alt="" loading="lazy" width="2400" height="3000" decoding="async" data-nimg="1" class="absolute inset-0 h-full w-full object-cover" src="https://media.istockphoto.com/id/513943132/es/foto/dulces-surtidos-sobre-la-mesa.jpg?s=2048x2048&w=is&k=20&c=ffaI83Y9fomrsdGm48b04WtfUhD4T9agJi7otKQBS_4=" /></div><div class="relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl -rotate-2">
-            <img alt="" loading="lazy" width="4240" height="2384" decoding="async" data-nimg="1" class="absolute inset-0 h-full w-full object-cover" src="https://media.istockphoto.com/id/178565437/es/foto/yogur-helado-ingredientes.jpg?s=2048x2048&w=is&k=20&c=3FeQk1y0TvNo4EY-VjJgifsOW1UCUJ2-qw2orrPQFsE=" /></div></div></div>
+          <div className="relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl -rotate-2">
+            <img alt="" loading="lazy" width="3936" height="2624" decoding="async" data-nimg="1" className="absolute inset-0 h-full w-full object-cover" src="https://media.istockphoto.com/id/1362087297/es/foto/bocadillos-con-salchichas-queso-manteca-de-cerdo-y-varias-salsas-en-una-boda-ucraniana.jpg?s=2048x2048&w=is&k=20&c=KlfPtZmzH67uAbWfktl7-hcy_rB4i8N1rgYToJgDQc4=" /></div><div className="relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl rotate-2">
+            <img alt="" loading="lazy" width="5760" height="3840" decoding="async" data-nimg="1" className="absolute inset-0 h-full w-full object-cover" src="https://media.istockphoto.com/id/672552464/es/foto/barra-de-caramelo-de-boda-con-nueces-frutas-y-pasteler%C3%ADa.jpg?s=2048x2048&w=is&k=20&c=kOUGIdZzT7oHN__7RAGacraPeFAByZnH-4hnQBPSPjg=" /></div><div className="relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl rotate-2">
+            <img alt="" loading="lazy" width="2400" height="3000" decoding="async" data-nimg="1" className="absolute inset-0 h-full w-full object-cover" src="https://media.istockphoto.com/id/513943132/es/foto/dulces-surtidos-sobre-la-mesa.jpg?s=2048x2048&w=is&k=20&c=ffaI83Y9fomrsdGm48b04WtfUhD4T9agJi7otKQBS_4=" /></div><div className="relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl -rotate-2">
+            <img alt="" loading="lazy" width="4240" height="2384" decoding="async" data-nimg="1" className="absolute inset-0 h-full w-full object-cover" src="https://media.istockphoto.com/id/178565437/es/foto/yogur-helado-ingredientes.jpg?s=2048x2048&w=is&k=20&c=3FeQk1y0TvNo4EY-VjJgifsOW1UCUJ2-qw2orrPQFsE=" /></div></div></div>
 
       <div className="sticky top-0 z-50"><div className="sm:hidden" data-headlessui-state="">
         <div className="relative flex items-center px-4 py-3 bg-white/95 shadow-sm [@supports(backdrop-filter:blur(0))]:bg-white/80 [@supports(backdrop-filter:blur(0))]:backdrop-blur">
           <span className="ml-4 text-base font-medium text-slate-900"><span className="hidden lg:inline">Table of contents</span><span className="lg:hidden">Contents</span></span>
           <button className="-mr-1 ml-auto flex h-8 w-8 items-center justify-center" aria-label="Toggle navigation menu" type="button" aria-expanded="false" data-headlessui-state="" id="headlessui-popover-button-:R9aemla:"><span className="absolute inset-0"></span>
-            <svg aria-hidden="true" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" className="h-6 w-6 stroke-slate-700">
+            <svg aria-hidden="true" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24" className="h-6 w-6 stroke-slate-700">
               <path d="m15 16-3 3-3-3M15 8l-3-3-3 3"></path></svg></button></div>
         <div className="absolute inset-x-0 bottom-full z-10 h-4 bg-white"></div></div>
         <div >
@@ -85,32 +89,32 @@ function HomePage() {
               Nuestros paquetes están cuidadosamente diseñados para satisfacer todos los gustos y necesidades. Desde eventos corporativos elegantes hasta fiestas informales con amigos, en Snack´s Leier tenemos la combinación perfecta para ti. ¿Quieres sorprender a tus invitados con una selección gourmet de sabores exquisitos? ¿O tal vez prefieres una mezcla divertida y colorida que complazca a todas las edades? Sea cual sea tu visión, estamos aquí para convertirla en realidad.</p>
           </div>
 
-          <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 items-start gap-x-8 gap-y-10 sm:mt-20 lg:max-w-none lg:grid-cols-3"><section className="flex flex-col overflow-hidden rounded-3xl p-6 shadow-lg shadow-gray-900/5 bg-white"><h3 className="flex items-center text-sm font-semibold text-gray-900"><svg viewBox="0 0 40 40" aria-hidden="true" className="h-6 w-6 flex-none color-amarillo-fill"><path fill-rule="evenodd" clip-rule="evenodd" d="M20 40C8.954 40 0 31.046 0 20S8.954 0 20 0s20 8.954 20 20-8.954 20-20 20ZM4 20c0 7.264 5.163 13.321 12.02 14.704C17.642 35.03 19 33.657 19 32V8c0-1.657-1.357-3.031-2.98-2.704C9.162 6.68 4 12.736 4 20Z"></path></svg><span className="ml-4">Starter</span></h3><p className="relative mt-5 flex text-3xl tracking-tight text-gray-900">$0</p><p className="mt-3 text-sm text-gray-700">You’re new to investing but want to do it right. Get started for free.</p><div className="order-last mt-6"><ul role="list" className="-my-2 divide-y text-sm divide-gray-200 text-gray-700"><li className="flex py-2"><svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none color-verde-text"><path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle></svg>
+          <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 items-start gap-x-8 gap-y-10 sm:mt-20 lg:max-w-none lg:grid-cols-3"><section className="flex flex-col overflow-hidden rounded-3xl p-6 shadow-lg shadow-gray-900/5 bg-white"><h3 className="flex items-center text-sm font-semibold text-gray-900"><svg viewBox="0 0 40 40" aria-hidden="true" className="h-6 w-6 flex-none color-amarillo-fill"><path fillRule="evenodd" clipRule="evenodd" d="M20 40C8.954 40 0 31.046 0 20S8.954 0 20 0s20 8.954 20 20-8.954 20-20 20ZM4 20c0 7.264 5.163 13.321 12.02 14.704C17.642 35.03 19 33.657 19 32V8c0-1.657-1.357-3.031-2.98-2.704C9.162 6.68 4 12.736 4 20Z"></path></svg><span className="ml-4">Starter</span></h3><p className="relative mt-5 flex text-3xl tracking-tight text-gray-900">$0</p><p className="mt-3 text-sm text-gray-700">You’re new to investing but want to do it right. Get started for free.</p><div className="order-last mt-6"><ul role="list" className="-my-2 divide-y text-sm divide-gray-200 text-gray-700"><li className="flex py-2"><svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none color-verde-text"><path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
             <span className="ml-4">Commission-free trading</span></li>
 
           </ul></div>
-            <a className="inline-flex justify-center rounded-lg py-2 px-3 text-sm font-semibold outline-2 outline-offset-2 transition-colors color-rosa text-white hover:color-rosa active:color-rosa active:text-white/80 mt-6" aria-label="Get started with the Starter plan for [object Object]" href="/register">
+            <a onClick={contratar('Paquete 1')} className="inline-flex justify-center rounded-lg py-2 px-3 text-sm font-semibold outline-2 outline-offset-2 transition-colors color-rosa text-white hover:color-rosa active:color-rosa active:text-white/80 mt-6" aria-label="Get started with the Starter plan for [object Object]" href="/register">
               Contratar</a>
           </section>
             <section className="flex flex-col overflow-hidden rounded-3xl p-6 shadow-lg shadow-gray-900/5 bg-white">
-              <h3 className="flex items-center text-sm font-semibold text-gray-900"><svg viewBox="0 0 40 40" aria-hidden="true" className="h-6 w-6 flex-none color-amarillo-fill"><path fill-rule="evenodd" clip-rule="evenodd" d="M20 40C8.954 40 0 31.046 0 20S8.954 0 20 0s20 8.954 20 20-8.954 20-20 20ZM4 20c0 7.264 5.163 13.321 12.02 14.704C17.642 35.03 19 33.657 19 32V8c0-1.657-1.357-3.031-2.98-2.704C9.162 6.68 4 12.736 4 20Z"></path></svg><span className="ml-4">Investor</span></h3>
+              <h3 className="flex items-center text-sm font-semibold text-gray-900"><svg viewBox="0 0 40 40" aria-hidden="true" className="h-6 w-6 flex-none color-amarillo-fill"><path fillRule="evenodd" clipRule="evenodd" d="M20 40C8.954 40 0 31.046 0 20S8.954 0 20 0s20 8.954 20 20-8.954 20-20 20ZM4 20c0 7.264 5.163 13.321 12.02 14.704C17.642 35.03 19 33.657 19 32V8c0-1.657-1.357-3.031-2.98-2.704C9.162 6.68 4 12.736 4 20Z"></path></svg><span className="ml-4">Investor</span></h3>
               <p className="relative mt-5 flex text-3xl tracking-tight text-gray-900"><span aria-hidden="false" className="transition duration-300">$7</span><span aria-hidden="true" className="absolute left-0 top-0 transition duration-300 pointer-events-none -translate-x-6 select-none opacity-0">$70</span>
               </p>
               <p className="mt-3 text-sm text-gray-700">You’ve been investing for a while. Invest more and grow your wealth faster.</p><div className="order-last mt-6">
                 <ul role="list" className="-my-2 divide-y text-sm divide-gray-200 text-gray-700">
                   <li className="flex py-2">
                     <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none color-verde-text"><path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor">
-                    </path><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle></svg>
+                    </path><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
                     <span className="ml-4">Commission-free trading</span></li>
                   <li className="flex py-2"><svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none color-verde-text">
                     <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor">
-                    </path><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle></svg>
+                    </path><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
                     <span className="ml-4">Multi-layered encryption</span></li>
                   <li className="flex py-2">
                     <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none color-verde-text"><path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path>
-                      <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle></svg><span className="ml-4">One tip every hour</span></li><li className="flex py-2"><svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none color-verde-text"><path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle></svg><span className="ml-4">Invest up to $15,000 each month</span></li><li className="flex py-2"><svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none color-verde-text"><path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle></svg><span className="ml-4">Basic transaction anonymization</span></li></ul></div><a className="inline-flex justify-center rounded-lg py-2 px-3 text-sm font-semibold outline-2 outline-offset-2 transition-colors color-rosa text-white hover:color-rosa active:color-rosa active:text-white/80 mt-6" aria-label="Get started with the Investor plan for [object Object]" href="/register">
+                      <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg><span className="ml-4">One tip every hour</span></li><li className="flex py-2"><svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none color-verde-text"><path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg><span className="ml-4">Invest up to $15,000 each month</span></li><li className="flex py-2"><svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none color-verde-text"><path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg><span className="ml-4">Basic transaction anonymization</span></li></ul></div><a className="inline-flex justify-center rounded-lg py-2 px-3 text-sm font-semibold outline-2 outline-offset-2 transition-colors color-rosa text-white hover:color-rosa active:color-rosa active:text-white/80 mt-6" aria-label="Get started with the Investor plan for [object Object]" href="/register">
                 Contratar</a></section>
-            <section className="flex flex-col overflow-hidden rounded-3xl p-6 shadow-lg shadow-gray-900/5 order-first color-rosa lg:order-none"><h3 className="flex items-center text-sm font-semibold text-white"><svg viewBox="0 0 40 40" aria-hidden="true" className="h-6 w-6 flex-none color-amarillo-fill"><path fill-rule="evenodd" clip-rule="evenodd" d="M20 40C8.954 40 0 31.046 0 20S8.954 0 20 0s20 8.954 20 20-8.954 20-20 20ZM4 20c0 7.264 5.163 13.321 12.02 14.704C17.642 35.03 19 33.657 19 32V8c0-1.657-1.357-3.031-2.98-2.704C9.162 6.68 4 12.736 4 20Z"></path></svg>
+            <section className="flex flex-col overflow-hidden rounded-3xl p-6 shadow-lg shadow-gray-900/5 order-first color-rosa lg:order-none"><h3 className="flex items-center text-sm font-semibold text-white"><svg viewBox="0 0 40 40" aria-hidden="true" className="h-6 w-6 flex-none color-amarillo-fill"><path fillRule="evenodd" clipRule="evenodd" d="M20 40C8.954 40 0 31.046 0 20S8.954 0 20 0s20 8.954 20 20-8.954 20-20 20ZM4 20c0 7.264 5.163 13.321 12.02 14.704C17.642 35.03 19 33.657 19 32V8c0-1.657-1.357-3.031-2.98-2.704C9.162 6.68 4 12.736 4 20Z"></path></svg>
               <span className="ml-4">VIP</span></h3>
               <p className="relative mt-5 flex text-3xl tracking-tight text-white"><span aria-hidden="false" className="transition duration-300">$199</span>
                 <span aria-hidden="true" className="absolute left-0 top-0 transition duration-300 pointer-events-none -translate-x-6 select-none opacity-0">$1,990</span></p>
@@ -118,13 +122,13 @@ function HomePage() {
                 <li className="flex py-2">
                   <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none text-white">
                     <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path>
-                    <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                     </circle></svg><span className="ml-4">Commission-free trading</span></li>
                 <li className="flex py-2">
                   <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none text-white">
                     <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor">
                     </path>
-                    <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                     </circle></svg>
                   <span className="ml-4">Multi-layered encryption</span>
                 </li>
@@ -132,7 +136,7 @@ function HomePage() {
                   <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none text-white">
                     <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor">
                     </path>
-                    <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle>
+                    <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle>
                   </svg>
                   <span className="ml-4">Real-time tip notifications</span></li>
                 <li className="flex py-2">
@@ -140,19 +144,19 @@ function HomePage() {
                     <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor">
 
                     </path>
-                    <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle></svg>
+                    <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
                   <span className="ml-4">No investment limits</span></li>
                 <li className="flex py-2">
                   <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none text-white">
                     <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor">
 
                     </path>
-                    <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle></svg>
+                    <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
                   <span className="ml-4">Advanced transaction anonymization</span></li>
                 <li className="flex py-2">
                   <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none text-white">
                     <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path>
-                    <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle></svg>
+                    <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
                   <span className="ml-4">Automated tax-loss harvesting</span></li></ul>
               </div>
               <a className="inline-flex justify-center rounded-lg py-2 px-3 text-sm font-semibold outline-2 outline-offset-2 transition-colors relative overflow-hidden color-btn-confirmar text-white before:absolute before:inset-0 active:before:bg-transparent hover:before:bg-white/10 active:bg-cyan-600 active:text-white/80 before:transition-colors mt-6" aria-label="Get started with the VIP plan for [object Object]" href="/register">
@@ -276,12 +280,12 @@ function HomePage() {
                           name="message"
                           id="message"
                           rows={4}
-                          className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                          defaultValue={''}
+                          className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"       
                           required
                           value={mensaje}
                           onChange={(e) => setMensaje(e.target.value)}
-                        />
+                          >
+                          </textarea>
                       </div>
                     </div>
                     <div className="flex items-start mb-5 sm:col-span-2">
@@ -289,12 +293,12 @@ function HomePage() {
                     </div>
                   </div>
                   {
-                    respEmail ? (   <div class="relative h-8">
-                    <div class="absolute inset-0 flex justify-center md:justify-start opacity-100"
-                    ><div class="flex items-center gap-3 rounded-full bg-emerald-50/50 py-1 pl-1.5 pr-3 text-sm text-emerald-900 ring-1 ring-inset ring-emerald-500/20 dark:bg-emerald-500/5 dark:text-emerald-200 dark:ring-emerald-500/30">
-                      <svg viewBox="0 0 20 20" aria-hidden="true" class="h-5 w-5 flex-none fill-emerald-500 stroke-white dark:fill-emerald-200/20 dark:stroke-emerald-200">
-                        <circle cx="10" cy="10" r="10" stroke-width="0">
-                          </circle><path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m6.75 10.813 2.438 2.437c1.218-4.469 4.062-6.5 4.062-6.5"></path></svg>
+                    respEmail ? (   <div className="relative h-8">
+                    <div className="absolute inset-0 flex justify-center md:justify-start opacity-100"
+                    ><div className="flex items-center gap-3 rounded-full bg-emerald-50/50 py-1 pl-1.5 pr-3 text-sm text-emerald-900 ring-1 ring-inset ring-emerald-500/20 dark:bg-emerald-500/5 dark:text-emerald-200 dark:ring-emerald-500/30">
+                      <svg viewBox="0 0 20 20" aria-hidden="true" className="h-5 w-5 flex-none fill-emerald-500 stroke-white dark:fill-emerald-200/20 dark:stroke-emerald-200">
+                        <circle cx="10" cy="10" r="10" strokeWidth="0">
+                          </circle><path fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="m6.75 10.813 2.438 2.437c1.218-4.469 4.062-6.5 4.062-6.5"></path></svg>
                           ¡Mensaje enviado con éxito!</div></div></div>):
                           
                           (
@@ -303,12 +307,12 @@ function HomePage() {
                   }
 
                   {
-                    errorEmail ?( <div class="relative h-8">
-                    <div class="absolute inset-0 flex justify-center md:justify-start opacity-100"
-                    ><div class="flex items-center gap-3 rounded-full bg-red-50/50 py-1 pl-1.5 pr-3 text-sm text-red-500 ring-1 ring-inset ring-red-500/20 dark:bg-red-500/5 dark:text-red-200 dark:ring-red-500/30">
+                    errorEmail ?( <div className="relative h-8">
+                    <div className="absolute inset-0 flex justify-center md:justify-start opacity-100"
+                    ><div className="flex items-center gap-3 rounded-full bg-red-50/50 py-1 pl-1.5 pr-3 text-sm text-red-500 ring-1 ring-inset ring-red-500/20 dark:bg-red-500/5 dark:text-red-200 dark:ring-red-500/30">
                     
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class=" stroke-white w-5 h-5 fill-red-500">
-<path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className=" stroke-white w-5 h-5 fill-red-500">
+<path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
                           ¡Ocurrio un error, por favor intentalo mas tarde!</div></div></div>):(
                              <div></div>
@@ -318,7 +322,7 @@ function HomePage() {
 
 
                   <div className="mt-4">
-                    <button disabled={!captcha} class="text-white block w-full color-btn-confirmar focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Enviar mensaje</button>
+                    <button disabled={!captcha} className="text-white block w-full color-btn-confirmar focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Enviar mensaje</button>
                   </div>
                 </form>
               </div>

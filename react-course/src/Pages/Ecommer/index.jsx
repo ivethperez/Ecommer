@@ -121,11 +121,11 @@ function Ecommer() {
                 </div>
               </div>
               <svg aria-hidden="true" viewBox="0 0 6 6" className={`absolute left-[-0.5px] top-[0.5625rem] hidden h-1.5 w-1.5 overflow-visible lg:block fill-transparent ${!isActiveTodo ? 'fill-slate-500 stroke-slate-500' : 'fill-blue-600 stroke-rosa'} `}>
-                <path d="M3 0L6 3L3 6L0 3Z" stroke-width="2" stroke-linejoin="round"></path>
+                <path d="M3 0L6 3L3 6L0 3Z" strokeWidth="2" strokeLinejoin="round"></path>
               </svg>
             </div>
               <div className="relative lg:pl-8">
-                <svg aria-hidden="true" viewBox="0 0 6 6" className={`absolute left-[-0.5px] top-[0.5625rem] hidden h-1.5 w-1.5 overflow-visible lg:block fill-transparent ${!isActiveBotanas ? 'fill-slate-500 stroke-slate-500' : 'fill-blue-600 stroke-rosa'} `}><path d="M3 0L6 3L3 6L0 3Z" stroke-width="2" stroke-linejoin="round">
+                <svg aria-hidden="true" viewBox="0 0 6 6" className={`absolute left-[-0.5px] top-[0.5625rem] hidden h-1.5 w-1.5 overflow-visible lg:block fill-transparent ${!isActiveBotanas ? 'fill-slate-500 stroke-slate-500' : 'fill-blue-600 stroke-rosa'} `}><path d="M3 0L6 3L3 6L0 3Z" strokeWidth="2" strokeLinejoin="round">
                 </path>
                 </svg>
                 <div className="relative">                 
@@ -137,7 +137,7 @@ function Ecommer() {
                 </div>
               </div>
               <div className="relative lg:pl-8">
-                <svg aria-hidden="true" viewBox="0 0 6 6" className={`absolute left-[-0.5px] top-[0.5625rem] hidden h-1.5 w-1.5 overflow-visible lg:block fill-transparent ${!isActiveGomitas ? 'fill-slate-500 stroke-slate-500' : 'fill-blue-600 stroke-rosa'} `}><path d="M3 0L6 3L3 6L0 3Z" stroke-width="2" stroke-linejoin="round">
+                <svg aria-hidden="true" viewBox="0 0 6 6" className={`absolute left-[-0.5px] top-[0.5625rem] hidden h-1.5 w-1.5 overflow-visible lg:block fill-transparent ${!isActiveGomitas ? 'fill-slate-500 stroke-slate-500' : 'fill-blue-600 stroke-rosa'} `}><path d="M3 0L6 3L3 6L0 3Z" strokeWidth="2" strokeLinejoin="round">
                 </path>
                 </svg><div className="relative">                  
                   <time datetime="2022-04-06" className="block text-2xl font-semibold tracking-tight ">Gomitas</time>
@@ -147,7 +147,7 @@ function Ecommer() {
                 </div>
               </div>
               <div className="relative lg:pl-8">
-                <svg aria-hidden="true" viewBox="0 0 6 6" className={`absolute left-[-0.5px] top-[0.5625rem] hidden h-1.5 w-1.5 overflow-visible lg:block fill-transparent ${!isActiveChocolate ? 'fill-slate-500 stroke-slate-500' : 'fill-blue-600 stroke-rosa'} `}><path d="M3 0L6 3L3 6L0 3Z" stroke-width="2" stroke-linejoin="round"></path></svg><div className="relative">
+                <svg aria-hidden="true" viewBox="0 0 6 6" className={`absolute left-[-0.5px] top-[0.5625rem] hidden h-1.5 w-1.5 overflow-visible lg:block fill-transparent ${!isActiveChocolate ? 'fill-slate-500 stroke-slate-500' : 'fill-blue-600 stroke-rosa'} `}><path d="M3 0L6 3L3 6L0 3Z" strokeWidth="2" strokeLinejoin="round"></path></svg><div className="relative">
                 <time datetime="2022-04-06" className=" block text-2xl font-semibold tracking-tight ">Chocolates</time>
                   <div className={`mt-1.5 font-mono text-sm ${!isActiveChocolate ? 'text-slate-500' : 'color-rosa-text'} `}>
                     <button onClick={() => filtro('chocolates')} className="ui-not-focus-visible:outline-none" id="headlessui-tabs-tab-:R6sqlaqlla:" role="tab" type="button" aria-selected={isActiveChocolate} tabindex="0" data-headlessui-state="" aria-controls="headlessui-tabs-panel-:R7alaqlla:">

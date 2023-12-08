@@ -18,7 +18,7 @@ const Footerr = () => {
           <div>
             <div className="flex items-center text-gray-900">
               <svg viewBox="0 0 40 40" aria-hidden="true" className="h-10 w-10 flex-none color-amarillo-fill">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M20 40C8.954 40 0 31.046 0 20S8.954 0 20 0s20 8.954 20 20-8.954 20-20 20ZM4 20c0 7.264 5.163 13.321 12.02 14.704C17.642 35.03 19 33.657 19 32V8c0-1.657-1.357-3.031-2.98-2.704C9.162 6.68 4 12.736 4 20Z">
+                <path  fillRule="evenodd" clipRule="evenodd" d="M20 40C8.954 40 0 31.046 0 20S8.954 0 20 0s20 8.954 20 20-8.954 20-20 20ZM4 20c0 7.264 5.163 13.321 12.02 14.704C17.642 35.03 19 33.657 19 32V8c0-1.657-1.357-3.031-2.98-2.704C9.162 6.68 4 12.736 4 20Z">
                 </path>
               </svg>
               <div className="ml-4"><p className="text-base font-semibold">Leier</p>
@@ -44,15 +44,15 @@ const Footerr = () => {
                 </svg>
               </a>
               <a className="group -m-1 p-1" aria-label="Follow on TikTok" href="https://linkedin.com">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300">
-                  <path d="M21 8V16C21 18.7614 18.7614 21 16 21H8C5.23858 21 3 18.7614 3 16V8C3 5.23858 5.23858 3 8 3H16C18.7614 3 21 5.23858 21 8Z" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                  <path d="M10 12C8.34315 12 7 13.3431 7 15C7 16.6569 8.34315 18 10 18C11.6569 18 13 16.6569 13 15V6C13.3333 7 14.6 9 17 9" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300">
+                  <path d="M21 8V16C21 18.7614 18.7614 21 16 21H8C5.23858 21 3 18.7614 3 16V8C3 5.23858 5.23858 3 8 3H16C18.7614 3 21 5.23858 21 8Z" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M10 12C8.34315 12 7 13.3431 7 15C7 16.6569 8.34315 18 10 18C11.6569 18 13 16.6569 13 15V6C13.3333 7 14.6 9 17 9" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </a></div></div>
           {/* <div className="group  -mx-4 flex items-center self-stretch p-4 transition-colors hover:bg-gray-100 sm:self-auto sm:rounded-2xl lg:mx-0 lg:self-auto lg:p-6">
             <div className="relative flex h-24 w-24 flex-none items-center justify-center">
               <svg viewBox="0 0 96 96" fill="none" aria-hidden="true" className="absolute inset-0 h-full w-full stroke-gray-300 transition-colors group-hover:stroke-cyan-500">
-                <path d="M1 17V9a8 8 0 0 1 8-8h8M95 17V9a8 8 0 0 0-8-8h-8M1 79v8a8 8 0 0 0 8 8h8M95 79v8a8 8 0 0 1-8 8h-8" stroke-width="2" stroke-linecap="round"></path></svg>
+                <path d="M1 17V9a8 8 0 0 1 8-8h8M95 17V9a8 8 0 0 0-8-8h-8M1 79v8a8 8 0 0 0 8 8h8M95 79v8a8 8 0 0 1-8 8h-8" strokeWidth="2" strokeLinecap="round"></path></svg>
             </div>
             <div className="ml-8 lg:w-64"><p className="text-base font-semibold text-gray-900"><a href="#">
               <span className="absolute inset-0 sm:rounded-2xl"></span>Download the app</a></p>
@@ -61,17 +61,17 @@ const Footerr = () => {
         </div>
         <div className="flex flex-col items-center border-t border-gray-200 pb-12 pt-8 md:flex-row-reverse md:justify-between md:pt-6">
           <form className="flex w-full justify-center md:w-auto">
-            <div className="w-60 min-w-0 shrink">
+            <div className="w-30 min-w-0 shrink">
             </div>
             {
               !showEcomm ? (
                 <NavLink to='/ecommer' className=' decoration-transparent text-black mt-2  pl-3'
                 onClick={() => ocultar()} 
             >
-              <button className="inline-flex justify-center rounded-lg py-2 px-3 text-sm font-semibold relative outline-2 outline-offset-2 transition-colors  overflow-hidden color-btn-confirmar text-white before:absolute before:inset-0 active:before:bg-transparent hover:before:bg-white/10  active:text-white/80 before:transition-colors ml-4 flex-none" >
-                <span className="hidden lg:inline">Visita nuestra tienda</span><span className="lg:hidden"></span>
+              <button className="text-white block w-full color-btn-confirmar  font-medium rounded-lg text-sm px-5 py-2.5 text-center " >
+              Visita nuestra tienda
                 </button>
-
+                {/* <button type="button" class="color-verde-text hover:text-white border color-btn-confirmar hover:color-btn-confirmar focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800"> Visita nuestra tienda</button> */}
                 </NavLink>
                 ) :
                 (<div></div>)
