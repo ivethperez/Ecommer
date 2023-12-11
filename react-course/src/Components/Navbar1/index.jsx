@@ -55,10 +55,10 @@ export default function Example() {
                             <Menu.Button className="relative flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-white">
                                 <span className="absolute -inset-1.5" />
                                 <span className="sr-only">Open user menu</span>
-                                <img
+                                <img to='/'
                                     className="h-8 w-8 rounded-full"
                                     src={logo}
-                                    alt=""
+                                    alt="logo"
                                 />
                             </Menu.Button>
                         </div>
@@ -196,12 +196,14 @@ export default function Example() {
                                 </Disclosure.Button>
                             </div>
                             <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                                <div className="flex flex-shrink-0 items-center">
-                                    <img
+                                <div className="flex flex-shrink-0 items-center cursor-pointer">
+                                <NavLink to='/'>
+                                    <img onClick={() => setShowEcomm(false)}
                                         className="h-10 w-auto"
                                         src={logo}
                                         alt="logo"
                                     />
+                                    </NavLink>
                                 </div>
                                 <div className="hidden sm:ml-6 sm:block">
                                     <div className="flex space-x-4">

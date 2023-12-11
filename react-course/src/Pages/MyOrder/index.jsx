@@ -101,7 +101,7 @@ function MyOrder() {
           </div>
           <Link to="/ecommer">
           <button onClick={() => { enviarPedido() }} className="inline-flex justify-center rounded-lg py-2 px-3 text-sm font-semibold relative outline-2 outline-offset-2 transition-colors  overflow-hidden color-btn-confirmar text-white before:absolute before:inset-0 active:before:bg-transparent before:transition-colors ml-4 flex-none" >
-                <span className="hidden lg:inline">Confirmar pedido</span><span className="lg:hidden"></span>
+                <span className="lg:inline">Confirmar pedido</span>
                 </button>
 
              
