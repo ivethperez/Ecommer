@@ -200,6 +200,9 @@ export const ShoppingCartProvider = ({ children }) => {
 
   }
 
+  const scrollTo=()=>{
+    window.scrollTo(0, 0);
+  }
   return (
     <ShoppingCartContext.Provider value={{
       count,
@@ -255,7 +258,8 @@ export const ShoppingCartProvider = ({ children }) => {
       form,
       sendEmail,
       respEmail,
-      errorEmail
+      errorEmail,
+      scrollTo
     }}>
       {children}
     </ShoppingCartContext.Provider>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useShopiContext } from '../../Context'
 import ReCAPTCHA from 'react-google-recaptcha'
 import '../../Styles/styles.css'
+import logo from '../../Imagenes/Logo.png'
 function HomePage() {
 
   const [nombre, setNombre] = useState('')
@@ -24,7 +25,7 @@ function HomePage() {
   } 
 
   const contratar=(paquete)=>{
-    window.open('https://wa.me/?phone=' + phoneNumber + '&text=' + encodeURIComponent('Hola estoy ineresad@ en comtratar sus servicios, :' + paquete), '_blank');
+    window.open('https://wa.me/?phone=' + phoneNumber + '&text=' + encodeURIComponent('Hola estoy ineresad@ en contratar sus servicios, :' + paquete), '_blank');
   }
 
   return (
@@ -59,8 +60,9 @@ function HomePage() {
 
       <div className="sticky top-0 z-50"><div className="sm:hidden" data-headlessui-state="">
         <div className="relative flex items-center px-4 py-3 bg-white/95 shadow-sm [@supports(backdrop-filter:blur(0))]:bg-white/80 [@supports(backdrop-filter:blur(0))]:backdrop-blur">
-          <span className="ml-4 text-base font-medium text-slate-900"><span className="hidden lg:inline">Table of contents</span><span className="lg:hidden">Contents</span></span>
-          <button className="-mr-1 ml-auto flex h-8 w-8 items-center justify-center" aria-label="Toggle navigation menu" type="button" aria-expanded="false" data-headlessui-state="" id="headlessui-popover-button-:R9aemla:"><span className="absolute inset-0"></span>
+          <span className="ml-4 text-base font-medium text-slate-900"><span className="hidden lg:inline">Table of contents</span><span className="lg:hidden">Contenido</span></span>
+          <button className="-mr-1 ml-auto flex h-8 w-8 items-center justify-center" aria-label="Toggle navigation menu" type="button" aria-expanded="true" data-headlessui-state="" 
+          id="headlessui-popover-button-:R9aemla:"><span className="absolute inset-0"></span>
             <svg aria-hidden="true" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24" className="h-6 w-6 stroke-slate-700">
               <path d="m15 16-3 3-3-3M15 8l-3-3-3 3"></path></svg></button></div>
         <div className="absolute inset-x-0 bottom-full z-10 h-4 bg-white"></div></div>
@@ -93,8 +95,8 @@ function HomePage() {
             <span className="ml-4">Commission-free trading</span></li>
 
           </ul></div>
-            <a onClick={contratar('Paquete 1')} className="inline-flex justify-center rounded-lg py-2 px-3 text-sm font-semibold outline-2 outline-offset-2 transition-colors color-rosa text-white hover:color-rosa active:color-rosa active:text-white/80 mt-6" aria-label="Get started with the Starter plan for [object Object]" href="/register">
-              Contratar</a>
+            <button onClick={()=>{contratar('Paquete 1')}} className="inline-flex justify-center rounded-lg py-2 px-3 text-sm font-semibold outline-2 outline-offset-2 transition-colors color-rosa text-white hover:color-rosa active:color-rosa active:text-white/80 mt-6" aria-label="Get started with the Starter plan for [object Object]" >
+              Contratar</button>
           </section>
             <section className="flex flex-col overflow-hidden rounded-3xl p-6 shadow-lg shadow-gray-900/5 bg-white">
               <h3 className="flex items-center text-sm font-semibold text-gray-900"><svg viewBox="0 0 40 40" aria-hidden="true" className="h-6 w-6 flex-none color-amarillo-fill"><path fillRule="evenodd" clipRule="evenodd" d="M20 40C8.954 40 0 31.046 0 20S8.954 0 20 0s20 8.954 20 20-8.954 20-20 20ZM4 20c0 7.264 5.163 13.321 12.02 14.704C17.642 35.03 19 33.657 19 32V8c0-1.657-1.357-3.031-2.98-2.704C9.162 6.68 4 12.736 4 20Z"></path></svg><span className="ml-4">Investor</span></h3>
@@ -173,12 +175,15 @@ function HomePage() {
               <path d="M0 128V.5H128" fill="none" stroke="currentColor"></path></pattern></defs><rect width="100%" height="100%" fill="url(#:S7:)"></rect></svg></div>
         <div className=" rounded-3xl relative mx-auto max-w-5xl pt-16 sm:px-6">
           <div className="bg-slate-50 pt-px sm:rounded-3xl">
-            <div className="relative mx-auto -mt-16 h-44 w-44 overflow-hidden rounded-full bg-slate-200 md:float-right md:h-64 md:w-64 md:[shape-outside:circle(40%)] lg:mr-20 lg:h-72 lg:w-72">
-              <img alt="" /></div>
+            <div className="relative mx-auto -mt-16 h-44 w-44 overflow-hidden  md:float-right md:h-64 md:w-64 md:[shape-outside:circle(40%)] lg:mr-20 lg:h-72 lg:w-72">
+              <img loading="lazy" decoding="async" data-nimg="1" className='absolute inset-0 h-26 w-72 object-cover' alt="" src={logo}  sizes="(min-width: 1024px) 18rem, (min-width: 768px) 16rem, 11rem"
+               />
+               
+               </div>
             <div className="px-4 py-10 sm:px-10 sm:py-16 md:py-20 lg:px-20 lg:py-32">
-              <h2 className="inline-flex items-center rounded-full px-4 py-1 text-blue-600 ring-1 ring-inset ring-blue-600" id="author-title">
+              {/* <h2 className="inline-flex items-center rounded-full px-4 py-1 text-blue-600 ring-1 ring-inset ring-blue-600" id="author-title">
 
-                <span className="ml-3 text-base font-medium tracking-tight">Contacto</span></h2>
+                <span className="ml-3 text-base font-medium tracking-tight">Contacto</span></h2> */}
               <p className="mt-8 font-display text-5xl font-extrabold tracking-tight text-slate-900 sm:text-6xl">
                 <span className="block text-blue-600"></span>
               </p>
@@ -194,7 +199,7 @@ function HomePage() {
                   aria-hidden="true"
                 >
                   <div
-                    className="relative left-1/2 -z-10 aspect-[1155/678] w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]"
+                    className="relative left-1/2 -z-10 aspect-[1155/678] w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr color-amarillo color-rosa opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]"
                     style={{
                       clipPath:
                         'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',

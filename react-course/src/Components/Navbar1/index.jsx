@@ -6,6 +6,7 @@ import { useShopiContext } from '../../Context'
 import storage from '../../utils/storage'
 import ShoppingCart from '../ShoppingCart'
 import '../../Styles/styles.css'
+import logo from '../../Imagenes/Logo.png'
 
 const navigation = [
     { name: 'Inicio', to: '/', current: true,category: '' }
@@ -56,7 +57,7 @@ export default function Example() {
                                 <span className="sr-only">Open user menu</span>
                                 <img
                                     className="h-8 w-8 rounded-full"
-                                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                    src={logo}
                                     alt=""
                                 />
                             </Menu.Button>
@@ -197,9 +198,9 @@ export default function Example() {
                             <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                                 <div className="flex flex-shrink-0 items-center">
                                     <img
-                                        className="h-8 w-auto"
-                                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                                        alt="Your Company"
+                                        className="h-10 w-auto"
+                                        src={logo}
+                                        alt="logo"
                                     />
                                 </div>
                                 <div className="hidden sm:ml-6 sm:block">
@@ -237,18 +238,21 @@ export default function Example() {
                                   };
                               }}
                           >
-                          <button className="text-white block w-full color-btn-confirmar  font-medium rounded-lg text-sm px-5 py-2.5 text-center " >
+                          <button className="text-white block w-full color-btn-confirmar font-medium rounded-lg text-sm px-5 py-2.5 text-center " >
                           Visita nuestra tienda
                 </button>
                            
                           </NavLink>
   ):(
 
-    <div></div>
+    <div>
+          <ShoppingCart />
+    </div>
+    
   )
                            
                         }
-                            <ShoppingCart />
+                          
                         </div>
                     </div>
 

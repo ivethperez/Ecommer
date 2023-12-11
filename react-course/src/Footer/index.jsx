@@ -5,7 +5,7 @@ import { Container, Row, Col, Nav } from 'react-bootstrap';
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import '../Styles/styles.css'
 const Footerr = () => {
-  const { showEcomm ,setSearchByCategory,setShowEcomm} = useShopiContext();
+  const { showEcomm ,setSearchByCategory,setShowEcomm,scrollTo} = useShopiContext();
   const ocultar= () =>{
     setSearchByCategory()
     setShowEcomm(true)
@@ -68,7 +68,7 @@ const Footerr = () => {
                 <NavLink to='/ecommer' className=' decoration-transparent text-black mt-2  pl-3'
                 onClick={() => ocultar()} 
             >
-              <button className="text-white block w-full color-btn-confirmar  font-medium rounded-lg text-sm px-5 py-2.5 text-center " >
+              <button onClick={()=>{scrollTo()}} className="text-white block w-full color-btn-confirmar  font-medium rounded-lg text-sm px-5 py-2.5 text-center " >
               Visita nuestra tienda
                 </button>
                 {/* <button type="button" class="color-verde-text hover:text-white border color-btn-confirmar hover:color-btn-confirmar focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800"> Visita nuestra tienda</button> */}
