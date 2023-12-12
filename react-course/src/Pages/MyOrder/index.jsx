@@ -25,7 +25,7 @@ function MyOrder() {
 
       products = products + 'Producto: ' + element.title + ' ' + medida + ', Cantidad: ' + element.quantity + ', Precio: $' + element.price + ' || '
     });
-    window.open('https://wa.me/?phone=' + phoneNumber + '&text=' + encodeURIComponent('Hola envío la confirmación de mi pedido: ' + products + ' Total a pagar: $' + order?.[index]?.totalPrice), '_blank');
+    window.open('https://wa.me/?phone=' + phoneNumber + '&text=' + encodeURIComponent('Hola envío la confirmación de mi pedido: ' + products + ' Total a pagar: $' + order?.[index]?.totalPrice + envío), '_blank');
     setTypeAlert('confirmacion')
     setShowAlert(true)
   }
@@ -96,7 +96,7 @@ function MyOrder() {
           <div className="w-60 min-w-0 shrink">
             <p className='flex justify-between items-center mb-2'>
               <span className='font-light'>Total:</span>
-              <span className='font-medium text-2xl'>${order?.[index]?.totalPrice}</span>
+              <span className='font-medium text-2xl'>${order?.[index]?.totalPrice} + envío</span>
             </p>
           </div>
           <Link to="/ecommer">

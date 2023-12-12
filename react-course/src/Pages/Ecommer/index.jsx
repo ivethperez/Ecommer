@@ -9,7 +9,7 @@ import '../../Styles/styles.css'
 
 function Ecommer() {
   const { openModal, search, filteredItems, setSearchByCategory, isActiveChocolate, isActiveGomitas,
-    isActiveBotanas, isActiveTodo,showAlert } = useShopiContext();
+    isActiveBotanas, isActiveTodo,showAlert,setShowEcomm } = useShopiContext();
   const filtro = (val) => {
     setSearchByCategory(val);
   }
@@ -37,7 +37,7 @@ function Ecommer() {
       )
     }
   }
-  
+  setShowEcomm(true)
   return (
     <div className="container-fluid ">
      <Carousel>
