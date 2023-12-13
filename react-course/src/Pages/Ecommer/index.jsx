@@ -111,7 +111,7 @@ function Ecommer() {
               <div className="relative lg:pl-8">             
               <div className="relative">           
                 <time datetime="2022-04-04" className="block text-2xl font-semibold tracking-tight">Todo</time>
-                <div className={`mt-1.5 font-mono text-sm ${!isActiveTodo ? 'text-slate-500' : 'color-amarillo-text'}`}>
+                <div className={`mt-1.5 font-mono text-sm ${!isActiveTodo ? 'text-slate-500' : 'color-rosa-text'}`}>
                   <button onClick={() => filtro()} className="ui-not-focus-visible:outline-none" id="headlessui-tabs-tab-:R6cqlaqlla:" role="tab" type="button" aria-selected="false" tabindex="-1" data-headlessui-state="" aria-controls="headlessui-tabs-panel-:R3alaqlla:"><span className="absolute inset-0"></span>Todo tipo de dulce</button>
                 </div>
               </div>
