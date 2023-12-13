@@ -42,25 +42,25 @@ function Ecommer() {
     <div className="container-fluid ">
      <Carousel>
         <Carousel.Item>
-          <img className="w-full h-36 object-cover rounded-lg" src='https://images.pexels.com/photos/209345/pexels-photo-209345.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' alt='img'></img>
+          <img className="w-full h-36 object-cover rounded-lg" src='https://i.pinimg.com/564x/37/0d/2d/370d2da991f323af5628be2073209910.jpg' alt='img'></img>
           <Carousel.Caption>
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            <h3>Envios solo en el estado de Puebla</h3>
+            <p></p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
-          <img className="w-full h-36 object-cover rounded-lg" src='https://images.pexels.com/photos/209345/pexels-photo-209345.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' alt='img'></img>
+          <img className="w-full h-36 object-cover rounded-lg" src='https://i.pinimg.com/564x/0a/43/be/0a43be5a3e2704bc2cc15d1d37d2afd7.jpg' alt='img'></img>
           <Carousel.Caption>
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <h3></h3>
+            <p></p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
-          <img className="w-full h-36 object-cover rounded-lg" src='https://images.pexels.com/photos/209345/pexels-photo-209345.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' alt='img'></img>
+          <img className="w-full h-36 object-cover rounded-lg" src='https://i.pinimg.com/564x/f2/17/39/f2173928f109d88469d216c9863c56a8.jpg' alt='img'></img>
           <Carousel.Caption>
-            <h3>Third slide label</h3>
+            <h3></h3>
             <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+            
             </p>
           </Carousel.Caption>
         </Carousel.Item>
@@ -111,7 +111,7 @@ function Ecommer() {
               <div className="relative lg:pl-8">             
               <div className="relative">           
                 <time datetime="2022-04-04" className="block text-2xl font-semibold tracking-tight">Todo</time>
-                <div className={`mt-1.5 font-mono text-sm ${!isActiveTodo ? 'text-slate-500' : 'color-rosa-text'}`}>
+                <div className={`mt-1.5 font-mono text-sm ${!isActiveTodo ? 'text-slate-500' : 'color-amarillo-text'}`}>
                   <button onClick={() => filtro()} className="ui-not-focus-visible:outline-none" id="headlessui-tabs-tab-:R6cqlaqlla:" role="tab" type="button" aria-selected="false" tabindex="-1" data-headlessui-state="" aria-controls="headlessui-tabs-panel-:R3alaqlla:"><span className="absolute inset-0"></span>Todo tipo de dulce</button>
                 </div>
               </div>
