@@ -180,7 +180,7 @@ export const ShoppingCartProvider = ({ children }) => {
   const [showAlert, setShowAlert] = useState(false);
   const [typeAlert, setTypeAlert] = useState('');
 
-  const [showEcomm, setShowEcomm] = useState(false);
+  const [showEcomm, setShowEcomm] = useState(true);
 
 
   //Envio de correo 

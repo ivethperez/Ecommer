@@ -28,3 +28,7 @@
     --tw-bg-opacity: 1;
     color: rgb(255 219 88 / var(--tw-bg-opacity)); 
 }
+.color-marron{
+    --tw-bg-opacity: 1;
+    background-color: rgb(255 253 252 / var(--tw-bg-opacity)); 
+}

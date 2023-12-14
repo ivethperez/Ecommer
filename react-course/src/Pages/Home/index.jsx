@@ -50,11 +50,11 @@ function HomePage() {
           <div className="relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl rotate-2">
             <img alt="" loading="lazy" width="3744" height="5616" decoding="async" data-nimg="1" className="absolute inset-0 h-full w-full object-cover"
               sizes="(min-width: 640px) 18rem, 11rem"
-              src="https://media.istockphoto.com/id/1372396798/es/foto/colorido-golosinas.jpg?s=1024x1024&w=is&k=20&c=65qjK3a25y9aP7UT3-5Ab8puj4ZilvtdsdkVM_DLCtI=" />
+              src="https://i.pinimg.com/564x/d5/82/bd/d582bd351b8308f4cd7eebad33c00623.jpg" />
           </div>
           <div className="relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl -rotate-2">
             <img alt="" loading="lazy" width="3936" height="2624" decoding="async" data-nimg="1" className="absolute inset-0 h-full w-full object-cover" src="https://media.istockphoto.com/id/1362087297/es/foto/bocadillos-con-salchichas-queso-manteca-de-cerdo-y-varias-salsas-en-una-boda-ucraniana.jpg?s=2048x2048&w=is&k=20&c=KlfPtZmzH67uAbWfktl7-hcy_rB4i8N1rgYToJgDQc4=" /></div><div className="relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl rotate-2">
-            <img alt="" loading="lazy" width="5760" height="3840" decoding="async" data-nimg="1" className="absolute inset-0 h-full w-full object-cover" src="https://media.istockphoto.com/id/672552464/es/foto/barra-de-caramelo-de-boda-con-nueces-frutas-y-pasteler%C3%ADa.jpg?s=2048x2048&w=is&k=20&c=kOUGIdZzT7oHN__7RAGacraPeFAByZnH-4hnQBPSPjg=" /></div><div className="relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl rotate-2">
+            <img alt="" loading="lazy" width="5760" height="3840" decoding="async" data-nimg="1" className="absolute inset-0 h-full w-full object-cover" src="https://i.pinimg.com/564x/b5/61/30/b56130760aec4151def78ad49fb84f9c.jpg" /></div><div className="relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl rotate-2">
             <img alt="" loading="lazy" width="2400" height="3000" decoding="async" data-nimg="1" className="absolute inset-0 h-full w-full object-cover" src="https://media.istockphoto.com/id/513943132/es/foto/dulces-surtidos-sobre-la-mesa.jpg?s=2048x2048&w=is&k=20&c=ffaI83Y9fomrsdGm48b04WtfUhD4T9agJi7otKQBS_4=" /></div><div className="relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl -rotate-2">
             <img alt="" loading="lazy" width="4240" height="2384" decoding="async" data-nimg="1" className="absolute inset-0 h-full w-full object-cover" src="https://media.istockphoto.com/id/178565437/es/foto/yogur-helado-ingredientes.jpg?s=2048x2048&w=is&k=20&c=3FeQk1y0TvNo4EY-VjJgifsOW1UCUJ2-qw2orrPQFsE=" /></div></div></div>
 
@@ -155,10 +155,10 @@ function HomePage() {
                   <li className="flex py-2">
                     <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none color-verde-text"><path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path>
                       <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
-                      <span className="ml-4">Garbanzo</span></li>
+                      <span className="ml-4">Cacahuate habanero</span></li>
                       <li className="flex py-2"><svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none color-verde-text">
                         <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
-                        <span className="ml-4">Pepita</span></li>
+                        <span className="ml-4">Bombon con chocolate</span></li>
                         <li className="flex py-2"><svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none color-verde-text"><path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
                         <span className="ml-4">Pasita o Galleta Con Chocolate</span></li>
                         
@@ -166,22 +166,18 @@ function HomePage() {
             <span className="ml-4">huevito</span></li>
 
             <li className="flex py-2"><svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none color-verde-text"><path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
-            <span className="ml-4">Garapiñado</span></li>
+            <span className="ml-4">Almendra con chocolate</span></li>
 
             <li className="flex py-2"><svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none color-verde-text"><path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
-            <span className="ml-4">Gomita gota</span></li>
+            <span className="ml-4">Chocoreta</span></li>
 
             <li className="flex py-2"><svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none color-verde-text"><path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
-            <span className="ml-4">Gomita lombriz</span></li>
+            <span className="ml-4">Gomita Aro Durazno o Aro Manzana</span></li>
 
+           
             <li className="flex py-2"><svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none color-verde-text"><path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
             <span className="ml-4">Gomita Mangomita</span></li>
 
-            <li className="flex py-2"><svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none color-verde-text"><path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
-            <span className="ml-4">Gomita Pandita</span></li>
-
-      
-      
                         </ul></div>
                         <button onClick={()=>{contratar('Paquete: Elegancia Gourmet')}} className="inline-flex justify-center rounded-lg py-2 px-3 text-sm font-semibold outline-2 outline-offset-2 transition-colors color-rosa text-white hover:color-rosa active:color-rosa active:text-white/80 mt-6" aria-label="Get started with the Investor plan for [object Object]" href="/register">
                 Contratar</button>
@@ -259,7 +255,7 @@ function HomePage() {
                   <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none text-white">
                     <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path>
                     <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
-                  <span className="ml-4">Gomita Aro Durazno</span></li>
+                  <span className="ml-4">Gomita Aro Durazno o Aro Manzana</span></li>
                   </ul>
               </div>
               <button onClick={()=>{contratar('Paquete: Sabores Premium')}} className="inline-flex justify-center rounded-lg py-2 px-3 text-sm font-semibold outline-2 outline-offset-2 transition-colors relative overflow-hidden color-btn-confirmar text-white before:absolute before:inset-0 active:before:bg-transparent hover:before:bg-white/10 active:bg-cyan-600 active:text-white/80 before:transition-colors mt-6" aria-label="Get started with the VIP plan for [object Object]" href="/register">
