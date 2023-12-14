@@ -30,17 +30,10 @@ export default function Example() {
         setSignOut(true)
         // return <Navigate replace to={'/'}></Navigate>
     }
-
-    const [isOpen, setIsOpen] = useState(false);
-
-    const toggleMenu = () => {
-        setIsOpen(!isOpen);
-    };
     const ocultar= () =>{
         setSearchByCategory()
         setShowEcomm(true)
     }
-
     const renderView = () => {
 
         if (hasUserAnAccount && !isUserSignOut) {

@@ -3,11 +3,15 @@ import { ShoppingBagIcon } from '@heroicons/react/24/solid'
 import '../../Styles/styles.css'
 
 const ShoppingCart = () => {
-  const {setOpenModalOrder,count,showEcomm} = useShopiContext()
+  const {setOpenModalOrder,count,showEcomm,openModalOrder} = useShopiContext()
 
   const openCheckoutSideMenu = () => {
-    if(showEcomm)
+    if(showEcomm){
+      if (openModalOrder)
+        setOpenModalOrder(false);
+      else
         setOpenModalOrder(true);
+    }      
   }
 
   return (

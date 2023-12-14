@@ -10,14 +10,13 @@ import logo from '../../Imagenes/logo.png'
 
 function Ecommer() {
   const { openModal, search, filteredItems, setSearchByCategory, isActiveChocolate, isActiveGomitas,
-    isActiveBotanas, isActiveTodo,showAlert } = useShopiContext();
+    isActiveBotanas, isActiveTodo,showAlert,setShowEcomm } = useShopiContext();
   const filtro = (val) => {
     setSearchByCategory(val);
   }
   const renderView = () => {
     if (filteredItems?.length > 0) {
       return (
-
         // <Row xs={2} md={4} className="g-4">
         //   {Array.from(filteredItems)?.map((item) => (
         //   <Col  > 
@@ -35,21 +34,23 @@ function Ecommer() {
     } else {
       return (
         <div>No hay resultados</div>
+        
       )
     }
+   
   }
-
+  
   return (
     <div className="container">
      <Carousel>
-        <Carousel.Item className='w-full h-36 relative group transform '>
+        <Carousel.Item className='w-full h-32 relative group transform '>
           <img className="inset-0 flex flex-col justify-between h-auto bg-cover bg-no-repeat object-cover " src={logo} alt='img'></img>
           <Carousel.Caption>
             <h3 className=' color-rosa-text '>Envios solo en el estado de Puebla</h3>
             <p className=' color-rosa-text '></p>
           </Carousel.Caption>
         </Carousel.Item>
-        <Carousel.Item className='w-full h-36 group transform '>
+        <Carousel.Item className='w-full h-32 group transform '>
           <img className=" justify-between h-full w-full bg-cover bg-no-repeat object-cover" src='https://i.pinimg.com/564x/37/0d/2d/370d2da991f323af5628be2073209910.jpg' alt='img'></img>
           <Carousel.Caption>
             <h3 >Envío gratis a partir de $500 pesos</h3>
@@ -252,6 +253,7 @@ function Ecommer() {
         { //renderizado  gap-4 mt-4 grid-cols-2 sm:grid-cols-4 w-full max-w-screen-lg px-2
         }
       </div>
+    
       {openModal && (
         <ProductModal>
           <ProductDetail></ProductDetail>

@@ -25,9 +25,15 @@ export const initializeLocalStorage = () => {
 export const ShoppingCartProvider = ({ children }) => {
 
   useEffect(() => {
+    const currentUrl = window.location.href;
+    const isEcommUrl = currentUrl.includes('/ecommer');
     fetch('https://api-product-5iv7.onrender.com/products')
-      .then(response => response.json())
-      .then(data => setItems(data))
+    .then(response => response.json())
+    .then(data => setItems(data))
+
+    if (isEcommUrl) {
+      setShowEcomm(true)
+    }
   }, [])
 
 
@@ -180,7 +186,7 @@ export const ShoppingCartProvider = ({ children }) => {
   const [showAlert, setShowAlert] = useState(false);
   const [typeAlert, setTypeAlert] = useState('');
 
-  const [showEcomm, setShowEcomm] = useState(true);
+  const [showEcomm, setShowEcomm] = useState(false);
 
 
   //Envio de correo 
