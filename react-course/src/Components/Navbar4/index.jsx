@@ -24,9 +24,7 @@ const Navbar4=()=>{
         setSearchByCategory()
         setShowEcomm(true)
     }
-
     const renderView = () => {
-        // console.log(hasUserAnAccount, isUserSignOut)
          if (hasUserAnAccount && !isUserSignOut) {
              return (
  

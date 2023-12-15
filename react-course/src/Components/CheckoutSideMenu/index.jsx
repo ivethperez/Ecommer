@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 import OrderCard from '../../Components/OrderCard'
 import { totalPrice, totalProducts } from '../../utils'
 import '../../Styles/styles.css'
-import OrdersCard from '../OrdersCard'
 
 const CheckoutSideMenu = () => {
   const { setOpenModalOrder, openModalOrder, cartProducts, setCartProducts
@@ -31,7 +30,6 @@ const CheckoutSideMenu = () => {
     onCancel()
     setSearchByTitle(null)
   }
-  console.log(order)
   return (
     <aside
       className={`${openModalOrder ? 'flex' : 'hidden'} checkout-side-menu flex-col fixed right-0 border border-black rounded-lg bg-white`}>
@@ -48,7 +46,7 @@ const CheckoutSideMenu = () => {
           order.length > 0 ? (
             <div className='relative flex gap-0.5 items-center'>
 
-              <Link to='/my-orders' className="px-6 overflow-y-auto flex-1 decoration-transparent inline-flex ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">
+              <Link to='/my-orders' onClick={() => handleCkeckout()} className="px-6 overflow-y-auto flex-1 decoration-transparent inline-flex ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">
                 Órdenes pendientes
               </Link>
               <div className='absolute bottom-3.5 left-3.5 flex justify-center items-center

@@ -44,16 +44,16 @@ function Ecommer() {
     <div className="container">
      <Carousel>
         <Carousel.Item className='w-full h-32 relative group transform '>
-          <img className="inset-0 flex flex-col justify-between h-auto bg-cover bg-no-repeat object-cover " src={logo} alt='img'></img>
+          <img className="justify-between h-full w-full bg-cover bg-no-repeat object-cover" src='https://i.pinimg.com/564x/f9/4c/5b/f94c5be6cac3e563920a09b58debc505.jpg' alt='img'></img>
           <Carousel.Caption>
-            <h3 className=' color-rosa-text '>Envios solo en el estado de Puebla</h3>
-            <p className=' color-rosa-text '></p>
+            <h3 >Envios solo en el estado de Puebla</h3>
+            <p ></p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item className='w-full h-32 group transform '>
-          <img className=" justify-between h-full w-full bg-cover bg-no-repeat object-cover" src='https://i.pinimg.com/564x/37/0d/2d/370d2da991f323af5628be2073209910.jpg' alt='img'></img>
+          <img className=" justify-between h-full w-full bg-cover bg-no-repeat object-cover" src='https://i.pinimg.com/564x/37/0d/2d/370d2da991f323af5628be2073209910.jpg' alt='envioGratis'></img>
           <Carousel.Caption>
-            <h3 >Envío gratis a partir de $500 pesos</h3>
+            <h3 itemProp='offers'>Envío gratis a partir de $500 pesos</h3>
             <p></p>
           </Carousel.Caption>
         </Carousel.Item>
@@ -183,7 +183,7 @@ function Ecommer() {
 
           </div>
           <div className="lg:col-span-3">
-            <div className='mt-2 font-display text-2xl tracking-tight text-blue-900'>
+            <div className='font-display text-2xl tracking-tight text-blue-900'>
               <input type='text' placeholder='Buscar producto' className='block w-80 appearance-none rounded-lg border border-gray-200 bg-white py-[calc(theme(spacing.2)-1px)] px-[calc(theme(spacing.3)-1px)] text-gray-900 placeholder:text-gray-400 focus:border-cyan-500 focus:outline-none focus:ring-cyan-500 sm:text-sm'
                 onChange={search}></input>
             </div>
@@ -261,6 +261,8 @@ function Ecommer() {
       )}
       <CheckoutSideMenu></CheckoutSideMenu>
     </div>
+
+
   )
 }
 

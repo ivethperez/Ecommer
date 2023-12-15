@@ -30,13 +30,13 @@ function HomePage() {
 
   return (
     <div className='w-full '>
-
+    <div itemScope it="https://schema.org/Invoice">   
       <div className="sm:px-8 mt-9"><div className="mx-auto w-full max-w-7xl lg:px-8">
         <div className="relative px-4 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-2xl lg:max-w-5xl">
             <div className="max-w-full">
-              <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">Snack´s Leier</h1>
-              <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
+              <h1 itemProp="name" className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">Snack´s Leier</h1>
+              <p itemProp="description" className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
                 En Snack´s Leier, nos especializamos en hacer que tus eventos sean irresistiblemente deliciosos. Imagina una experiencia única donde la diversión y el sabor se unen en cada bocado. Somos tu socio perfecto en la creación de momentos inolvidables, proporcionando paquetes de botanas de alta calidad para todo tipo de eventos.</p>
 
             </div>
@@ -91,7 +91,7 @@ function HomePage() {
             <section className="flex flex-col overflow-hidden rounded-3xl p-6 shadow-lg shadow-gray-900/5 bg-white">
               <h3 className="flex items-center text-sm font-semibold text-gray-900"><svg viewBox="0 0 40 40" aria-hidden="true" className="h-6 w-6 flex-none color-amarillo-fill">
                 <path fillRule="evenodd" clipRule="evenodd" d="M20 40C8.954 40 0 31.046 0 20S8.954 0 20 0s20 8.954 20 20-8.954 20-20 20ZM4 20c0 7.264 5.163 13.321 12.02 14.704C17.642 35.03 19 33.657 19 32V8c0-1.657-1.357-3.031-2.98-2.704C9.162 6.68 4 12.736 4 20Z"></path></svg><span className="ml-4">
-                Sabor Casual Chic</span></h3><p className="relative mt-5 flex text-3xl tracking-tight text-gray-900">$8,500</p><p className="mt-3 text-sm text-gray-700">
+                Sabor Casual Chic</span></h3><p itemProp="price" className="relative mt-5 flex text-3xl tracking-tight text-gray-900">$8,500</p><p className="mt-3 text-sm text-gray-700">
                 Un paquete versátil y delicioso que ofrece una mezcla única de botanas para eventos casuales. Este paquete aporta un toque de estilo y sabor.</p><div className="order-last mt-6"><ul role="list" className="-my-2 divide-y text-sm divide-gray-200 text-gray-700">
                   <li className="flex py-2"><svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none color-verde-text"><path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
             <span className="ml-4">Cacahuate Japones o Hot Nuts</span></li>
@@ -140,7 +140,7 @@ function HomePage() {
               <h3 className="flex items-center text-sm font-semibold text-gray-900"><svg viewBox="0 0 40 40" aria-hidden="true" className="h-6 w-6 flex-none color-amarillo-fill">
                 <path fillRule="evenodd" clipRule="evenodd" d="M20 40C8.954 40 0 31.046 0 20S8.954 0 20 0s20 8.954 20 20-8.954 20-20 20ZM4 20c0 7.264 5.163 13.321 12.02 14.704C17.642 35.03 19 33.657 19 32V8c0-1.657-1.357-3.031-2.98-2.704C9.162 6.68 4 12.736 4 20Z">
                   </path></svg><span className="ml-4">Elegancia Gourmet</span></h3>
-              <p className="relative mt-5 flex text-3xl tracking-tight text-gray-900"><span aria-hidden="false" className="transition duration-300">$9,500</span><span aria-hidden="true" className="absolute left-0 top-0 transition duration-300 pointer-events-none -translate-x-6 select-none opacity-0">$70</span>
+              <p className="relative mt-5 flex text-3xl tracking-tight text-gray-900"><span itemProp="price" aria-hidden="false" className="transition duration-300">$9,500</span><span aria-hidden="true" className="absolute left-0 top-0 transition duration-300 pointer-events-none -translate-x-6 select-none opacity-0">$70</span>
               </p>
               <p className="mt-3 text-sm text-gray-700">Una selección exquisita de botanas finas que combina la sofisticación de los eventos formales con sabores inolvidables. Perfecto para cócteles, recepciones y celebraciones especiales.</p><div className="order-last mt-6">
                 <ul role="list" className="-my-2 divide-y text-sm divide-gray-200 text-gray-700">
@@ -185,7 +185,7 @@ function HomePage() {
            
             <section className="flex flex-col overflow-hidden rounded-3xl p-6 shadow-lg shadow-gray-900/5 order-first color-rosa lg:order-none"><h3 className="flex items-center text-sm font-semibold text-white"><svg viewBox="0 0 40 40" aria-hidden="true" className="h-6 w-6 flex-none color-amarillo-fill"><path fillRule="evenodd" clipRule="evenodd" d="M20 40C8.954 40 0 31.046 0 20S8.954 0 20 0s20 8.954 20 20-8.954 20-20 20ZM4 20c0 7.264 5.163 13.321 12.02 14.704C17.642 35.03 19 33.657 19 32V8c0-1.657-1.357-3.031-2.98-2.704C9.162 6.68 4 12.736 4 20Z"></path></svg>
               <span className="ml-4">Sabores Premium</span></h3>
-              <p className="relative mt-5 flex text-3xl tracking-tight text-white"><span aria-hidden="false" className="transition duration-300">$12,500</span>
+              <p className="relative mt-5 flex text-3xl tracking-tight text-white"><span itemProp="price" aria-hidden="false" className="transition duration-300">$12,500</span>
                 </p>
               <p className="mt-3 text-sm text-gray-300">Un paquete vibrante y lleno de energía que fusiona lo elegante con lo divertido. Ideal para eventos que buscan una experiencia gastronómica de alta calidad, pero con un toque relajado.</p><div className="order-last mt-6"><ul role="list" className="-my-2 divide-y text-sm divide-gray-200 text-gray-300">
                 <li className="flex py-2">
@@ -274,7 +274,7 @@ function HomePage() {
         <div className=" rounded-3xl relative mx-auto max-w-5xl pt-16 sm:px-6">
           <div className="bg-slate-50 pt-px sm:rounded-3xl">
             <div className="relative mx-auto -mt-16 h-44 w-44 overflow-hidden  md:float-right md:h-64 md:w-64 md:[shape-outside:circle(40%)] lg:mr-20 lg:h-72 lg:w-72">
-              <img loading="lazy" decoding="async" data-nimg="1" className='absolute inset-0 h-26 w-72 object-cover' alt="" src={logo}  sizes="(min-width: 1024px) 18rem, (min-width: 768px) 16rem, 11rem"
+              <img itemProp="logo" loading="lazy" decoding="async" data-nimg="1" className='absolute inset-0 h-26 w-72 object-cover' alt="logo" src={logo}  sizes="(min-width: 1024px) 18rem, (min-width: 768px) 16rem, 11rem"
                />
                
                </div>
@@ -392,7 +392,7 @@ function HomePage() {
                       </div>
                     </div>
                     <div className="flex items-start mb-5 sm:col-span-2">
-                      <ReCAPTCHA required sitekey='6Lf-jigpAAAAAPNbDIaiNC3rKwVuPg7ngZYGTNWd' onChange={(val) => setCaptcha(val)}></ReCAPTCHA>
+                      <ReCAPTCHA required sitekey='6LeJ2jEpAAAAANKwsKGVaLM6W4tTfmySxbbuZ3VV' onChange={(val) => setCaptcha(val)}></ReCAPTCHA>
                     </div>
                   </div>
                   {
@@ -433,6 +433,7 @@ function HomePage() {
           </div>
         </div>
       </section>
+    </div>
     </div>
   )
 }

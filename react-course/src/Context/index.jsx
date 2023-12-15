@@ -106,7 +106,6 @@ export const ShoppingCartProvider = ({ children }) => {
   }
 
   const filterBy = (searchType, items, searchByTitle, searchByCategory) => {
-    //console.log('cat' + searchByTitle)
     if (searchType === 'BY_TITLE') {
       return filteredItemsByTitle(items, searchByTitle)
     }
@@ -122,7 +121,6 @@ export const ShoppingCartProvider = ({ children }) => {
   }
 
   useEffect(() => {
-    //console.log(searchByTitle, searchByCategory);
     if (searchByTitle && searchByCategory) setFilteredItems(filterBy('BY_TITLE_AND_CATEGORY', items, searchByTitle, searchByCategory))
     if (searchByTitle && !searchByCategory) setFilteredItems(filterBy('BY_TITLE', items, searchByTitle, searchByCategory))
     if (!searchByTitle && searchByCategory) setFilteredItems(filterBy('BY_CATEGORY', items, searchByTitle, searchByCategory))
@@ -173,9 +171,6 @@ export const ShoppingCartProvider = ({ children }) => {
   const [isActiveBotanas, setisActiveBotanas] = useState(false)
   const [isActiveTodo, setisActiveTodo] = useState(false)
 
-
-  const [phoneNumber, setPhoneNumber] = useState('');
-
   const [isKilo, setIsKilo] = useState(true)
   const [isMedioKilo, setIsMedioKilo] = useState(false)
   const [isCuartoKilo, setIsCuartoKilo] = useState(false)
@@ -189,7 +184,7 @@ export const ShoppingCartProvider = ({ children }) => {
   const [showEcomm, setShowEcomm] = useState(false);
 
 
-  //Envio de correo 
+  //Envio de correo y tel
   const form = useRef();
   const [respEmail,setRespEmail] = useState(false)
   const [errorEmail,setErrorEmail] = useState(false)
@@ -197,15 +192,13 @@ export const ShoppingCartProvider = ({ children }) => {
     e.preventDefault()
     emailjs.sendForm('', '', form.current, '')
     .then((result) => {
-      console.log(result.text);
       setRespEmail(true);
     }, (error) => {
-        console.log(error.text);
         setErrorEmail(true);
     });
 
   }
-
+  const [phoneNumber, setPhoneNumber] = useState('');
   const scrollTo=()=>{
     window.scrollTo(0, 0);
   }

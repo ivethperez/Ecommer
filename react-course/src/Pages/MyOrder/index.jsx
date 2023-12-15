@@ -12,7 +12,6 @@ function MyOrder() {
     index = order?.length - 1
   }
   const enviarPedido = () => {
-    console.log('order', order?.[index]?.products)
     let products = ''
     let medida = ''
     order?.[index]?.products.forEach(element => {
@@ -25,9 +24,10 @@ function MyOrder() {
 
       products = products + 'Producto: ' + element.title + ' ' + medida + ', Cantidad: ' + element.quantity + ', Precio: $' + element.price + ' || '
     });
-    window.open('https://wa.me/?phone=' + phoneNumber + '&text=' + encodeURIComponent('Hola envío la confirmación de mi pedido: ' + products + ' Total a pagar: $' + order?.[index]?.totalPrice + envío), '_blank');
+    window.open('https://wa.me/?phone=' + phoneNumber + '&text=' + encodeURIComponent('Hola envío la confirmación de mi pedido: ' + products + ' Total a pagar: $' + order?.[index]?.totalPrice + ' + envío'), '_blank');
     setTypeAlert('confirmacion')
     setShowAlert(true)
+    setShowEcomm(true)
   }
   window.scrollTo(0, 0);
   return (

@@ -1,44 +1,36 @@
 import { PlusIcon, CheckIcon, ShoppingBagIcon, MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/solid';
 import { useShopiContext } from '../../Context'
-
 import Button from 'react-bootstrap/Button';
-import { useState } from 'react';
 const Card = ({ data }) => {
-
-  console.log(data)
   const { increment, setOpenModal, setProductShow, cartProducts
-    , setOpenModalOrder,price,cartProduct,setIsKilo,setIsMedioKilo,setIsCuartoKilo, isMedioKilo,isCuartoKilo,isKilo } = useShopiContext();
+    , setOpenModalOrder, price, cartProduct } = useShopiContext();
   const showproduct = (productDetail) => {
     setOpenModal(state => !state);
     setProductShow(productDetail);
   }
   const addProductsToCart = (productData, e) => {
     setOpenModalOrder(true);
-   // console.log(''+isKilo,isMedioKilo,isCuartoKilo)
     increment(e, productData);
   }
 
-
-const showPrice = (prod,unidad) =>{
-  if(unidad == 'kilo'){
-    prod.isKilo=true
-    prod.isMedio=false
-    prod.isCuarto = false
+  const showPrice = (prod, unidad) => {
+    if (unidad == 'kilo') {
+      prod.isKilo = true
+      prod.isMedio = false
+      prod.isCuarto = false
+    }
+    if (unidad == 'medioKilo') {
+      prod.isMedio = true
+      prod.isCuarto = false
+      prod.isKilo = false
+    }
+    if (unidad == 'cuarto') {
+      prod.isMedio = false
+      prod.isCuarto = true
+      prod.isKilo = false
+    }
+    price(prod)
   }
-  if(unidad == 'medioKilo'){
-    prod.isMedio=true
-    prod.isCuarto=false
-    prod.isKilo=false
-  }
-  if(unidad == 'cuarto'){
-    prod.isMedio=false
-    prod.isCuarto=true
-    prod.isKilo=false
-  }
-  price(prod)
-  
-}
-console.log('Product ' ,cartProduct.id,data.id)
   return (
     <li>
       <ul role="list" className="flex flex-col w-full">
@@ -60,7 +52,6 @@ console.log('Product ' ,cartProduct.id,data.id)
                   }}>
                   <CheckIcon className='h-5 w-5 text-white' />
                 </button>
-
               ) : (
                 <div className="">
                 </div>
@@ -73,133 +64,126 @@ console.log('Product ' ,cartProduct.id,data.id)
 
               {cartProduct.id == data.id ? (
                 <div>
-                <div className="font-display text-base text-slate-900">
-                <div className="">
-                  <div className="mx-auto mt-3">
-                    <div className="flex flex-wrap gap-3">
-                      <label className="cursor-pointer" onClick={() => showPrice(cartProduct,'kilo')}>
-                        <input type="radio" className="peer sr-only" name="pricing" />
-                        <div className={`${cartProduct.isKilo ? 'text-sky-600 ring-blue-400 peer-checked:ring-offset-2' : 'peer-checked:text-gray-500 peer-checked:ring-gray-500 peer-checked:ring-offset-2'} rounded-md bg-white border text-gray-600 ring-2 ring-transparent transition-all hover:shadow `}>
-                          <div className="flex flex-col gap-1">
-                            <div className="flex items-center justify-between">
-                              <p className="text-sm font-semibold uppercase text-gray-500">1 kg</p>
+                  <div className="font-display text-base text-slate-900">
+                    <div className="">
+                      <div className="mx-auto mt-3">
+                        <div className="flex flex-wrap gap-3">
+                          <label className="cursor-pointer" onClick={() => showPrice(cartProduct, 'kilo')}>
+                            <input type="radio" className="peer sr-only" name="pricing" />
+                            <div className={`${cartProduct.isKilo ? 'text-sky-600 ring-blue-400 peer-checked:ring-offset-2' : 'peer-checked:text-gray-500 peer-checked:ring-gray-500 peer-checked:ring-offset-2'} rounded-md bg-white border text-gray-600 ring-2 ring-transparent transition-all hover:shadow `}>
+                              <div className="flex flex-col gap-1">
+                                <div className="flex items-center justify-between">
+                                  <p className="text-sm font-semibold uppercase text-gray-500">1 kg</p>
+                                </div>
+                              </div>
                             </div>
-                          </div>
-                        </div>
-                      </label>
-                      <label className="cursor-pointer" onClick={() => showPrice(cartProduct,'medioKilo')}>
-                        <input type="radio" className="peer sr-only" name="pricing" />
-                        <div className={`${cartProduct.isMedio ? 'text-sky-600 ring-blue-400 peer-checked:ring-offset-2' : 'peer-checked:text-gray-500 peer-checked:ring-gray-500 peer-checked:ring-offset-2'} rounded-md bg-white text-gray-600  border ring-2 ring-transparent transition-all hover:shadow `}>
-                          <div className="flex flex-col gap-1">
-                            <div className="flex items-center justify-between">
-                              <p className="text-sm font-semibold uppercase text-gray-500">1/2 kg</p>
+                          </label>
+                          <label className="cursor-pointer" onClick={() => showPrice(cartProduct, 'medioKilo')}>
+                            <input type="radio" className="peer sr-only" name="pricing" />
+                            <div className={`${cartProduct.isMedio ? 'text-sky-600 ring-blue-400 peer-checked:ring-offset-2' : 'peer-checked:text-gray-500 peer-checked:ring-gray-500 peer-checked:ring-offset-2'} rounded-md bg-white text-gray-600  border ring-2 ring-transparent transition-all hover:shadow `}>
+                              <div className="flex flex-col gap-1">
+                                <div className="flex items-center justify-between">
+                                  <p className="text-sm font-semibold uppercase text-gray-500">1/2 kg</p>
 
+                                </div>
+
+                              </div>
                             </div>
+                          </label>
+                          <label className="cursor-pointer" onClick={() => showPrice(cartProduct, 'cuarto')}>
+                            <input type="radio" className="peer sr-only" name="pricing" />
+                            <div className={`${cartProduct.isCuarto ? 'text-sky-600 ring-blue-400 peer-checked:ring-offset-2' : 'peer-checked:text-gray-500 peer-checked:ring-gray-500 peer-checked:ring-offset-2'}rounded-md bg-white text-gray-600 ring-2 border ring-transparent transition-all hover:shadow `}>
+                              <div className="flex flex-col gap-1">
+                                <div className="flex items-center justify-between">
+                                  <p className="text-sm font-semibold uppercase text-gray-500">1/4 kg</p>
 
-                          </div>
-                        </div>
-                      </label>
-                      <label className="cursor-pointer" onClick={() => showPrice(cartProduct,'cuarto')}>
-                        <input type="radio" className="peer sr-only" name="pricing" />
-                        <div className={`${cartProduct.isCuarto ? 'text-sky-600 ring-blue-400 peer-checked:ring-offset-2' : 'peer-checked:text-gray-500 peer-checked:ring-gray-500 peer-checked:ring-offset-2'}rounded-md bg-white text-gray-600 ring-2 border ring-transparent transition-all hover:shadow `}>
-                          <div className="flex flex-col gap-1">
-                            <div className="flex items-center justify-between">
-                              <p className="text-sm font-semibold uppercase text-gray-500">1/4 kg</p>
+                                </div>
 
+                              </div>
                             </div>
-
-                          </div>
+                          </label>
                         </div>
-                      </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className='flex justify-between items-center mt-3'>
+                    <div className="mt-1 text-sm text-slate-500">
+                      $cart{cartProduct.price}</div>
+
+                    <div className="overflow-hidden rounded-full bg-slate-50">
+                      <Button variant="success" size="lg" onClick={(e) => {
+                        addProductsToCart(cartProduct, e)
+                      }}>
+                        <ShoppingBagIcon className='h-6 w-6'></ShoppingBagIcon></Button>
+                    </div>
+                  </div>
+
+                </div>
+
+              ) : (
+                <div>
+                  <div className="font-display text-base text-slate-900">
+                    <div className="">
+                      <div className="mx-auto mt-3">
+                        <div className="flex flex-wrap gap-3">
+                          <label className="cursor-pointer" onClick={() => showPrice(data, 'kilo')}>
+                            <input type="radio" className="peer sr-only" name="pricing" />
+                            <div className={`${data.isKilo ? 'text-sky-600 ring-blue-400 peer-checked:ring-offset-2' : 'peer-checked:text-gray-500 peer-checked:ring-gray-500 peer-checked:ring-offset-2'} rounded-md bg-white border text-gray-600 ring-2 ring-transparent transition-all hover:shadow `}>
+                              <div className="flex flex-col gap-1">
+                                <div className="flex items-center justify-between">
+                                  <p className="text-sm font-semibold uppercase text-gray-500">1 kg</p>
+                                </div>
+                              </div>
+                            </div>
+                          </label>
+                          <label className="cursor-pointer" onClick={() => showPrice(data, 'medioKilo')}>
+                            <input type="radio" className="peer sr-only" name="pricing" />
+                            <div className={`${data.isMedio ? 'text-sky-600 ring-blue-400 peer-checked:ring-offset-2' : 'peer-checked:text-gray-500 peer-checked:ring-gray-500 peer-checked:ring-offset-2'} rounded-md bg-white text-gray-600  border ring-2 ring-transparent transition-all hover:shadow `}>
+                              <div className="flex flex-col gap-1">
+                                <div className="flex items-center justify-between">
+                                  <p className="text-sm font-semibold uppercase text-gray-500">1/2 kg</p>
+
+                                </div>
+
+                              </div>
+                            </div>
+                          </label>
+                          <label className="cursor-pointer" onClick={() => showPrice(data, 'cuarto')}>
+                            <input type="radio" className="peer sr-only" name="pricing" />
+                            <div className={`${data.isCuarto ? 'text-sky-600 ring-blue-400 peer-checked:ring-offset-2' : 'peer-checked:text-gray-500 peer-checked:ring-gray-500 peer-checked:ring-offset-2'}rounded-md bg-white text-gray-600 ring-2 border ring-transparent transition-all hover:shadow `}>
+                              <div className="flex flex-col gap-1">
+                                <div className="flex items-center justify-between">
+                                  <p className="text-sm font-semibold uppercase text-gray-500">1/4 kg</p>
+
+                                </div>
+
+                              </div>
+                            </div>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div className='flex justify-between items-center mt-3'>
+                    <div className="mt-1 text-sm text-slate-500">
+                      $dat{data.price == null ? data.priceKilo : data.price}</div>
+
+                    <div className="overflow-hidden rounded-full bg-slate-50">
+                      <Button variant="success" size="lg" onClick={(e) => {
+                        addProductsToCart(data, e)
+                      }}>
+                        <ShoppingBagIcon className='h-6 w-6'></ShoppingBagIcon></Button>
                     </div>
                   </div>
                 </div>
-              </div>
+              )}
 
-              <div className='flex justify-between items-center mt-3'>
-<div className="mt-1 text-sm text-slate-500">
-  $cart{cartProduct.price}</div>
-
-<div className="overflow-hidden rounded-full bg-slate-50">
-  <Button variant="success" size="lg" onClick={(e) => {
-    addProductsToCart(cartProduct, e)
-  }}>
-    <ShoppingBagIcon className='h-6 w-6'></ShoppingBagIcon></Button>
-</div>
-</div>
-
-              </div>
-
-                ):(
-                  <div>
-              <div className="font-display text-base text-slate-900">
-                <div className="">
-                  <div className="mx-auto mt-3">
-                    <div className="flex flex-wrap gap-3">
-                      <label className="cursor-pointer" onClick={() => showPrice(data,'kilo')}>
-                        <input type="radio" className="peer sr-only" name="pricing" />
-                        <div className={`${data.isKilo ? 'text-sky-600 ring-blue-400 peer-checked:ring-offset-2' : 'peer-checked:text-gray-500 peer-checked:ring-gray-500 peer-checked:ring-offset-2'} rounded-md bg-white border text-gray-600 ring-2 ring-transparent transition-all hover:shadow `}>
-                          <div className="flex flex-col gap-1">
-                            <div className="flex items-center justify-between">
-                              <p className="text-sm font-semibold uppercase text-gray-500">1 kg</p>
-                            </div>
-                          </div>
-                        </div>
-                      </label>
-                      <label className="cursor-pointer" onClick={() => showPrice(data,'medioKilo')}>
-                        <input type="radio" className="peer sr-only" name="pricing" />
-                        <div className={`${data.isMedio ? 'text-sky-600 ring-blue-400 peer-checked:ring-offset-2' : 'peer-checked:text-gray-500 peer-checked:ring-gray-500 peer-checked:ring-offset-2'} rounded-md bg-white text-gray-600  border ring-2 ring-transparent transition-all hover:shadow `}>
-                          <div className="flex flex-col gap-1">
-                            <div className="flex items-center justify-between">
-                              <p className="text-sm font-semibold uppercase text-gray-500">1/2 kg</p>
-
-                            </div>
-
-                          </div>
-                        </div>
-                      </label>
-                      <label className="cursor-pointer" onClick={() => showPrice(data,'cuarto')}>
-                        <input type="radio" className="peer sr-only" name="pricing" />
-                        <div className={`${data.isCuarto ? 'text-sky-600 ring-blue-400 peer-checked:ring-offset-2' : 'peer-checked:text-gray-500 peer-checked:ring-gray-500 peer-checked:ring-offset-2'}rounded-md bg-white text-gray-600 ring-2 border ring-transparent transition-all hover:shadow `}>
-                          <div className="flex flex-col gap-1">
-                            <div className="flex items-center justify-between">
-                              <p className="text-sm font-semibold uppercase text-gray-500">1/4 kg</p>
-
-                            </div>
-
-                          </div>
-                        </div>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-<div className='flex justify-between items-center mt-3'>
-<div className="mt-1 text-sm text-slate-500">
-  $dat{data.price == null ? data.priceKilo: data.price}</div>
-
-<div className="overflow-hidden rounded-full bg-slate-50">
-  <Button variant="success" size="lg" onClick={(e) => {
-    addProductsToCart(data, e)
-  }}>
-    <ShoppingBagIcon className='h-6 w-6'></ShoppingBagIcon></Button>
-</div>
-</div>
-</div>
-                )}
-
-           
             </figcaption>
-
-
-            
           </figure>
         </li></ul></li>
-
-
-
   )
 }
 export default Card

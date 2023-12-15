@@ -4,11 +4,7 @@ import { ShoppingBagIcon } from '@heroicons/react/24/solid';
 import Button from 'react-bootstrap/Button';
 import Ecommer from '../../Pages/Ecommer';
 const addCart =({ data }) =>{
-
     const { cartProduct } = useShopiContext();
-    console.log('entro',data);
-    console.log('setItems', cartProduct);
-
 return(
 
 <div className='flex justify-between items-center mt-3'>

@@ -12,7 +12,6 @@ import Ecommer from '../Pages/Ecommer'
 
 export const AppRoutes = () =>{
     const { signOut } = useShopiContext();
-    //console.log(signOut)
     return(
         useRoutes([ 
             { path:'/', element:<Home/> },

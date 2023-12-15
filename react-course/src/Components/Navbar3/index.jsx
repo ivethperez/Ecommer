@@ -29,7 +29,6 @@ const Navbarr = () => {
         setShowEcomm(true)
     }
     const renderView = () => {
-       // console.log(hasUserAnAccount, isUserSignOut)
         if (hasUserAnAccount && !isUserSignOut) {
             return (
 
