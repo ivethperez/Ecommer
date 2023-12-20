@@ -28,7 +28,7 @@ export const ShoppingCartProvider = ({ children }) => {
   useEffect(() => {
     const currentUrl = window.location.href;
     const isEcommUrl = currentUrl.includes('/ecommer');
-    fetch('http://localhost:3000/api/products/')
+    fetch('https://api-product-5iv7.onrender.com/products')
     .then(response => response.json())
     .then(data => setItems(data))
 
