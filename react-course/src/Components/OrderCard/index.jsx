@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useShopiContext } from '../../Context'
 import { TrashIcon, MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/solid'
 
 const OrderCard = props => {
-    const { id, title, imageUrl, price, quantity, handleDelete } = props
+    const { id, title, imageUrl, price, quantity, handleDelete, priceKilo,priceMedio,priceCuarto } = props
     const { increentToCheckout, decrementToCheckout } = useShopiContext();
     const increent = () => {
         increentToCheckout(id)
@@ -11,8 +11,19 @@ const OrderCard = props => {
     const decrement = () => {
         decrementToCheckout(id)
     }
+    const med =()=>{        
+        if (price == priceKilo)
+            return '1 kg'
+        else if (price == priceMedio)
+            return '1/2 kg'
+        else if (price == priceCuarto)
+            return '1/4 kg'    
+    }
+
     return (
-        <div className="flex justify-between items-center mb-2">
+        <div>
+
+      <div className="flex justify-between items-center mb-2">
             <div className='flex items-center gap-2'>
                 <figure className='w-20 h-20'>
                     <img className='w-full h-full rounded-lg object-cover' src={imageUrl} alt={title} />
@@ -39,8 +50,9 @@ const OrderCard = props => {
                 </div>
             </div>
 
-            <div className='flex items-center gap-2'>
-                <p className='text-lg items-center gap-2'>${price * quantity}</p>
+            <div className='flex items-center gap-0'>
+            <p className='text-md items-center pl-2 pr-2 mb-2'>{med()}</p>
+                <p className='text-lg items-center gap-1 pr-1 mb-2'>${price * quantity}</p>
                 {
                     handleDelete &&
                     <TrashIcon
@@ -49,6 +61,9 @@ const OrderCard = props => {
                 }
             </div>
         </div>
+
+        </div>
+ 
     )
 }
 export default OrderCard

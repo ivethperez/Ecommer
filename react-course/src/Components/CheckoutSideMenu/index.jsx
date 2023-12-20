@@ -3,26 +3,28 @@ import { useShopiContext } from '../../Context'
 import { XMarkIcon } from '@heroicons/react/24/solid'
 import { Link } from 'react-router-dom'
 import OrderCard from '../../Components/OrderCard'
-import {totalPrice,totalProducts} from '../../utils'
+import { totalPrice, totalProducts } from '../../utils'
+import '../../Styles/styles.css'
 
 const CheckoutSideMenu = () => {
-  const { setOpenModalOrder, openModalOrder, cartProducts,setCartProducts
-  ,setOrder,order,setCount,count,setSearchByTitle } = useShopiContext();
+  const { setOpenModalOrder, openModalOrder, cartProducts, setCartProducts
+    , setOrder, order, setCount, count, setSearchByTitle } = useShopiContext();
+
   const onCancel = () => { setOpenModalOrder(false) };
-  const handleDelete =(id) =>{
+  const handleDelete = (id) => {
     const product = cartProducts.filter(product => product.id == id)
-    setCount(count -product[0].quantity)
+    setCount(count - product[0].quantity)
     setCartProducts(cartProducts.filter(product => product.id != id))
   }
-  const handleCkeckout =() =>{
-    const orderToAdd={
-      date:'',
+  const handleCkeckout = async () => {
+    const orderToAdd = {
+      date: '',
       products: cartProducts,
       totalProducts: totalProducts(cartProducts),
       totalPrice: totalPrice(cartProducts)
     }
 
-    setOrder([...order,orderToAdd])
+    setOrder([...order, orderToAdd])
     setCartProducts([])
     setCount(0)
     onCancel()
@@ -32,13 +34,33 @@ const CheckoutSideMenu = () => {
     <aside
       className={`${openModalOrder ? 'flex' : 'hidden'} checkout-side-menu flex-col fixed right-0 border border-black rounded-lg bg-white`}>
       <div className='flex justify-between items-center p-6'>
-        <h2 className='font-medium text-xl'>Mis odenes</h2>
+        <h2 className='font-medium text-xl'>Mis ordenes</h2>
         <button
           onClick={onCancel}>
           <XMarkIcon className='h-6 w-6'></XMarkIcon>
         </button>
       </div>
-      <div className='px-6 overflow-y-auto flex-1'>
+
+      <div>
+        {
+          order.length > 0 ? (
+            <div className='relative flex gap-0.5 items-center'>
+
+              <Link to='/my-orders' onClick={() => handleCkeckout()} className="px-6 overflow-y-auto flex-1 decoration-transparent inline-flex ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">
+                Órdenes pendientes
+              </Link>
+              <div className='absolute bottom-3.5 left-3.5 flex justify-center items-center
+          rounded-full color-rosa w-4 h-4 text-xs text-white'>
+                {order.length}
+              </div>
+            </div>
+          ) :
+            <div></div>
+        }
+
+      </div>
+
+      <div className='px-6 overflow-y-auto flex-1 mt-3'>
         {
           cartProducts.map(product => (
             <OrderCard
@@ -49,6 +71,9 @@ const CheckoutSideMenu = () => {
               quantity={product.quantity}
               handleDelete={handleDelete}
               id={product.id}
+              priceKilo={product.priceKilo}
+              priceMedio={product.priceMedio}
+              priceCuarto={product.priceCuarto}
             />
           ))
         }
@@ -58,12 +83,13 @@ const CheckoutSideMenu = () => {
           <span className='font-light'>Total:</span>
           <span className='font-medium text-2xl'>${totalPrice(cartProducts)}</span>
         </p>
+    
         <Link to='/my-orders/last'>
-        <button className='w-full bg-black py-3 text-white rounded-lg' onClick={() => handleCkeckout()}>
-          Ordenar
-        </button>
+          <button disabled={cartProducts.length >0 ? false: true} className='w-full color-btn-confirmar py-3 text-white rounded-lg' onClick={() => handleCkeckout()}>
+            Ordenar
+          </button>
         </Link>
-       
+
       </div>
     </aside>
   )

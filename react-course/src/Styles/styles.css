@@ -1,0 +1,34 @@
+.color-btn-confirmar{
+    --tw-bg-opacity: 1;
+    background-color: rgb(147 197 114 / var(--tw-bg-opacity));
+}
+.color-verde-text{
+    --tw-bg-opacity: 1;
+    color: rgb(147 197 114 / var(--tw-bg-opacity)); 
+}
+.color-rosa-text{
+    --tw-bg-opacity: 1;
+    color: rgb(222 49 99 / var(--tw-bg-opacity));
+}
+.color-rosa{
+    --tw-bg-opacity: 1;
+    background-color: rgb(222 49 99 / var(--tw-bg-opacity));
+}
+.stroke-rosa {
+    stroke: #DE3163;
+}
+.color-amarillo{
+    --tw-bg-opacity: 1;
+    background-color: rgb(255 219 88 / var(--tw-bg-opacity)); 
+}
+.color-amarillo-fill{
+    fill: #FFDB58;
+}
+.color-amarillo-text{
+    --tw-bg-opacity: 1;
+    color: rgb(255 219 88 / var(--tw-bg-opacity)); 
+}
+.color-marron{
+    --tw-bg-opacity: 1;
+    background-color: rgb(255 253 252 / var(--tw-bg-opacity)); 
+}
