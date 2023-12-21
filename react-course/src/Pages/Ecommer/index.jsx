@@ -46,7 +46,7 @@ function Ecommer() {
         <Carousel.Item className='w-full h-32 relative group transform '>
           <img className="justify-between h-full w-full bg-cover bg-no-repeat object-cover" src='https://i.pinimg.com/564x/f9/4c/5b/f94c5be6cac3e563920a09b58debc505.jpg' alt='img'></img>
           <Carousel.Caption>
-            <h3 >Envios solo en el estado de Puebla</h3>
+            <h3 >Envíos solo en el estado de Puebla</h3>
             <p ></p>
           </Carousel.Caption>
         </Carousel.Item>
@@ -190,7 +190,7 @@ function Ecommer() {
           </div>
         </div>
           
-          <div className="lg:col-span-4 sm:col-span-2 mt-4">
+          <div className="lg:col-span-4 sm:col-span-2 mt-4 scroll-m-40">
             <ul role="list" className="grid grid-cols-1 ui-not-focus-visible:outline-none sm:grid-cols-2 md:grid-cols-4">
               {
                 renderView()

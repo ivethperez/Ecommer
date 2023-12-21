@@ -90,17 +90,18 @@ function HomePage() {
           <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 items-start gap-x-8 gap-y-10 sm:mt-20 lg:max-w-none lg:grid-cols-3">
             <section className="flex flex-col overflow-hidden rounded-3xl p-6 shadow-lg shadow-gray-900/5 bg-white">
               <h3 className="flex items-center text-sm font-semibold text-gray-900"><svg viewBox="0 0 40 40" aria-hidden="true" className="h-6 w-6 flex-none color-amarillo-fill">
-                <path fillRule="evenodd" clipRule="evenodd" d="M20 40C8.954 40 0 31.046 0 20S8.954 0 20 0s20 8.954 20 20-8.954 20-20 20ZM4 20c0 7.264 5.163 13.321 12.02 14.704C17.642 35.03 19 33.657 19 32V8c0-1.657-1.357-3.031-2.98-2.704C9.162 6.68 4 12.736 4 20Z"></path></svg><span className="ml-4">
+                <path fillRule="evenodd" clipRule="evenodd" d="M20 40C8.954 40 0 31.046 0 20S8.954 0 20 0s20 8.954 20 20-8.954 20-20 20ZM4 20c0 7.264 5.163 13.321 12.02 14.704C17.642 35.03 19 33.657 19 32V8c0-1.657-1.357-3.031-2.98-2.704C9.162 6.68 4 12.736 4 20Z"></path></svg>
+                <span className="ml-4">
                 Sabor Casual Chic</span></h3><p itemProp="price" className="relative mt-5 flex text-3xl tracking-tight text-gray-900">$8,500</p><p className="mt-3 text-sm text-gray-700">
                 Un paquete versátil y delicioso que ofrece una mezcla única de botanas para eventos casuales. Este paquete aporta un toque de estilo y sabor.</p><div className="order-last mt-6"><ul role="list" className="-my-2 divide-y text-sm divide-gray-200 text-gray-700">
                   <li className="flex py-2"><svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none color-verde-text"><path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
-            <span className="ml-4">Cacahuate Japones o Hot Nuts</span></li>
+            <span className="ml-4">Cacahuate japonés o Hot Nuts</span></li>
 
             <li className="flex py-2"><svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none color-verde-text"><path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
-            <span className="ml-4">Enchilado Normal</span></li>
+            <span className="ml-4">Enchilado normal</span></li>
 
             <li className="flex py-2"><svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none color-verde-text"><path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
-            <span className="ml-4">Botana Mexicana</span></li>
+            <span className="ml-4">Botana mexicana</span></li>
 
             <li className="flex py-2"><svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none color-verde-text"><path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
             <span className="ml-4">Garbanzo o cacahuate abanero</span></li>
@@ -109,10 +110,10 @@ function HomePage() {
             <span className="ml-4">Chocoreta</span></li>
 
             <li className="flex py-2"><svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none color-verde-text"><path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
-            <span className="ml-4">Bombon con chocolate</span></li>
+            <span className="ml-4">Bombón con chocolate</span></li>
 
             <li className="flex py-2"><svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none color-verde-text"><path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
-            <span className="ml-4">Hojuela o Galleta con chocolate </span></li>
+            <span className="ml-4">Galleta u hojuela con chocolate </span></li>
 
             <li className="flex py-2"><svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none color-verde-text"><path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
             <span className="ml-4">Huevito</span></li>
@@ -127,7 +128,7 @@ function HomePage() {
             <span className="ml-4">Gomita pandita</span></li>
 
             <li className="flex py-2"><svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none color-verde-text"><path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
-            <span className="ml-4">Gomita Mangomita</span></li>
+            <span className="ml-4">Gomita mango</span></li>
 
             
             
@@ -147,23 +148,23 @@ function HomePage() {
                   <li className="flex py-2">
                     <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none color-verde-text"><path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor">
                     </path><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
-                    <span className="ml-4">Cacahuate Japones o Hot Nuts</span></li>
+                    <span className="ml-4">Cacahuate japonés o Hot Nuts</span></li>
                   <li className="flex py-2"><svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none color-verde-text">
                     <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor">
                     </path><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
-                    <span className="ml-4">Mexicana Oaxaqueña</span></li>
+                    <span className="ml-4">Mexicana oaxaqueña</span></li>
                   <li className="flex py-2">
                     <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none color-verde-text"><path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path>
                       <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
                       <span className="ml-4">Cacahuate habanero</span></li>
                       <li className="flex py-2"><svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none color-verde-text">
                         <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
-                        <span className="ml-4">Bombon con chocolate</span></li>
+                        <span className="ml-4">Bombón con chocolate</span></li>
                         <li className="flex py-2"><svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none color-verde-text"><path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
-                        <span className="ml-4">Pasita o Galleta Con Chocolate</span></li>
+                        <span className="ml-4">Pasita o galleta con chocolate</span></li>
                         
                         <li className="flex py-2"><svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none color-verde-text"><path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
-            <span className="ml-4">huevito</span></li>
+            <span className="ml-4">Huevito</span></li>
 
             <li className="flex py-2"><svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none color-verde-text"><path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
             <span className="ml-4">Almendra con chocolate</span></li>
@@ -172,11 +173,11 @@ function HomePage() {
             <span className="ml-4">Chocoreta</span></li>
 
             <li className="flex py-2"><svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none color-verde-text"><path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
-            <span className="ml-4">Gomita Aro Durazno o Aro Manzana</span></li>
+            <span className="ml-4">Gomita aro de durazno o aro de manzana</span></li>
 
            
             <li className="flex py-2"><svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none color-verde-text"><path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
-            <span className="ml-4">Gomita Mangomita</span></li>
+            <span className="ml-4">Gomita mango</span></li>
 
                         </ul></div>
                         <button onClick={()=>{contratar('Paquete: Elegancia Gourmet')}} className="inline-flex justify-center rounded-lg py-2 px-3 text-sm font-semibold outline-2 outline-offset-2 transition-colors color-rosa text-white hover:color-rosa active:color-rosa active:text-white/80 mt-6" aria-label="Get started with the Investor plan for [object Object]" href="/register">
@@ -192,14 +193,14 @@ function HomePage() {
                   <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none text-white">
                     <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path>
                     <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    </circle></svg><span className="ml-4">Cacahuate Japones o Hot Nuts</span></li>
+                    </circle></svg><span className="ml-4">Cacahuate japonés o Hot Nuts</span></li>
                 <li className="flex py-2">
                   <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none text-white">
                     <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor">
                     </path>
                     <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                     </circle></svg>
-                  <span className="ml-4">Botana Fina Con Sal o Oaxaqueña</span>
+                  <span className="ml-4">Botana fina con sal o oaxaqueña</span>
                 </li>
                 <li className="flex py-2">
                   <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none text-white">
@@ -207,35 +208,35 @@ function HomePage() {
                     </path>
                     <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle>
                   </svg>
-                  <span className="ml-4">Pistache Normal o Enchilado</span></li>
+                  <span className="ml-4">Pistache normal o enchilado</span></li>
                   <li className="flex py-2">
                   <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none text-white">
                     <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path>
                     <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
-                  <span className="ml-4">Pepita Limpia</span></li>
+                  <span className="ml-4">Pepita limpia</span></li>
                 <li className="flex py-2">
                   <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none text-white">
                     <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor">
 
                     </path>
                     <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
-                  <span className="ml-4">Almedra Con Chocolate</span></li>
+                  <span className="ml-4">Almedra con chocolate</span></li>
                 <li className="flex py-2">
                   <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none text-white">
                     <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor">
                     </path>
                     <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
-                  <span className="ml-4">Bombon con Chocolate</span></li>
+                  <span className="ml-4">Bombón con chocolate</span></li>
                 <li className="flex py-2">
                   <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none text-white">
                     <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path>
                     <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
-                  <span className="ml-4">Nuez Con Chocolate</span></li>
+                  <span className="ml-4">Nuez con chocolate</span></li>
                   <li className="flex py-2">
                   <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none text-white">
                     <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path>
                     <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
-                  <span className="ml-4">Café Con Chocolate</span></li>
+                  <span className="ml-4">Café con chocolate</span></li>
                   <li className="flex py-2">
                   <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none text-white">
                     <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path>
@@ -250,12 +251,12 @@ function HomePage() {
                   <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none text-white">
                     <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path>
                     <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
-                  <span className="ml-4">Gomita Mangomita</span></li>
+                  <span className="ml-4">Gomita Mango</span></li>
                   <li className="flex py-2">
                   <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none text-white">
                     <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path>
                     <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></circle></svg>
-                  <span className="ml-4">Gomita Aro Durazno o Aro Manzana</span></li>
+                  <span className="ml-4">Gomita aro de durazno o aro de manzana</span></li>
                   </ul>
               </div>
               <button onClick={()=>{contratar('Paquete: Sabores Premium')}} className="inline-flex justify-center rounded-lg py-2 px-3 text-sm font-semibold outline-2 outline-offset-2 transition-colors relative overflow-hidden color-btn-confirmar text-white before:absolute before:inset-0 active:before:bg-transparent hover:before:bg-white/10 active:bg-cyan-600 active:text-white/80 before:transition-colors mt-6" aria-label="Get started with the VIP plan for [object Object]" href="/register">
@@ -417,7 +418,7 @@ function HomePage() {
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className=" stroke-white w-5 h-5 fill-red-500">
 <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
-                          ¡Ocurrio un error, por favor intentalo mas tarde!</div></div></div>):(
+                          ¡Ocurrio un error, por favor intentalo más tarde!</div></div></div>):(
                              <div></div>
                           )
                   }

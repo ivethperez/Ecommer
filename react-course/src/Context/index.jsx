@@ -190,6 +190,7 @@ export const ShoppingCartProvider = ({ children }) => {
   const [errorEmail,setErrorEmail] = useState(false)
   const sendEmail = async(e) =>{
     e.preventDefault()
+    //'YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form.current, 'YOUR_PUBLIC_KEY'
     emailjs.sendForm('', '', form.current, '')
     .then((result) => {
       setRespEmail(true);
