@@ -26,15 +26,23 @@ export const ShoppingCartProvider = ({ children }) => {
 
   
   useEffect(() => {
-    const currentUrl = window.location.href;
-    const isEcommUrl = currentUrl.includes('/ecommer');
-    fetch('https://api-product-5iv7.onrender.com/products')
-    .then(response => response.json())
-    .then(data => setItems(data))
-
-    if (isEcommUrl) {
-      setShowEcomm(true)
+    try{
+      const currentUrl = window.location.href;
+      const isEcommUrl = currentUrl.includes('/ecommer');
+       fetch('https://products.snacksleier.com/products',{
+        mode:'cors'
+       })
+      .then(response => response.json())
+      .then(data => setItems(data))
+  
+      if (isEcommUrl) {
+        setShowEcomm(true)
+      }
     }
+    catch(error){
+console.log('error aPI' +error)
+    }
+   
   }, [])
 
 
