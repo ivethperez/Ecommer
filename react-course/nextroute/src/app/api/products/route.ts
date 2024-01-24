@@ -6,7 +6,7 @@ export const GET = async () =>
     await connectDB()
     try{
         const result = await ProductsModel.find({})
-        return (NextResponse.json({products:result},{status:200}))
+        return (Response.json({products:result},{status:200}))
     }
     catch(error){
         return NextResponse.json({data:null},{status:500})
