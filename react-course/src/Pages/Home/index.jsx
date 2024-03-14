@@ -30,7 +30,7 @@ function HomePage() {
 
   return (
     <div className='w-full '>
-    <div itemScope it="https://schema.org/Invoice">   
+    <div itemScope itemtype="https://schema.org/Invoice">   
       <div className="sm:px-8 mt-9"><div className="mx-auto w-full max-w-7xl lg:px-8">
         <div className="relative px-4 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-2xl lg:max-w-5xl">
@@ -393,7 +393,7 @@ function HomePage() {
                       </div>
                     </div>
                     <div className="flex items-start mb-5 sm:col-span-2">
-                      <ReCAPTCHA required sitekey='6LeJ2jEpAAAAANKwsKGVaLM6W4tTfmySxbbuZ3VV' onChange={(val) => setCaptcha(val)}></ReCAPTCHA>
+                      <ReCAPTCHA required sitekey='' onChange={(val) => setCaptcha(val)}></ReCAPTCHA>
                     </div>
                   </div>
                   {
