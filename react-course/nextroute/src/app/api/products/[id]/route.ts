@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from '@/lib/db'
-import { ProductsModel } from "@/models/Products";
+import { ProductsModel } from "@/src/models/Products";
 export const GET = async ( request: Request, { params }: { params: { id: number } }) => {
 
   await connectDB()
