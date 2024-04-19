@@ -1,0 +1,754 @@
+use('DB_Ecommer')
+
+db.products.drop()
+db.products.insertMany([
+    {
+        _id: 1,
+        title: "Ciruela Pasa",
+        description: "Ciruela Pasa",
+        images: [
+          "https://i.pinimg.com/564x/1b/d4/9e/1bd49e953b37dc29c69fc2e32870c748.jpg"
+        ],
+        priceKilo: 230,
+        priceMedio: 142,
+        priceCuarto: 97,
+          isKilo:true,
+          isMedio:false,
+          isCuarto:false,
+          price:null,
+        category: {
+          _id: 1,
+          name: "todos",
+          image: "https://images.pexels.com/photos/209345/pexels-photo-209345.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+          creationAt: "2023-09-07T13:04:32.000Z",
+          updatedAt: "2023-09-07T13:04:32.000Z"
+      }
+      },
+      {
+        _id: 2,
+       title: "Fruta Seca",
+        description: "Fruta Seca",
+        images: [
+          "https://i.pinimg.com/564x/f3/d2/0f/f3d20f47693ed50d1fdc4cfb3b438196.jpg"
+        ],
+        priceKilo: 171,
+        priceMedio: 111,
+        priceCuarto: 81,
+           isKilo:true,
+          isMedio:false,
+          isCuarto:false,
+           price:null,
+        category: {
+          _id: 34,
+          name: "todos",
+          image: "https://images.pexels.com/photos/209345/pexels-photo-209345.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+         creationAt: "2023-09-07T13:04:32.000Z",
+          updatedAt: "2023-09-07T13:04:32.000Z"
+      }
+      },
+      {
+        _id: 3,
+       title: "Garapiñado",
+        description: "Garapiñado",
+        images: [
+          "https://i.pinimg.com/564x/0d/3c/bd/0d3cbd4e56165bfed503d34655c9221f.jpg"
+        ],
+        priceKilo: 125,
+            priceMedio: 89,
+        priceCuarto: 71,
+            isKilo:true,
+          isMedio:false,
+          isCuarto:false,
+           price:null,
+        category: {
+          _id: 34,
+          name: "todos",
+          image: "",
+         creationAt: "2023-09-07T13:04:32.000Z",
+          updatedAt: "2023-09-07T13:04:32.000Z"
+      }
+      },
+      {
+        _id: 4,
+       title: "Nuez India Natural",
+        description: "Nuez India Natural",
+        images: [
+          "https://i.pinimg.com/564x/70/a1/16/70a116871655f0a997d1330ab3feb891.jpg"
+        ],
+        priceKilo: 383.5,
+            priceMedio: 317,
+        priceCuarto: 134,
+            isKilo:true,
+          isMedio:false,
+          isCuarto:false,
+           price:null,
+        category: {
+          _id: 34,
+          name: "todos",
+          image: "",
+         creationAt: "2023-09-07T13:04:32.000Z",
+          updatedAt: "2023-09-07T13:04:32.000Z"
+      }
+      },
+        {
+        _id: 5,
+       title: "Pepita Limpia",
+        description: "Pepita Limpia",
+        images: [
+          "https://i.pinimg.com/564x/3e/e3/af/3ee3afba136b8d448c739ca22cec7524.jpg"
+        ],
+        priceKilo: 260,
+            priceMedio: 157,
+        priceCuarto: 104,
+             isKilo:true,
+          isMedio:false,
+          isCuarto:false,
+             price:null,
+        category: {
+          _id: 34,
+          name: "todos",
+          image: "",
+         creationAt: "2023-09-07T13:04:32.000Z",
+          updatedAt: "2023-09-07T13:04:32.000Z"
+      }
+      },
+        {
+        _id: 6,
+       title: "Gomita Aro Durazno",
+        description: "Gomita Aro Durazno",
+        images: [
+          "https://i.pinimg.com/564x/82/17/2c/82172c1a02ba264d67b9e2295d84d817.jpg"
+        ],
+        priceKilo:156 ,
+            priceMedio: 105,
+        priceCuarto: 78.5,
+             isKilo:true,
+          isMedio:false,
+          isCuarto:false,
+             price:null,
+        category: {
+          _id: 34,
+          name: "gomitas",
+          image: "",
+         creationAt: "2023-09-07T13:04:32.000Z",
+          updatedAt: "2023-09-07T13:04:32.000Z"
+      }
+      },
+        {
+        _id: 7,
+       title: "Gomita Aro Manzana",
+        description: "Gomita Aro Manzana",
+        images: [
+          "https://i.pinimg.com/564x/62/59/11/62591162d1107cb5d468d04c362af0c5.jpg"
+        ],
+        priceKilo: 156,
+            priceMedio: 105,
+        priceCuarto:78.5 ,
+             isKilo:true,
+          isMedio:false,
+          isCuarto:false,
+             price:null,
+        category: {
+          _id: 34,
+          name: "gomitas",
+          image: "",
+         creationAt: "2023-09-07T13:04:32.000Z",
+          updatedAt: "2023-09-07T13:04:32.000Z"
+      }
+      },
+        {
+        _id: 8 ,
+       title: "Gomita Gota",
+        description: "Gomita Gota",
+        images: [
+          "https://i.pinimg.com/564x/84/82/40/84824071c9194ced6a35651faacff68c.jpg"
+        ],
+        priceKilo:128 ,
+            priceMedio:89 ,
+        priceCuarto: 71,
+             isKilo:true,
+          isMedio:false,
+          isCuarto:false,
+             price:null,
+        category: {
+          _id: 34,
+          name: "gomitas",
+          image: "",
+         creationAt: "2023-09-07T13:04:32.000Z",
+          updatedAt: "2023-09-07T13:04:32.000Z"
+      }
+      },
+        {
+        _id: 9,
+       title: "Gomita Lombriz",
+        description: "Gomita Lombriz",
+        images: [
+          "https://i.pinimg.com/564x/8c/54/d1/8c54d1a4b2b3a1b56689050e10c6fdfe.jpg"
+        ],
+        priceKilo: 148,
+            priceMedio: 101,
+        priceCuarto: 77,
+             isKilo:true,
+          isMedio:false,
+          isCuarto:false,
+             price:null,
+        category: {
+          _id: 34,
+          name: "gomitas",
+          image: "",
+         creationAt: "2023-09-07T13:04:32.000Z",
+          updatedAt: "2023-09-07T13:04:32.000Z"
+      }
+      },
+        {
+        _id: 10,
+       title: "Gomita Mangomita",
+        description: "Gomita Mangomita",
+        images: [
+          "https://i.pinimg.com/564x/47/7a/ca/477aca8a25a74bc23636ac8d38741eef.jpg"
+        ],
+        priceKilo: 130,
+            priceMedio: 91,
+        priceCuarto: 72,
+             isKilo:true,
+          isMedio:false,
+          isCuarto:false,
+             price:null,
+        category: {
+          _id: 34,
+          name: "gomitas",
+          image: "",
+         creationAt: "2023-09-07T13:04:32.000Z",
+          updatedAt: "2023-09-07T13:04:32.000Z"
+      }
+      },
+        {
+        _id: 11,
+       title: "Gomita Neón",
+        description: "Gomita Neón",
+        images: [
+          "https://i.pinimg.com/736x/03/7b/03/037b0330110246deaf6aed365a03b7ff.jpg"
+        ],
+        priceKilo:146 ,
+            priceMedio: 99,
+        priceCuarto: 76,
+             isKilo:true,
+          isMedio:false,
+          isCuarto:false,
+             price:null,
+        category: {
+          _id: 34,
+          name: "gomitas",
+          image: "",
+         creationAt: "2023-09-07T13:04:32.000Z",
+          updatedAt: "2023-09-07T13:04:32.000Z"
+      }
+      },
+        {
+        _id: 12,
+       title: "Gomita Pandita",
+        description: "Gomita Pandita",
+        images: [
+          "https://i.pinimg.com/564x/17/1a/d3/171ad3352d0a4032276d34b81d1c7fc2.jpg"
+        ],
+        priceKilo: 148,
+            priceMedio: 101,
+        priceCuarto:77 ,
+             isKilo:true,
+          isMedio:false,
+          isCuarto:false,
+             price:null,
+        category: {
+          _id: 34,
+          name: "gomitas",
+          image: "",
+         creationAt: "2023-09-07T13:04:32.000Z",
+          updatedAt: "2023-09-07T13:04:32.000Z"
+      }
+      },
+        {
+        _id: 13,
+       title: "Gomita Pandita Enchilada",
+        description: "Gomita Pandita Enchilada",
+        images: [
+          "https://i.pinimg.com/564x/30/58/36/305836f7174ad1600599aaf8d4b89b56.jpg"
+        ],
+        priceKilo: 148,
+            priceMedio: 101,
+        priceCuarto: 77,
+             isKilo:true,
+          isMedio:false,
+          isCuarto:false,
+             price:null,
+        category: {
+          _id: 34,
+          name: "gomitas",
+          image: "",
+         creationAt: "2023-09-07T13:04:32.000Z",
+          updatedAt: "2023-09-07T13:04:32.000Z"
+      }
+      },
+        {
+        _id: 14,
+       title: "Almedra Con Chocolate",
+        description: "Almedra Con Chocolate",
+        images: [
+          "https://i.pinimg.com/564x/6c/cd/9f/6ccd9fac97c1a343c9a8e815e91ecd8e.jpg"
+        ],
+        priceKilo: 326,
+            priceMedio:190,
+        priceCuarto:121 ,
+             isKilo:true,
+          isMedio:false,
+          isCuarto:false,
+             price:null,
+        category: {
+          _id: 34,
+          name: "chocolates",
+          image: "",
+         creationAt: "2023-09-07T13:04:32.000Z",
+          updatedAt: "2023-09-07T13:04:32.000Z"
+      }
+      }
+        ,
+        {
+        _id: 15,
+       title: "Bombon con Chocolate",
+        description: "Bombon con Chocolate",
+        images: [
+          "https://i.pinimg.com/564x/80/2c/87/802c874cbbb643b4b10f8eab9da7c73c.jpg"
+        ],
+        priceKilo: 220,
+            priceMedio:137,
+        priceCuarto: 94.5,
+             isKilo:true,
+          isMedio:false,
+          isCuarto:false,
+             price:null,
+        category: {
+          _id: 34,
+          name: "chocolates",
+          image: "",
+         creationAt: "2023-09-07T13:04:32.000Z",
+          updatedAt: "2023-09-07T13:04:32.000Z"
+      }
+      },{ 
+        _id: 16, 
+       title: "Arándano Enchilado", 
+        description: "Arándano Enchilado", 
+        images: [ 
+          "https://i.pinimg.com/564x/68/bc/62/68bc620af779363cbff9ffe8596278bf.jpg" 
+        ], 
+        priceKilo: 218, 
+            priceMedio: 134, 
+        priceCuarto: 92, 
+             isKilo:true, 
+          isMedio:false, 
+          isCuarto:false, 
+             price:null, 
+        category: { 
+          _id: 34, 
+          name: "botanas", 
+          image: "", 
+         creationAt: "2023-09-07T13:04:32.000Z", 
+          updatedAt: "2023-09-07T13:04:32.000Z" 
+      } 
+      } ,
+{ 
+        _id: 17, 
+       title: "Arándano Natural", 
+        description: "Arándano Natural", 
+        images: [ 
+          "https://i.pinimg.com/564x/51/b6/d0/51b6d0b095fcabb214f09bef73f39d2c.jpg" 
+        ], 
+        priceKilo: 200, 
+            priceMedio: 126, 
+        priceCuarto: 88, 
+             isKilo:true, 
+          isMedio:false, 
+          isCuarto:false, 
+             price:null, 
+        category: { 
+          _id: 34, 
+          name: "botanas", 
+          image: "", 
+         creationAt: "2023-09-07T13:04:32.000Z", 
+          updatedAt: "2023-09-07T13:04:32.000Z" 
+      } 
+      } ,
+{ 
+        _id: 18, 
+       title: "Enchilado Normal", 
+        description: "Cacahuate Natural Enchilado", 
+        images: [ 
+          "https://i.pinimg.com/564x/af/5a/d0/af5ad0afca1ab7bb92a2201b917452c2.jpg" 
+        ], 
+        priceKilo: 110, 
+            priceMedio: 82, 
+        priceCuarto: 67, 
+             isKilo:true, 
+          isMedio:false, 
+          isCuarto:false, 
+             price:null, 
+        category: { 
+          _id: 34, 
+          name: "botanas", 
+          image: "", 
+         creationAt: "2023-09-07T13:04:32.000Z", 
+          updatedAt: "2023-09-07T13:04:32.000Z" 
+      } 
+      } ,
+{ 
+        _id: 19, 
+       title: "Garbanzo", 
+        description: "Garbanzo Enchilado", 
+        images: [ 
+          "https://i.pinimg.com/564x/f7/42/ca/f742ca3f0727011ca478b1b8464062a3.jpg" 
+        ], 
+        priceKilo: 110, 
+            priceMedio: 82, 
+        priceCuarto: 67, 
+             isKilo:true, 
+          isMedio:false, 
+          isCuarto:false, 
+             price:null, 
+        category: { 
+          _id: 34, 
+          name: "botanas", 
+          image: "", 
+         creationAt: "2023-09-07T13:04:32.000Z", 
+          updatedAt: "2023-09-07T13:04:32.000Z" 
+      } 
+      } ,
+{ 
+        _id: 20, 
+       title: "Japones Natural", 
+        description: "Cacahuate Japones Natural", 
+        images: [ 
+          "https://i.pinimg.com/564x/38/d2/6c/38d26cc4e0fc8a1f20f82e0c6ae8f98f.jpg" 
+        ], 
+        priceKilo: 122, 
+            priceMedio: 88, 
+        priceCuarto: 71, 
+             isKilo:true, 
+          isMedio:false, 
+          isCuarto:false, 
+             price:null, 
+        category: { 
+          _id: 34, 
+          name: "botanas", 
+          image: "", 
+         creationAt: "2023-09-07T13:04:32.000Z", 
+          updatedAt: "2023-09-07T13:04:32.000Z" 
+      } 
+      } ,
+{ 
+        _id: 21, 
+       title: "Japones Habanero", 
+        description: "Japones Habanero", 
+        images: [ 
+          "https://i.pinimg.com/564x/38/d2/6c/38d26cc4e0fc8a1f20f82e0c6ae8f98f.jpg" 
+        ], 
+        priceKilo: 122, 
+            priceMedio: 88, 
+        priceCuarto: 71, 
+             isKilo:true, 
+          isMedio:false, 
+          isCuarto:false, 
+             price:null, 
+        category: { 
+          _id: 34, 
+          name: "botanas", 
+          image: "", 
+         creationAt: "2023-09-07T13:04:32.000Z", 
+          updatedAt: "2023-09-07T13:04:32.000Z" 
+      } 
+      } ,
+{ 
+        _id: 22, 
+       title: "Japones Hot Nuts", 
+        description: "Japones Hot Nuts", 
+        images: [ 
+          "https://i.pinimg.com/564x/38/d2/6c/38d26cc4e0fc8a1f20f82e0c6ae8f98f.jpg" 
+        ], 
+        priceKilo: 122, 
+            priceMedio: 88, 
+        priceCuarto: 71, 
+             isKilo:true, 
+          isMedio:false, 
+          isCuarto:false, 
+             price:null, 
+        category: { 
+          _id: 34, 
+          name: "botanas", 
+          image: "", 
+         creationAt: "2023-09-07T13:04:32.000Z", 
+          updatedAt: "2023-09-07T13:04:32.000Z" 
+      } 
+      } ,
+{ 
+        _id: 23, 
+       title: "Japones Enchilado", 
+        description: "Japones Enchilado", 
+        images: [ 
+          "https://i.pinimg.com/564x/38/d2/6c/38d26cc4e0fc8a1f20f82e0c6ae8f98f.jpg" 
+        ], 
+        priceKilo: 122, 
+            priceMedio: 88, 
+        priceCuarto: 71, 
+             isKilo:true, 
+          isMedio:false, 
+          isCuarto:false, 
+             price:null, 
+        category: { 
+          _id: 34, 
+          name: "botanas", 
+          image: "", 
+         creationAt: "2023-09-07T13:04:32.000Z", 
+          updatedAt: "2023-09-07T13:04:32.000Z" 
+      } 
+      } ,
+{ 
+        _id: 24, 
+       title: "Pistache Natural", 
+        description: "Pistache Natural", 
+        images: [ 
+          "https://i.pinimg.com/564x/39/6f/f5/396ff5badad3a47bc35bff8472aeb663.jpg" 
+        ], 
+        priceKilo: 332, 
+            priceMedio: 192, 
+        priceCuarto: 122, 
+             isKilo:true, 
+          isMedio:false, 
+          isCuarto:false, 
+             price:null, 
+        category: { 
+          _id: 34, 
+          name: "botanas", 
+          image: "", 
+         creationAt: "2023-09-07T13:04:32.000Z", 
+          updatedAt: "2023-09-07T13:04:32.000Z" 
+      } 
+      } ,
+{ 
+        _id: 25, 
+       title: "Pistache Enchilado", 
+        description: "Pistache Enchilado", 
+        images: [ 
+          "https://i.pinimg.com/564x/39/6f/f5/396ff5badad3a47bc35bff8472aeb663.jpg" 
+        ], 
+        priceKilo: 332, 
+            priceMedio: 192, 
+        priceCuarto: 122, 
+             isKilo:true, 
+          isMedio:false, 
+          isCuarto:false, 
+             price:null, 
+        category: { 
+          _id: 34, 
+          name: "botanas", 
+          image: "", 
+         creationAt: "2023-09-07T13:04:32.000Z", 
+          updatedAt: "2023-09-07T13:04:32.000Z" 
+      } 
+      } ,
+{ 
+        _id: 26, 
+       title: "Botana Fina Con Sal", 
+        description: "Botana Fina Con Sal", 
+        images: [ 
+          "https://i.pinimg.com/originals/4d/da/20/4dda20ea31c2fe2a2f345f82600c49d8.jpg" 
+        ], 
+        priceKilo: 384, 
+            priceMedio: 219, 
+        priceCuarto: 136, 
+             isKilo:true, 
+          isMedio:false, 
+          isCuarto:false, 
+             price:null, 
+        category: { 
+          _id: 34, 
+          name: "botanas", 
+          image: "", 
+         creationAt: "2023-09-07T13:04:32.000Z", 
+          updatedAt: "2023-09-07T13:04:32.000Z" 
+      } 
+      } ,
+        { 
+        _id: 27, 
+       title: "Café Con Chocolate", 
+        description: "Café Con Chocolater ", 
+        images: [ 
+          "" 
+        ], 
+        priceKilo: 277, 
+            priceMedio: 190, 
+        priceCuarto: 121, 
+             isKilo:true, 
+          isMedio:false, 
+          isCuarto:false, 
+             price:null, 
+        category: { 
+          _id: 34, 
+          name: "botanas", 
+          image: "", 
+         creationAt: "2023-09-07T13:04:32.000Z", 
+          updatedAt: "2023-09-07T13:04:32.000Z" 
+      } 
+      } ,
+{ 
+        _id: 28, 
+       title: "Chocoreta", 
+        description: "Chocoreta ", 
+        images: [ 
+          "" 
+        ], 
+        priceKilo: 254, 
+            priceMedio: 154, 
+        priceCuarto: 103, 
+             isKilo:true, 
+          isMedio:false, 
+          isCuarto:false, 
+             price:null, 
+        category: { 
+          _id: 34, 
+          name: "botanas", 
+          image: "", 
+         creationAt: "2023-09-07T13:04:32.000Z", 
+          updatedAt: "2023-09-07T13:04:32.000Z" 
+      } 
+      },
+{ 
+        _id: 29, 
+       title: "Galleta con Chocolate", 
+        description: "Galleta con Chocolate ", 
+        images: [ 
+          "" 
+        ], 
+        priceKilo: 242, 
+            priceMedio: 147, 
+        priceCuarto: 100, 
+             isKilo:true, 
+          isMedio:false, 
+          isCuarto:false, 
+             price:null, 
+        category: { 
+          _id: 34, 
+          name: "botanas", 
+          image: "", 
+         creationAt: "2023-09-07T13:04:32.000Z", 
+          updatedAt: "2023-09-07T13:04:32.000Z" 
+      } 
+      } ,
+{ 
+        _id: 30, 
+       title: "Hojuela Con Chocolate", 
+        description: "Hojuela Con Chocolate", 
+        images: [ 
+          "" 
+        ], 
+        priceKilo: 280, 
+            priceMedio: 166, 
+        priceCuarto: 110, 
+             isKilo:true, 
+          isMedio:false, 
+          isCuarto:false, 
+             price:null, 
+        category: { 
+          _id: 34, 
+          name: "botanas", 
+          image: "", 
+         creationAt: "2023-09-07T13:04:32.000Z", 
+          updatedAt: "2023-09-07T13:04:32.000Z" 
+      } 
+      } ,
+{ 
+        _id: 31, 
+       title: "Pasita Con Chocolate", 
+        description: "Pasita Con Chocolate", 
+        images: [ 
+          "" 
+        ], 
+        priceKilo: 254, 
+            priceMedio: 154, 
+        priceCuarto: 103, 
+             isKilo:true, 
+          isMedio:false, 
+          isCuarto:false, 
+             price:null, 
+        category: { 
+          _id: 34, 
+          name: "botanas", 
+          image: "", 
+         creationAt: "2023-09-07T13:04:32.000Z", 
+          updatedAt: "2023-09-07T13:04:32.000Z" 
+      } 
+      } ,
+{ 
+        _id: 32, 
+       title: "Nuez Con Chocolate", 
+        description: "Nuez Con Chocolate", 
+        images: [ 
+          "https://i.pinimg.com/564x/69/5e/fd/695efdec73dc2e91d17d672efe25b45b.jpg" 
+        ], 
+        priceKilo: 361, 
+            priceMedio: 208, 
+        priceCuarto: 130, 
+             isKilo:true, 
+          isMedio:false, 
+          isCuarto:false, 
+             price:null, 
+        category: { 
+          _id: 34, 
+          name: "botanas", 
+          image: "", 
+         creationAt: "2023-09-07T13:04:32.000Z", 
+          updatedAt: "2023-09-07T13:04:32.000Z" 
+      } 
+      } ,
+{ 
+        _id: 33, 
+       title: "Huevito", 
+        description: "Huevito", 
+        images: [ 
+          "https://i.pinimg.com/564x/d0/10/fe/d010fec0487523e3234da9c4f6086098.jpg" 
+        ], 
+        priceKilo: 361, 
+            priceMedio: 208, 
+        priceCuarto: 130, 
+             isKilo:true, 
+          isMedio:false, 
+          isCuarto:false, 
+             price:null, 
+        category: { 
+          _id: 34, 
+          name: "botanas", 
+          image: "", 
+         creationAt: "2023-09-07T13:04:32.000Z", 
+          updatedAt: "2023-09-07T13:04:32.000Z" 
+      } 
+      } ,
+{ 
+        _id: 34, 
+       title: "Arándano Con Chocolate", 
+        description: "Arándano Con Chocolate", 
+        images: [ 
+          "" 
+        ], 
+        priceKilo: 280, 
+            priceMedio: 166, 
+        priceCuarto: 110, 
+             isKilo:true, 
+          isMedio:false, 
+          isCuarto:false, 
+             price:null, 
+        category: { 
+          _id: 34, 
+          name: "botanas", 
+          image: "", 
+         creationAt: "2023-09-07T13:04:32.000Z", 
+          updatedAt: "2023-09-07T13:04:32.000Z" 
+      } 
+      } 
+])
+db.products.find()

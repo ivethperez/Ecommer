@@ -95,18 +95,7 @@ const Navbar = () => {
     return (
         <nav className="justify-between items-center fixed z-10 w-full py-5 px-8 text-sm font-light top-0 bg-white">
   <div className="container mx-auto flex justify-between items-center">
-                  <div className="lg:hidden">
-          <button
-            onClick={toggleMenu}
-            className="text-white focus:outline-none focus:text-white"
-          > 
-            {isOpen ? (
-              <i className="fas fa-times fa-lg"></i>
-            ) : (
-              <i className="fas fa-bars fa-lg"></i>
-            )}
-          </button>
-        </div>
+               
         <div
           className={`${
             isOpen ? 'block' : 'hidden'
