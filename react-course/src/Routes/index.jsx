@@ -7,15 +7,14 @@ import MyOrder from '../Pages/MyOrder'
 import MyOrders from '../Pages/MyOrders'
 import NotFound from '../Pages/NotFound'
 import Signin from '../Pages/Signin'
-import HomePage from '../Pages/HomePage'
 import Ecommer from '../Pages/Ecommer'
 
 export const AppRoutes = () =>{
     const { signOut } = useShopiContext();
     return(
         useRoutes([ 
-            { path:'/', element:<Home/> },
-            { path:'/ecommer', element:<Ecommer/> },
+            // { path:'/', element:<Home/> },
+            { path:'/', element:<Ecommer/> },
             { path:'/:botanas', element:<Ecommer /> },
             { path:'/my-acount',element: signOut? <Signin />: <MyAcount/> },
             { path:'/my-order', element: signOut? <Signin />:<MyOrder/> },

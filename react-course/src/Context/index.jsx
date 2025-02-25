@@ -25,15 +25,11 @@ export const initializeLocalStorage = () => {
 export const ShoppingCartProvider = ({ children }) => {
 
   useEffect(() => {
-    const currentUrl = window.location.href;
-    const isEcommUrl = currentUrl.includes('/ecommer');
-    fetch('https://api-product-5iv7.onrender.com/products')
+    fetch('https://api-product-1.onrender.com/products')
     .then(response => response.json())
     .then(data => setItems(data))
 
-    if (isEcommUrl) {
-      setShowEcomm(true)
-    }
+ 
   }, [])
 
 
@@ -174,15 +170,12 @@ export const ShoppingCartProvider = ({ children }) => {
   const [isKilo, setIsKilo] = useState(true)
   const [isMedioKilo, setIsMedioKilo] = useState(false)
   const [isCuartoKilo, setIsCuartoKilo] = useState(false)
-
+  const [isGramo, setIsGramo] = useState(false)
 
   const [cartProduct, setCartProduct] = useState([]) //Array de objetos cart individual
 
   const [showAlert, setShowAlert] = useState(false);
   const [typeAlert, setTypeAlert] = useState('');
-
-  const [showEcomm, setShowEcomm] = useState(false);
-
 
   //Envio de correo y tel
   const form = useRef();
@@ -247,14 +240,15 @@ export const ShoppingCartProvider = ({ children }) => {
       isKilo,
       isMedioKilo,
       isCuartoKilo,
+      isGramo, 
+      setIsGramo,
       cartProduct,
       setCartProduct,
       showAlert,
       setShowAlert,
       setTypeAlert,
       typeAlert,
-      setShowEcomm,
-      showEcomm,
+
       form,
       sendEmail,
       respEmail,

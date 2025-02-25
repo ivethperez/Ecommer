@@ -5,7 +5,7 @@ import { Container, Row, Col, Nav } from 'react-bootstrap';
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import '../Styles/styles.css'
 const Footerr = () => {
-  const { showEcomm ,setSearchByCategory,setShowEcomm,scrollTo,phoneNumber} = useShopiContext();
+  const { setSearchByCategory,scrollTo,phoneNumber} = useShopiContext();
   const ocultar= () =>{
     setSearchByCategory()
     setShowEcomm(true)
@@ -15,7 +15,7 @@ const irWatsapp=() =>{
 }
   return (
 
-    <footer className="border-t border-gray-200">
+    <footer className="mt-5 border-t border-gray-200">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-start justify-between gap-y-12 pb-6 pt-16 lg:flex-row lg:items-center lg:py-16">
           <div>
@@ -69,20 +69,7 @@ const irWatsapp=() =>{
           <form className="flex w-full justify-center md:w-auto">
             <div className="w-30 min-w-0 shrink">
             </div>
-            {
-              !showEcomm ? (
-                <NavLink itemProp='url'  to='/ecommer' className=' decoration-transparent text-black mt-2  pl-3'
-                onClick={() => ocultar()} 
-            >
-              <button onClick={()=>{scrollTo()}} className="text-white block w-full color-btn-confirmar  font-medium rounded-lg text-sm px-5 py-2.5 text-center " >
-              Visita nuestra tienda
-                </button>
-                {/* <button type="button" class="color-verde-text hover:text-white border color-btn-confirmar hover:color-btn-confirmar focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800"> Visita nuestra tienda</button> */}
-                </NavLink>
-                ) :
-                (<div></div>)
-            }
-
+           
           </form><p className="mt-6 text-sm text-gray-500 md:mt-0">© Copyright 2023. All rights reserved.</p></div>
       </div>
     </footer>

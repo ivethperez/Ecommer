@@ -1,6 +1,6 @@
 import './styles.css'
 import { useShopiContext } from '../../Context'
-import { XMarkIcon } from '@heroicons/react/24/solid'
+import { XMarkIcon,CheckIcon } from '@heroicons/react/24/solid'
 import { Link } from 'react-router-dom'
 import OrderCard from '../../Components/OrderCard'
 import { totalPrice, totalProducts } from '../../utils'
@@ -30,38 +30,29 @@ const CheckoutSideMenu = () => {
     onCancel()
     setSearchByTitle(null)
   }
+  console.log(cartProducts);
   return (
     <aside
-      className={`${openModalOrder ? 'flex' : 'hidden'} checkout-side-menu flex-col fixed right-0 border border-black rounded-lg bg-white`}>
+      className={`${openModalOrder ? 'flex' : 'hidden'} checkout-side-menu flex-col fixed right-0 border  rounded-lg bg-white`}>
       <div className='flex justify-between items-center p-6'>
-        <h2 className='font-medium text-xl'>Mis ordenes</h2>
-        <button
+      <button
+              className=" top-0 right-0 flex justify-center items-center text-xs color-btn-confirmar w-6 h-6 rounded-full "
+             >
+              <CheckIcon className='h-5 w-5 text-white' />
+            </button>
+        <h2 className='font-medium text-sm mt-2'>
+        Agregado a la bolsa de compra </h2>
+        <button className='rounded-full'
           onClick={onCancel}>
           <XMarkIcon className='h-6 w-6'></XMarkIcon>
         </button>
       </div>
 
-      <div>
-        {
-          order.length > 0 ? (
-            <div className='relative flex gap-0.5 items-center'>
-
-              <Link to='/my-orders' onClick={() => handleCkeckout()} className="px-6 overflow-y-auto flex-1 decoration-transparent inline-flex ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">
-                Órdenes pendientes
-              </Link>
-              <div className='absolute bottom-3.5 left-3.5 flex justify-center items-center
-          rounded-full color-rosa w-4 h-4 text-xs text-white'>
-                {order.length}
-              </div>
-            </div>
-          ) :
-            <div></div>
-        }
-
-      </div>
+ 
 
       <div className='px-6 overflow-y-auto flex-1 mt-3'>
         {
+          
           cartProducts.map(product => (
             <OrderCard
               key={product.id}
@@ -74,6 +65,8 @@ const CheckoutSideMenu = () => {
               priceKilo={product.priceKilo}
               priceMedio={product.priceMedio}
               priceCuarto={product.priceCuarto}
+              priceGramo={product.price100g}
+              pricePieza={product.pricePieza}
             />
           ))
         }
@@ -85,10 +78,16 @@ const CheckoutSideMenu = () => {
         </p>
     
         <Link to='/my-orders/last'>
-          <button disabled={cartProducts.length >0 ? false: true} className='w-full color-btn-confirmar py-3 text-white rounded-lg' onClick={() => handleCkeckout()}>
-            Ordenar
+          <button disabled={cartProducts.length >0 ? false: true} className='w-full bg-transparent hover:bg-blue-500 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent  text-black rounded-lg' onClick={() => handleCkeckout()}>
+            Ver bolsa de compra ({cartProducts.length})
           </button>
         </Link>
+
+
+          <button disabled={cartProducts.length >0 ? false: true} className='mt-2  w-full color-btn-confirmar py-2 text-white rounded-lg' onClick={() => handleCkeckout()}>
+            Confirmar pedido
+          </button>
+
 
       </div>
     </aside>

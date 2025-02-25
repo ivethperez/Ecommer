@@ -393,7 +393,7 @@ function HomePage() {
                       </div>
                     </div>
                     <div className="flex items-start mb-5 sm:col-span-2">
-                      <ReCAPTCHA required sitekey='' onChange={(val) => setCaptcha(val)}></ReCAPTCHA>
+                    {/* `  <ReCAPTCHA required sitekey='' onChange={(val) => setCaptcha(val)}></ReCAPTCHA>` */}
                     </div>
                   </div>
                   {

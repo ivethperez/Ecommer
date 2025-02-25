@@ -3,7 +3,7 @@ import { useShopiContext } from '../../Context'
 import { TrashIcon, MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/solid'
 
 const OrderCard = props => {
-    const { id, title, imageUrl, price, quantity, handleDelete, priceKilo,priceMedio,priceCuarto } = props
+    const { id, title, imageUrl, price, quantity, handleDelete, priceKilo,priceMedio,priceCuarto,priceGramo,pricePieza } = props
     const { increentToCheckout, decrementToCheckout } = useShopiContext();
     const increent = () => {
         increentToCheckout(id)
@@ -17,7 +17,11 @@ const OrderCard = props => {
         else if (price == priceMedio)
             return '1/2 kg'
         else if (price == priceCuarto)
-            return '1/4 kg'    
+            return '1/4 kg'  
+        else if (price == priceGramo)
+            return '100 g'  
+        else if (price == pricePieza)
+            return 'Pieza'    
     }
 
     return (

@@ -21,6 +21,9 @@
     --tw-bg-opacity: 1;
     background-color: rgb(255 219 88 / var(--tw-bg-opacity)); 
 }
+.stroke-verde {
+    stroke: #99CC66;
+}
 .color-amarillo-fill{
     fill: #FFDB58;
 }
@@ -31,4 +34,19 @@
 .color-marron{
     --tw-bg-opacity: 1;
     background-color: rgb(255 253 252 / var(--tw-bg-opacity)); 
+}
+
+.bg-color-rosa {
+    --tw-bg-opacity: 1;
+    background-color: rgb(222 49 99 / var(--tw-bg-opacity));
+}
+
+.color-cacahuate{
+    --tw-bg-opacity: 1;
+    background-color: #ead6c4; 
+}
+
+.color-naranja{
+    --tw-bg-opacity: 1;
+    background-color: #e5a971; 
 }
