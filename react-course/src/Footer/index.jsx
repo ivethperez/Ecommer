@@ -8,7 +8,6 @@ const Footerr = () => {
   const { setSearchByCategory,scrollTo,phoneNumber} = useShopiContext();
   const ocultar= () =>{
     setSearchByCategory()
-    setShowEcomm(true)
 }
 const irWatsapp=() =>{
   window.open('https://wa.me/?phone=' + phoneNumber + '&text=' + encodeURIComponent('Hola quiero pedir más información de sus servicios.'), '_blank');

@@ -7,10 +7,7 @@ import Alert from '../../Components/Alert'
 import '../../Styles/styles.css'
 
 function Ecommer() {
-  const { openModal, search, filteredItems, setSearchByCategory,showAlert } = useShopiContext();
-  const filtro = (val) => {
-    setSearchByCategory(val);
-  }
+  const { openModal, search, filteredItems,showAlert } = useShopiContext();
   const renderView = () => {
     if (filteredItems?.length > 0) {
       return (
@@ -31,7 +28,7 @@ function Ecommer() {
     }
    
   }
-  
+
   return (
     <div className="container">
 

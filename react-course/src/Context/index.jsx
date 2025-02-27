@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect,useRef } from 'react'
 import emailjs from '@emailjs/browser';
+import { totalPrice } from '../utils'
 const ShoppingCartContext = createContext()
 
 //LocalStorage sign out
@@ -35,20 +36,38 @@ export const ShoppingCartProvider = ({ children }) => {
 
   //Shopping Cart
   const [count, setCount] = useState(0)
+
   const increment = (event, product) => {
     event.stopPropagation();
-    if (product.price == null)
-      product.price = product.priceKilo;
-      const productExists = cartProducts.some(el => el.id === product.id && el.price === product.price); // dará true si el producto ya se encuentra en el carrito
-      
-      if (productExists) {
-        const productCart = cartProducts.find(el => el.id === product.id && el.price === product.price); // busca el producto
-        productCart.quantity += 1; // aumenta la cantidad en 1
-      } else {
-        product.quantity = 1; // si el producto no está, le agrega la propiedad quantity con valor uno, y luego setea el carrito agregando ese producto
-        setCartProducts([...cartProducts, product]);
-        
-      }
+      setCartProducts((prevCartProducts) => {
+        const existingProductIndex = prevCartProducts.findIndex(
+          (el) => el.cartId === `${product.id}-${product.price}`
+        );
+    
+        if (existingProductIndex !== -1) {
+          return prevCartProducts.map((el, index) =>
+            index === existingProductIndex ? { ...el, quantity: el.quantity + 1 } : el
+          );
+        } else {
+          const { id, ...productWithoutId } = product; // Elimina el id del producto
+          return [{ ...productWithoutId, quantity: 1, cartId: `${product.id}-${product.price}` }];
+        }
+      });
+    
+      setOrder((prevOrder) => {
+        const existingOrderIndex = prevOrder.findIndex(
+          (el) => el.cartId === `${product.id}-${product.price}`
+        );
+    
+        if (existingOrderIndex !== -1) {
+          return prevOrder.map((el, index) =>
+            index === existingOrderIndex ? { ...el, quantity: el.quantity + 1 } : el
+          );
+        } else {
+          const { id, ...productWithoutId } = product; // Elimina el id del producto
+          return [...prevOrder, { ...productWithoutId, quantity: 1, cartId: `${product.id}-${product.price}` }];
+        }
+      });
       setCount(count + 1);
       setOpenModalOrder(true);      
   }
@@ -68,14 +87,14 @@ export const ShoppingCartProvider = ({ children }) => {
 
   // Increment and decrement cartProductToCheckout
   const increentToCheckout = (id) => {
-    const productCart = cartProducts.find(el => el.id === id); // busca el producto
-    productCart.quantity += 1;
+    const productOrder = order.find(el => el.cartId === id); // busca el producto
+    productOrder.quantity += 1;
     setCount(count + 1);
   }
   // Increment and decrement cartProductToCheckout
   const decrementToCheckout = (id) => {
-    const productCart = cartProducts.find(el => el.id === id); // busca el producto
-    productCart.quantity -= 1;
+    const productOrder = order.find(el => el.cartId === id); // busca el producto
+    productOrder.quantity -= 1;
     setCount(count - 1);
   }
 
@@ -171,6 +190,7 @@ export const ShoppingCartProvider = ({ children }) => {
   const [isMedioKilo, setIsMedioKilo] = useState(false)
   const [isCuartoKilo, setIsCuartoKilo] = useState(false)
   const [isGramo, setIsGramo] = useState(false)
+  const [isPieza, setIsPieza] = useState(false)
 
   const [cartProduct, setCartProduct] = useState([]) //Array de objetos cart individual
 
@@ -191,6 +211,35 @@ export const ShoppingCartProvider = ({ children }) => {
         setErrorEmail(true);
     });
 
+  }
+  const timeClose = async() =>{
+    const timer = setTimeout(() => setOpenModalOrder(false), 3000);
+    return () => clearTimeout(timer);
+  }
+
+  const finishOrder = async() =>{
+        let products = ''
+        let medida = ''
+        order.forEach(element => {
+          if (element.isKilo)
+            medida = '1 kg'
+          else if (element.isMedio)
+            medida = '1/2 kg'
+          else if(element.isCuarto)
+            medida = '1/4 kg'
+          else if(element.isGramo)
+            medida = '100 g'
+          else if(element.isPieza)
+            medida = 'pieza'
+    
+          products = products + 'Producto: ' + element.title + ' ' + medida + ', Cantidad: ' + element.quantity + ', Precio: $' + element.price + ' || \n '
+        });
+        window.open('https://wa.me/?phone=' + phoneNumber + '&text=' + encodeURIComponent('Hola envío la confirmación de mi pedido: \n\n' + products + ' Total a pagar: $' + totalPrice(order) + "" + ' + envío'), '_blank');
+        setTypeAlert('confirmacion')
+        setShowAlert(true)
+        setCartProducts([])
+        setCount(0)
+        setOrder([])
   }
   const [phoneNumber, setPhoneNumber] = useState('');
   const scrollTo=()=>{
@@ -242,18 +291,21 @@ export const ShoppingCartProvider = ({ children }) => {
       isCuartoKilo,
       isGramo, 
       setIsGramo,
+      isPieza, 
+      setIsPieza,
       cartProduct,
       setCartProduct,
       showAlert,
       setShowAlert,
       setTypeAlert,
       typeAlert,
-
       form,
       sendEmail,
       respEmail,
       errorEmail,
-      scrollTo
+      scrollTo,
+      timeClose,
+      finishOrder
     }}>
       {children}
     </ShoppingCartContext.Provider>

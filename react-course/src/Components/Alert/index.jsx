@@ -1,8 +1,13 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { useShopiContext } from '../../Context'
 
 function AlertDismissible() {
   const { setShowAlert, typeAlert } = useShopiContext();
+  useEffect(() => {
+    const timer = setTimeout(() => setShowAlert(false), 9000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div>
       {

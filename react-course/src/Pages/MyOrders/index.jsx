@@ -1,4 +1,4 @@
-import OrdersCar from '../../Components/OrdersCard'
+
 import { useShopiContext } from '../../Context'
 import { Link } from 'react-router-dom'
 
@@ -26,16 +26,7 @@ function MyOrders() {
           </li>
         </ol>
       </nav>
-      {
-        order.map((order, index) => (
-          <Link key={index} to={`/my-orders/${index}`}>
-            <OrdersCar
-              totalPrice={order.totalPrice}
-              totalProducts={order.totalProducts} >
-            </OrdersCar>
-          </Link>
-        ))
-      }
+     
     </div>
   )
 }

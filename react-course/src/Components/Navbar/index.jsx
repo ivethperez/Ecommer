@@ -50,7 +50,7 @@ export default function Example() {
     useEffect(() => {
         const interval = setInterval(() => {
             setIndex((prevIndex) => (prevIndex + 1) % mensajes.length);
-          }, 5000); // 3 minutos
+          }, 5000); // 3 segundos
 
         const handleScroll = () => {
             setIsSticky(window.scrollY > 30);
@@ -160,37 +160,28 @@ export default function Example() {
                 </div>
             )
         }
-        else {
-            return (
-                // <NavLink to='/sign-in'
-                //     style={({ isActive }) => {
-                //         return {
-                //             fontWeight: isActive ? "bold" : ""
-                //         };
-                //     }} onClick={() => handleSignOut()}>
-                //     Iniciar sesión
-                // </NavLink>
-
-                <div>{
-                    order.length > 0 ? (
-                        <div className='relative flex gap-0.5 items-center'>
-                            <Link to='/my-orders' className='px-6 overflow-y-auto flex-1 pl-4 mb-2 mt-1 pr-2 decoration-transparent text-black' >
-                                Mis órdenes
-                            </Link>
-                            <div className='absolute bottom-3.5 left-4.5 flex justify-center items-center
-          rounded-full color-rosa w-4 h-4 text-xs text-white'>
-                                {order.length}
-                            </div>
-                        </div>
-                    )
-                        :
-                        (
-                            <div></div>
-                        )
-                }
-                </div>
-            )
-        }
+        // else {
+        //     return (
+        //         <div>{
+        //             order.length > 0 ? (
+        //                 <div className='relative flex gap-0.5 items-center'>
+        //                     <Link to='/my-orders' className='px-6 overflow-y-auto flex-1 pl-4 mb-2 mt-1 pr-2 decoration-transparent text-black' >
+        //                         Mis órdenes
+        //                     </Link>
+        //                     <div className='absolute bottom-3.5 left-4.5 flex justify-center items-center
+        //   rounded-full color-rosa w-4 h-4 text-xs text-white'>
+        //                         {order.length}
+        //                     </div>
+        //                 </div>
+        //             )
+        //                 :
+        //                 (
+        //                     <div></div>
+        //                 )
+        //         }
+        //         </div>
+        //     )
+        // }
     }
 
 

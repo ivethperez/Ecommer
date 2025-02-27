@@ -1,10 +1,10 @@
-import { PlusIcon, CheckIcon, ShoppingBagIcon, MinusSmallIcon, PlusSmallIcon, ShoppingCartIcon } from '@heroicons/react/24/solid';
+import { CheckIcon, ShoppingBagIcon } from '@heroicons/react/24/solid';
 import { useShopiContext } from '../../Context'
-import Button from 'react-bootstrap/Button';
 import '../../Styles/styles.css'
 
 const Card = ({ data }) => {
-  const { increment, setOpenModal, setProductShow, cartProducts,setIsGramo, setIsKilo, setIsMedioKilo, setIsCuartoKilo } = useShopiContext();
+  const { increment, setOpenModal, setProductShow, cartProducts, setIsGramo, setIsKilo, setIsMedioKilo, setIsCuartoKilo,setIsPieza,timeClose } = useShopiContext();
+
  
   const showproduct = (productDetail) => {
     setOpenModal(state => !state);
@@ -12,11 +12,10 @@ const Card = ({ data }) => {
   }
   const addProductsToCart = (productData, e) => {
     increment(e, productData);
+    timeClose();
   }
-
-
+  
   const showPrice = async (prod, unidad) => {
-    console.log(unidad);
     if (unidad == '1kg') {
       prod.isGramo = false
       prod.isKilo = true
@@ -40,7 +39,7 @@ const Card = ({ data }) => {
     }
     if (unidad == '100g') {
       prod.isMedio = false
-      prod.isCuarto = true
+      prod.isCuarto = false
       prod.isKilo = false
       prod.isGramo = true
       prod.price = prod.price100g
@@ -50,18 +49,19 @@ const Card = ({ data }) => {
       prod.isMedio = false
       prod.isCuarto = false
       prod.isKilo = false
+      prod.isPieza = true
       prod.price = prod.pricePieza
     }
     setIsGramo(prod.isGramo)
     setIsKilo(prod.isKilo)
     setIsMedioKilo(prod.isMedio)
     setIsCuartoKilo(prod.isCuarto)
-
+    setIsPieza(prod.isPieza)
   }
   return (
 
     <div className=" shadow-sm text-center">
-  <div className='p-6'>
+      <div className='p-6'>
         <div className="group relative h-[8rem] transform overflow-hidden " onClick={() => showproduct(data)}>
           <span className="absolute bottom-0 left-0 bg-white/60 rounded-3xl text-xs m-2 px-3 py-0.5">
             {data.category.name}
@@ -83,27 +83,26 @@ const Card = ({ data }) => {
             </div>
           )}
         </div>
-</div>
-        <figcaption className="relative items-center justify-between border-t border-slate-100 pt-3">
-          <div className="font-display text-base text-slate-900">{data.title}</div>
+      </div>
+      <figcaption className="relative items-center justify-between border-t border-slate-100 pt-3">
+        <div className="font-display text-base text-slate-900">{data.title}</div>
 
-          
-          {data.isPieza ?(
-            <div className="flex items-center justify-center gap-4 mt-2">
+        {data.isPieza ? (
+          <div className="flex items-center justify-center gap-4 mt-2">
             <select
-              id={data.id}
+              id={data.cartId}
               className="w-50 p-2 border rounded-lg"
               value={data.isPieza}
               onChange={(e) => showPrice(data, e.target.value)}
             >
               <option value="pieza">Pieza</option>
             </select>
-            <p className="text-lg font-bold">$ {data.price == null ? data.pricePieza : data.price}  </p>
-            </div>
-          ) :(
-            <div className="flex items-center justify-center gap-4 mt-2">
+            <p className="text-lg font-bold">$ {data.price == null ? data.price = data.pricePieza : data.price}  </p>
+          </div>
+        ) : (
+          <div className="flex items-center justify-center gap-4 mt-2">
             <select
-              id={data.id}
+              id={data.cartId}
               className="w-50 p-2 border rounded-lg"
               value={data.isCuarto ? "250g" : data.isMedio ? "500g" : data.isKilo ? "1kg" : data.isGramo ? "100g" : ""}
               onChange={(e) => showPrice(data, e.target.value)}
@@ -113,24 +112,20 @@ const Card = ({ data }) => {
               <option value="500g">1/2 kg</option>
               <option value="1kg">1 kg</option>
             </select>
-            <p className="text-lg font-bold">$ {data.price == null ? data.price100g : data.price}  </p>
-            </div>
-          )}
-         
-        
-
-          <div className='flex justify-center items-center'>
-            <div className="overflow-hidden rounded-full p-3">
-
-              <button className='w-full flex justify-center items-center color-btn-confirmar text-white rounded-lg p-1' onClick={(e) => {
-                addProductsToCart(data, e)
-              }}>Agregar 
-                <ShoppingBagIcon className='h-4 w-8'></ShoppingBagIcon></button>
-            </div>
+            <p className="text-lg font-bold">$ {data.price == null ? data.price = data.price100g : data.price}  </p>
           </div>
-        </figcaption>
+        )}
 
- 
+        <div className='flex justify-center items-center'>
+          <div className="overflow-hidden rounded-full p-3">
+
+            <button className='w-full flex justify-center items-center color-btn-confirmar text-white rounded-lg p-1' onClick={(e) => {
+              addProductsToCart(data, e)
+            }}>Agregar
+              <ShoppingBagIcon className='h-4 w-8'></ShoppingBagIcon></button>
+          </div>
+        </div>
+      </figcaption>
     </div>
 
   )
