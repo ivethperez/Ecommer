@@ -71,7 +71,7 @@ function MyOrder() {
                         </div>
                         <div className="flex justify-between text-sm text-gray-600">
                             <span>Gastos de envío</span>
-                            <span>Gratis</span>
+                            <span>Se notificará por whatsapp</span>
                         </div>
                         <div className="flex justify-between text-lg font-bold mt-2">
                             <span>Total</span>
