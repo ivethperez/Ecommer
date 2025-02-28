@@ -26,7 +26,7 @@ export const initializeLocalStorage = () => {
 export const ShoppingCartProvider = ({ children }) => {
 
   useEffect(() => {
-    fetch('https://api-product-1.onrender.com/products')
+    fetch('https://products.snacksleier.com/products')
     .then(response => response.json())
     .then(data => setItems(data))
 
@@ -216,7 +216,7 @@ export const ShoppingCartProvider = ({ children }) => {
     const timer = setTimeout(() => setOpenModalOrder(false), 3000);
     return () => clearTimeout(timer);
   }
-
+  const [phoneNumber, setPhoneNumber] = useState('521');
   const finishOrder = async() =>{
         let products = ''
         let medida = ''
@@ -232,16 +232,16 @@ export const ShoppingCartProvider = ({ children }) => {
           else if(element.isPieza)
             medida = 'pieza'
     
-          products = products + 'Producto: ' + element.title + ' ' + medida + ', Cantidad: ' + element.quantity + ', Precio: $' + element.price + ' || \n '
+          products = products + '*Producto:* ' + element.title + ' ' + medida + ', Cantidad: ' + element.quantity + ', Precio: $' + element.price + ' \n '
         });
-        window.open('https://wa.me/?phone=' + phoneNumber + '&text=' + encodeURIComponent('Hola envío la confirmación de mi pedido: \n\n' + products + ' Total a pagar: $' + totalPrice(order) + "" + ' + envío'), '_blank');
+        window.open(`https://wa.me/${phoneNumber}?text= ` + encodeURIComponent('Hola! envío la confirmación de mi pedido: \n\n' + products + ' Total a pagar: $' + totalPrice(order) + "" + ' + envío' ), '_blank');  
         setTypeAlert('confirmacion')
         setShowAlert(true)
         setCartProducts([])
         setCount(0)
         setOrder([])
   }
-  const [phoneNumber, setPhoneNumber] = useState('');
+
   const scrollTo=()=>{
     window.scrollTo(0, 0);
   }
