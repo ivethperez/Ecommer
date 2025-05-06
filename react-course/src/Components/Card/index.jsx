@@ -118,13 +118,19 @@ const Card = ({ data }) => {
 
         <div className='flex justify-center items-center'>
           <div className="overflow-hidden rounded-full p-3">
-
+          {data.cantidad>0 ?
             <button className='w-full flex justify-center items-center color-btn-confirmar text-white rounded-lg p-1' onClick={(e) => {
               addProductsToCart(data, e)
             }}>Agregar
               <ShoppingBagIcon className='h-4 w-8'></ShoppingBagIcon></button>
+              :
+                    <div className="dark:text-slate-200"><dd className="px-1.5 ring-slate-200 rounded dark:ring-slate-600">Agotado</dd></div>
+          }               
           </div>
         </div>
+
+    
+
       </figcaption>
     </div>
 

@@ -26,8 +26,13 @@ const ProductDetail = () => {
                             <p className="font-bold ">Precio: ${productShow.price}</p>
                             <p className='p-2'> {productShow.isKilo ? '1 kg' : productShow.isMedio ? '1/2 kg' : productShow.isCuarto ? '1/4 kg' : productShow.isGramo ? '100 g' : 'Pieza'}</p>
                         </div>
+                        {productShow.cantidad>0 ?
+
                         <button className="w-full flex justify-center items-center mt-2 color-btn-confirmar text-white py-2 rounded-lg" onClick={(e) => { addProductsToCart(e) }}>Agregar a la bolsa
                             <ShoppingBagIcon className='h-6 w-6'></ShoppingBagIcon></button>
+                            :
+                                                <div className="dark:text-slate-200 justify-center items-center"><dd className="px-1.5 ring-slate-200 rounded dark:ring-slate-600">Agotado</dd></div>
+                                                }
                     </div>
                 </div>
             )}

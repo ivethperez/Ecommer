@@ -234,7 +234,7 @@ export const ShoppingCartProvider = ({ children }) => {
     
           products = products + '*Producto:* ' + element.title + ' ' + medida + ', Cantidad: ' + element.quantity + ', Precio: $' + element.price + ' \n '
         });
-        window.open(`https://wa.me/${phoneNumber}?text= ` + encodeURIComponent('Hola! envío la confirmación de mi pedido: \n\n' + products + ' Total a pagar: $' + totalPrice(order) + "" + ' + envío' ), '_blank');  
+        window.open(`https://wa.me/${phoneNumber}?text= ` + encodeURIComponent('Hola! envío la confirmación de mi pedido: \n\n' + products + '*Total a pagar: $*' + totalPrice(order) + "" + ' + envío' ), '_blank');  
         setTypeAlert('confirmacion')
         setShowAlert(true)
         setCartProducts([])
