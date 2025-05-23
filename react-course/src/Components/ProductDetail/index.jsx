@@ -26,7 +26,7 @@ const ProductDetail = () => {
                             <p className="font-bold ">Precio: ${productShow.price}</p>
                             <p className='p-2'> {productShow.isKilo ? '1 kg' : productShow.isMedio ? '1/2 kg' : productShow.isCuarto ? '1/4 kg' : productShow.isGramo ? '100 g' : 'Pieza'}</p>
                         </div>
-                        {productShow.cantidad>0 ?
+                        {productShow.producto.Cantidad>0 ?
 
                         <button className="w-full flex justify-center items-center mt-2 color-btn-confirmar text-white py-2 rounded-lg" onClick={(e) => { addProductsToCart(e) }}>Agregar a la bolsa
                             <ShoppingBagIcon className='h-6 w-6'></ShoppingBagIcon></button>

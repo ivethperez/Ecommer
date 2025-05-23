@@ -20,7 +20,7 @@ const mensajes = [
     "El snack premium para compartir",
     "Disfruta el mejor sabor",
     "Natural y delicioso para todos",
-  ];
+];
 
 export default function Example() {
     const { setSearchByCategory, setSignOut, signOut, account, order, search,
@@ -50,14 +50,14 @@ export default function Example() {
     useEffect(() => {
         const interval = setInterval(() => {
             setIndex((prevIndex) => (prevIndex + 1) % mensajes.length);
-          }, 5000); // 3 segundos
+        }, 5000); // 3 segundos
 
         const handleScroll = () => {
             setIsSticky(window.scrollY > 30);
         };
         window.addEventListener("scroll", handleScroll);
         return () => {
-             window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener("scroll", handleScroll);
             clearInterval(interval);
         };
     }, []);
@@ -160,36 +160,11 @@ export default function Example() {
                 </div>
             )
         }
-        // else {
-        //     return (
-        //         <div>{
-        //             order.length > 0 ? (
-        //                 <div className='relative flex gap-0.5 items-center'>
-        //                     <Link to='/my-orders' className='px-6 overflow-y-auto flex-1 pl-4 mb-2 mt-1 pr-2 decoration-transparent text-black' >
-        //                         Mis órdenes
-        //                     </Link>
-        //                     <div className='absolute bottom-3.5 left-4.5 flex justify-center items-center
-        //   rounded-full color-rosa w-4 h-4 text-xs text-white'>
-        //                         {order.length}
-        //                     </div>
-        //                 </div>
-        //             )
-        //                 :
-        //                 (
-        //                     <div></div>
-        //                 )
-        //         }
-        //         </div>
-        //     )
-        // }
     }
 
 
     return (
         <div>
-            {/* <div className="color-rosa text-white text-center flex items-center justify-center text-xs" >
-                <div className='p-1'>{mensajes[index]}</div>
-            </div> */}
             <Disclosure as="nav" className={`bg-white shadow-md px-6 py-2 flex justify-between items-center transition-all duration-300 ${isSticky ? "fixed top-0 left-0 w-full z-50 shadow-lg" : ""}`}>
                 {({ open }) => (
                     <>
@@ -204,61 +179,31 @@ export default function Example() {
                                     />
                                 </NavLink>
 
-                                {/* <div className="sm:hidden">
-                                {/* Mobile menu button*/}
-                                {/* <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-black hover:bg-white hover:text-black focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                                    {open ? (
-                                        <XMarkIcon className=" h-6 w-6" aria-hidden="true" />
-                                    ) : (
-                                        <Bars3Icon className=" h-6 w-6" aria-hidden="true" />
-                                    )}
-                                </Disclosure.Button> */}
-                                {/* </div> */}
-                                {/* <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start"> */}
-
-
-
-
-                                {/* {navigation.map((item) => (
-                                            <NavLink
-                                            key={item.name}
-                                                to={item.to}
-                                                onClick={() => setShowEcomm(false)}
-                                                className={classNames(
-                                                    item.current ? ' bg-white text-black decoration-transparent' : ' text-black hover:bg-white hover:text-black',
-                                                    'rounded-md px-3 py-2 text-sm font-medium'
-                                                )}
-                                                aria-current={item.current ? 'page' : undefined}
-                                                style={({ isActive }) => {
-                                                    return {
-                                                        fontWeight: isActive ? "bold" : ""
-                                                    };
-                                                }}
-                                            >
-                                                {item.name}
-                                            </NavLink>
-                                        ))} */}
-
-
                                 <div className=" px-4 py-2 grid grid-cols-1 items-start ">
                                     <div className="relative -mx-4 flex overflow-x-auto sm:mx-0 sm:block sm:overflow-visible sm:pb-0">
 
                                         <div className="grid auto-cols-auto grid-flow-col justify-start gap-x-4 gap-y-4 p-2 whitespace-nowrap  sm:mx-auto sm:max-w-2xl sm:grid-cols-3 sm:px-0 sm:text-center  lg:text-left" role="tablist" aria-orientation="vertical">
+                                            <NavLink to='/' >
+                                                <div className={` ${!isActiveTodo ? 'text-black' : 'color-rosa-text'} `}>
+                                                    <button onClick={() => filtro()} >Todo</button>
+                                                </div>
+                                            </NavLink>
+                                            <NavLink to='/' >
+                                                <div className={` ${!isActiveBotanas ? 'text-black' : 'color-rosa-text'} `}>
+                                                    <button onClick={() => filtro('Botanas')} >Botanas</button>
 
-                                            <div className={` ${!isActiveTodo ? 'text-black' : 'color-rosa-text'} `}>
-                                                <button onClick={() => filtro()} >Todo</button>
-                                            </div>
-
-                                            <div className={` ${!isActiveBotanas ? 'text-black' : 'color-rosa-text'} `}>
-                                                <button onClick={() => filtro('botanas')} >Botanas</button>
-
-                                            </div>
-                                            <div className={`${!isActiveGomitas ? 'text-black' : 'color-rosa-text'} `}>
-                                                <button onClick={() => filtro('gomitas')} >Gomitas</button>
-                                            </div>
-                                            <div className={`${!isActiveChocolate ? ' text-black' : 'color-rosa-text'} `}>
-                                                <button onClick={() => filtro('chocolates')} >Chocolates</button>
-                                            </div>
+                                                </div>
+                                            </NavLink>
+                                            <NavLink to='/' >
+                                                <div className={`${!isActiveGomitas ? 'text-black' : 'color-rosa-text'} `}>
+                                                    <button onClick={() => filtro('Gomitas')} >Gomitas</button>
+                                                </div>
+                                            </NavLink>
+                                            <NavLink to='/' >
+                                                <div className={`${!isActiveChocolate ? ' text-black' : 'color-rosa-text'} `}>
+                                                    <button onClick={() => filtro('Chocolates')} >Chocolates</button>
+                                                </div>
+                                            </NavLink>
                                         </div>
                                     </div>
                                 </div>

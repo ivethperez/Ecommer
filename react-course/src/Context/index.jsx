@@ -26,46 +26,75 @@ export const initializeLocalStorage = () => {
 export const ShoppingCartProvider = ({ children }) => {
 
   useEffect(() => {
-    fetch('https://products.snacksleier.com/products')
+    fetch('https://apileier-production.up.railway.app/api/priceproducts')
     .then(response => response.json())
-    .then(data => setItems(data))
+    .then(data => {
+       // Agrupar por producto (por Id)
+        const mapa = new Map();
 
- 
+        data.forEach(item => {
+          const prodId = item.Productos.Id;
+          if (!mapa.has(prodId)) {
+            mapa.set(prodId, {
+              producto: item.Productos,
+              opciones: [],
+            });
+          }
+          mapa.get(prodId).opciones.push({
+            unidad: item.UnidadesMedida,
+            precio: item.PrecioUnitario
+          });
+        });
+
+          const productosAgrupados = Array.from(mapa.values());
+        setItems(productosAgrupados);
+
+        // Inicializar selección con la primera opción
+        const inicial = {};
+        productosAgrupados.forEach((item, idx) => {
+          inicial[item.producto.Id] = 0;
+        });
+        setSelecciones(inicial);
+
+      setItems(Array.from(mapa.values()));
+      
+     // setItems(data)
+    })
   }, [])
 
-
+const [selecciones, setSelecciones] = useState({});
   //Shopping Cart
   const [count, setCount] = useState(0)
 
-  const increment = (event, product) => {
+  const increment = (event, product, precio) => {
     event.stopPropagation();
       setCartProducts((prevCartProducts) => {
         const existingProductIndex = prevCartProducts.findIndex(
-          (el) => el.cartId === `${product.id}-${product.price}`
+          (el) => el.cartId === `${product.producto.Id}-${precio}`
         );
     
         if (existingProductIndex !== -1) {
           return prevCartProducts.map((el, index) =>
-            index === existingProductIndex ? { ...el, quantity: el.quantity + 1 } : el
+            index === existingProductIndex ? { ...el, quantity: el.quantity + 1, precio: precio } : el
           );
         } else {
           const { id, ...productWithoutId } = product; // Elimina el id del producto
-          return [{ ...productWithoutId, quantity: 1, cartId: `${product.id}-${product.price}` }];
+          return [{ ...productWithoutId, quantity: 1, cartId: `${product.producto.Id}-${precio}`, precio:precio }];
         }
       });
     
       setOrder((prevOrder) => {
         const existingOrderIndex = prevOrder.findIndex(
-          (el) => el.cartId === `${product.id}-${product.price}`
+          (el) => el.cartId === `${product.producto.Id}-${precio}`
         );
     
         if (existingOrderIndex !== -1) {
           return prevOrder.map((el, index) =>
-            index === existingOrderIndex ? { ...el, quantity: el.quantity + 1 } : el
+            index === existingOrderIndex ? { ...el, quantity: el.quantity + 1, precio: precio } : el
           );
         } else {
           const { id, ...productWithoutId } = product; // Elimina el id del producto
-          return [...prevOrder, { ...productWithoutId, quantity: 1, cartId: `${product.id}-${product.price}` }];
+          return [...prevOrder, { ...productWithoutId, quantity: 1, cartId: `${product.producto.Id}-${precio}`, precio: precio }];
         }
       });
       setCount(count + 1);
@@ -110,14 +139,14 @@ export const ShoppingCartProvider = ({ children }) => {
   }
 
   const filteredItemsByTitle = (items, searchByTitle) => {
-    return items?.filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()))
+    return items?.filter(item => item.producto.Nombre.toLowerCase().includes(searchByTitle.toLowerCase()))
   }
 
   //Filtro por categoría
   const [searchByCategory, setSearchByCategory] = useState(null)
 
   const filteredItemsByCategory = (items, searchByCategory) => {
-    return items?.filter(item => item.category.name.toLowerCase().includes(searchByCategory.toLowerCase()))
+    return items?.filter(item => item.producto.CategoriasProducto.Nombre.toLowerCase().includes(searchByCategory.toLowerCase()))
   }
 
   const filterBy = (searchType, items, searchByTitle, searchByCategory) => {
@@ -128,7 +157,7 @@ export const ShoppingCartProvider = ({ children }) => {
       return filteredItemsByCategory(items, searchByCategory)
     }
     if (searchType === 'BY_TITLE_AND_CATEGORY') {
-      return filteredItemsByCategory(items, searchByCategory).filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()))
+      return filteredItemsByCategory(items, searchByCategory).filter(item => item.producto.Nombre.toLowerCase().includes(searchByTitle.toLowerCase()))
     }
     if (!searchType) {
       return items
@@ -140,19 +169,19 @@ export const ShoppingCartProvider = ({ children }) => {
     if (searchByTitle && !searchByCategory) setFilteredItems(filterBy('BY_TITLE', items, searchByTitle, searchByCategory))
     if (!searchByTitle && searchByCategory) setFilteredItems(filterBy('BY_CATEGORY', items, searchByTitle, searchByCategory))
     if (!searchByTitle && !searchByCategory) setFilteredItems(filterBy(null, items, searchByTitle, searchByCategory))
-    if (searchByCategory == 'chocolates') {
+    if (searchByCategory == 'Chocolates') {
       setisActiveChocolate(true);
       setisActiveBotanas(false)
       setisActiveGomitas(false)
       setisActiveTodo(false)
     }
-    else if (searchByCategory == 'gomitas') {
+    else if (searchByCategory == 'Gomitas') {
       setisActiveGomitas(true)
       setisActiveChocolate(false)
       setisActiveBotanas(false)
       setisActiveTodo(false)
     }
-    else if (searchByCategory == 'botanas') {
+    else if (searchByCategory == 'Botanas') {
       setisActiveBotanas(true)
       setisActiveGomitas(false)
       setisActiveChocolate(false)
@@ -221,18 +250,9 @@ export const ShoppingCartProvider = ({ children }) => {
         let products = ''
         let medida = ''
         order.forEach(element => {
-          if (element.isKilo)
-            medida = '1 kg'
-          else if (element.isMedio)
-            medida = '1/2 kg'
-          else if(element.isCuarto)
-            medida = '1/4 kg'
-          else if(element.isGramo)
-            medida = '100 g'
-          else if(element.isPieza)
-            medida = 'pieza'
-    
-          products = products + '*Producto:* ' + element.title + ' ' + medida + ', Cantidad: ' + element.quantity + ', Precio: $' + element.price + ' \n '
+           var med = element.opciones.filter(p=> p.precio === element.precio);
+           medida = med[0].unidad.Nombre;
+          products = products + '*Producto:* ' + element.producto.Nombre + ' ' + medida + ', Cantidad: ' + element.quantity + ', Precio: $' + element.precio + ' \n '
         });
         window.open(`https://wa.me/${phoneNumber}?text= ` + encodeURIComponent('Hola! envío la confirmación de mi pedido: \n\n' + products + '*Total a pagar: $*' + totalPrice(order) + "" + ' + envío' ), '_blank');  
         setTypeAlert('confirmacion')
@@ -305,7 +325,9 @@ export const ShoppingCartProvider = ({ children }) => {
       errorEmail,
       scrollTo,
       timeClose,
-      finishOrder
+      finishOrder,
+      setSelecciones,
+      selecciones
     }}>
       {children}
     </ShoppingCartContext.Provider>

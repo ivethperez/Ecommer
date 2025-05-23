@@ -13,9 +13,9 @@ const CheckoutSideMenu = () => {
   const onCancel = () => { setOpenModalOrder(false) };
 
   const handleDelete = (id) => {
-    const product = cartProducts.filter(product => product.id == id)
+    const product = cartProducts.filter(product => product.producto.Id == id)
     setCount(count - product[0].quantity)
-    setCartProducts(cartProducts.filter(product => product.id != id))
+    setCartProducts(cartProducts.filter(product => product.producto.Id != id))
   }
   const handleCkeckout = async () => {
     onCancel()
@@ -49,17 +49,14 @@ const CheckoutSideMenu = () => {
           cartProducts.map(product => (
             <OrderCard
               key={product.cartId}
-              title={product.title}
-              imageUrl={product.images}
-              price={product.price}
+              title={product.producto.Nombre}
+              imageUrl={product.producto.ImagenesProductos?.[0].URLImagen}
+              price={product.precio}
               quantity={product.quantity}
               handleDelete={handleDelete}
               id={product.cartId}
-              priceKilo={product.priceKilo}
-              priceMedio={product.priceMedio}
-              priceCuarto={product.priceCuarto}
-              priceGramo={product.price100g}
-              pricePieza={product.pricePieza}
+              unidadMedida={product.opciones}
+              
             />
           ))
         }

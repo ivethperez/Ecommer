@@ -47,17 +47,13 @@ function MyOrder() {
           order?.map(product => ( 
             <OrderFinish
               key={product.cartId}
-              title={product.title}
-              imageUrl={product.images}
-              price={product.price}
+              title={product.producto.Nombre}
+              imageUrl={product.producto.ImagenesProductos?.[0].URLImagen}
+              price={product.precio}
               quantity={product.quantity}
               handleDelete={handleDelete}
               id={product.cartId}
-              priceKilo={product.priceKilo}
-              priceMedio={product.priceMedio}
-              priceCuarto={product.priceCuarto}
-              priceGramo={product.price100g}
-              pricePieza={product.pricePieza}
+              unidadMedida={product.opciones}
             />
           ))
         }
@@ -70,8 +66,10 @@ function MyOrder() {
                             <span>${totalPrice(order)}</span>
                         </div>
                         <div className="flex justify-between text-sm text-gray-600">
-                            <span>Gastos de envío</span>
-                            <span>Se notificará por whatsapp</span>
+                            <span>Gastos de envío: </span>
+                        </div>
+                         <div className="flex justify-between text-sm text-gray-600">
+                            <span>Se notificará vía whatsapp</span>
                         </div>
                         <div className="flex justify-between text-lg font-bold mt-2">
                             <span>Total</span>

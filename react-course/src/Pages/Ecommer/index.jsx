@@ -12,7 +12,7 @@ function Ecommer() {
     if (filteredItems?.length > 0) {
       return (
         filteredItems?.map(item => (
-          <Card key={item.id} data={item}> </Card>
+          <Card key={item.producto.Id} data={item}> </Card>
         ))
       )
 

@@ -3,7 +3,7 @@ import { useShopiContext } from '../../Context'
 import { TrashIcon, MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/solid'
 
 const OrderFinish = props => {
-    const { id, title, imageUrl, price, quantity, handleDelete, priceKilo, priceMedio, priceCuarto, priceGramo, pricePieza } = props
+    const { id, title, imageUrl, price, quantity, handleDelete, unidadMedida } = props
     const { increentToCheckout, decrementToCheckout } = useShopiContext();
     const increent = () => {
         increentToCheckout(id)
@@ -12,16 +12,8 @@ const OrderFinish = props => {
         decrementToCheckout(id)
     }
     const med = () => {
-        if (price == priceKilo)
-            return '1 kg'
-        else if (price == priceMedio)
-            return '1/2 kg'
-        else if (price == priceCuarto)
-            return '1/4 kg'
-        else if (price == priceGramo)
-            return '100 g'
-        else if (price == pricePieza)
-            return 'Pieza'
+      const unidadesFiltradas = unidadMedida.filter(item => item.precio === price);
+        return unidadesFiltradas[0].unidad.Nombre;
     }
 
     return (

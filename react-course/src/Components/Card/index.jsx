@@ -3,18 +3,29 @@ import { useShopiContext } from '../../Context'
 import '../../Styles/styles.css'
 
 const Card = ({ data }) => {
-  const { increment, setOpenModal, setProductShow, cartProducts, setIsGramo, setIsKilo, setIsMedioKilo, setIsCuartoKilo,setIsPieza,timeClose } = useShopiContext();
+  const { increment, setOpenModal, setProductShow, cartProducts, setIsGramo, setIsKilo, setIsMedioKilo, setIsCuartoKilo, setIsPieza, timeClose, setSelecciones,selecciones } = useShopiContext();
 
- 
+
   const showproduct = (productDetail) => {
     setOpenModal(state => !state);
     setProductShow(productDetail);
   }
-  const addProductsToCart = (productData, e) => {
-    increment(e, productData);
+  const addProductsToCart = (productData, e, precio) => {
+    increment(e, productData,precio);
     timeClose();
   }
-  
+
+  const handleSeleccion = (productoId, index) => {
+    setSelecciones(prev => ({
+      ...prev,
+      [productoId]: index,
+    }));
+  };
+
+    const productoId = data.producto.Id;
+        const seleccionIndex = selecciones[productoId] || 0;
+        const seleccion = data.opciones[seleccionIndex];
+        
   const showPrice = async (prod, unidad) => {
     if (unidad == '1kg') {
       prod.isGramo = false
@@ -61,14 +72,18 @@ const Card = ({ data }) => {
   return (
 
     <div className=" shadow-sm text-center">
+  
       <div className='p-6'>
         <div className="group relative h-[8rem] transform overflow-hidden " onClick={() => showproduct(data)}>
           <span className="absolute bottom-0 left-0 bg-white/60 rounded-3xl text-xs m-2 px-3 py-0.5">
-            {data.category.name}
+            {data.producto.CategoriasProducto.Nombre}
           </span>
-          <img className=" inset-0 h-full w-full object-cover transition duration-300 group-hover:scale-110" src={data.images[0]} alt={data.title}></img>
-
-          {cartProducts.filter((product) => product.id === data.id)
+          <img
+            className="inset-0 h-full w-full object-cover transition duration-300 group-hover:scale-110"
+            src={data?.producto?.ImagenesProductos?.[0]?.URLImagen}
+            alt={data?.producto?.Nombre || 'Producto'}
+          />
+          {cartProducts.filter((product) => product.Id === data.producto.Id)
             .length > 0 ? (
             <button
               className="absolute top-0 right-0 flex justify-center items-center text-xs color-btn-confirmar w-6 h-6 rounded-full m-2"
@@ -85,52 +100,37 @@ const Card = ({ data }) => {
         </div>
       </div>
       <figcaption className="relative items-center justify-between border-t border-slate-100 pt-3">
-        <div className="font-display text-base text-slate-900">{data.title}</div>
+        <div className="font-display text-base text-slate-900">{data.producto.Nombre}</div>
 
-        {data.isPieza ? (
+
           <div className="flex items-center justify-center gap-4 mt-2">
             <select
               id={data.cartId}
               className="w-50 p-2 border rounded-lg"
-              value={data.isPieza}
-              onChange={(e) => showPrice(data, e.target.value)}
+              onChange={(e) => handleSeleccion(productoId, e.target.selectedIndex)}
+                value={seleccionIndex}
             >
-              <option value="pieza">Pieza</option>
+               {data.opciones.map((op, idx) => (
+                <option key={idx} value={idx}>
+                  {op.unidad.Nombre}
+                </option>
+              ))}
             </select>
-            <p className="text-lg font-bold">$ {data.price == null ? data.price = data.pricePieza : data.price}  </p>
+            <p className="text-lg font-bold">$ {seleccion.precio} </p>
           </div>
-        ) : (
-          <div className="flex items-center justify-center gap-4 mt-2">
-            <select
-              id={data.cartId}
-              className="w-50 p-2 border rounded-lg"
-              value={data.isCuarto ? "250g" : data.isMedio ? "500g" : data.isKilo ? "1kg" : data.isGramo ? "100g" : ""}
-              onChange={(e) => showPrice(data, e.target.value)}
-            >
-              <option value="100g">100 g</option>
-              <option value="250g">1/4 kg</option>
-              <option value="500g">1/2 kg</option>
-              <option value="1kg">1 kg</option>
-            </select>
-            <p className="text-lg font-bold">$ {data.price == null ? data.price = data.price100g : data.price}  </p>
-          </div>
-        )}
 
         <div className='flex justify-center items-center'>
           <div className="overflow-hidden rounded-full p-3">
-          {data.cantidad>0 ?
-            <button className='w-full flex justify-center items-center color-btn-confirmar text-white rounded-lg p-1' onClick={(e) => {
-              addProductsToCart(data, e)
-            }}>Agregar
-              <ShoppingBagIcon className='h-4 w-8'></ShoppingBagIcon></button>
+            {data.producto.Cantidad > 0 ?
+              <button className='w-full flex justify-center items-center color-btn-confirmar text-white rounded-lg p-1' onClick={(e) => {
+                addProductsToCart(data, e, seleccion.precio)
+              }}>Agregar
+                <ShoppingBagIcon className='h-4 w-8'></ShoppingBagIcon></button>
               :
-                    <div className="dark:text-slate-200"><dd className="px-1.5 ring-slate-200 rounded dark:ring-slate-600">Agotado</dd></div>
-          }               
+              <div className="dark:text-slate-200"><dd className="px-1.5 ring-slate-200 rounded dark:ring-slate-600">Agotado</dd></div>
+            }
           </div>
         </div>
-
-    
-
       </figcaption>
     </div>
 
