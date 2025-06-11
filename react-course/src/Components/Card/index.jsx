@@ -1,17 +1,21 @@
 import { CheckIcon, ShoppingBagIcon } from '@heroicons/react/24/solid';
 import { useShopiContext } from '../../Context'
 import '../../Styles/styles.css'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/css'
+import 'swiper/css/pagination'
+import { Pagination,Autoplay } from 'swiper/modules'
 
 const Card = ({ data }) => {
-  const { increment, setOpenModal, setProductShow, cartProducts, setIsGramo, setIsKilo, setIsMedioKilo, setIsCuartoKilo, setIsPieza, timeClose, setSelecciones,selecciones } = useShopiContext();
+  const { increment, setOpenModal, setProductShow, cartProducts, timeClose, setSelecciones, selecciones, setPrecioSeleccionado } = useShopiContext();
 
-
-  const showproduct = (productDetail) => {
+  const showproduct = (productDetail, precio) => {
     setOpenModal(state => !state);
     setProductShow(productDetail);
+    setPrecioSeleccionado(precio);
   }
   const addProductsToCart = (productData, e, precio) => {
-    increment(e, productData,precio);
+    increment(e, productData, precio);
     timeClose();
   }
 
@@ -22,67 +26,46 @@ const Card = ({ data }) => {
     }));
   };
 
-    const productoId = data.producto.Id;
-        const seleccionIndex = selecciones[productoId] || 0;
-        const seleccion = data.opciones[seleccionIndex];
-        
-  const showPrice = async (prod, unidad) => {
-    if (unidad == '1kg') {
-      prod.isGramo = false
-      prod.isKilo = true
-      prod.isMedio = false
-      prod.isCuarto = false
-      prod.price = prod.priceKilo
-    }
-    if (unidad == '500g') {
-      prod.isGramo = false
-      prod.isMedio = true
-      prod.isCuarto = false
-      prod.isKilo = false
-      prod.price = prod.priceMedio
-    }
-    if (unidad == '250g') {
-      prod.isGramo = false
-      prod.isMedio = false
-      prod.isCuarto = true
-      prod.isKilo = false
-      prod.price = prod.priceCuarto
-    }
-    if (unidad == '100g') {
-      prod.isMedio = false
-      prod.isCuarto = false
-      prod.isKilo = false
-      prod.isGramo = true
-      prod.price = prod.price100g
-    }
-    if (unidad == 'pieza') {
-      prod.isGramo = false
-      prod.isMedio = false
-      prod.isCuarto = false
-      prod.isKilo = false
-      prod.isPieza = true
-      prod.price = prod.pricePieza
-    }
-    setIsGramo(prod.isGramo)
-    setIsKilo(prod.isKilo)
-    setIsMedioKilo(prod.isMedio)
-    setIsCuartoKilo(prod.isCuarto)
-    setIsPieza(prod.isPieza)
-  }
+  const productoId = data.producto.Id;
+  const seleccionIndex = selecciones[productoId] || 0;
+  const seleccion = data.opciones[seleccionIndex];
+
   return (
 
-    <div className=" shadow-sm text-center">
-  
+    <div className="shadow-sm text-center">
+
       <div className='p-6'>
-        <div className="group relative h-[8rem] transform overflow-hidden " onClick={() => showproduct(data)}>
+        <div className="group relative h-[8rem] transform overflow-hidden " onClick={() => showproduct(data, seleccion.precio)}>
           <span className="absolute bottom-0 left-0 bg-white/60 rounded-3xl text-xs m-2 px-3 py-0.5">
             {data.producto.CategoriasProducto.Nombre}
           </span>
-          <img
-            className="inset-0 h-full w-full object-cover transition duration-300 group-hover:scale-110"
-            src={data?.producto?.ImagenesProductos?.[0]?.URLImagen}
-            alt={data?.producto?.Nombre || 'Producto'}
-          />
+          {!data.producto.EsPieza ? (
+            <img
+              className="inset-0 h-full w-full object-cover transition duration-300 group-hover:scale-110"
+              src={data?.producto?.ImagenesProductos?.[0]?.URLImagen}
+              alt={data?.producto?.Nombre || 'Producto'}
+            />) : (
+
+            <Swiper
+              pagination={{ clickable: true }}
+              autoplay={{ delay: 4000, disableOnInteraction: false }}
+              modules={[Pagination,Autoplay]}
+              className="inset-0 h-full w-full object-cover transition duration-300 group-hover:scale-110"
+            >
+              {data?.producto?.ImagenesProductos
+                ?.slice() // para no mutar el array original
+                .sort((a, b) => a.Orden - b.Orden)
+                .map((img, idx) => (
+                  <SwiperSlide key={idx}>
+                    <img
+                      className="inset-0 h-full w-full object-cover transition duration-300 group-hover:scale-110"
+                      src={img.URLImagen}
+                      alt={`Imagen ${idx + 1}`}
+                    />
+                  </SwiperSlide>
+                ))}
+            </Swiper>
+          )}
           {cartProducts.filter((product) => product.Id === data.producto.Id)
             .length > 0 ? (
             <button
@@ -101,23 +84,21 @@ const Card = ({ data }) => {
       </div>
       <figcaption className="relative items-center justify-between border-t border-slate-100 pt-3">
         <div className="font-display text-base text-slate-900">{data.producto.Nombre}</div>
-
-
-          <div className="flex items-center justify-center gap-4 mt-2">
-            <select
-              id={data.cartId}
-              className="w-50 p-2 border rounded-lg"
-              onChange={(e) => handleSeleccion(productoId, e.target.selectedIndex)}
-                value={seleccionIndex}
-            >
-               {data.opciones.map((op, idx) => (
-                <option key={idx} value={idx}>
-                  {op.unidad.Nombre}
-                </option>
-              ))}
-            </select>
-            <p className="text-lg font-bold">$ {seleccion.precio} </p>
-          </div>
+        <div className="flex items-center justify-center gap-4 mt-2">
+          <select
+            id={data.cartId}
+            className="w-50 p-2 border rounded-lg"
+            onChange={(e) => handleSeleccion(productoId, e.target.selectedIndex)}
+            value={seleccionIndex}
+          >
+            {data.opciones.map((op, idx) => (
+              <option key={idx} value={idx}>
+                {op.unidad.Nombre}
+              </option>
+            ))}
+          </select>
+          <p className="text-lg font-bold">$ {seleccion.precio} </p>
+        </div>
 
         <div className='flex justify-center items-center'>
           <div className="overflow-hidden rounded-full p-3">

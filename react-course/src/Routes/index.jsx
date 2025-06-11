@@ -8,6 +8,7 @@ import MyOrders from '../Pages/MyOrders'
 import NotFound from '../Pages/NotFound'
 import Signin from '../Pages/Signin'
 import Ecommer from '../Pages/Ecommer'
+import MyCustomPackage from '../Pages/MyCustomPackage'
 
 export const AppRoutes = () =>{
     const { signOut } = useShopiContext();
@@ -17,12 +18,13 @@ export const AppRoutes = () =>{
             { path:'/', element:<Ecommer/> },
             { path:'/:botanas', element:<Ecommer /> },
             { path:'/my-acount',element: signOut? <Signin />: <MyAcount/> },
-            { path:'/my-order', element: signOut? <Signin />:<MyOrder/> },
+            { path:'/my-order', element: <MyOrder/> },
             { path:'/my-orders', element: signOut? <Signin />:<MyOrders/> },
             { path:'/my-orders/last', element: signOut? <Signin />:<MyOrder/> },
             { path:'/my-orders/:id', element:signOut? <Signin />:<MyOrder/> },
             { path:'/*', element:<NotFound/> },
             { path:'/sign-in', element:<Signin/>},
+            { path:'/my-custom-package', element: signOut? <MyCustomPackage />:<MyCustomPackage/> }
           ])
     )
 

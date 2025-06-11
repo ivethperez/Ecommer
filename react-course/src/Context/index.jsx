@@ -26,7 +26,7 @@ export const initializeLocalStorage = () => {
 export const ShoppingCartProvider = ({ children }) => {
 
   useEffect(() => {
-    fetch('https://apileier-production.up.railway.app/api/priceproducts')
+    fetch('apiproducts.snacksleier.com/api/priceproducts')
     .then(response => response.json())
     .then(data => {
        // Agrupar por producto (por Id)
@@ -215,11 +215,9 @@ const [selecciones, setSelecciones] = useState({});
   const [isActiveBotanas, setisActiveBotanas] = useState(false)
   const [isActiveTodo, setisActiveTodo] = useState(false)
 
-  const [isKilo, setIsKilo] = useState(true)
-  const [isMedioKilo, setIsMedioKilo] = useState(false)
-  const [isCuartoKilo, setIsCuartoKilo] = useState(false)
-  const [isGramo, setIsGramo] = useState(false)
-  const [isPieza, setIsPieza] = useState(false)
+
+
+  const [precioSeleccionado, setPrecioSeleccionado] = useState()
 
   const [cartProduct, setCartProduct] = useState([]) //Array de objetos cart individual
 
@@ -303,16 +301,7 @@ const [selecciones, setSelecciones] = useState({});
       isActiveBotanas,
       isActiveTodo,
       phoneNumber,
-      setIsKilo,
-      setIsMedioKilo,
-      setIsCuartoKilo,
-      isKilo,
-      isMedioKilo,
-      isCuartoKilo,
-      isGramo, 
-      setIsGramo,
-      isPieza, 
-      setIsPieza,
+ 
       cartProduct,
       setCartProduct,
       showAlert,
@@ -327,7 +316,9 @@ const [selecciones, setSelecciones] = useState({});
       timeClose,
       finishOrder,
       setSelecciones,
-      selecciones
+      selecciones,
+      precioSeleccionado, 
+      setPrecioSeleccionado
     }}>
       {children}
     </ShoppingCartContext.Provider>

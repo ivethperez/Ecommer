@@ -1,10 +1,12 @@
 import Card from '../../Components/Card'
 import ProductDetail from '../../Components/ProductDetail'
 import ProductModal from '../../Components/ProductModal'
+import { Link } from 'react-router-dom'
 import { useShopiContext } from '../../Context'
 import CheckoutSideMenu from '../../Components/CheckoutSideMenu'
 import Alert from '../../Components/Alert'
 import '../../Styles/styles.css'
+
 
 function Ecommer() {
   const { openModal, search, filteredItems,showAlert } = useShopiContext();
@@ -12,7 +14,8 @@ function Ecommer() {
     if (filteredItems?.length > 0) {
       return (
         filteredItems?.map(item => (
-          <Card key={item.producto.Id} data={item}> </Card>
+          item.producto.Activo ?
+          <Card key={item.producto.Id} data={item}> </Card>: ""
         ))
       )
 
@@ -48,7 +51,18 @@ function Ecommer() {
             </div>
           </div>
         </div>
-
+{/* `
+  <div className="max-w-md mx-auto mt-10 p-6 text-center shadow-lg rounded-2xl border border-gray-200 bg-white">
+      <h2 className="text-xl font-bold mb-4">¿Quieres armar tu paquete personalizado?</h2>
+       <Link to='/my-custom-package'>
+      <button
+        
+        className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-xl shadow"
+      >
+        ¡Empieza aquí!
+      </button>
+      </Link>
+    </div>` */}
         <div className="mx-auto mt-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {
