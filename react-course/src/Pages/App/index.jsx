@@ -13,18 +13,16 @@ const App =() => {
    return(
 <ShoppingCartProvider>
 <BrowserRouter>
-    <Navbar></Navbar>
+    <Navbar></Navbar> 
     <main>
     <Layout>
-      <AppRoutes></AppRoutes>
-    </Layout>
-    </main>
-    <Footerr></Footerr>
+      <AppRoutes></AppRoutes>   
+    </Layout>    
+    </main>   
+    <Footerr></Footerr>  
    </BrowserRouter>
 </ShoppingCartProvider>
- 
- 
+
    )
 }
-
 export default App

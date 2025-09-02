@@ -35,7 +35,8 @@ const Card = ({ data }) => {
     <div className="shadow-sm text-center">
 
       <div className='p-6'>
-        <div className="group relative h-[8rem] transform overflow-hidden " onClick={() => showproduct(data, seleccion.precio)}>
+      
+        <div className={`group relative transform overflow-hidden sm:h-[7rem] max-sm:h-[7rem] ${!data.producto.EsPieza ? ' md:h-[10rem]' : 'md:h-[10rem]'}`} onClick={() => showproduct(data, seleccion.precio)}>
           <span className="absolute bottom-0 left-0 bg-white/60 rounded-3xl text-xs m-2 px-3 py-0.5">
             {data.producto.CategoriasProducto.Nombre}
           </span>

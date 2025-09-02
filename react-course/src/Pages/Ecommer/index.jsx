@@ -10,6 +10,7 @@ import '../../Styles/styles.css'
 
 function Ecommer() {
   const { openModal, search, filteredItems,showAlert } = useShopiContext();
+
   const renderView = () => {
     if (filteredItems?.length > 0) {
       return (

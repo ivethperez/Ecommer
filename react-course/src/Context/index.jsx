@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect,useRef } from 'react'
+import { createContext, useContext, useState, useEffect, useRef } from 'react'
 import emailjs from '@emailjs/browser';
 import { totalPrice } from '../utils'
 const ShoppingCartContext = createContext()
@@ -26,10 +26,10 @@ export const initializeLocalStorage = () => {
 export const ShoppingCartProvider = ({ children }) => {
 
   useEffect(() => {
-    fetch('apiproducts.snacksleier.com/api/priceproducts')
-    .then(response => response.json())
-    .then(data => {
-       // Agrupar por producto (por Id)
+    fetch('https://apiproducts.snacksleier.com/api/priceproducts')
+      .then(response => response.json())
+      .then(data => {
+        // Agrupar por producto (por Id)
         const mapa = new Map();
 
         data.forEach(item => {
@@ -46,59 +46,102 @@ export const ShoppingCartProvider = ({ children }) => {
           });
         });
 
-          const productosAgrupados = Array.from(mapa.values());
+        const productosAgrupados = Array.from(mapa.values());
         setItems(productosAgrupados);
 
         // Inicializar selección con la primera opción
         const inicial = {};
         productosAgrupados.forEach((item, idx) => {
+          item.opciones.sort((a, b) => a.precio - b.precio);
           inicial[item.producto.Id] = 0;
         });
+        console.log(inicial);
         setSelecciones(inicial);
 
-      setItems(Array.from(mapa.values()));
-      
-     // setItems(data)
-    })
+        setItems(Array.from(mapa.values()));
+
+        // setItems(data)
+      })
   }, [])
 
-const [selecciones, setSelecciones] = useState({});
+  const [error, setError] = useState('');
+  const [access, setAccess] = useState(false);
+   const [userName, setUserName] = useState('');
+  const login = async (Correo, Contrase_a) => {
+    try {
+      const response = await fetch('', {
+        method: 'POST',
+        headers: { 'content-Type': 'application/json' },
+        body: JSON.stringify({ Correo, Contrase_a })
+      });
+      if (!response.ok) {
+        throw new Error('Credenciales incorrectas');
+      }
+
+      const token = await response.json();
+      if (token != null) {
+
+         const response = await fetch('', {
+        method: 'GET',
+        headers: { 'content-Type': 'application/json' },
+        body: JSON.stringify({ Correo })
+      });
+      if (!response.ok) {
+        throw new Error('Usuario no encontrado');
+      }
+      const user = await response.json();
+      setUserName(user.Nombre);
+      console.log(userName);
+        setSignOut(false);
+      }
+
+    }
+    catch (err) {
+      console.log(err)
+      setError(err)
+    }
+    finally {
+
+    }
+  }
+
+  const [selecciones, setSelecciones] = useState({});
   //Shopping Cart
   const [count, setCount] = useState(0)
 
   const increment = (event, product, precio) => {
     event.stopPropagation();
-      setCartProducts((prevCartProducts) => {
-        const existingProductIndex = prevCartProducts.findIndex(
-          (el) => el.cartId === `${product.producto.Id}-${precio}`
+    setCartProducts((prevCartProducts) => {
+      const existingProductIndex = prevCartProducts.findIndex(
+        (el) => el.cartId === `${product.producto.Id}-${precio}`
+      );
+
+      if (existingProductIndex !== -1) {
+        return prevCartProducts.map((el, index) =>
+          index === existingProductIndex ? { ...el, quantity: el.quantity + 1, precio: precio } : el
         );
-    
-        if (existingProductIndex !== -1) {
-          return prevCartProducts.map((el, index) =>
-            index === existingProductIndex ? { ...el, quantity: el.quantity + 1, precio: precio } : el
-          );
-        } else {
-          const { id, ...productWithoutId } = product; // Elimina el id del producto
-          return [{ ...productWithoutId, quantity: 1, cartId: `${product.producto.Id}-${precio}`, precio:precio }];
-        }
-      });
-    
-      setOrder((prevOrder) => {
-        const existingOrderIndex = prevOrder.findIndex(
-          (el) => el.cartId === `${product.producto.Id}-${precio}`
+      } else {
+        const { id, ...productWithoutId } = product; // Elimina el id del producto
+        return [{ ...productWithoutId, quantity: 1, cartId: `${product.producto.Id}-${precio}`, precio: precio }];
+      }
+    });
+
+    setOrder((prevOrder) => {
+      const existingOrderIndex = prevOrder.findIndex(
+        (el) => el.cartId === `${product.producto.Id}-${precio}`
+      );
+
+      if (existingOrderIndex !== -1) {
+        return prevOrder.map((el, index) =>
+          index === existingOrderIndex ? { ...el, quantity: el.quantity + 1, precio: precio } : el
         );
-    
-        if (existingOrderIndex !== -1) {
-          return prevOrder.map((el, index) =>
-            index === existingOrderIndex ? { ...el, quantity: el.quantity + 1, precio: precio } : el
-          );
-        } else {
-          const { id, ...productWithoutId } = product; // Elimina el id del producto
-          return [...prevOrder, { ...productWithoutId, quantity: 1, cartId: `${product.producto.Id}-${precio}`, precio: precio }];
-        }
-      });
-      setCount(count + 1);
-      setOpenModalOrder(true);      
+      } else {
+        const { id, ...productWithoutId } = product; // Elimina el id del producto
+        return [...prevOrder, { ...productWithoutId, quantity: 1, cartId: `${product.producto.Id}-${precio}`, precio: precio }];
+      }
+    });
+    setCount(count + 1);
+    setOpenModalOrder(true);
   }
 
   //ProductDetail
@@ -198,8 +241,10 @@ const [selecciones, setSelecciones] = useState({});
 
   //My acount
   const [account, setAccount] = useState({})
+  const [accountLogin, setAccountLogin] = useState({})
+
   //Sign out
-  const [signOut, setSignOut] = useState(false)
+  const [signOut, setSignOut] = useState(true)
 
   //Create account
   const [view, setView] = useState('user-info')
@@ -226,41 +271,42 @@ const [selecciones, setSelecciones] = useState({});
 
   //Envio de correo y tel
   const form = useRef();
-  const [respEmail,setRespEmail] = useState(false)
-  const [errorEmail,setErrorEmail] = useState(false)
-  const sendEmail = async(e) =>{
+  const [respEmail, setRespEmail] = useState(false)
+  const [errorEmail, setErrorEmail] = useState(false)
+  const sendEmail = async (e) => {
     e.preventDefault()
     //'YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form.current, 'YOUR_PUBLIC_KEY'
     emailjs.sendForm('', '', form.current, '')
-    .then((result) => {
-      setRespEmail(true);
-    }, (error) => {
+      .then((result) => {
+        setRespEmail(true);
+      }, (error) => {
         setErrorEmail(true);
-    });
+      });
 
   }
-  const timeClose = async() =>{
+  const timeClose = async () => {
     const timer = setTimeout(() => setOpenModalOrder(false), 3000);
     return () => clearTimeout(timer);
   }
-  const [phoneNumber, setPhoneNumber] = useState('521');
-  const finishOrder = async() =>{
-        let products = ''
-        let medida = ''
-        order.forEach(element => {
-           var med = element.opciones.filter(p=> p.precio === element.precio);
-           medida = med[0].unidad.Nombre;
-          products = products + '*Producto:* ' + element.producto.Nombre + ' ' + medida + ', Cantidad: ' + element.quantity + ', Precio: $' + element.precio + ' \n '
-        });
-        window.open(`https://wa.me/${phoneNumber}?text= ` + encodeURIComponent('Hola! envío la confirmación de mi pedido: \n\n' + products + '*Total a pagar: $*' + totalPrice(order) + "" + ' + envío' ), '_blank');  
-        setTypeAlert('confirmacion')
-        setShowAlert(true)
-        setCartProducts([])
-        setCount(0)
-        setOrder([])
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const finishOrder = async () => {
+    let products = ''
+    let medida = ''
+    order.forEach(element => {
+      var med = element.opciones.filter(p => p.precio === element.precio);
+      medida = med[0].unidad.Nombre;
+      products = products + '*Producto:* ' + element.producto.Nombre + ' ' + medida + ', Cantidad: ' + element.quantity + ', Precio: $' + element.precio + ' \n'
+    });
+    window.open(`https://wa.me/${phoneNumber}?text=` + encodeURIComponent('Hola! envío la confirmación de mi pedido: \n\n' + products + '*Total a pagar:* $' + '*' + totalPrice(order) + '*' + " " + '*más envío*'), '_blank');
+    
+    setTypeAlert('confirmacion')
+    setShowAlert(true)
+    setCartProducts([])
+    setCount(0)
+    setOrder([])
   }
 
-  const scrollTo=()=>{
+  const scrollTo = () => {
     window.scrollTo(0, 0);
   }
   return (
@@ -301,7 +347,7 @@ const [selecciones, setSelecciones] = useState({});
       isActiveBotanas,
       isActiveTodo,
       phoneNumber,
- 
+
       cartProduct,
       setCartProduct,
       showAlert,
@@ -317,8 +363,10 @@ const [selecciones, setSelecciones] = useState({});
       finishOrder,
       setSelecciones,
       selecciones,
-      precioSeleccionado, 
-      setPrecioSeleccionado
+      precioSeleccionado,
+      setPrecioSeleccionado,
+      login,
+      access
     }}>
       {children}
     </ShoppingCartContext.Provider>

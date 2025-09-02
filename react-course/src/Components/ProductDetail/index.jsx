@@ -10,7 +10,7 @@ const ProductDetail = () => {
     const { setOpenModal, productShow, openModal, increment, timeClose, precioSeleccionado } = useShopiContext();
     console.log(productShow)
     const addProductsToCart = (e) => {
-        increment(e, productShow);
+        increment(e, productShow,precioSeleccionado);
         setOpenModal(false);
         timeClose();
     }
@@ -42,7 +42,7 @@ const ProductDetail = () => {
                                     .map((img, idx) => (
                                         <SwiperSlide key={idx}>
                                             <img
-                                                className="w-full h-44 object-cover mb-4"
+                                                className="w-full h-48 object-cover mb-4"
                                                 src={img.URLImagen}
                                                 alt={`Imagen ${idx + 1}`}
                                             />
