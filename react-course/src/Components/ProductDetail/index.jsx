@@ -8,7 +8,6 @@ import { Pagination,Autoplay } from 'swiper/modules'
 
 const ProductDetail = () => {
     const { setOpenModal, productShow, openModal, increment, timeClose, precioSeleccionado } = useShopiContext();
-    console.log(productShow)
     const addProductsToCart = (e) => {
         increment(e, productShow,precioSeleccionado);
         setOpenModal(false);

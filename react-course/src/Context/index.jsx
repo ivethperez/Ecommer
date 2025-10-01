@@ -1,48 +1,29 @@
 import { createContext, useContext, useState, useEffect, useRef } from 'react'
 import emailjs from '@emailjs/browser';
-import { totalPrice } from '../utils'
+import { totalPrice, apiRequest } from '../utils'
 const ShoppingCartContext = createContext()
 
-//LocalStorage sign out
-
-export const initializeLocalStorage = () => {
-  const accountInLocalStorage = localStorage.getItem('account');
-  const singOutInLocalStorage = localStorage.getItem('sing-out');
-
-  let parsedAccount;
-  let parsedSingOut;
-
-  if (!accountInLocalStorage || !singOutInLocalStorage) {
-    localStorage.setItem('account', JSON.stringify({}));
-    localStorage.setItem('sing-out', JSON.stringify(false));
-    parsedAccount = {};
-    parsedSingOut = false;
-  } else {
-    parsedAccount = JSON.parse(accountInLocalStorage);
-    parsedSingOut = JSON.parse(singOutInLocalStorage);
-  }
-}
-
+const API_URL = import.meta.env.VITE_API_URL;
 export const ShoppingCartProvider = ({ children }) => {
 
   useEffect(() => {
-    fetch('https://apiproducts.snacksleier.com/api/priceproducts')
+    fetch(`${API_URL}/priceproducts`)
       .then(response => response.json())
       .then(data => {
         // Agrupar por producto (por Id)
         const mapa = new Map();
 
         data.forEach(item => {
-          const prodId = item.Productos.Id;
+          const prodId = item.product.id;
           if (!mapa.has(prodId)) {
             mapa.set(prodId, {
-              producto: item.Productos,
-              opciones: [],
+              product: item.product,
+              options: [],
             });
           }
-          mapa.get(prodId).opciones.push({
-            unidad: item.UnidadesMedida,
-            precio: item.PrecioUnitario
+          mapa.get(prodId).options.push({
+            unitOfMeasure: item.unitOfMeasure,
+            unitPrice: item.unitPrice
           });
         });
 
@@ -52,10 +33,9 @@ export const ShoppingCartProvider = ({ children }) => {
         // Inicializar selección con la primera opción
         const inicial = {};
         productosAgrupados.forEach((item, idx) => {
-          item.opciones.sort((a, b) => a.precio - b.precio);
-          inicial[item.producto.Id] = 0;
+          item.options.sort((a, b) => a.unitPrice - b.unitPrice);
+          inicial[item.product.id] = 0;
         });
-        console.log(inicial);
         setSelecciones(inicial);
 
         setItems(Array.from(mapa.values()));
@@ -64,45 +44,147 @@ export const ShoppingCartProvider = ({ children }) => {
       })
   }, [])
 
-  const [error, setError] = useState('');
   const [access, setAccess] = useState(false);
-   const [userName, setUserName] = useState('');
-  const login = async (Correo, Contrase_a) => {
+  const [userName, setUserName] = useState('');
+  const [mensajeAlerta, setMensajeAlerta] = useState("");
+  const [accionConfirmar, setAccionConfirmar] = useState(false);
+  const [token, setToken] = useState("");
+  const [userId, setUserId] = useState(0);
+  const [productFromEdit, setProductFromEdit] = useState(null);
+  const [categories, setCategories] = useState([]);
+  const [images, setImages] = useState([]);
+  const [clientsItems, setClientsItems] = useState(null);
+  const [salesItems, setSalesItems] = useState(null);
+  const [paymentMethodos, setPaymentMethods] = useState([])
+
+  const login = async (email, password) => {
     try {
-      const response = await fetch('', {
+      //  Petición de login
+      const response = await fetch(`${API_URL}/auth/login`, {
         method: 'POST',
-        headers: { 'content-Type': 'application/json' },
-        body: JSON.stringify({ Correo, Contrase_a })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
       });
+
       if (!response.ok) {
         throw new Error('Credenciales incorrectas');
       }
 
-      const token = await response.json();
-      if (token != null) {
+      // Extraer token del JSON
+      const { token } = await response.json();
+      if (!token) {
+        throw new Error('No se recibió token del servidor');
+      }
+      // Guardar el token(para futuras peticiones)
+      setToken(token);
 
-         const response = await fetch('', {
-        method: 'GET',
-        headers: { 'content-Type': 'application/json' },
-        body: JSON.stringify({ Correo })
-      });
-      if (!response.ok) {
+      // Llamar a la ruta protegida con el token
+      const userResponse = await fetch(
+        `${API_URL}/user/${encodeURIComponent(email)}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}` // 
+          }
+        }
+      );
+
+      if (!userResponse.ok) {
         throw new Error('Usuario no encontrado');
       }
-      const user = await response.json();
-      setUserName(user.Nombre);
-      console.log(userName);
-        setSignOut(false);
-      }
 
-    }
-    catch (err) {
-      console.log(err)
-      setError(err)
-    }
-    finally {
+      const user = await userResponse.json();
+      setUserId(user[0].id);
+      // Guardar datos de usuario en el estado
+      setUserName(user[0].name);
+      setSignOut(false);
 
+    } catch (err) {
+      console.error(err);
     }
+  };
+
+  // Acción expuesta, sin useEffect
+  const productEdit = async (id) => {
+    const res = await apiRequest(`${API_URL}/products/${id}`, "GET", token, userId);
+    setProductFromEdit(res);
+
+    const resCategories = await apiRequest(`${API_URL}/categories?products=true`, "GET", token, userId);
+    setCategories(resCategories);
+  };
+
+  const getImagesProduct = async (productId) => {
+    const res = await apiRequest(`${API_URL}/productImages/?productId=${productId}`, "GET", token, userId);
+    setImages(res);
+  }
+
+  const updateProductImages = async (data) => {
+    try {
+      const res = await fetch(`${API_URL}/productImages`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem("authToken")}`
+        },
+        body: data
+      });
+      const resp = await res.json();
+      console.log("Respuesta del servidor:", resp);
+    } catch (error) {
+      console.error("Error al subir imágenes:", error);
+    }
+
+  }
+  //#region --- Customer ---
+  const getCustomers = async () => {
+    const res = await apiRequest(`${API_URL}/customers`, "GET", token, userId);
+    setClientsItems(res);
+  }
+  const customerCreate = async (formData) => {
+    const res = await apiRequest(`${API_URL}/customers`, "POST", token, userId, formData);
+    return res;
+  }
+  const customerUpdate = async (data) => {
+    const res = await apiRequest(`${API_URL}/customers/${data.id}`, "PUT", token, userId, data);
+    return res;
+  }
+  const customerDelete = async (id) => {
+    const res = await apiRequest(`${API_URL}/customers/${id}`, "DELETE", token, userId,)
+    return res;
+  }
+  //#endregion
+
+  //#region --- Sales ---
+  const getSales = async () => {
+    const res = await apiRequest(`${API_URL}/sales`, "GET", token);
+    setSalesItems(res);
+  }
+  // const saleCreate = async (formData) => {
+  //   const res = await apiRequest(`${API_URL}/customers`, "POST",token, userId, formData);
+  //   return res;
+  // }
+  // const saleUpdate = async (data) => {
+  //   const res = await apiRequest(`${API_URL}/customers/${data.id}`, "PUT",token, userId, data);
+  //   return res;
+  // }
+  // const saleDelete = async (id) => {
+  //   const res = await apiRequest(`${API_URL}/customers/${id}`, "DELETE",token, userId,)
+  //   return res;
+  // }
+  //#endregion
+
+  //#region --- Listas ---
+  const getPaymentMethods = async () => {
+    const res = await apiRequest(`${API_URL}/paymentMethods`, "GET", token);
+    setPaymentMethods(res);
+  }
+
+  //#endregion
+
+  const getProductPrice = async (productId, unitOfMeasureId) => {
+    const res = await apiRequest(`${API_URL}/priceproducts/by-product/${productId}/${unitOfMeasureId}`, "GET", token);
+
+    return res;
   }
 
   const [selecciones, setSelecciones] = useState({});
@@ -174,22 +256,30 @@ export const ShoppingCartProvider = ({ children }) => {
   const [items, setItems] = useState(null)
 
   const [searchByTitle, setSearchByTitle] = useState(null)
+  const [searchByNameCustomer, setSearchByNameCustomer] = useState(null)
+  const [filteredCustomerItems, setFilteredCustomerItems] = useState(null)
 
 
   const [filteredItems, setFilteredItems] = useState(null)
   const search = (event) => {
     setSearchByTitle(event.target.value)
   }
+  const searchCustomer = (event) => {
+    setSearchByNameCustomer(event.target.value)
+  }
 
   const filteredItemsByTitle = (items, searchByTitle) => {
-    return items?.filter(item => item.producto.Nombre.toLowerCase().includes(searchByTitle.toLowerCase()))
+    return items?.filter(item => item.product.name.toLowerCase().includes(searchByTitle.toLowerCase()))
   }
 
   //Filtro por categoría
   const [searchByCategory, setSearchByCategory] = useState(null)
 
   const filteredItemsByCategory = (items, searchByCategory) => {
-    return items?.filter(item => item.producto.CategoriasProducto.Nombre.toLowerCase().includes(searchByCategory.toLowerCase()))
+    return items?.filter(item => item.product.category.name.toLowerCase().includes(searchByCategory.toLowerCase()))
+  }
+  const filteredItemsByCustomer = (items, searchByNameCustomer) => {
+    return items?.filter(item => item.name.toLowerCase().includes(searchByNameCustomer.toLowerCase()))
   }
 
   const filterBy = (searchType, items, searchByTitle, searchByCategory) => {
@@ -200,18 +290,21 @@ export const ShoppingCartProvider = ({ children }) => {
       return filteredItemsByCategory(items, searchByCategory)
     }
     if (searchType === 'BY_TITLE_AND_CATEGORY') {
-      return filteredItemsByCategory(items, searchByCategory).filter(item => item.producto.Nombre.toLowerCase().includes(searchByTitle.toLowerCase()))
+      return filteredItemsByCategory(items, searchByCategory).filter(item => item.product.name.toLowerCase().includes(searchByTitle.toLowerCase()))
+    }
+    if (searchType === 'BY_CUSTOMER') {
+      return filteredItemsByCustomer(items, searchByTitle)
     }
     if (!searchType) {
       return items
     }
   }
-
   useEffect(() => {
     if (searchByTitle && searchByCategory) setFilteredItems(filterBy('BY_TITLE_AND_CATEGORY', items, searchByTitle, searchByCategory))
     if (searchByTitle && !searchByCategory) setFilteredItems(filterBy('BY_TITLE', items, searchByTitle, searchByCategory))
     if (!searchByTitle && searchByCategory) setFilteredItems(filterBy('BY_CATEGORY', items, searchByTitle, searchByCategory))
     if (!searchByTitle && !searchByCategory) setFilteredItems(filterBy(null, items, searchByTitle, searchByCategory))
+
     if (searchByCategory == 'Chocolates') {
       setisActiveChocolate(true);
       setisActiveBotanas(false)
@@ -237,6 +330,11 @@ export const ShoppingCartProvider = ({ children }) => {
       setisActiveTodo(true)
     }
   }, [items, searchByTitle, searchByCategory])
+
+  useEffect(() => {
+    if (searchByNameCustomer) setFilteredCustomerItems(filterBy('BY_CUSTOMER', clientsItems, searchByNameCustomer))
+    if (!searchByNameCustomer) setFilteredCustomerItems(filterBy(null, clientsItems, searchByNameCustomer))
+  }, [clientsItems, searchByNameCustomer])
 
 
   //My acount
@@ -288,7 +386,7 @@ export const ShoppingCartProvider = ({ children }) => {
     const timer = setTimeout(() => setOpenModalOrder(false), 3000);
     return () => clearTimeout(timer);
   }
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('521');
   const finishOrder = async () => {
     let products = ''
     let medida = ''
@@ -298,7 +396,7 @@ export const ShoppingCartProvider = ({ children }) => {
       products = products + '*Producto:* ' + element.producto.Nombre + ' ' + medida + ', Cantidad: ' + element.quantity + ', Precio: $' + element.precio + ' \n'
     });
     window.open(`https://wa.me/${phoneNumber}?text=` + encodeURIComponent('Hola! envío la confirmación de mi pedido: \n\n' + products + '*Total a pagar:* $' + '*' + totalPrice(order) + '*' + " " + '*más envío*'), '_blank');
-    
+
     setTypeAlert('confirmacion')
     setShowAlert(true)
     setCartProducts([])
@@ -330,6 +428,7 @@ export const ShoppingCartProvider = ({ children }) => {
       setItems,
       search,
       searchByTitle,
+      searchCustomer,
       filteredItems,
       setSearchByCategory,
       setSearchByTitle,
@@ -347,13 +446,13 @@ export const ShoppingCartProvider = ({ children }) => {
       isActiveBotanas,
       isActiveTodo,
       phoneNumber,
-
       cartProduct,
       setCartProduct,
       showAlert,
       setShowAlert,
       setTypeAlert,
       typeAlert,
+      setMensajeAlerta,
       form,
       sendEmail,
       respEmail,
@@ -366,7 +465,31 @@ export const ShoppingCartProvider = ({ children }) => {
       precioSeleccionado,
       setPrecioSeleccionado,
       login,
-      access
+      access,
+      productFromEdit,
+      categories,
+      productEdit,
+      getImagesProduct,
+      images,
+      setImages,
+      updateProductImages,
+      clientsItems,
+      setClientsItems,
+      filteredCustomerItems,
+      getCustomers,
+      customerCreate,
+      mensajeAlerta,
+      customerUpdate,
+      customerDelete,
+      salesItems,
+      setSalesItems,
+      getSales,
+      accionConfirmar,
+      setAccionConfirmar,
+      getPaymentMethods,
+      paymentMethodos,
+      setPaymentMethods,
+      getProductPrice
     }}>
       {children}
     </ShoppingCartContext.Provider>

@@ -1,55 +1,89 @@
-import { useState } from "react";
-import Menu from '../../Components/Menu'
-import { useShopiContext } from '../../Context'
-import { PlusIcon, PencilIcon, TrashIcon } from '@heroicons/react/24/outline'
-import '../../Styles/styles.css'
-import ProductEditView from "./edit";
+import { useState, useEffect } from "react";
+import { useShopiContext } from '../../../Context'
+import { PlusIcon, PencilIcon, TrashIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import Menu from '../../../Components/Menu'
+import CustomerCreate from "./customerCreate";
+import CustomerEdit from "./customerEdit";
+import Alert from "../../../Components/Alert"
+import ProductModal from "../../../Components/ProductModal";
+import ModalConfirmation from "../../../Components/Modals";
 
-function Products() {
-    const { items } = useShopiContext();
-    const [editingProductId, setEditingProductId] = useState('');
+function CustomerManagement() {
+    const { customerDelete, getCustomers, clientsItems,filteredCustomerItems, setMensajeAlerta, setShowAlert, showAlert, openModal, setOpenModal, accionConfirmar, setAccionConfirmar,searchCustomer } = useShopiContext();
+    const [view, setView] = useState("list"); // list | create | edit | delete
+    const [editingCustomerId, setEditingCustomerId] = useState(null);
 
-    const handleAddProduct = () => {
-    }
+    useEffect(() => {
+        if (view === "list") {
+            getCustomers();
+        }
+    }, [view]);
 
-    const handleEditProduct = (productId) => {
-        // TODO: Implementar edición de producto
-        setEditingProductId(productId);
-    }
-
-    const handleDeleteProduct = (productId) => {
-        // TODO: Implementar eliminación de producto
-    }
     const handleBackToList = () => {
-        setEditingProductId(null);
+        setView("list");
+        setEditingCustomerId(null);
     };
 
-    if (editingProductId) {
-        return <ProductEditView id={editingProductId} onBack={handleBackToList} />;
+    const handleCloseDelete = () => {
+        setView("list");
+        setShowAlert(true);
+        setOpenModal(false);
+        setAccionConfirmar(false);
     }
+    const deleteCustomer = async (id) => {
+        try {
+            const res = await customerDelete(id);
+            if (res) {
+                setMensajeAlerta("Cliente eliminado con éxito.");
+                handleCloseDelete();
+            }
+        }
+        catch (error) {
+            console.log(error.message);
+            handleCloseDelete();
+        }
+    };
+
+    if (view === "create") {
+        return <CustomerCreate onBack={handleBackToList} />;
+    }
+    else if (view === "edit") {
+        const data = clientsItems.filter(item => item.id === editingCustomerId)
+        return <CustomerEdit onBack={handleBackToList} data={data[0]} />;
+    }
+    else if (view === "delete") {
+        if (accionConfirmar && editingCustomerId) {
+            const data = clientsItems.filter(item => item.id === editingCustomerId);
+            setEditingCustomerId(null);
+            const id = data[0].id;
+            deleteCustomer(id);
+        }
+    }
+
     return (
         <div className="w-full bg-white fixed flex  left-0 h-full">
             <Menu />
             <div className="ml-64 flex-1 p-8">
+                {showAlert && <Alert />}
                 <div className="mb-8">
-                    <h1 className="text-3xl font-bold text-gray-900 mb-2">Gestión de productos</h1>
-                    <p className="text-gray-600">Administra los productos de tu tienda</p>
+                    <h1 className="text-3xl font-bold text-gray-900 mb-2">Gestión de clientes</h1>
+                    <p className="text-gray-600">Administra los clientes de tu tienda</p>
                 </div>
-
                 <div className="mb-6 flex justify-between items-center">
                     <div className="flex items-center space-x-4">
                         <input
                             type="text"
-                            placeholder="Buscar productos..."
+                            placeholder="Buscar cliente..."
                             className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-color-rosa focus:border-transparent"
+                            onChange={searchCustomer}
                         />
                     </div>
                     <button
-                        onClick={handleAddProduct}
+                        onClick={() => setView("create")}
                         className="flex items-center px-4 py-2 bg-color-rosa text-white rounded-lg hover:bg-opacity-90 transition-colors"
                     >
                         <PlusIcon className="h-5 w-5 mr-2" />
-                        Agregar producto
+                        Agregar cliente
                     </button>
                 </div>
 
@@ -59,19 +93,19 @@ function Products() {
                             <thead className="bg-gray-50">
                                 <tr>
                                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Producto
+                                        Nombre
                                     </th>
                                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Categoría
+                                        Teléfono
                                     </th>
                                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Precio
+                                        Email
                                     </th>
                                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Stock
+                                        Dirección
                                     </th>
                                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Estado
+                                        Activo
                                     </th>
                                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Acciones
@@ -79,57 +113,41 @@ function Products() {
                                 </tr>
                             </thead>
                             <tbody className="bg-white divide-y divide-gray-200">
-                                {items ? (
-                                    items.map((item) => (
-                                        <tr key={item.product.id} className="hover:bg-gray-50">
-                                            <td className="px-6 py-4 whitespace-nowrap">
-                                                <div className="flex items-center">
-                                                    <div className="h-10 w-10 flex-shrink-0">
-                                                        <img
-                                                            className="h-10 w-10 rounded-lg object-cover"
-                                                            src={item.product.productImage?.[0]?.imageUrl || '/placeholder.png'}
-                                                            alt={item.product.name}
-                                                        />
-                                                    </div>
-                                                    <div className="ml-4">
-                                                        <div className="text-sm font-medium text-gray-900">
-                                                            {item.product.name}
-                                                        </div>
-                                                        <div className="text-sm text-gray-500">
-                                                            {item.product.description?.substring(0, 50)}...
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                {filteredCustomerItems ? (
+                                    filteredCustomerItems.map((item) => (
+                                        <tr key={item.id} className="hover:bg-gray-50">
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                                {item.name || ""} {item.lastName || ""}
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap">
-                                                <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
-                                                    {item.product.category?.name}
+                                                <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full text-gray-900">
+                                                    {item.phone || 'N/A'}
                                                 </span>
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                                ${item.options?.[0]?.unitPrice || 'N/A'}
+                                                {item.email || 'N/A'}
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                                {item.product.queantity || 0}
+                                                {item.address || 'N/A'}
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap">
-                                                <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${item.product.active
+                                                <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${item.active
                                                     ? 'bg-green-100 text-green-800'
                                                     : 'bg-red-100 text-red-800'
                                                     }`}>
-                                                    {item.product.active ? 'Activo' : 'Inactivo'}
+                                                    {item.active ? 'Activo' : 'Inactivo'}
                                                 </span>
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                                 <div className="flex space-x-2">
                                                     <button
-                                                        onClick={() => handleEditProduct(item.product.id)}
+                                                        onClick={() => { setEditingCustomerId(item.id); setView("edit") }}
                                                         className="text-indigo-600 hover:text-indigo-900 p-1 rounded hover:bg-indigo-50"
                                                     >
                                                         <PencilIcon className="h-4 w-4" />
                                                     </button>
                                                     <button
-                                                        onClick={() => handleDeleteProduct(item.product.id)}
+                                                        onClick={() => { setEditingCustomerId(item.id); setOpenModal(true); setView("delete") }}
                                                         className="text-red-600 hover:text-red-900 p-1 rounded hover:bg-red-50"
                                                     >
                                                         <TrashIcon className="h-4 w-4" />
@@ -141,7 +159,7 @@ function Products() {
                                 ) : (
                                     <tr>
                                         <td colSpan="6" className="px-6 py-4 text-center text-gray-500">
-                                            Cargando productos...
+                                            Cargando clientes...
                                         </td>
                                     </tr>
                                 )}
@@ -149,9 +167,15 @@ function Products() {
                         </table>
                     </div>
                 </div>
+
+                {openModal && (
+                    <ProductModal>
+                        <ModalConfirmation mensaje={"¿Estas seguro de que quieres eliminar esté cliente?"}></ModalConfirmation>
+                    </ProductModal>
+                )}
             </div>
         </div>
     )
 }
 
-export default Products
+export default CustomerManagement

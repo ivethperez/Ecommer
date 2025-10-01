@@ -15,8 +15,8 @@ function Ecommer() {
     if (filteredItems?.length > 0) {
       return (
         filteredItems?.map(item => (
-          item.producto.Activo ?
-          <Card key={item.producto.Id} data={item}> </Card>: ""
+          item.product.active ?
+          <Card key={item.product.id} data={item}> </Card>: ""
         ))
       )
 
@@ -36,7 +36,7 @@ function Ecommer() {
   return (
     <div className="container">
 
-        {showAlert ?
+        {showAlert ? 
  <Alert></Alert>
  :
  <div></div>

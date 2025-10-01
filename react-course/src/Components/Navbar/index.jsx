@@ -28,13 +28,10 @@ export default function Example() {
     const { setSearchByCategory, setSignOut, signOut, account, order, search,
         isActiveChocolate, isActiveGomitas, isActiveBotanas, isActiveTodo
     } = useShopiContext();
-    const isUserSignOut = signOut;
-    console.log(signOut);
     const parsedAccount = storage.getItem('account')
     const noAccountInLocalStorage = parsedAccount ? Object.keys(parsedAccount).length === 0 : true
     const noAccountInLocalState = account ? Object.keys(account).length === 0 : true
     const hasUserAnAccount = !noAccountInLocalStorage || !noAccountInLocalState
-
     const filtro = (val) => {
         setSearchByCategory(val);
     }
@@ -86,9 +83,9 @@ export default function Example() {
                     <Menu as="div" className="relative inline-block  ">
                         <div className='flex items-center justify-between'>
                             <NavLink to="/my-custom-package">
-                                {/* <button className="inline-flex justify-center items-center px-6 py-1 border border-white text-white text-sm font-medium hover:bg-orange-400 hover:text-gray-800">
+                                 <button className="inline-flex justify-center items-center px-6 py-1 border border-white text-white text-sm font-medium hover:bg-orange-400 hover:text-gray-800">
                                     Iniciar sesión
-                                </button> */}
+                                </button> 
                             </NavLink>
                         </div>
                         <Transition
@@ -114,20 +111,8 @@ export default function Example() {
                         </Transition>
                     </Menu>
                 </div>
-
-
-
             </header>
         )
-        // }
-        // else{
-        //     return (
-        //         <div></div>
-        //     //  <header className="w-full items-center text-center pl-4 text-white bg-orange-300 h-7 ">
-        //     //    <p>{mensajes[index]}</p>
-        //     //  </header>
-        //     )
-        // }
     }
 
     const renderViewLoged = () => {

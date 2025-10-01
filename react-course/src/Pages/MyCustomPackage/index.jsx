@@ -5,7 +5,7 @@ import logo from '../../Imagenes/Logo.png'
 import { useState } from 'react';
 
 function MyCustomPackage() {
-  const { order,login, access } = useShopiContext();
+  const { login } = useShopiContext();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -35,7 +35,7 @@ function MyCustomPackage() {
                   <input type="email" className="form-control" id="floatingInput" placeholder="Email Address" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </div>
                 <div className="mb-4">
-                  <input type="password" className="form-control" id="floatingInput1" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                  <input type="password" className="form-control" id="floatingInput1" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
                 </div>
                 <div className="flex mt-1 justify-between items-center flex-wrap">
                   <div className="form-check">

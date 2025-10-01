@@ -26,9 +26,9 @@ const Card = ({ data }) => {
     }));
   };
 
-  const productoId = data.producto.Id;
+  const productoId = data.product.id;
   const seleccionIndex = selecciones[productoId] || 0;
-  const seleccion = data.opciones[seleccionIndex];
+  const seleccion = data.options[seleccionIndex];
 
   return (
 
@@ -36,15 +36,15 @@ const Card = ({ data }) => {
 
       <div className='p-6'>
       
-        <div className={`group relative transform overflow-hidden sm:h-[7rem] max-sm:h-[7rem] ${!data.producto.EsPieza ? ' md:h-[10rem]' : 'md:h-[10rem]'}`} onClick={() => showproduct(data, seleccion.precio)}>
+        <div className={`group relative transform overflow-hidden sm:h-[7rem] max-sm:h-[7rem] ${!data.product.isPiece ? ' md:h-[10rem]' : 'md:h-[10rem]'}`} onClick={() => showproduct(data, seleccion.precio)}>
           <span className="absolute bottom-0 left-0 bg-white/60 rounded-3xl text-xs m-2 px-3 py-0.5">
-            {data.producto.CategoriasProducto.Nombre}
+            {data.product.category.name}
           </span>
-          {!data.producto.EsPieza ? (
+          {!data.product.isPiece ? (
             <img
               className="inset-0 h-full w-full object-cover transition duration-300 group-hover:scale-110"
-              src={data?.producto?.ImagenesProductos?.[0]?.URLImagen}
-              alt={data?.producto?.Nombre || 'Producto'}
+              src={data?.product?.productImage?.[0]?.imageUrl}
+              alt={data?.product?.name || 'Producto'}
             />) : (
 
             <Swiper
@@ -53,21 +53,21 @@ const Card = ({ data }) => {
               modules={[Pagination,Autoplay]}
               className="inset-0 h-full w-full object-cover transition duration-300 group-hover:scale-110"
             >
-              {data?.producto?.ImagenesProductos
+              {data?.product?.productImage
                 ?.slice() // para no mutar el array original
-                .sort((a, b) => a.Orden - b.Orden)
+                .sort((a, b) => a.orderImage - b.orderImage)
                 .map((img, idx) => (
                   <SwiperSlide key={idx}>
                     <img
                       className="inset-0 h-full w-full object-cover transition duration-300 group-hover:scale-110"
-                      src={img.URLImagen}
+                      src={img.imageUrl}
                       alt={`Imagen ${idx + 1}`}
                     />
                   </SwiperSlide>
                 ))}
             </Swiper>
           )}
-          {cartProducts.filter((product) => product.Id === data.producto.Id)
+          {cartProducts.filter((product) => product.id === data.product.id)
             .length > 0 ? (
             <button
               className="absolute top-0 right-0 flex justify-center items-center text-xs color-btn-confirmar w-6 h-6 rounded-full m-2"
@@ -84,7 +84,7 @@ const Card = ({ data }) => {
         </div>
       </div>
       <figcaption className="relative items-center justify-between border-t border-slate-100 pt-3">
-        <div className="font-display text-base text-slate-900">{data.producto.Nombre}</div>
+        <div className="font-display text-base text-slate-900">{data.product.name}</div>
         <div className="flex items-center justify-center gap-4 mt-2">
           <select
             id={data.cartId}
@@ -92,20 +92,20 @@ const Card = ({ data }) => {
             onChange={(e) => handleSeleccion(productoId, e.target.selectedIndex)}
             value={seleccionIndex}
           >
-            {data.opciones.map((op, idx) => (
+            {data.options.map((op, idx) => (
               <option key={idx} value={idx}>
-                {op.unidad.Nombre}
+                {op.unitOfMeasure.name}
               </option>
             ))}
           </select>
-          <p className="text-lg font-bold">$ {seleccion.precio} </p>
+          <p className="text-lg font-bold">$ {seleccion.unitPrice} </p>
         </div>
 
         <div className='flex justify-center items-center'>
           <div className="overflow-hidden rounded-full p-3">
-            {data.producto.Cantidad > 0 ?
+            {data.product.quantity > 0 ?
               <button className='w-full flex justify-center items-center color-btn-confirmar text-white rounded-lg p-1' onClick={(e) => {
-                addProductsToCart(data, e, seleccion.precio)
+                addProductsToCart(data, e, seleccion.unitPrice)
               }}>Agregar
                 <ShoppingBagIcon className='h-4 w-8'></ShoppingBagIcon></button>
               :
