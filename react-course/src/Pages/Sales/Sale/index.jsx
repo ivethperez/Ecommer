@@ -9,13 +9,16 @@ import SaleCreate from "./saleCreate"
 
 
 function Sale() {
-    const { customerDelete, getSales, salesItems,filteredSalesItems, setMensajeAlerta, setShowAlert, showAlert, openModal, setOpenModal, accionConfirmar, setAccionConfirmar,searchCustomer } = useShopiContext();
+    const { customerDelete, getSales, salesItems,filteredSalesItems,searchSales, setMensajeAlerta, setShowAlert, showAlert, openModal, setOpenModal, accionConfirmar, setAccionConfirmar } = useShopiContext();
     const [view, setView] = useState("list"); // list | create | edit | delete
     const [editingSaleId, setEditingSaleId] = useState(null);
 
     useEffect(() => {
         if (view === "list") {
-             getSales();
+            const fetchSale = async () => {
+                await getSales();
+            };
+            fetchSale();
         }
     }, [view]);
 
@@ -45,12 +48,11 @@ function Sale() {
     };
 
     if (view === "create") {
-        const salesCount = salesItems.length +1;
+        const salesCount = salesItems?.length +1;
          return <SaleCreate onBack={handleBackToList} salesCount={salesCount} view={view} />;
     }
     else if (view === "edit") {
-        // const data = clientsItems.filter(item => item.id === editingSaleId)
-        // return <CustomerEdit onBack={handleBackToList} data={data[0]} />;
+        return <SaleCreate onBack={handleBackToList} view={view} editingSaleId={editingSaleId} />;
     }
     else if (view === "delete") {
         // if (accionConfirmar && editingSaleId) {
@@ -76,7 +78,7 @@ function Sale() {
                             type="text"
                             placeholder="Buscar venta por folio"
                             className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-color-rosa focus:border-transparent"
-                            onChange={searchCustomer}
+                            onChange={searchSales}
                         />
                     </div>
                     <button
@@ -126,18 +128,18 @@ function Sale() {
                                                 </span>
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                                {item.customer.name || 'N/A'}
+                                                {item.customer.name || 'N/A'} {item.customer.lastName || ''}
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                                 {item.totalAmount || '0.0'}
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap">
-                                                {/* <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${item.
+                                               <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${item.statusSale.code === '02'
                                                     ? 'bg-green-100 text-green-800'
-                                                    : 'bg-red-100 text-red-800'
+                                                    : 'bg-red-100 text-yellow-500'
                                                     }`}>
-                                                    {item.active ? 'Activo' : 'Inactivo'}
-                                                </span> */}
+                                                    {item.statusSale.name}
+                                                </span> 
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                                 <div className="flex space-x-2">

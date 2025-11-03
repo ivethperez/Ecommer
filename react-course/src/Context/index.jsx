@@ -56,6 +56,10 @@ export const ShoppingCartProvider = ({ children }) => {
   const [clientsItems, setClientsItems] = useState(null);
   const [salesItems, setSalesItems] = useState(null);
   const [paymentMethodos, setPaymentMethods] = useState([])
+  const [statusSale, setStatusSale] = useState([])
+  const [statusOrder,setStatusOrder] = useState([])
+  const [ordersList, setOrdersList] = useState([])
+  const [saleDetail, setSaleDetail] = useState([])
 
   const login = async (email, password) => {
     try {
@@ -155,28 +159,72 @@ export const ShoppingCartProvider = ({ children }) => {
   //#endregion
 
   //#region --- Sales ---
+   const saleCreate = async (formData) => {
+     const res = await apiRequest(`${API_URL}/sales`, "POST",token, userId, formData);
+     return res;
+   }
   const getSales = async () => {
     const res = await apiRequest(`${API_URL}/sales`, "GET", token);
     setSalesItems(res);
   }
-  // const saleCreate = async (formData) => {
-  //   const res = await apiRequest(`${API_URL}/customers`, "POST",token, userId, formData);
-  //   return res;
-  // }
-  // const saleUpdate = async (data) => {
-  //   const res = await apiRequest(`${API_URL}/customers/${data.id}`, "PUT",token, userId, data);
-  //   return res;
-  // }
+   const getSaleId = async (id) => {
+    const res = await apiRequest(`${API_URL}/sales/${id}`, "GET", token);
+    return res;
+  }
+  const saleUpdate = async (id, customerId, paymentMethodId, statusSaleId) => {
+    const saleUpdate = [
+      {
+        id: id,
+        customerId: customerId,
+        paymentMethodId: paymentMethodId,
+        statusSaleId: statusSaleId
+      }
+    ];
+    const res = await apiRequest(`${API_URL}/sales/${id}`, "PUT", token, userId, saleUpdate[0]);
+    return res;
+  }
   // const saleDelete = async (id) => {
   //   const res = await apiRequest(`${API_URL}/customers/${id}`, "DELETE",token, userId,)
   //   return res;
   // }
   //#endregion
 
+  //#region --- SaleDetail ---
+  const getSaleDetail = async (saleId) => {
+    const res = await apiRequest(`${API_URL}/saleDetails/bySale/${saleId}`, "GET", token);
+    setSaleDetail(res);
+  }
+   const saleDetailCreate = async (formData) => {
+      const res = await apiRequest(`${API_URL}/saleDetails`, "POST", token, userId, formData);
+      return res;
+    }
+    const saleDetailUpdate = async (data) => {
+    const res = await apiRequest(`${API_URL}/saleDetails/${data.id}`, "PUT", token, userId, data);
+    return res;
+  }
+  //#endregion
+
   //#region --- Listas ---
   const getPaymentMethods = async () => {
     const res = await apiRequest(`${API_URL}/paymentMethods`, "GET", token);
     setPaymentMethods(res);
+  }
+  const getStatusOrder = async () => {
+    const res = await apiRequest(`${API_URL}/orders/statusOrder/${true}`, "GET", token);
+    setStatusOrder(res);
+    return res;
+  }
+  const getOrdersList = async () => {
+    await getStatusOrder();
+    const statusSale = statusOrder?.filter(item => item.code === "03")
+    if(statusSale.length > 0){
+    const res = await apiRequest(`${API_URL}/orders/orderslist/${statusSale[0]?.id}`, "GET", token);
+    setOrdersList(res);
+    }
+  }
+  const getStatusSale = async () => {
+    const res = await apiRequest(`${API_URL}/sales/statusSale/${true}`, "GET", token);
+    setStatusSale(res);
   }
 
   //#endregion
@@ -252,13 +300,14 @@ export const ShoppingCartProvider = ({ children }) => {
     setCount(count - 1);
   }
 
-  //Get products
+  //Get products --- Filtros ---
   const [items, setItems] = useState(null)
 
   const [searchByTitle, setSearchByTitle] = useState(null)
   const [searchByNameCustomer, setSearchByNameCustomer] = useState(null)
   const [filteredCustomerItems, setFilteredCustomerItems] = useState(null)
-
+  const [searchByFolioSale, setSearchByFolioSale] = useState(null)
+  const [filteredSalesItems, setFilteredSalesItems] = useState(null)
 
   const [filteredItems, setFilteredItems] = useState(null)
   const search = (event) => {
@@ -266,6 +315,9 @@ export const ShoppingCartProvider = ({ children }) => {
   }
   const searchCustomer = (event) => {
     setSearchByNameCustomer(event.target.value)
+  }
+    const searchSales = (event) => {
+    setSearchByFolioSale(event.target.value)
   }
 
   const filteredItemsByTitle = (items, searchByTitle) => {
@@ -281,6 +333,9 @@ export const ShoppingCartProvider = ({ children }) => {
   const filteredItemsByCustomer = (items, searchByNameCustomer) => {
     return items?.filter(item => item.name.toLowerCase().includes(searchByNameCustomer.toLowerCase()))
   }
+   const filteredItemsBySale = (items, searchByFolioSale) => {
+    return items?.filter(item => item.folio.toLowerCase().includes(searchByFolioSale.toLowerCase()))
+  }
 
   const filterBy = (searchType, items, searchByTitle, searchByCategory) => {
     if (searchType === 'BY_TITLE') {
@@ -294,6 +349,9 @@ export const ShoppingCartProvider = ({ children }) => {
     }
     if (searchType === 'BY_CUSTOMER') {
       return filteredItemsByCustomer(items, searchByTitle)
+    }
+    if (searchType === 'BY_FOLIO') {
+      return filteredItemsBySale(items, searchByTitle)
     }
     if (!searchType) {
       return items
@@ -336,6 +394,10 @@ export const ShoppingCartProvider = ({ children }) => {
     if (!searchByNameCustomer) setFilteredCustomerItems(filterBy(null, clientsItems, searchByNameCustomer))
   }, [clientsItems, searchByNameCustomer])
 
+ useEffect(() => {
+    if (searchByFolioSale) setFilteredSalesItems(filterBy('BY_FOLIO', salesItems, searchByFolioSale))
+    if (!searchByFolioSale) setFilteredSalesItems(filterBy(null, salesItems, searchByFolioSale))
+  }, [salesItems, searchByFolioSale])
 
   //My acount
   const [account, setAccount] = useState({})
@@ -489,7 +551,21 @@ export const ShoppingCartProvider = ({ children }) => {
       getPaymentMethods,
       paymentMethodos,
       setPaymentMethods,
-      getProductPrice
+      getProductPrice,
+      getOrdersList,
+      ordersList,
+      getStatusSale,
+      statusSale,
+      saleCreate,
+      saleDetailCreate,
+      saleDetail,
+      getSaleDetail,
+      filteredSalesItems,
+      searchSales,
+      setSaleDetail,
+      getSaleId,
+      saleUpdate,
+      saleDetailUpdate
     }}>
       {children}
     </ShoppingCartContext.Provider>
