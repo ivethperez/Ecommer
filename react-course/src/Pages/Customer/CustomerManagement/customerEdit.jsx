@@ -31,17 +31,19 @@ const CustomerEdit = ({ onBack, data }) => {
         <div className="w-full bg-white fixed flex left-0 h-full">
             <Menu />
             <div className="ml-64 flex-1 p-6 ">
-                <div className="bg-white rounded-lg shadow overflow-hidden">
-                    <div className="h-full overflow-y-auto space-y-6 p-6">
+                <div className="relative size-32">
+                    <div className="absolute -top-4 -left-4 size-14">
                         <button
                             onClick={onBack}
-                            className=""
-                        >
-                            ⬅ Volver
+                            className="button-return"
+                        >Volver
                         </button>
-                        <h1 className="">Editar Producto</h1>
-
-                        <form onSubmit={handleSubmit} className="p-4 space-y-4">
+                    </div>
+                </div>
+                <div className="rounded-lg shadow overflow-x-auto sm:overflow-visible h-full">
+                    <div className="p-12 rounded space-y-4">
+                        <h1 className="">Editar cliente</h1>
+                        <form onSubmit={handleSubmit} className="space-y-4">
                             <input
                                 type="text"
                                 onChange={(e) => handleChange("name", e.target.value)}
@@ -94,7 +96,6 @@ const CustomerEdit = ({ onBack, data }) => {
                                 Guardar
                             </button>
                         </form>
-
                     </div>
                 </div>
             </div>

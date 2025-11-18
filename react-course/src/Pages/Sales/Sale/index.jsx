@@ -64,15 +64,15 @@ function Sale() {
     }
 
     return (
-        <div className="w-full bg-white fixed flex  left-0 h-full">
+        <aside className="w-full fixed flex left-0 h-full bg-gray-50">
             <Menu />
-            <div className="ml-64 flex-1 p-8">
+            <div className="md:ml-64 lg:ml-64 flex-1 flex flex-col p-4 md:p-8 overflow-hidden">
                 {showAlert && <Alert />}
-                <div className="mb-8">
+                <div className="mt-2">
                     <h1 className="text-3xl font-bold text-gray-900 mb-2">Gestión de ventas</h1>
                     <p className="text-gray-600">Administra las ventas de tu tienda</p>
                 </div>
-                <div className="mb-6 flex justify-between items-center">
+                <div className="mb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
                     <div className="flex items-center space-x-4">
                         <input
                             type="text"
@@ -90,27 +90,35 @@ function Sale() {
                     </button>
                 </div>
 
-                <div className="bg-white rounded-lg shadow overflow-hidden">
-                    <div className=" max-h-96  overflow-y-auto">
-                        <table className="min-w-full divide-y divide-gray-200">
+                <div className=" flex-1 
+            overflow-x-auto 
+            overflow-y-auto 
+            bg-white 
+            rounded-lg 
+            shadow 
+            border 
+            border-gray-200 
+            min-h-[300px]
+            max-h-[calc(100vh-260px)] ">
+                        <table className="min-w-full table-auto text-sm text-gray-700 ">
                             <thead className="bg-gray-50">
                                 <tr>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                                         Folio
                                     </th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <th className="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider">
                                         Folio de pedido
                                     </th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <th className="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider">
                                         Cliente
                                     </th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <th className="px-6 py-3 text-right text-xs font-medium  uppercase tracking-wider">
                                         Total
                                     </th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <th className="px-6 py-3 text-center text-xs font-medium  uppercase tracking-wider">
                                         Estatus
                                     </th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <th className="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">
                                         Acciones
                                     </th>
                                 </tr>
@@ -119,21 +127,21 @@ function Sale() {
                                 {filteredSalesItems ? (
                                     filteredSalesItems.map((item) => (
                                         <tr key={item.id} className="hover:bg-gray-50">
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                 {item.folio || ""} 
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap">
-                                                <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full text-gray-900">
+                                                <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full text-gray-500">
                                                     {item.folioPo || 'Venta directa'}
                                                 </span>
                                             </td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                 {item.customer.name || 'N/A'} {item.customer.lastName || ''}
                                             </td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                                {item.totalAmount || '0.0'}
+                                            <td className="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
+                                                {'$' + item.totalAmount || '0.0'}
                                             </td>
-                                            <td className="px-6 py-4 whitespace-nowrap">
+                                            <td className="px-6 py-4 text-center whitespace-nowrap">
                                                <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${item.statusSale.code === '02'
                                                     ? 'bg-green-100 text-green-800'
                                                     : 'bg-red-100 text-yellow-500'
@@ -141,7 +149,7 @@ function Sale() {
                                                     {item.statusSale.name}
                                                 </span> 
                                             </td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                            <td className="px-6 py-4 whitespace-nowrap flex justify-center text-sm font-medium">
                                                 <div className="flex space-x-2">
                                                     <button
                                                         onClick={() => { setEditingSaleId(item.id); setView("edit") }}
@@ -171,7 +179,6 @@ function Sale() {
                                 )}
                             </tbody>
                         </table>
-                    </div>
                 </div>
 
                 {openModal && (
@@ -180,7 +187,8 @@ function Sale() {
                     </ProductModal>
                 )}
             </div>
-        </div>
+            
+        </aside>
     )
 }
 

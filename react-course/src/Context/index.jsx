@@ -175,6 +175,7 @@ export const ShoppingCartProvider = ({ children }) => {
     const saleUpdate = [
       {
         id: id,
+        poId: poId,
         customerId: customerId,
         paymentMethodId: paymentMethodId,
         statusSaleId: statusSaleId
@@ -202,6 +203,10 @@ export const ShoppingCartProvider = ({ children }) => {
     const res = await apiRequest(`${API_URL}/saleDetails/${data.id}`, "PUT", token, userId, data);
     return res;
   }
+ const saleDetailDelete = async (id) => {
+    const res = await apiRequest(`${API_URL}/saleDetails/${id}`, "DELETE",token, userId,)
+    return res;
+   }
   //#endregion
 
   //#region --- Listas ---
@@ -565,7 +570,8 @@ export const ShoppingCartProvider = ({ children }) => {
       setSaleDetail,
       getSaleId,
       saleUpdate,
-      saleDetailUpdate
+      saleDetailUpdate,
+      saleDetailDelete
     }}>
       {children}
     </ShoppingCartContext.Provider>

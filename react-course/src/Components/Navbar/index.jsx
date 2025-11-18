@@ -18,9 +18,9 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 const mensajes = [
-    "El snack premium para compartir 🤝",
+    "El snack premium para compartir, directo desde Cancún 🌞",
     //"Disfruta el mejor sabor",
-    "Disfruta botanas únicas, hechas en Puebla 💚",
+    "📍¡Ahora en Cancún! Disfruta botanas únicas, hechas en Puebla 💚",
     "Envío gratis en compras iguales o mayores a $500 🚚"
 ];
 
@@ -117,7 +117,7 @@ export default function Example() {
 
     const renderViewLoged = () => {
         return (
-            <Disclosure as="nav" className={`bg-white shadow-md ml-64 px-6 py-2 flex justify-between items-center transition-all duration-300 ${isSticky ? "" : ""}`}>
+            <Disclosure as="nav" className={`bg-white shadow-md md:ml-64 lg:ml-64 px-6 py-2 flex justify-between items-center transition-all duration-300 ${isSticky ? "" : ""}`}>
                 {({ open }) => (
                     <>
                         <div className="flex items-center gap-4 ">

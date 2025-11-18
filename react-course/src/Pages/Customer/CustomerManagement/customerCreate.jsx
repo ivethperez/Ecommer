@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useShopiContext } from "../../../Context";
 import Menu from "../../../Components/Menu";
+import '../../../Styles/styles.css'
 const customerCreate = ({ onBack }) => {
     const { customerCreate, setMensajeAlerta, setShowAlert } = useShopiContext();
     const [errors, setErrors] = useState({});
@@ -38,27 +39,29 @@ const customerCreate = ({ onBack }) => {
         }
         catch (error) {
             setShowAlert(true)
-                setMensajeAlerta(error);
+            setMensajeAlerta(error);
         }
     };
 
     return (
-        <div className="w-full bg-white fixed flex  left-0 h-full">
+        <div className="w-full bg-white fixed flex left-0 h-full">
             <Menu />
             <div className="ml-64 flex-1 p-6">
-                <div className="bg-white rounded-lg shadow overflow-hidden h-full">
-                    <div className="h-full overflow-y-auto space-y-6 p-6">
+                <div className="relative size-32">
+                    <div className="absolute -top-4 -left-4 size-14">
                         <button
                             onClick={onBack}
-                            className=""
-                        >
-                            ⬅ Volver
+                            className="button-return"
+                        >Volver
                         </button>
+                    </div>
+                </div>
+                <div className="rounded-lg shadow overflow-x-auto sm:overflow-visible h-full">
+                    <div className="p-12 rounded space-y-4">
                         <h1 className="">Agregar cliente</h1>
-
                         <form
                             onSubmit={handleSubmit}
-                            className="bg-white p-6 rounded  space-y-4"
+                            className="rounded space-y-4"
                         >
                             <input
                                 type="text"
@@ -104,7 +107,6 @@ const customerCreate = ({ onBack }) => {
                                 onChange={handleChange}
                                 className="w-full p-2 border rounded"
                             />
-
                             <label className="flex items-center gap-2 cursor-pointer">
                                 <input
                                     type="checkbox"

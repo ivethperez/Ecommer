@@ -1,15 +1,14 @@
 import { useState } from "react";
 import { NavLink, Link, Navigate } from 'react-router-dom'
-import { HomeIcon, UserGroupIcon, Cog6ToothIcon, ChartBarIcon,ShoppingCartIcon } from '@heroicons/react/24/outline';
+import { HomeIcon, UserGroupIcon, Cog6ToothIcon, ChartBarIcon,ShoppingCartIcon,Bars3Icon,XMarkIcon } from '@heroicons/react/24/outline';
 import '../../Styles/styles.css';
 import { useShopiContext } from '../../Context'
-
 
 const menuItems = [
   { name: 'Dashboard', icon: HomeIcon, to: '#' },
   { name: 'Productos', icon: UserGroupIcon, to: '/products' },
   { name: 'Clientes', icon: ChartBarIcon, to: '/customerManagement' },
-  { name: 'Configuración', icon: Cog6ToothIcon, to: '#' },
+  { name: 'Configuración', icon: Cog6ToothIcon, to: '/config' },
   {
     name: "Ventas",
     icon: ShoppingCartIcon,
@@ -19,9 +18,6 @@ const menuItems = [
     ],
   },
 ];
-
-
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
@@ -29,6 +25,7 @@ function classNames(...classes) {
 export default function Menu() {
   const { signOut} = useShopiContext();
 const [openMenus, setOpenMenus] = useState({});
+const [isOpen, setIsOpen] = useState(false); //control del menú móvil
 
   const toggleMenu = (name) => {
     setOpenMenus((prev) => ({
@@ -36,15 +33,33 @@ const [openMenus, setOpenMenus] = useState({});
       [name]: !prev[name],
     }));
   };
+  if (signOut) return <Navigate to="/" replace />;
+
   return (
-    <div>
-     {signOut ? (
-                <Navigate to="/" replace />) : (
-    <aside className="fixed top-0 left-0 h-full w-64 bg-white shadow-lg border-r border-gray-200 flex flex-col z-40">
-      <div className="flex items-center h-16 px-6 border-b border-gray-200 bg-color-rosa">
-        <span className="text-xl font-bold text-white tracking-wide">@Web Admin</span>
+<>
+    <div className="fixed top-0 left-0 w-full h-16 bg-color-rosa flex items-center justify-between px-4 z-50 md:hidden sm:overflow-hidden">
+        <span className="text-white text-lg font-bold">@Web Admin</span>
+        <button onClick={() => setIsOpen(!isOpen)} className="text-white">
+          {isOpen ? (
+            <XMarkIcon className="w-7 h-7" />
+          ) : (
+            <Bars3Icon className="w-7 h-7" />
+          )}
+        </button>
       </div>
-      <nav className="flex-1 px-4 py-6 bg-white">
+
+    <aside className={classNames(
+          "fixed top-0 left-0 h-full w-64 sm:overflow-hidden bg-white shadow-lg border-r border-gray-200 flex flex-col z-40 transform transition-transform duration-300",
+          isOpen ? "translate-x-0" : "-translate-x-full", // 👉 oculto en móvil
+          "md:translate-x-0 " // 👉 visible en escritorio
+        )}>
+     
+         {/* Header solo visible en escritorio */}
+        <div className="hidden md:flex items-center h-16 px-6 border-b border-gray-200 bg-color-rosa">
+          <span className="text-xl font-bold text-white tracking-wide">@Web Admin</span>
+        </div>
+
+      <nav className="flex-1 px-4 py-6 bg-white ">
       <ul className="space-y-2">
         {menuItems.map((item) => (
           <li key={item.name}>
@@ -103,8 +118,7 @@ const [openMenus, setOpenMenus] = useState({});
       </div>
 
     </aside>
-   )}
-    </div>
-    
+
+    </>
   );
 }
