@@ -55,7 +55,6 @@ export const ShoppingCartProvider = ({ children }) => {
           item.opciones.sort((a, b) => a.precio - b.precio);
           inicial[item.producto.Id] = 0;
         });
-        console.log(inicial);
         setSelecciones(inicial);
 
         setItems(Array.from(mapa.values()));
@@ -91,7 +90,6 @@ export const ShoppingCartProvider = ({ children }) => {
       }
       const user = await response.json();
       setUserName(user.Nombre);
-      console.log(userName);
         setSignOut(false);
       }
 
@@ -288,7 +286,7 @@ export const ShoppingCartProvider = ({ children }) => {
     const timer = setTimeout(() => setOpenModalOrder(false), 3000);
     return () => clearTimeout(timer);
   }
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('521');
   const finishOrder = async () => {
     let products = ''
     let medida = ''

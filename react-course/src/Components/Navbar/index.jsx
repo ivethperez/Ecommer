@@ -18,9 +18,10 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 const mensajes = [
-    "El snack premium para compartir 🤝",
+   
     //"Disfruta el mejor sabor",
-    "Disfruta botanas únicas, hechas en Puebla 💚",
+    "📍¡Ahora en Cancún! Disfruta botanas únicas, hechas en Puebla 💚",
+     "El snack premium para compartir 🌞",
     "Envío gratis en compras iguales o mayores a $500 🚚"
 ];
 
@@ -29,7 +30,6 @@ export default function Example() {
         isActiveChocolate, isActiveGomitas, isActiveBotanas, isActiveTodo
     } = useShopiContext();
     const isUserSignOut = signOut;
-    console.log(signOut);
     const parsedAccount = storage.getItem('account')
     const noAccountInLocalStorage = parsedAccount ? Object.keys(parsedAccount).length === 0 : true
     const noAccountInLocalState = account ? Object.keys(account).length === 0 : true
