@@ -64,7 +64,7 @@ function Ecommer() {
       </button>
       </Link>
     </div>` */}
-        <div className="mx-auto mt-4">
+        <div className="mx-auto mt-4 p-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {
                 renderView()

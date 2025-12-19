@@ -4,6 +4,7 @@ import { totalPrice, apiRequest } from '../utils'
 const ShoppingCartContext = createContext()
 
 const API_URL = import.meta.env.VITE_API_URL;
+const NUM_CELULAR = import.meta.env.NUM_CELULAR;
 export const ShoppingCartProvider = ({ children }) => {
 
   useEffect(() => {
@@ -45,9 +46,9 @@ export const ShoppingCartProvider = ({ children }) => {
   }, [])
 
   const [access, setAccess] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState('');
   const [mensajeAlerta, setMensajeAlerta] = useState("");
-  const [accionConfirmar, setAccionConfirmar] = useState(false);
   const [token, setToken] = useState("");
   const [userId, setUserId] = useState(0);
   const [productFromEdit, setProductFromEdit] = useState(null);
@@ -171,23 +172,24 @@ export const ShoppingCartProvider = ({ children }) => {
     const res = await apiRequest(`${API_URL}/sales/${id}`, "GET", token);
     return res;
   }
-  const saleUpdate = async (id, customerId, paymentMethodId, statusSaleId) => {
+  const saleUpdate = async (id, customerId, paymentMethodId, statusSaleId, saleDate) => {
     const saleUpdate = [
       {
         id: id,
-        poId: poId,
         customerId: customerId,
         paymentMethodId: paymentMethodId,
-        statusSaleId: statusSaleId
+        statusSaleId: statusSaleId,
+        saleDate: saleDate
       }
     ];
     const res = await apiRequest(`${API_URL}/sales/${id}`, "PUT", token, userId, saleUpdate[0]);
+    
     return res;
   }
-  // const saleDelete = async (id) => {
-  //   const res = await apiRequest(`${API_URL}/customers/${id}`, "DELETE",token, userId,)
-  //   return res;
-  // }
+   const saleDelete = async (id) => {
+     const res = await apiRequest(`${API_URL}/sales/${id}`, "DELETE",token, userId,)
+     return res;
+   }
   //#endregion
 
   //#region --- SaleDetail ---
@@ -234,11 +236,26 @@ export const ShoppingCartProvider = ({ children }) => {
 
   //#endregion
 
-  const getProductPrice = async (productId, unitOfMeasureId) => {
-    const res = await apiRequest(`${API_URL}/priceproducts/by-product/${productId}/${unitOfMeasureId}`, "GET", token);
-
+  
+  //#region --- Productos ---
+  const productCreate = async (formData) => {
+    const res = await apiRequest(`${API_URL}/products`, "POST", token, userId, formData);
     return res;
   }
+  const productUpdate = async (data) => {
+    const res = await apiRequest(`${API_URL}/products/${data.id}`, "PUT", token, userId, data);
+    return res;
+  }
+  const productDelete = async (id) => {
+    const res = await apiRequest(`${API_URL}/products/${id}`, "DELETE", token, userId,)
+    return res;
+  }
+    const getProductPrice = async (productId, unitOfMeasureId) => {
+    const res = await apiRequest(`${API_URL}/priceproducts/by-product/${productId}/${unitOfMeasureId}`, "GET", token);
+    return res;
+  }
+  //#endregion
+
 
   const [selecciones, setSelecciones] = useState({});
   //Shopping Cart
@@ -453,7 +470,7 @@ export const ShoppingCartProvider = ({ children }) => {
     const timer = setTimeout(() => setOpenModalOrder(false), 3000);
     return () => clearTimeout(timer);
   }
-  const [phoneNumber, setPhoneNumber] = useState('521');
+  const [phoneNumber, setPhoneNumber] = useState(`${NUM_CELULAR}`);
   const finishOrder = async () => {
     let products = ''
     let medida = ''
@@ -534,6 +551,7 @@ export const ShoppingCartProvider = ({ children }) => {
       login,
       access,
       productFromEdit,
+      setProductFromEdit,
       categories,
       productEdit,
       getImagesProduct,
@@ -551,8 +569,6 @@ export const ShoppingCartProvider = ({ children }) => {
       salesItems,
       setSalesItems,
       getSales,
-      accionConfirmar,
-      setAccionConfirmar,
       getPaymentMethods,
       paymentMethodos,
       setPaymentMethods,
@@ -566,12 +582,17 @@ export const ShoppingCartProvider = ({ children }) => {
       saleDetail,
       getSaleDetail,
       filteredSalesItems,
+      setFilteredSalesItems,
       searchSales,
       setSaleDetail,
       getSaleId,
       saleUpdate,
+      saleDelete,
       saleDetailUpdate,
-      saleDetailDelete
+      saleDetailDelete,
+      isLoggedIn, 
+      setIsLoggedIn,
+      productUpdate
     }}>
       {children}
     </ShoppingCartContext.Provider>

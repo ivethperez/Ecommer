@@ -1,38 +1,28 @@
 import { useState } from "react";
+import '../../Styles/styles.css'
 import ProductTabs from "../../Components/ProductTabs";
 import ProductInfo from "../../Components/ProductForm";
 import ProductImages from "../../Components/ProductForm/ProductImages";
-import Menu from '../../Components/Menu'
+import PageStart from "../PageStart";
+import BtnOnBack from "../../Components/BtnOnBack";
 
 const ProductEdit = ({ id, onBack }) => {
   const [activeTab, setActiveTab] = useState(0);
 
   const tabs = [
-    { name: "Información", component: <ProductInfo id={id} /> },
+    { name: "Información", component: <ProductInfo id={id} onBack={onBack} /> },
     { name: "Imágenes", component: <ProductImages productId={id} /> },
   ];
 
   return (
-    <div className="w-full bg-white fixed flex left-0 h-full">
-      <Menu />
-      <div className="ml-64 flex-1 p-6 ">
-       <div className="relative size-32">
-          <div className="absolute -top-4 -left-4 size-14">
-            <button
-              onClick={onBack}
-              className="button-return"
-            >Volver
-            </button>
-          </div>
-        </div>
-        <div className="rounded-lg shadow overflow-x-auto sm:overflow-visible h-full">
-           <div className="p-12 rounded space-y-4">       
-            <h1 className="">Editar Producto</h1>
+      <PageStart>
+           <BtnOnBack onBack={onBack}/>
+           <div className="rounded-lg sm:overflow-visible mt-3">
+              <h1 className="text-3xl font-bold text-gray-900 mb-6">Editar producto</h1>
             <ProductTabs tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
             </div>
-        </div>
-      </div>
-    </div>
+ 
+   </PageStart>
   );
 };
 

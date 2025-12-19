@@ -2,7 +2,7 @@ import React from "react";
 
 const ProductTabs = ({ tabs, activeTab, setActiveTab }) => {
   return (
-    <div className="bg-white rounded shadow p-4">
+    <div className="rounded">
       <div className="flex border-b border-gray-200 mb-4">
         {tabs.map((tab, index) => (
           <button

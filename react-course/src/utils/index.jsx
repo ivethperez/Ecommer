@@ -47,10 +47,11 @@ export const  apiRequest = async(endpoint, method = "POST",token = "", userId=0,
     },
     body: ["GET", "DELETE"].includes(method) ? null : JSON.stringify(dataToSend),
   });
+  
+    const resul = await res.json();
   if (!res.ok) {
-    const error = await res.json().catch(() => ({}));
-    throw new Error(error.message || "Error en la petición");
+    throw new Error(resul.message || "Error en la petición");
   }
 
-  return res.json();
+  return resul;
 }

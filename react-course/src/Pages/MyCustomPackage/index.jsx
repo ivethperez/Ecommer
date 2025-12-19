@@ -16,8 +16,8 @@ function MyCustomPackage() {
   return (
     <div>
           <div className="auth-main relative">
-      <div className="auth-wrapper v1 flex items-center w-full h-full min-h-screen">
-        <div className="auth-form flex items-center justify-center grow flex-col min-h-screen relative p-6 ">
+      <div className="auth-wrapper v1 flex items-center w-full h-full ">
+        <div className="auth-form flex items-center justify-center grow flex-col relative p-6">
           <div className="w-full max-w-[350px] relative">
             
             <div className="card sm:my-12  w-full shadow-none">

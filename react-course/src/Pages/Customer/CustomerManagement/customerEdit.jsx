@@ -1,17 +1,16 @@
 import { useState } from "react";
 import { useShopiContext } from "../../../Context";
-import Menu from "../../../Components/Menu";
+import PageStart from "../../PageStart";
+import BtnOnBack from "../../../Components/BtnOnBack";
 const CustomerEdit = ({ onBack, data }) => {
     const { customerUpdate, setMensajeAlerta, setShowAlert } = useShopiContext();
     const [formData, setFormData] = useState(data);
-
     const handleChange = (field, value) => {
         setFormData((prev) => ({
             ...prev,
             [field]: value,
         }));
     };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -26,59 +25,74 @@ const CustomerEdit = ({ onBack, data }) => {
             console.log(error);
         }
     };
-
     return (
-        <div className="w-full bg-white fixed flex left-0 h-full">
-            <Menu />
-            <div className="ml-64 flex-1 p-6 ">
-                <div className="relative size-32">
-                    <div className="absolute -top-4 -left-4 size-14">
-                        <button
-                            onClick={onBack}
-                            className="button-return"
-                        >Volver
-                        </button>
-                    </div>
-                </div>
-                <div className="rounded-lg shadow overflow-x-auto sm:overflow-visible h-full">
-                    <div className="p-12 rounded space-y-4">
-                        <h1 className="">Editar cliente</h1>
-                        <form onSubmit={handleSubmit} className="space-y-4">
+        <PageStart>
+           <BtnOnBack onBack={onBack}/>
+            <div className="rounded-lg sm:overflow-visible mt-3">
+                <h1 className="text-3xl font-bold text-gray-900 mb-6">Editar cliente</h1>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div >
+                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
+                                Nombre
+                            </label>
                             <input
                                 type="text"
                                 onChange={(e) => handleChange("name", e.target.value)}
                                 defaultValue={data?.name ?? ""}
                                 placeholder="Nombre"
-                                className="w-full p-2 border rounded"
+                                className="w-full p-2 border rounded placeholder-gray-400"
                             />
+                        </div>
+                        <div >
+                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
+                                Apellido
+                            </label>
                             <input
                                 type="text"
                                 onChange={(e) => handleChange("lastName", e.target.value)}
                                 defaultValue={data?.lastName ?? ""}
                                 placeholder="Apellido"
-                                className="w-full p-2 border rounded"
+                                className="w-full p-2 border rounded placeholder-gray-400"
                             />
+                        </div>
+                        <div >
+                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
+                                Teléfono
+                            </label>
                             <input
                                 type="text"
                                 onChange={(e) => handleChange("phone", e.target.value)}
                                 defaultValue={data?.phone ?? ""}
                                 placeholder="Teléfono"
-                                className="w-full p-2 border rounded"
+                                className="w-full p-2 border rounded placeholder-gray-400"
                             />
+                        </div>
+                        <div >
+                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
+                                Correo
+                            </label>
                             <input
                                 type="text"
                                 onChange={(e) => handleChange("email", e.target.value)}
                                 defaultValue={data?.email ?? ""}
                                 placeholder="Correo"
-                                className="w-full p-2 border rounded"
+                                className="w-full p-2 border rounded placeholder-gray-400"
                             />
+                        </div>
+                        <div>
+                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
+                                Dirección
+                            </label>
                             <input
                                 type="text"
                                 onChange={(e) => handleChange("address", e.target.value)}
                                 defaultValue={data?.address ?? ""}
                                 placeholder="Dirección"
-                                className="w-full p-2 border rounded"
+                                className="w-full p-2 border rounded placeholder-gray-400"
                             />
+                        </div>
+                        <div className="pt-4" >
                             <label className="flex items-center gap-2 cursor-pointer">
                                 <input
                                     type="checkbox"
@@ -87,20 +101,20 @@ const CustomerEdit = ({ onBack, data }) => {
                                     className="w-5 h-5 text-green-500 border-gray-300 rounded focus:ring-2 focus:ring-green-300"
                                 />
                                 <span className="text-gray-700 font-medium">Activo</span>
-
                             </label>
-                            <button
-                                type="submit"
-                                className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
-                            >
-                                Guardar
-                            </button>
-                        </form>
+                        </div>
                     </div>
-                </div>
+                    <div className="flex justify-end">
+                        <button
+                            type="submit"
+                            className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                        >
+                            Actializar
+                        </button>
+                    </div>
+                </form>
             </div>
-        </div>
-
+        </PageStart>
     )
 }
 export default CustomerEdit;

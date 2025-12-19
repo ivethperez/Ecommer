@@ -15,9 +15,9 @@ const irWatsapp=() =>{
   return (
     <div>
 {signOut ? (
-    <footer className="mt-5 border-t border-gray-200">
+    <footer className="border-t border-gray-200">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-start justify-between gap-y-12 pb-6 pt-16 lg:flex-row lg:items-center lg:py-16">
+        <div className="flex flex-col items-start justify-between gap-y-6 pb-3 pt-8 lg:flex-row lg:items-center lg:py-8">
           <div>
             <div className="flex items-center text-gray-900">
               <svg viewBox="0 0 40 40" aria-hidden="true" className="h-10 w-10 flex-none color-amarillo-fill">
@@ -65,12 +65,12 @@ const irWatsapp=() =>{
               <p className="mt-1 text-sm text-gray-700">Scan the QR code to download the app from the App Store.</p></div>
           </div> */}
         </div>
-        <div className="flex flex-col items-center border-t border-gray-200 pb-12 pt-8 md:flex-row-reverse md:justify-between md:pt-6">
+        <div className="flex flex-col items-center border-t border-gray-200 pb-6 pt-4 md:flex-row-reverse md:justify-between md:pt-3">
           <form className="flex w-full justify-center md:w-auto">
             <div className="w-30 min-w-0 shrink">
             </div>
            
-          </form><p className="mt-6 text-sm text-gray-500 md:mt-0">© Copyright 2023. All rights reserved.</p></div>
+          </form><p className="text-sm text-gray-500 md:mt-0">© Copyright 2023. All rights reserved.</p></div>
       </div>
     </footer>
 ):(<div></div>)}
