@@ -493,6 +493,7 @@ export const ShoppingCartProvider = ({ children }) => {
   }
   return (
     <ShoppingCartContext.Provider value={{
+      userName,
       count,
       setCount,
       increment,

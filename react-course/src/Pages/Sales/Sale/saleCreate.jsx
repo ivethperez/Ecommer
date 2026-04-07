@@ -63,7 +63,8 @@ const saleCreate = ({ onBack, salesCount, view, editingSaleId }) => {
     const fetchList = async () => {
       try {
         if (editingSaleId) {
-          setSaleWithDetails(await getSaleId(editingSaleId));
+          setSaleWithDetails(await getSaleId(editingSaleId));       
+          setActionSaleDetail("list");
         }
       } catch (error) {
         console.error("Error:", error);
@@ -246,6 +247,7 @@ const saleCreate = ({ onBack, salesCount, view, editingSaleId }) => {
                   : item
               )
             );
+             console.log("primera ves")
           }
           cleanAlert("Detalle de venta actualizado con éxito.", "")
         }
@@ -327,7 +329,7 @@ const saleCreate = ({ onBack, salesCount, view, editingSaleId }) => {
       {/* <div className="ml-0 md:ml-60 pt-20 px-4 md:px-8 transition-all duration-300 "> */}
       <BtnOnBack onBack={onBack}/>
       {showAlert && <Alert />}
-      <div className="rounded-lg sm:overflow-visible mt-3">
+      <div className="rounded-lg sm:overflow-visible mt-3 pt-4">
         <h1 className="text-3xl font-bold text-gray-900 mb-6">Nueva venta</h1>
         <form
           onSubmit={handleSubmit}

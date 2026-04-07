@@ -47,7 +47,7 @@ const customerCreate = ({ onBack }) => {
     return (
         <PageStart>
             <BtnOnBack onBack={onBack}/>
-            <div className="rounded-lg sm:overflow-visible mt-3">
+            <div className="rounded-lg sm:overflow-visible mt-3 pt-4">
                 <h1 className="text-3xl font-bold text-gray-900 mb-6">Agregar cliente</h1>
                 <form
                     onSubmit={handleSubmit}

@@ -70,7 +70,7 @@ function CustomerManagement() {
                 </div>
                 <button
                     onClick={() => setView("create")}
-                    className="flex items-center px-4 py-2 bg-color-rosa text-white rounded-lg"
+                    className="flex items-center justify-center px-4 py-2 bg-color-rosa text-white rounded-lg"
                 >
                     <PlusIcon className="h-5 w-5 mr-2" />
                     Agregar nuevo cliente

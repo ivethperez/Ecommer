@@ -47,7 +47,7 @@ function Products() {
                 </div>
                 <button
                     onClick={handleAddProduct}
-                    className="flex text-center px-4 py-2 bg-color-rosa text-white rounded-lg hover:bg-opacity-90 transition-colors"
+                    className="flex items-center justify-center px-4 py-2 bg-color-rosa text-white rounded-lg hover:bg-opacity-90 transition-colors"
                 >
                     <PlusIcon className="h-5 w-5 mr-2" />
                     Agregar nuevo producto

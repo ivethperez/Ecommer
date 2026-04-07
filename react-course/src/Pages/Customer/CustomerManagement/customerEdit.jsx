@@ -28,7 +28,7 @@ const CustomerEdit = ({ onBack, data }) => {
     return (
         <PageStart>
            <BtnOnBack onBack={onBack}/>
-            <div className="rounded-lg sm:overflow-visible mt-3">
+            <div className="rounded-lg sm:overflow-visible mt-3 pt-4">
                 <h1 className="text-3xl font-bold text-gray-900 mb-6">Editar cliente</h1>
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">

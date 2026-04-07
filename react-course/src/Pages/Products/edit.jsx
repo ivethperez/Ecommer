@@ -17,7 +17,7 @@ const ProductEdit = ({ id, onBack }) => {
   return (
       <PageStart>
            <BtnOnBack onBack={onBack}/>
-           <div className="rounded-lg sm:overflow-visible mt-3">
+           <div className="rounded-lg sm:overflow-visible mt-3 pt-4">
               <h1 className="text-3xl font-bold text-gray-900 mb-6">Editar producto</h1>
             <ProductTabs tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
             </div>

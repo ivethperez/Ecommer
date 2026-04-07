@@ -22,7 +22,7 @@ const mensajes = [
 
 export default function Example() {
     const { setSearchByCategory, setSignOut, signOut, search, isActiveChocolate, isActiveGomitas, isActiveBotanas, 
-        isActiveTodo,isLoggedIn, setIsLoggedIn
+        isActiveTodo,isLoggedIn, setIsLoggedIn,userName
     } = useShopiContext();
     const filtro = (val) => {
         setSearchByCategory(val);
@@ -121,7 +121,7 @@ export default function Example() {
                                 <UserIcon className="w-6 h-6" />
                             </div>
                             <div className='flex flex-col pt-3'>
-                                <p className="text-sm font-semibold">Administrador</p>
+                                <p className="text-sm font-semibold">{userName}</p>
                             </div>
                         </div>
 

@@ -30,9 +30,10 @@ export const AppRoutes = () =>{
             { path:'/sign-in', element:<Signin/>},
             { path:'/my-custom-package', element:<MyCustomPackage/> },
             { path:'/pageStart', element: signOut? <MyCustomPackage/>: <PageStart/>},
-            { path:'/products', element:<Products/>},
-            { path:'/customerManagement', element: <CustomerManagement/> },
-            { path:'/sales', element: <Sales/> }
+            { path:'/home', element: !signOut ? <Home/> : <MyCustomPackage/>},
+            { path:'/products', element: !signOut ? <Products/> : <MyCustomPackage/>},
+            { path:'/customerManagement', element: !signOut ? <CustomerManagement/> : <MyCustomPackage/> },
+            { path:'/sales', element: !signOut ? <Sales/> : <MyCustomPackage/> }
           ])
     )
 
