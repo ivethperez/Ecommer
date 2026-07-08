@@ -8,7 +8,7 @@ import '../../Styles/styles.css'
 
 const CheckoutSideMenu = () => {
   const { setOpenModalOrder, openModalOrder, cartProducts, setCartProducts
-    , order, setCount, count, setSearchByTitle,finishOrder } = useShopiContext();
+    , order, setCount, count, setSearchByTitle,finishOrder, setShowAlert, setMensajeAlerta } = useShopiContext();
 
   const onCancel = () => { setOpenModalOrder(false) };
 
@@ -25,10 +25,12 @@ const CheckoutSideMenu = () => {
     onCancel()
     setSearchByTitle(null)
     finishOrder();
+    setShowAlert(true);
+    setMensajeAlerta("¡Gracias por tu pedido! en unos momentos nos pondremos en contacto contigo.");
   }
   return (
     <aside
-      className={`${openModalOrder ? 'flex' : 'hidden'} h-96 checkout-side-menu flex-col fixed right-0  shadow-lg border-1 border-2 rounded-lg bg-white `}>
+      className={`${openModalOrder ? 'flex' : 'hidden'} h-96 checkout-side-menu flex-col fixed right-0  shadow-lg border-1 border-2 rounded-lg bg-white z-50`}>
       <div className='flex justify-between items-center p-6'>
         <button
           className=" top-0 right-0 flex justify-center items-center text-xs color-btn-confirmar w-6 h-6 rounded-full "
@@ -49,13 +51,13 @@ const CheckoutSideMenu = () => {
           cartProducts.map(product => (
             <OrderCard
               key={product.cartId}
-              title={product.producto.Nombre}
-              imageUrl={product.producto.ImagenesProductos?.[0].URLImagen}
+              title={product.product.name}
+              imageUrl={product.product.productImage?.[0].imageUrl}
               price={product.precio}
               quantity={product.quantity}
               handleDelete={handleDelete}
               id={product.cartId}
-              unidadMedida={product.opciones}
+              unidadMedida={product.options}
               
             />
           ))
@@ -73,7 +75,7 @@ const CheckoutSideMenu = () => {
           </button>
         </Link>
 
-        <button disabled={order.length > 0 ? false : true} className='mt-2  w-full color-btn-confirmar py-2 text-white rounded-lg' onClick={() => enviarPedio()}>
+        <button disabled={order.length > 0 ? false : true} className='mt-2  w-full  bg-slate-900 hover:bg-black text-white py-2 rounded-lg' onClick={() => enviarPedio()}>
           Confirmar pedido
         </button>
       </div>

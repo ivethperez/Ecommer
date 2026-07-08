@@ -247,7 +247,6 @@ const saleCreate = ({ onBack, salesCount, view, editingSaleId }) => {
                   : item
               )
             );
-             console.log("primera ves")
           }
           cleanAlert("Detalle de venta actualizado con éxito.", "")
         }

@@ -1,11 +1,17 @@
 import { Fragment, useState, useEffect } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { UserIcon, ArrowRightOnRectangleIcon } from '@heroicons/react/24/outline'
+import { Disclosure, Menu, Transition, Dialog } from '@headlessui/react'
+import { UserIcon, ArrowRightOnRectangleIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { NavLink, Link, Navigate } from 'react-router-dom'
 import { useShopiContext } from '../../Context'
 import ShoppingCart from '../ShoppingCart'
 import '../../Styles/styles.css'
-import logo from '../../Imagenes/Logo.png'
+import logo from '../../Imagenes/LogoNuevo.png'
+import videoBg from '../..//Imagenes/video.mp4'
+import botanasFondo from '../../Imagenes/Botanas.png'
+import cat_regalo from '../../Imagenes/cat_regalo.png'
+import cat_chela from '../../Imagenes/cat_chela.png'
+import cat_botanear from '../../Imagenes/cat_botanear.png'
+import cat_revender from '../../Imagenes/cat_revender.png'
 
 const navigation = [
     { name: 'Inicio', to: '/', current: true, category: '' }
@@ -21,15 +27,15 @@ const mensajes = [
 ];
 
 export default function Example() {
-    const { setSearchByCategory, setSignOut, signOut, search, isActiveChocolate, isActiveGomitas, isActiveBotanas, 
-        isActiveTodo,isLoggedIn, setIsLoggedIn,userName
+    const { setSearchByCategory, setSignOut, signOut, search, isActiveChocolate, isActiveGomitas, isActiveBotanas,
+        isActiveTodo, isLoggedIn, setIsLoggedIn, userName
     } = useShopiContext();
     const filtro = (val) => {
         setSearchByCategory(val);
     }
     const [index, setIndex] = useState(0);
     const [isSticky, setIsSticky] = useState(false);
-
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     useEffect(() => {
         const interval = setInterval(() => {
             setIndex((prevIndex) => (prevIndex + 1) % mensajes.length);
@@ -126,7 +132,7 @@ export default function Example() {
                         </div>
 
                         {/* Solo icono en móvil */}
-                         {/* <div className="sm:hidden">
+                        {/* <div className="sm:hidden">
                             <UserIcon className="w-7 h-7 text-gray-600" />
                         </div>  
 
@@ -145,15 +151,74 @@ export default function Example() {
             </header>
         )
     }
+
+  
     return (
         //Si el usuario no esta logeado, signOut = true
         <div>
-            {signOut ? (
-                renderView()) : (<div></div>)}
+            {/* {signOut ? (
+                renderView()) : (<div></div>)} */}
             {signOut ? (
                 <div>
                     {!isLoggedIn ? (
-                        <Disclosure as="nav" className={`bg-white shadow-md px-6 py-2 flex justify-between items-center transition-all duration-300 ${isSticky ? "fixed top-0 left-0 w-full z-50 shadow-lg" : ""}`}>
+                        <div className="relative text-white">
+                            {/* HERO CON IMAGEN */}
+                            <div className="relative h-[50vh] overflow-hidden text-white ">
+
+                                {/* IMAGEN */}
+                                <img
+                                    src={botanasFondo}
+                                    alt="Fondo"
+                                    className="absolute inset-0 w-full h-full object-cover"
+                                />
+
+                                {/* Overlay */}
+                                <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-black/70"></div>
+
+                                {/* CONTENIDO */}
+                                <div className="relative z-10 flex items-center justify-center h-full text-center px-8">
+                                    <div>
+                                        <div className="mt-16">
+                                        <div className='hidden sm:block mb-6'>
+                                        
+                                            <span className=" rounded-full bg-white/10 px-4 py-1 text-sm backdrop-blur-md">
+                                                Envío gratis en compras iguales o mayores a $500 🚚
+                                            </span>
+                                            </div>
+                                        </div>
+                                        <h1 className="text-3xl sm:text-6xl font-bold">
+                                            El sabor de Puebla ahora en Cancún 🌴
+                                        </h1>
+
+                                        <p className="mt-4 text-white/80">
+                                            Artesanal, crujiente y fuera de lo común
+                                        </p>
+
+                                           <div className="sm:hidden mt-6">
+      <span className="rounded-full bg-white/10 px-4 py-1 text-sm backdrop-blur-md">
+        Envío gratis en compras iguales o mayores a $500 🚚
+      </span>
+    </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* HEADER */}
+                            <header className="absolute inset-x-0 top-0 z-20">
+                                <nav className="flex items-center justify-between p-6 lg:px-8 backdrop-blur-md bg-white/10 border-b border-white/10">
+                                    <img src={logo} className="h-12 w-auto rounded-full" />
+
+                                    <a className="text-sm font-semibold text-white hover:opacity-80">
+                                        Log in →
+                                    </a>
+                                </nav>
+                            </header>
+
+
+                   
+
+
+                            {/* <Disclosure as="nav" className={`bg-white shadow-md px-6 py-2 flex justify-between items-center transition-all duration-300 ${isSticky ? "fixed top-0 left-0 w-full z-50 shadow-lg" : ""}`}>
                             {({ open }) => (
                                 <>
                                     <div className="flex items-center gap-4 ">
@@ -226,7 +291,9 @@ export default function Example() {
                                     </Disclosure.Panel>
                                 </>
                             )}
-                        </Disclosure>
+                        </Disclosure> */}
+                        </div>
+
                     ) : null}
                 </div>
             ) : (

@@ -1,3 +1,16 @@
+:root {
+  --color-primary: #DE3163;
+  --color-primary-hover: #c42b57;
+  --color-primary-soft: #fff0f4;
+
+  --color-yellow: #FFDB58;
+  --color-yellow-soft: #fff3c4;
+
+  --color-green: #99CC66;
+  --color-green-soft: #e6f4d7;
+
+  --color-bg: #f8f6f3;
+}
 .color-btn-confirmar{
     --tw-bg-opacity: 1;
     background-color: rgb(147 197 114 / var(--tw-bg-opacity));

@@ -4,7 +4,7 @@ import { totalPrice, apiRequest } from '../utils'
 const ShoppingCartContext = createContext()
 
 const API_URL = import.meta.env.VITE_API_URL;
-const NUM_CELULAR = import.meta.env.NUM_CELULAR;
+const NUM_CELULAR = import.meta.env.VITE_NUM_CELULAR;
 export const ShoppingCartProvider = ({ children }) => {
 
   useEffect(() => {
@@ -265,7 +265,7 @@ export const ShoppingCartProvider = ({ children }) => {
     event.stopPropagation();
     setCartProducts((prevCartProducts) => {
       const existingProductIndex = prevCartProducts.findIndex(
-        (el) => el.cartId === `${product.producto.Id}-${precio}`
+        (el) => el.cartId === `${product.product.id}-${precio}`
       );
 
       if (existingProductIndex !== -1) {
@@ -274,13 +274,13 @@ export const ShoppingCartProvider = ({ children }) => {
         );
       } else {
         const { id, ...productWithoutId } = product; // Elimina el id del producto
-        return [{ ...productWithoutId, quantity: 1, cartId: `${product.producto.Id}-${precio}`, precio: precio }];
+        return [{ ...productWithoutId, quantity: 1, cartId: `${product.product.id}-${precio}`, precio: precio }];
       }
     });
 
     setOrder((prevOrder) => {
       const existingOrderIndex = prevOrder.findIndex(
-        (el) => el.cartId === `${product.producto.Id}-${precio}`
+        (el) => el.cartId === `${product.product.id}-${precio}`
       );
 
       if (existingOrderIndex !== -1) {
@@ -289,7 +289,7 @@ export const ShoppingCartProvider = ({ children }) => {
         );
       } else {
         const { id, ...productWithoutId } = product; // Elimina el id del producto
-        return [...prevOrder, { ...productWithoutId, quantity: 1, cartId: `${product.producto.Id}-${precio}`, precio: precio }];
+        return [...prevOrder, { ...productWithoutId, quantity: 1, cartId: `${product.product.id}-${precio}`, precio: precio }];
       }
     });
     setCount(count + 1);
@@ -347,7 +347,7 @@ export const ShoppingCartProvider = ({ children }) => {
   }
 
   //Filtro por categoría
-  const [searchByCategory, setSearchByCategory] = useState(null)
+  const [searchByCategory, setSearchByCategory] = useState('Paquete')
 
   const filteredItemsByCategory = (items, searchByCategory) => {
     return items?.filter(item => item.product.category.name.toLowerCase().includes(searchByCategory.toLowerCase()))
@@ -385,30 +385,6 @@ export const ShoppingCartProvider = ({ children }) => {
     if (!searchByTitle && searchByCategory) setFilteredItems(filterBy('BY_CATEGORY', items, searchByTitle, searchByCategory))
     if (!searchByTitle && !searchByCategory) setFilteredItems(filterBy(null, items, searchByTitle, searchByCategory))
 
-    if (searchByCategory == 'Chocolates') {
-      setisActiveChocolate(true);
-      setisActiveBotanas(false)
-      setisActiveGomitas(false)
-      setisActiveTodo(false)
-    }
-    else if (searchByCategory == 'Gomitas') {
-      setisActiveGomitas(true)
-      setisActiveChocolate(false)
-      setisActiveBotanas(false)
-      setisActiveTodo(false)
-    }
-    else if (searchByCategory == 'Botanas') {
-      setisActiveBotanas(true)
-      setisActiveGomitas(false)
-      setisActiveChocolate(false)
-      setisActiveTodo(false)
-    }
-    else {
-      setisActiveGomitas(false)
-      setisActiveChocolate(false)
-      setisActiveBotanas(false)
-      setisActiveTodo(true)
-    }
   }, [items, searchByTitle, searchByCategory])
 
   useEffect(() => {
@@ -437,13 +413,6 @@ export const ShoppingCartProvider = ({ children }) => {
   const openProductDetail = () => setIsProductDetailOpen(true)
   const closeProductDetail = () => setIsProductDetailOpen(false)
 
-  const [isActiveChocolate, setisActiveChocolate] = useState(false)
-  const [isActiveGomitas, setisActiveGomitas] = useState(false)
-  const [isActiveBotanas, setisActiveBotanas] = useState(false)
-  const [isActiveTodo, setisActiveTodo] = useState(false)
-
-
-
   const [precioSeleccionado, setPrecioSeleccionado] = useState()
 
   const [cartProduct, setCartProduct] = useState([]) //Array de objetos cart individual
@@ -471,16 +440,33 @@ export const ShoppingCartProvider = ({ children }) => {
     return () => clearTimeout(timer);
   }
   const [phoneNumber, setPhoneNumber] = useState(`${NUM_CELULAR}`);
-  const finishOrder = async () => {
-    let products = ''
-    let medida = ''
-    order.forEach(element => {
-      var med = element.opciones.filter(p => p.precio === element.precio);
-      medida = med[0].unidad.Nombre;
-      products = products + '*Producto:* ' + element.producto.Nombre + ' ' + medida + ', Cantidad: ' + element.quantity + ', Precio: $' + element.precio + ' \n'
-    });
-    window.open(`https://wa.me/${phoneNumber}?text=` + encodeURIComponent('Hola! envío la confirmación de mi pedido: \n\n' + products + '*Total a pagar:* $' + '*' + totalPrice(order) + '*' + " " + '*más envío*'), '_blank');
 
+  const finishOrder = async () => {
+let products = '';
+    
+    order.forEach(element => {
+      const med = element.options.find(p => p.unitPrice === element.precio);
+      const medida = med ? med.unitOfMeasure.name : '';
+      
+      products += "> *" + element.product.name + "*\n";
+      products += "  " + medida + " | Cant: " + element.quantity + "\n";
+      products += "  Subtotal: $" + (element.precio * element.quantity) + "\n\n";
+    });
+    
+    var intro = "¡Hola! Envío la confirmación de mi pedido desde la web:\n\n";
+    
+    // Cambiamos "Total productos" por "Subtotal de artículos" o "Suma de productos"
+    var footer = "--------------------------\n" +
+                 "*SUBTOTAL PRODUCTOS: $" + totalPrice(order) + "*\n" +
+                 "_(+ costo de envío a acordar)_\n\n" +
+                 "*DATOS DE ENTREGA:*\n" +
+                 "- Nombre:\n" +
+                 "- Dirección/CP:\n" +
+                 "- Referencias:";
+
+    var fullMessage = intro + products + footer;
+
+    window.open("https://api.whatsapp.com/send?phone=" + phoneNumber + "&text=" + encodeURIComponent(fullMessage), "_blank");
     setTypeAlert('confirmacion')
     setShowAlert(true)
     setCartProducts([])
@@ -526,10 +512,6 @@ export const ShoppingCartProvider = ({ children }) => {
       openProductDetail,
       closeProductDetail,
       isProductDetailOpen,
-      isActiveChocolate,
-      isActiveGomitas,
-      isActiveBotanas,
-      isActiveTodo,
       phoneNumber,
       cartProduct,
       setCartProduct,

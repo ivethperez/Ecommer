@@ -4,7 +4,7 @@ import { useShopiContext } from '../../Context'
 function AlertDismissible() {
   const { setShowAlert, typeAlert, mensajeAlerta } = useShopiContext();
    useEffect(() => {
-     const timer = setTimeout(() => setShowAlert(false), 3000);
+     const timer = setTimeout(() => setShowAlert(false), 6000);
      return () => clearTimeout(timer);
    }, []);
 
