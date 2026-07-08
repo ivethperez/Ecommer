@@ -1,58 +1,65 @@
+import { useState } from "react";
 import Menu from '../../Components/Menu'
 import { useShopiContext } from '../../Context'
 import { PlusIcon, PencilIcon, TrashIcon } from '@heroicons/react/24/outline'
 import '../../Styles/styles.css'
+import ProductEditView from "./edit";
+import PageStart from "../PageStart";
+import Alert from "../../Components/Alert"
 
-function Products(){
-    const { items } = useShopiContext();
-    
+function Products() {
+    const { items,showAlert,searchProducto } = useShopiContext();
+    const [editingProductId, setEditingProductId] = useState('');
+
     const handleAddProduct = () => {
-        // TODO: Implementar modal o navegación para agregar producto
-        console.log('Agregar nuevo producto');
     }
 
     const handleEditProduct = (productId) => {
         // TODO: Implementar edición de producto
-        console.log('Editar producto:', productId);
+        setEditingProductId(productId);
     }
 
     const handleDeleteProduct = (productId) => {
         // TODO: Implementar eliminación de producto
-        console.log('Eliminar producto:', productId);
     }
-    
-    return(
-        <div className="w-full bg-white fixed flex  left-0 h-full">
-            <Menu />
-            <div className="ml-64 flex-1 p-8">
-                <div className="mb-8">
-                    <h1 className="text-3xl font-bold text-gray-900 mb-2">Gestión de Productos</h1>
-                    <p className="text-gray-600">Administra los productos de tu tienda</p>
+    const handleBackToList = () => {
+        setEditingProductId(null);
+    };
+
+    if (editingProductId) {
+        return <ProductEditView id={editingProductId} onBack={handleBackToList} />;
+    }
+    return (
+         <PageStart>
+            {showAlert && <Alert />}
+                <div className="mb-6">
+                    <h1 className="text-3xl font-bold text-gray-600">Gestión de productos</h1>
                 </div>
 
-                <div className="mb-6 flex justify-between items-center">
-                    <div className="flex items-center space-x-4">
-                        <input 
-                            type="text" 
-                            placeholder="Buscar productos..." 
-                            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-color-rosa focus:border-transparent"
-                        />
-                    </div>
-                    <button 
-                        onClick={handleAddProduct}
-                        className="flex items-center px-4 py-2 bg-color-rosa text-white rounded-lg hover:bg-opacity-90 transition-colors"
-                    >
-                        <PlusIcon className="h-5 w-5 mr-2" />
-                        Agregar Producto
-                    </button>
+               <div className="mb-4 mt-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 w-full">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
+                    <input
+                        type="text"
+                        placeholder="Buscar por folio"
+                        className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-color-rosa focus:border-transparent w-full sm:w-auto"
+                        onChange={searchProducto}
+                    />
                 </div>
+                <button
+                    onClick={handleAddProduct}
+                    className="flex items-center justify-center px-4 py-2 bg-color-rosa text-white rounded-lg hover:bg-opacity-90 transition-colors"
+                >
+                    <PlusIcon className="h-5 w-5 mr-2" />
+                    Agregar nuevo producto
+                </button>
+            </div>
 
-                <div className="bg-white rounded-lg shadow overflow-hidden">
-                    <div className="max-h-80 overflow-y-auto">
-                        <table className="min-w-full divide-y divide-gray-200">
+                   <div className=" flex-1 overflow-x-auto overflow-y-auto bg-white rounded-lg shadow border border-gray-200 
+            min-h-[300px] max-h-[calc(100vh-260px)] ">
+                        <table className="min-w-full table-auto text-sm text-gray-700 ">
                             <thead className="bg-gray-50">
                                 <tr>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <th className="px-6 py-3 text-left text-xs text-gray-500 font-medium uppercase tracking-wider">
                                         Producto
                                     </th>
                                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -75,56 +82,55 @@ function Products(){
                             <tbody className="bg-white divide-y divide-gray-200">
                                 {items ? (
                                     items.map((item) => (
-                                        <tr key={item.producto.Id} className="hover:bg-gray-50">
+                                        <tr key={item.product.id} className="hover:bg-gray-50">
                                             <td className="px-6 py-4 whitespace-nowrap">
                                                 <div className="flex items-center">
                                                     <div className="h-10 w-10 flex-shrink-0">
-                                                        <img 
-                                                            className="h-10 w-10 rounded-lg object-cover" 
-                                                            src={item.producto.ImagenesProductos?.[0]?.URLImagen || '/placeholder.png'} 
-                                                            alt={item.producto.Nombre}
+                                                        <img
+                                                            className="h-10 w-10 rounded-lg object-cover"
+                                                            src={item.product.productImage?.[0]?.imageUrl || '/placeholder.png'}
+                                                            alt={item.product.name}
                                                         />
                                                     </div>
                                                     <div className="ml-4">
                                                         <div className="text-sm font-medium text-gray-900">
-                                                            {item.producto.Nombre}
+                                                            {item.product.name}
                                                         </div>
                                                         <div className="text-sm text-gray-500">
-                                                            {item.producto.Descripcion?.substring(0, 50)}...
+                                                            {item.product.description?.substring(0, 50)}...
                                                         </div>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap">
                                                 <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
-                                                    {item.producto.CategoriasProducto?.Nombre}
+                                                    {item.product.category?.name}
                                                 </span>
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                                ${item.opciones?.[0]?.precio || 'N/A'}
+                                                ${item.options?.[0]?.unitPrice || 'N/A'}
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                                {item.producto.Cantidad || 0}
+                                                {item.product.queantity || 0}
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap">
-                                                <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                                                    item.producto.Activo 
-                                                        ? 'bg-green-100 text-green-800' 
-                                                        : 'bg-red-100 text-red-800'
-                                                }`}>
-                                                    {item.producto.Activo ? 'Activo' : 'Inactivo'}
+                                                <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${item.product.active
+                                                    ? 'bg-green-100 text-green-800'
+                                                    : 'bg-red-100 text-red-800'
+                                                    }`}>
+                                                    {item.product.active ? 'Activo' : 'Inactivo'}
                                                 </span>
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                                 <div className="flex space-x-2">
-                                                    <button 
-                                                        onClick={() => handleEditProduct(item.producto.Id)}
+                                                    <button
+                                                        onClick={() => handleEditProduct(item.product.id)}
                                                         className="text-indigo-600 hover:text-indigo-900 p-1 rounded hover:bg-indigo-50"
                                                     >
                                                         <PencilIcon className="h-4 w-4" />
                                                     </button>
-                                                    <button 
-                                                        onClick={() => handleDeleteProduct(item.producto.Id)}
+                                                    <button
+                                                        onClick={() => handleDeleteProduct(item.product.id)}
                                                         className="text-red-600 hover:text-red-900 p-1 rounded hover:bg-red-50"
                                                     >
                                                         <TrashIcon className="h-4 w-4" />
@@ -142,10 +148,9 @@ function Products(){
                                 )}
                             </tbody>
                         </table>
-                    </div>
                 </div>
-            </div>
-        </div>
+
+     </PageStart>
     )
 }
 

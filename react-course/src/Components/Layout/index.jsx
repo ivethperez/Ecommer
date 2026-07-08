@@ -1,7 +1,8 @@
-const Layout =({children}) =>{
-    return(
-        <div className=" items-center container ">
-{children}
+
+const Layout = ({ children }) => {
+    return (
+        <div className=" items-center ">
+            {children}
         </div>
     )
 }

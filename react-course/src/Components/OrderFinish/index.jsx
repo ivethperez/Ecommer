@@ -12,8 +12,8 @@ const OrderFinish = props => {
         decrementToCheckout(id)
     }
     const med = () => {
-      const unidadesFiltradas = unidadMedida.filter(item => item.precio === price);
-        return unidadesFiltradas[0].unidad.Nombre;
+        const unidadesFiltradas = unidadMedida.filter(item => item.unitPrice === price);
+        return unidadesFiltradas[0].unitOfMeasure.name;
     }
 
     return (
@@ -25,7 +25,9 @@ const OrderFinish = props => {
             <div className="flex-1">
                 <div className="font-bold">{title}</div>
                 <p className="text-sm text-gray-600">{med()}</p>
-                <p className="font-semibold">${price * quantity}</p>
+                <p className="font-semibold">${price * quantity}   <span className="text-xs font-normal text-slate-500 ml-1">
+                    MXN
+                </span></p>
             </div>
             <div className="flex items-center gap-2">
                 {/* {
@@ -33,11 +35,11 @@ const OrderFinish = props => {
                     <button className="border px-2 py-1" >-</button>
                 } */}
                 {
-                    quantity >1 && (
-                    handleDelete &&
-                    <MinusSmallIcon
-                        className="flex justify-center items-center w-5 h-5 bg-red-200 rounded-md cursor-pointer"
-                        onClick={() => decrement(id)} />
+                    quantity > 1 && (
+                        handleDelete &&
+                        <MinusSmallIcon
+                            className="flex justify-center items-center w-5 h-5 bg-red-200 rounded-md cursor-pointer"
+                            onClick={() => decrement(id)} />
                     )
                 }
                 <span className="px-2">{quantity}</span>

@@ -5,7 +5,7 @@ import logo from '../../Imagenes/Logo.png'
 import { useState } from 'react';
 
 function MyCustomPackage() {
-  const { order,login, access } = useShopiContext();
+  const { login } = useShopiContext();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -16,15 +16,10 @@ function MyCustomPackage() {
   return (
     <div>
           <div className="auth-main relative">
-      <div className="auth-wrapper v1 flex items-center w-full h-full min-h-screen">
-        <div className="auth-form flex items-center justify-center grow flex-col min-h-screen relative p-6 ">
+      <div className="auth-wrapper v1 flex items-center w-full h-full ">
+        <div className="auth-form flex items-center justify-center grow flex-col relative p-6">
           <div className="w-full max-w-[350px] relative">
-            <div className="auth-bg ">
-              <span className="absolute top-[-100px] right-[-100px] w-[300px] h-[300px] block rounded-full bg-theme-bg-1 animate-[floating_7s_infinite]"></span>
-              <span className="absolute top-[150px] right-[-150px] w-5 h-5 block rounded-full bg-primary-500 animate-[floating_9s_infinite]"></span>
-              <span className="absolute left-[-150px] bottom-[150px] w-5 h-5 block rounded-full bg-theme-bg-1 animate-[floating_7s_infinite]"></span>
-              <span className="absolute left-[-100px] bottom-[-100px] w-[300px] h-[300px] block rounded-full bg-theme-bg-2 animate-[floating_9s_infinite]"></span>
-            </div>
+            
             <div className="card sm:my-12  w-full shadow-none">
               <div className="card-body !p-10">
                 <div className="text-center mb-8">
@@ -35,7 +30,7 @@ function MyCustomPackage() {
                   <input type="email" className="form-control" id="floatingInput" placeholder="Email Address" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </div>
                 <div className="mb-4">
-                  <input type="password" className="form-control" id="floatingInput1" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                  <input type="password" className="form-control" id="floatingInput1" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
                 </div>
                 <div className="flex mt-1 justify-between items-center flex-wrap">
                   <div className="form-check">

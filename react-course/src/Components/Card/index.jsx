@@ -4,7 +4,7 @@ import '../../Styles/styles.css'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/pagination'
-import { Pagination,Autoplay } from 'swiper/modules'
+import { Pagination, Autoplay } from 'swiper/modules'
 
 const Card = ({ data }) => {
   const { increment, setOpenModal, setProductShow, cartProducts, timeClose, setSelecciones, selecciones, setPrecioSeleccionado } = useShopiContext();
@@ -26,91 +26,126 @@ const Card = ({ data }) => {
     }));
   };
 
-  const productoId = data.producto.Id;
+  const productoId = data.product.id;
   const seleccionIndex = selecciones[productoId] || 0;
-  const seleccion = data.opciones[seleccionIndex];
+  const seleccion = data.options[seleccionIndex];
 
   return (
+    <div className="flex flex-col bg-white max-w-[250px] rounded-xl">
 
-    <div className="shadow-sm text-center">
+      {/* Imagen */}
+      <div className="relative group h-48 md:h-56 w-full rounded-xl overflow-hidden mb-3 flex items-center justify-center">
 
-      <div className='p-6'>
-      
-        <div className={`group relative transform overflow-hidden sm:h-[7rem] max-sm:h-[7rem] ${!data.producto.EsPieza ? ' md:h-[10rem]' : 'md:h-[10rem]'}`} onClick={() => showproduct(data, seleccion.precio)}>
-          <span className="absolute bottom-0 left-0 bg-white/60 rounded-3xl text-xs m-2 px-3 py-0.5">
-            {data.producto.CategoriasProducto.Nombre}
-          </span>
-          {!data.producto.EsPieza ? (
+        {/* 🔥 BADGE POPULAR */}
+        {/* <span className="absolute top-2 left-2 text-[10px] font-medium px-2 py-0.5 rounded-full bg-white/80 backdrop-blur text-slate-700">
+    🔥 Popular
+  </span> */}
+        {/* Badge categoría */}
+        <span className="absolute bottom-2 left-2 bg-white/95 rounded-full text-[10px] font-bold uppercase px-2 py-0.5 z-10 text-slate-600 shadow-md">
+          {data.product.category.name}
+        </span>
+
+        {/* Imagen / Swiper */}
+        <div
+          className="w-full h-full cursor-pointer flex items-center justify-center"
+          onClick={() => showproduct(data, seleccion.unitPrice)}
+        >
+          {!data.product.isPiece ? (
             <img
-              className="inset-0 h-full w-full object-cover transition duration-300 group-hover:scale-110"
-              src={data?.producto?.ImagenesProductos?.[0]?.URLImagen}
-              alt={data?.producto?.Nombre || 'Producto'}
-            />) : (
-
+              className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
+              src={data?.product?.productImage?.[0]?.imageUrl}
+              alt={data?.product?.name || 'Producto'}
+            />
+          ) : (
             <Swiper
               pagination={{ clickable: true }}
               autoplay={{ delay: 4000, disableOnInteraction: false }}
-              modules={[Pagination,Autoplay]}
-              className="inset-0 h-full w-full object-cover transition duration-300 group-hover:scale-110"
+              modules={[Pagination, Autoplay]}
+              className="h-full w-full"
             >
-              {data?.producto?.ImagenesProductos
-                ?.slice() // para no mutar el array original
-                .sort((a, b) => a.Orden - b.Orden)
+              {data?.product?.productImage
+                ?.slice()
+                .sort((a, b) => a.orderImage - b.orderImage)
                 .map((img, idx) => (
-                  <SwiperSlide key={idx}>
+                  <SwiperSlide key={idx} className="flex items-center justify-center">
                     <img
-                      className="inset-0 h-full w-full object-cover transition duration-300 group-hover:scale-110"
-                      src={img.URLImagen}
+                      className="h-full w-full object-cover"
+                      src={img.imageUrl}
                       alt={`Imagen ${idx + 1}`}
                     />
                   </SwiperSlide>
                 ))}
             </Swiper>
           )}
-          {cartProducts.filter((product) => product.Id === data.producto.Id)
-            .length > 0 ? (
-            <button
-              className="absolute top-0 right-0 flex justify-center items-center text-xs color-btn-confirmar w-6 h-6 rounded-full m-2"
-              onClick={(e) => {
-                addProductsToCart(data, e)
-              }}>
-              <CheckIcon className='h-5 w-5 text-white' />
-            </button>
-
-          ) : (
-            <div className="">
-            </div>
-          )}
         </div>
+
+        {/* Check en carrito */}
+        {cartProducts.some((product) => product.product.id === data.product.id) && (
+          <div className="absolute top-2 right-2 flex justify-center items-center bg-green-500 w-6 h-6 rounded-full shadow-md z-20">
+            <CheckIcon className="h-4 w-4 text-white" />
+          </div>
+        )}
       </div>
-      <figcaption className="relative items-center justify-between border-t border-slate-100 pt-3">
-        <div className="font-display text-base text-slate-900">{data.producto.Nombre}</div>
-        <div className="flex items-center justify-center gap-4 mt-2">
+
+      {/* Info */}
+      <figcaption className="text-left px-1">
+
+        {/* Nombre */}
+        <h3 className="text-sm font-semibold text-slate-800 truncate">
+          {data.product.name}
+        </h3>
+
+        {/* Estado tipo badge */}
+        <span
+          className={`inline-flex items-center gap-1 text-[10px] font-semibold px-2 py-0.5 rounded-full mt-1 mb-2
+        ${data.product.quantity > 0
+              ? 'bg-green-100 text-green-700'
+              : 'bg-red-100 text-red-500'
+            }`}
+        >
+          <span
+            className={`w-1.5 h-1.5 rounded-full ${data.product.quantity > 0 ? 'bg-green-500' : 'bg-red-400'
+              }`}
+          ></span>
+          {data.product.quantity > 0 ? 'Disponible' : 'Agotado'}
+        </span>
+
+        {/* Opciones + acción */}
+        <div className="space-y-2 pt-2 border-t border-slate-100">
+
+          {/* Select */}
           <select
             id={data.cartId}
-            className="w-50 p-2 border rounded-lg"
+            className="w-full text-[12px] text-slate-600 bg-white border border-slate-300 rounded-md px-2 py-1.5 outline-none focus:border-slate-400 transition-all cursor-pointer"
             onChange={(e) => handleSeleccion(productoId, e.target.selectedIndex)}
             value={seleccionIndex}
           >
-            {data.opciones.map((op, idx) => (
+            {data.options.map((op, idx) => (
               <option key={idx} value={idx}>
-                {op.unidad.Nombre}
+                {op.unitOfMeasure.name}
               </option>
             ))}
           </select>
-          <p className="text-lg font-bold">$ {seleccion.precio} </p>
-        </div>
 
-        <div className='flex justify-center items-center'>
-          <div className="overflow-hidden rounded-full p-3">
-            {data.producto.Cantidad > 0 ?
-              <button className='w-full flex justify-center items-center color-btn-confirmar text-white rounded-lg p-1' onClick={(e) => {
-                addProductsToCart(data, e, seleccion.precio)
-              }}>Agregar
-                <ShoppingBagIcon className='h-4 w-8'></ShoppingBagIcon></button>
-              :
-              <div className="dark:text-slate-200"><dd className="px-1.5 ring-slate-200 rounded dark:ring-slate-600">Agotado</dd></div>
-            }
+          {/* Precio + botón */}
+          <div className="flex items-center justify-between">
+
+            <p className="text-md font-bold text-slate-900">
+              $ {seleccion.unitPrice}
+              <span className="text-xs font-normal text-slate-500 ml-1">
+                MXN
+              </span>
+            </p>
+
+            {data.product.quantity > 0 && (
+              <button
+                className="flex items-center gap-1.5 bg-slate-900 hover:bg-black active:scale-95 text-white text-[11px] font-semibold py-1.5 px-3 rounded-lg transition-all shadow-sm"
+                onClick={(e) => addProductsToCart(data, e, seleccion.unitPrice)}
+              >
+                <ShoppingBagIcon className="h-3.5 w-3.5" />
+                <span>Agregar</span>
+              </button>
+            )}
           </div>
         </div>
       </figcaption>

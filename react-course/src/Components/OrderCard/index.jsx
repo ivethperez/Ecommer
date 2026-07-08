@@ -2,8 +2,8 @@ const OrderCard = props => {
     const { id, title, imageUrl, price, quantity, unidadMedida } = props
 
     const med = () => {
-        const unidadesFiltradas = unidadMedida.filter(item => item.precio === price);
-        return unidadesFiltradas[0].unidad.Nombre;
+        const unidadesFiltradas = unidadMedida.filter(item => item.unitPrice === price);
+        return unidadesFiltradas[0].unitOfMeasure.name;
     }
 
     return (

@@ -6,10 +6,12 @@ import '../../Styles/styles.css'
 
 function MyOrder() {
 
-  const { order, setCount,count, setOrder,finishOrder } = useShopiContext();
+  const { order, setCount, count, setOrder, finishOrder, setShowAlert, setMensajeAlerta } = useShopiContext();
 
   const enviarPedido = () => {
     finishOrder();
+     setShowAlert(true);
+     setMensajeAlerta("¡Gracias por tu pedido! en unos momentos nos pondremos en contacto contigo.");
   }
   const handleDelete = (id) => {
     const product = order.filter(product => product.cartId === id)
@@ -41,47 +43,55 @@ function MyOrder() {
       </nav>
 
       <div className="flex flex-col lg:flex-row p-6 gap-6 max-w-5xl mx-auto">
-                <div className="w-full lg:w-2/3">
-                    <h2 className=" text-base font-bold mb-4">Bolsa de compra</h2>
-        {
-          order?.map(product => ( 
-            <OrderFinish
-              key={product.cartId}
-              title={product.producto.Nombre}
-              imageUrl={product.producto.ImagenesProductos?.[0].URLImagen}
-              price={product.precio}
-              quantity={product.quantity}
-              handleDelete={handleDelete}
-              id={product.cartId}
-              unidadMedida={product.opciones}
-            />
-          ))
-        }
+        <div className="w-full lg:w-2/3">
+          <h2 className=" text-base font-bold mb-4">Bolsa de compra</h2>
+          {
+            order?.map(product => (
+              <OrderFinish
+                key={product.cartId}
+                title={product.product.name}
+                imageUrl={product.product.productImage?.[0].imageUrl}
+                price={product.precio}
+                quantity={product.quantity}
+                handleDelete={handleDelete}
+                id={product.cartId}
+                unidadMedida={product.options}
+              />
+            ))
+          }
         </div>
-                <div className="w-full lg:w-1/3">
-                    <div className="border rounded-lg p-4">
-                        <h2 className="text-xl font-bold">Resumen</h2>
-                        <div className="flex justify-between text-lg font-medium mt-2">
-                            <span>Subtotal</span>
-                            <span>${totalPrice(order)}</span>
-                        </div>
-                        <div className="flex justify-between text-sm text-gray-600">
-                            <span>Gastos de envío: </span>
-                        </div>
-                         <div className="flex justify-between text-sm text-gray-600">
-                            <span>Se notificará vía whatsapp</span>
-                        </div>
-                        <div className="flex justify-between text-lg font-bold mt-2">
-                            <span>Total</span>
-                            <span>${totalPrice(order)}</span>
-                        </div>
-                        <Link to="/ecommer">
-                        <button className="w-full mt-4 color-btn-confirmar text-white py-2 rounded" onClick={() => { enviarPedido() }}>Confirmar pedido</button>
-                        </Link>
-                        {/* <button className="w-full mt-2 bg-gray-200 text-black py-2 rounded">PayPal</button> */}
-                    </div>
-                </div>
+        <div className="w-full lg:w-1/3">
+          <div className="border rounded-lg p-4">
+            <h2 className="text-xl font-bold">Resumen</h2>
+            <div className="flex justify-between text-lg font-medium mt-2">
+              <span>Subtotal</span>
+              <span>${totalPrice(order)}
+                <span className="text-xs font-normal text-slate-500 ml-1">
+                  MXN
+                </span>
+              </span>
             </div>
+            <div className="flex justify-between text-sm text-gray-600">
+              <span>Gastos de envío: </span>
+            </div>
+            <div className="flex justify-between text-sm text-gray-600">
+              <span>Se notificará vía whatsapp</span>
+            </div>
+            <div className="flex justify-between text-lg font-bold mt-2">
+              <span>Total</span>
+              <span>${totalPrice(order)}
+                <span className="text-xs font-normal text-slate-500 ml-1">
+                  MXN
+                </span>
+              </span>
+            </div>
+            <Link to="/ecommer">
+              <button className="w-full mt-4  bg-slate-900 hover:bg-black text-white py-2 rounded" onClick={() => { enviarPedido() }}>Confirmar pedido</button>
+            </Link>
+            {/* <button className="w-full mt-2 bg-gray-200 text-black py-2 rounded">PayPal</button> */}
+          </div>
+        </div>
+      </div>
     </div>
 
   )
